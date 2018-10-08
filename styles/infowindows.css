@@ -1,0 +1,295 @@
+#infowindow {
+	background-color: #D2D3D2;
+	border-top-left-radius: 10px;
+	border-top-right-radius: 10px;
+	height: 300px;
+	width: 260px;
+}
+
+#infowindow .infowindow{
+	display: flex;
+	flex-direction: row;
+}
+
+#infowindow .place-name{
+	font-weight: bold;
+}
+
+#infowindow .camera {
+    width: 35px;
+    height: 23px;
+    margin: 4px;
+}
+
+#infowindow .little-man {
+    width: 19px;
+    height: 23px;
+    margin: 4px;
+}
+
+#infowindow .top-bar {
+	background-color: #F7914C;
+	color: white;
+	display: flex;
+	flex-direction: row;
+	height: 25px;
+	padding-top: 4px;
+	justify-content: space-between;
+	border-radius: 10px 10px 0px 0px;
+}
+
+#infowindow .top-bar-friend {
+	background-color: #6DC17C;
+	color: white;
+	display: flex;
+	flex-direction: row;
+	height: 25px;
+	padding-top: 4px;
+	justify-content: space-between;
+	border-radius: 10px 10px 0px 0px;
+}
+
+#infowindow .friend-top-bar {
+	background-color: green;
+	color: white;
+	display: flex;
+	flex-direction: row;
+	height: 25px;
+	padding-top: 4px;
+	justify-content: center;
+	border-radius: 10px 10px 0px 0px;
+}
+
+#infowindow .trash-pic {
+	width: 15px;
+	height: 15px;
+	margin-right: 5px;
+}
+
+#infowindow .white-vert1{
+	    color: white;
+    font-weight: 200;
+    margin-left: 43px;
+}
+
+#infowindow .white-vert2{
+	color: white;
+	margin-left: 10px;
+}
+
+#infowindow .empty-space {
+	width: 5px;
+}
+
+#infowindow .dates-there {
+	display: flex;
+	flex-direction: row;
+	padding: 6px;
+	background-color: #E9E9E8;
+	    height: 25px;
+    z-index: 0;
+}
+
+#infowindow .date {
+	font-weight: bold;
+	font-size: 12px;
+	margin-top: -2px;
+}
+
+#infowindow .to {
+	margin-left: 37px;
+}
+
+#infowindow .tabs {
+	display: flex;
+	flex-direction: row;
+	width: 100%;
+	    margin: -3px auto;
+}
+
+#infowindow .tab {
+	background-color: #B6B7B6;
+	width: 50%;
+	text-align: center;
+	border-radius: 5px 5px 0px 0px;
+}
+
+#infowindow .selected {
+	background-color: #D2D3D2;
+}
+
+#infowindow .tab-content {
+	height: 64%;
+	width: 97%;
+	margin: 5px auto 4px auto;
+	border-radius: 6px 6px 5px 5px;
+	background-color: white;
+}
+
+#infowindow .note-pic-display {
+	background-color: #F5F5F5;
+	border-radius: 40px;
+}
+
+#infowindow .note-date {
+	color: Gray;
+}
+
+#infowindow .note-message {
+	color: black;
+}
+
+#infowindow .friends-display {
+	background-color: #E0E0E0;
+	border-radius: 40px;
+}
+
+#infowindow .friends-table-head {
+	background-color: #9F9F9E;
+	display: flex;
+	flex-direction: row;
+	justify-content: space-between;
+	margin-top: 5px;
+	border-top-left-radius: 6px;
+    border-top-right-radius: 6px;
+}
+
+#infowindow .friends-table-content {
+	display: flex;
+	flex-direction: row;
+	background-color: white;
+	padding: 0 4px;
+}
+
+#infowindow .when {
+	margin-left: -5px;
+}
+
+#infowindow .who {
+	margin-left: 15px;
+}
+#infowindow .pin {
+	    margin-right: 5px;
+    margin-left: -6px;
+}
+
+#infowindow .friend-col {
+	color: white;
+}
+
+#infowindow .friend-pic {
+	width: 6px;
+    height: 20px;
+    flex-grow: 1;
+    border-radius: 50%;
+    border: 2px solid #A7A9AC;
+    margin: 3px 0 0 4px;
+}
+
+#infowindow .friend-name {
+	flex-grow: 3;
+    margin: auto 0 auto 3px;
+    font-size: 10px;
+    font-weight: bold;
+    color: #9F9F9E;
+}
+
+#infowindow .friend-pin-date {
+	flex-grow: 2;
+	margin: auto;
+	margin-left: -5px;
+}
+
+#infowindow .friend-pin {
+flex-grow: 1;
+    width: 0px;
+    height: 19px;
+    margin-right: 5px;
+}
+
+#infowindow .bottom-bar {
+	background-color: #9F9F9E;
+	display: flex;
+	flex-direction: row;
+	justify-content: space-around;
+	border-radius: 0px 0px 10px 10px;
+	align-items: center;
+	height: 30px;
+}
+
+#infowindow .friend-bottom-bar {
+	background-color: #9F9F9E;
+	display: flex;
+	flex-direction: row;
+	justify-content: space-around;
+	border-radius: 0px 0px 10px 10px;
+}
+
+#infowindow .pin-message {
+	color: white;
+	font-weight: bold;
+	    margin-bottom: 4px;
+	margin-right: -12px;
+}
+
+#infowindow .friend-pin-message {
+	color: white;
+	margin-right: -30px;
+	margin-top: 5px;
+	font-weight: bold;
+	font-size: 12px;
+}
+
+#infowindow .my-pin {
+	width: 15px;
+	height: 20px;
+    margin-bottom: 4px;
+}
+
+.gm-style-iw {
+	width: 350px !important;
+	top: 0 !important;
+	left: 0 !important;
+}
+
+#infowindow .friend-note-pic-tab {
+	width: 100%;
+}
+
+.gm-style-iw > div {
+	overflow: hidden;
+}
+.gm-style-iw > div > div {
+	overflow: hidden !important;
+}
+
+.star.star-on {
+    color: #F7914C;
+}
+
+.everything{
+	display: flex;
+	flex-direction: row;
+}
+
+.arrow{
+	width: 0; 
+  height: 0; 
+  border-top: 20px solid transparent;
+  border-bottom: 20px solid transparent;
+  border-left: 20px solid #EBEBEC;
+      position: relative;
+    top: 220px;
+}
+
+#infowindow span.star.glyphicon.glyphicon-star {
+    font-size: 15px;
+}
+#infowindow .star.star-on {
+    color: #f7914c;
+}
+#infowindow .star {
+    color: white;
+    cursor: pointer;
+    text-shadow: -1px 0 transparent, 0 1px transparent, 1px 0 transparent, 0 -1px transparent;
+}

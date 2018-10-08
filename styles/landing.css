@@ -1,0 +1,335 @@
+#landing {
+	max-width: 1500px;
+	margin: auto;
+	min-height: 78vh;
+}
+
+#landing .landing-container {
+	display: -webkit-flex;
+	display: flex;
+	-webkit-flex-direction: row;
+	flex-direction: row;
+	-webkit-justify-content: flex-end;
+	justify-content: space-around;
+}
+
+#landing .signup-form-container {
+	display: -webkit-flex;
+	display: flex;
+	-webkit-flex-direction: column;
+	flex-direction: column;
+	-webkit-align-items: flex-end;
+	align-items: flex-end;
+	margin-right: 5vw;
+	margin-top: 6vw;
+	margin-left: 5vw;
+}
+
+#landing .name-container{
+	width: 100%;
+}
+
+#landing .signup-form {
+	display: -webkit-flex;
+	display: flex;
+	-webkit-flex-direction: column;
+	flex-direction: column;
+	-webkit-align-items: flex-end;
+	align-items: flex-end;
+}
+
+#landing img.coming-soon {
+	width: 440px;
+	margin-top: 50px;
+}
+
+#landing .radio-birthday {
+	display: -webkit-flex;
+	display: flex;
+	-webkit-flex-direction: row; /* works with row or column */
+	flex-direction: row;
+}
+
+#landing .birthday {
+	border: none;
+	border-bottom: 2px solid #f7914c;
+	line-height: 2;
+	width: 177px;
+	margin-right: 10px;
+	border-radius: 0;
+}
+
+#landing .tagline {
+	font-size: 22px;
+	font-weight: bold;
+}
+
+#landing input {
+	width: 374px;
+	border: none;
+	border-bottom: 2px solid #f7914c;
+	margin: 12px 10px;
+	border-radius: 0;
+}
+
+#landing input.name {
+	width: 175px;
+	border: none;
+	border-bottom: 2px solid #f7914c;
+	border-radius: 0;
+}
+
+#landing input[type=radio] {
+	width: 30px;
+	display: block;
+	border: 1px solid #f7914c;
+	content: "Male";
+	border-radius: 5px;
+}
+
+#landing .signup {
+	border-radius: 24px;
+	height: 26px;
+	color: white;
+	background-color: #f7914c;
+	margin-top: 10px;
+	border: none;
+	width: 78px;
+}
+#landing .date-container {
+	z-index: 1;
+	width: 272px;
+	float: right;
+	margin-top: -30px;
+}
+
+#landing .form-control {
+	width: 175px;
+	border: none;
+	border-bottom: 2px solid #f7914c;
+	border-radius: 0;
+}
+
+#landing .full button span {
+	background-color: black;
+	border-radius: 32px;
+	color: black;
+}
+
+#landing .partially button span {
+	background-color: #f7914c;
+	border-radius: 32px;
+	color: black;
+}
+#landing .btn-default {
+	color: #f7914c;
+}
+
+#landing .text-muted {
+	color: #ffdb99;
+}
+
+#landing table {
+	background-color: #f7914c;
+	color: white;
+}
+
+#landing .uib-datepicker-popup.dropdown-menu {
+	display: block;
+	float: none;
+	margin: 0;
+	padding: 0px;
+}
+
+#landing .form-control[disabled],
+.form-control[readonly],
+fieldset[disabled] .form-control {
+	background-color: white;
+	opacity: 1;
+}
+
+#landing .calendar-btn {
+	margin: 0 0 -12px -11px;
+	top: 7px;
+	border: none;
+	padding-left: inherit;
+	display: none;
+}
+
+#landing .btn:focus,
+.btn:active {
+	outline: none !important;
+}
+
+#landing .logo {
+	right: 0;
+}
+
+#landing .app-plug {
+    margin-top: 32vh;
+    margin-left: -1vw;
+}
+
+#landing .plug-title {
+	font-size: 2.2vh;
+	color: #f7914c;
+	font-weight: bold;
+	text-align: center;
+}
+
+#landing .plug-text {
+	font-size: 2.1vh;
+	color: #f7914c;
+	text-align: center;
+}
+
+#landing .radio-title {
+	margin: auto 29px auto auto;
+	color: #f7914c;
+}
+
+@media screen and (max-width: 992px) {
+	#landing .landing-container {
+		-webkit-justify-content: center;
+		justify-content: center;
+		flex-direction: column-reverse;
+		align-items: center;
+	}
+	#landing .signup-form-container {
+		display: -webkit-flex;
+		display: flex;
+		-webkit-flex-direction: column;
+		flex-direction: column;
+		-webkit-align-items: flex-end;
+		align-items: flex-end;
+		margin-right: 5vw;
+		margin-top: 8vw;
+		margin-left: 5vw;
+		    order: 3;
+	}
+	#landing .app-plug {
+		margin-top: 2vh;
+		margin-left: 0px;
+		order: 1;
+		margin-bottom: 5vh;
+	}
+	#landing .left-image{
+		order: 2;
+	}
+	#landing input {
+	}
+	#landing input.name {
+	}
+	#landing img.coming-soon{
+    width: 97%;
+    }
+	#landing
+}
+
+@media screen and (max-width: 390px) {
+	#landing .logo {
+		display: none;
+	}
+	#landing .tagline {
+		align-self: center;
+	}
+	#landing input {
+		width: 354px;
+	}
+	#landing input.name {
+		width: 165px;
+	}
+	#landing img.coming-soon {
+		width: 97%;
+	}
+	#landing .radio-title {
+		margin: auto 18px auto auto;
+	}
+}
+
+@media screen and (max-width: 380px) {
+	#landing input {
+		width: 97%;
+	}
+	#landing input.name {
+		    width: 45%;
+    margin: 10px 5px;
+	}
+	#landing .signup {
+		margin-right: 5px;
+	}
+	#landing img.coming-soon{
+		width: 97%;
+	}
+}
+
+#landing .radio-circle {
+	width: 20px;
+	height: 20px;
+	background: white;
+	-moz-border-radius: 50px;
+	-webkit-border-radius: 50px;
+	border-radius: 50px;
+	border: #f7914c 2px solid;
+	margin: auto 5px auto auto;
+}
+
+#landing .circle-selected {
+	width: 20px;
+	height: 20px;
+	background: #f9a15e;
+	-moz-border-radius: 50px;
+	-webkit-border-radius: 50px;
+	border-radius: 50px;
+	border: #f7914c 2px solid;
+}
+
+#landing .disclaimer {
+	color: #f7914c;
+	width: 300px;
+	text-align: right;
+	font-size: 11px;
+	margin-top: 10px;
+}
+
+#landing .app-store-pics {
+    display: flex;
+    justify-content: space-around;
+}
+
+#landing .apple-store {
+	width: 100px;
+	height: 31px;
+	margin-top: 15px;
+}
+
+#landing .google-play {
+	width: 120px;
+	height: 47px;
+	margin-top: 7px;
+}
+
+@media screen and (min-width: 992px){
+	#landing{
+	    min-height: 73vh;
+  	  margin-top: 4vh;
+	}
+}
+
+@media screen and (min-width: 1400px) {
+	#landing img.coming-soon {
+		width: 530px;
+		margin-top: 55px;
+	}
+	#landing .disclaimer {
+		font-size: 14px;
+	}
+}
+
+@media screen and (min-width: 992px) and (max-width: 1150px){
+	#landing img.coming-soon {
+		width: 340px;
+		margin-top: 60px;
+		margin-left: 20px;
+	}
+}

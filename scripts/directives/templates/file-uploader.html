@@ -1,0 +1,17 @@
+<div style="height:30px;">
+    <div ng-show="!fu.uploadName && !fu.loading" ng-class="fu.imgClass" style="background-color:white; color:#F7914C; border: 1px solid #F7914C; display:inline-block; float:left; height:30px; width:120px; vertical-align:middle;text-align:center; padding-top:5px; border-radius: 3px;">
+        <span style="color:#F7914C;" class="clickable">
+            Upload Resume
+            <input type="file" id={{fu.id}} multiple="false" style="visibility:hidden;width:0px;height:0px;" name="file">
+        </span>
+    </div>
+    <div ng-show="fu.uploadName && !fu.loading" ng-class="fu.imgClass" style="padding-top:6px; display:inline-block; vertical-align:middle;text-align:center;">
+        <span style="color:#F7914C;text-decoration: underline;-moz-text-decoration-color: #F7914C;text-decoration-color: #F7914C;"
+            class="clickable">
+            {{fu.uploadName}}
+        </span>
+    </div>
+    <div ng-show="fu.loading" style="display:inline-block; height: 20px; width:20px; vertical-align:middle;text-align:center;padding-top:0px;">
+        <i class="fa fa-spinner fa-pulse fa-2x fa-fw" style="font-size: 19px;line-height: 19px;width: 20px;height: 20px;" id="loading-gif"></i>
+    </div>
+</div>

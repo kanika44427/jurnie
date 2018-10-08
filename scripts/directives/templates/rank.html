@@ -1,0 +1,10 @@
+<div class="rank-display" ng-class="{friend:$ctrl.friend}">
+    <div class="nav-item my-rank">
+        <div class="rank-exhortation" ng-if="$ctrl.friend">{{$ctrl.user.firstName}} is an:</div>
+        <div class="rank-title">{{$ctrl.user.rank.description}}</div>
+        <div class="rank-exhortation" ng-if="!$ctrl.friend">Add more pins to <br> increase your status!</div>
+    </div>
+    <rank-bar>
+        <rank-progress></rank-progress>
+    </rank-bar>
+</div>

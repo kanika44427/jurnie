@@ -1,0 +1,208 @@
+#settings .titles {
+	display: flex;
+	flex-direction: column;
+	color: #f7914c;
+    margin: 5px 5px 0px 0px;
+}
+
+#settings .infos {
+	display: flex;
+	flex-direction: column;
+	color: #f7914c;
+	margin: 5px 5px 0px 0px;
+}
+
+#settings .settings-header {
+	display: flex;
+	flex-direction: row;
+	justify-content: space-between;
+}
+
+#settings .info-container {
+	display: flex;
+	flex-direction: row;
+	    justify-content: space-around;
+}
+
+#settings .picture-container {
+	width: 100%;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+}
+
+#settings .change-pic {
+	color: #f7914c;
+	margin: 10px auto;
+}
+
+#settings .profile-pic {
+	margin: 10px auto;
+	height: 50px;
+	width: 50px;
+}
+
+#settings .settings-title {
+	color: #f7914c;
+    margin-left: 70px;
+	font-size: 38px;
+}
+
+#settings .close-btn {
+	color: #f7914c;
+	margin-right: 2vw;
+	margin-top: 1vw;
+}
+
+#settings .title {
+	color: #f7914c;
+	font-size: 20px;
+	font-weight: bold;
+	width: auto;
+    min-width: 50%;
+}
+
+#settings .info {
+	color: #f7914c;
+	font-size: 20px;
+}
+
+#settings input{
+	width: 90%;
+}
+
+.modal-content {
+    margin: auto;
+    width: 75vw;
+    min-width: 300px;
+    border-radius: inherit;
+	max-width: 600px;
+}
+
+.modal-dialog{
+	width: 75vw;
+}
+
+.sa-icons .sa-custom {
+	width: 100px;
+	height: 100px;
+}
+
+.sweet-alert h2 {
+	color: #f7914c;
+}
+
+.sweet-alert p {
+	color: #f7914c;
+}
+
+.sweet-alert button.cancel {
+	background-color: #f7914c;
+}
+
+.sweet-alert .sa-icon.sa-warning {
+	border-color: #f7914c;
+}
+
+.settings-buttons {
+	display: flex;
+	padding: 10px;
+	justify-content: space-between;
+}
+
+#settings .delete-btn {
+    background-color: #A7A9AC;
+    color: white;
+    border: none;
+    font-size: 23px;
+    padding: 1px 8px 0px 8px;
+    margin-left: 60px;
+}
+
+#settings .save-btn{
+	background-color: #00A99D;
+    color: white;
+    border: none;
+    font-size: 23px;
+    padding: 1px 8px 0px 8px;
+}
+
+#newPin span.star.glyphicon.glyphicon-star{
+	font-size: 50px;
+}
+@media screen and (max-width: 768px) and (min-width: 401px){
+	.modal-content {
+		min-width: 99%;
+	}
+	.modal-dialog{
+		width: 95vw;
+	}
+}
+
+@media screen and (max-width: 400px) and (min-width: 326px){
+	.modal-content {
+		min-width: 99%;
+	}
+	.modal-dialog{
+		width: 95vw;
+	}
+	#settings .title{
+		font-size: 16px;
+	}
+	#settings .info{
+		font-size: 16px;
+	}
+	#newPin span.star.glyphicon.glyphicon-star {
+		font-size: 45px;
+	}
+}
+
+@media screen and (max-width: 325px) and (min-width: 275px){
+	/*.modal-content {
+		min-width: 305px;
+	}*/
+	.modal-content {
+		min-width: 99%;
+	}
+	.modal-dialog{
+		width: 95vw;
+	}
+	#newPin .pin-pic {
+		height: 26px;
+		width: 18px;
+	}
+	#newPin .notes-text {
+		min-width: 273px;
+	}
+	#newPin span.star.glyphicon.glyphicon-star{
+		font-size: 35px;
+	}
+	#settings .title{
+		font-size: 16px;
+	}
+	#settings .info{
+		font-size: 16px;
+	}
+	#newPin span.star.glyphicon.glyphicon-star {
+		font-size: 45px;
+	}
+
+}
+/*@media screen and (max-width: 300px) and (min-width: 270px){
+	min
+}*/
+
+
+
+@media screen and (min-width: 1000px){
+	.modal-content {
+		margin: auto;
+		width: 50vw;
+		min-width: 300px;
+		border-radius: inherit;
+	}
+	.modal-dialog{
+		width: 50vw;
+	}
+}
+

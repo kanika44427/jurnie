@@ -1,0 +1,42 @@
+#about{
+	max-width: 1500px;
+	margin: auto;
+	margin-bottom: 4vh;
+}
+
+#about .info-squares{
+	width: 100%;
+}
+
+#about .square{
+	padding: 0px 7vw;
+}
+
+#about img{
+	max-width: 150px;
+    max-height: 150px;
+	display: block;
+    margin: 25px auto 10px auto;
+}
+
+#about .big-title {
+    font-size: 32px;
+    color: #F7914C;
+    font-weight: bold;
+    margin-left: 7vw;
+    margin-top: 7vh;
+}
+
+#about .title{
+	font-size: 24px;
+	color: #F7914C;
+	font-weight: bold;
+	text-align: center;
+}
+
+#about .description{
+	font-size: 24px;
+	color: #F7914C;
+	text-align: center;
+}
+

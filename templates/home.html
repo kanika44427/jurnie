@@ -1,0 +1,276 @@
+<div id="home">
+
+	<!-- <div id="map-home"></div> -->
+	<div class="loading-pic">
+		<googlemaps class="googlemap" on-marker-click="home.changeChoice(choice)" choice="home.choice" lat="home.lat" long="home.long"></googlemaps>
+		<div class="map-btn-single" ng-if="home.mapChosen" ng-class="{chromeBtn: parent.chrome, notChromeBtn: !parent.chrome}">
+			<img ng-if="home.mapChosen" ng-src="/assets/Selected Map.png">
+			<img ng-if="!home.mapChosen" ng-src="/assets/Map.png" ng-click="home.screenChange('map')">
+		</div>
+		<div class="info-btn-single" ng-if="home.mapChosen" ng-class="{chromeBtn: parent.chrome, notChromeBtn: !parent.chrome}">
+			<img ng-if="!home.mapChosen" ng-src="/assets/Selected Info.png">
+			<img ng-if="home.mapChosen" ng-src="/assets/Info.png" ng-click="home.screenChange('info')">
+		</div>
+	</div>
+
+	<div class="left-side" ng-if="!parent.mobileScreen">
+		<div class="random-city-container">
+			<h1 class="have-you">Have you been to:</h1>
+			<div class="name-and-skip" ng-if="home.randomCity">
+				<h1 class="random-city hidden-sm hidden-xs">{{home.randomCity.city}}, {{home.randomCity.country}}?</h1>
+				<h2 class="random-city visible-sm visible-xs">{{home.randomCity.city}}, {{home.randomCity.country}}?</h2>
+				<div class="skip-btn cursor" ng-click="home.skip()">Next</div>
+			</div>
+			<div class="name-and-skip" ng-if="!home.randomCity">
+				<div class="random-default cursor" ng-click="home.skip()">Checkout Random City</div>
+			</div>
+		</div>
+		<!-- the pin options, row in desktop, stack on mobile -->
+		<div class="pin-options">
+			<div class="option wish-list" ng-click="home.whichPin = 'wish'">
+				<img class="pin-pic cursor" src="assets/Orange Pin - Large.png">
+				<div class="pin-type cursor" ng-class="{selectedwish: home.whichPin === 'wish'}">Wish List</div>
+			</div>
+			<div class="option going-here" ng-click="home.whichPin = 'going'">
+				<img class="pin-pic cursor" src="assets/Green Pin - Large.png">
+				<div class="pin-type cursor" ng-class="{selectedgoing: home.whichPin === 'going'}">Going Here</div>
+			</div>
+			<div class="option been-here" ng-click="home.whichPin = 'been'">
+				<img class="pin-pic cursor" src="assets/Blue Pin - Large.png">
+				<div class="pin-type cursor" ng-class="{selectedbeen: home.whichPin === 'been'}">Been Here</div>
+			</div>
+		</div>
+
+
+		<div class="pin-details-container">
+			<div>
+				<div class="when-container" ng-if="home.whichPin === 'going' || home.whichPin === 'been'">
+					<div class=" question when">When?</div>
+					<div class="from-to-btns">
+						<div ng-class="{selected: home.from}" class="from cursor" ng-click="home.from=true">From</div>
+						<div ng-class="{selected: !home.from}" class="from cursor" ng-click="home.from=false">To</div>
+					</div>
+					<!--<div uib-datepicker ng-if="home.from" ng-model="home.dateFrom" class="well well-sm" datepicker-options="home.options"></div>
+				<div uib-datepicker ng-if="!home.from" ng-model="home.dateTo" class="well well-sm" datepicker-options="home.options"></div>-->
+					<div class="date-container" ng-if="home.from">
+						<input type="text" ng-click="home.open1()" class="name" uib-datepicker-popup ng-model="home.dateOptionsTo.minDate" is-open="home.popup1.opened"
+						 datepicker-options="home.dateOptionsFrom" ng-required="true" show-button-bar="false" on-open-focus="false" placeholder="From"
+						 readonly/>
+						<span class="input-group-btn">
+							<div class="calendar-btn btn btn-default" ng-click="home.open1()">
+								<i class="glyphicon glyphicon-calendar"></i>
+							</div>
+						</span>
+					</div>
+					<div class="date-container" ng-if="!home.from">
+						<input type="text" ng-click="home.open2()" class="name" uib-datepicker-popup ng-model="home.dateTo" is-open="home.popup2.opened"
+						 datepicker-options="home.dateOptionsTo" ng-required="true" show-button-bar="false" on-open-focus="false" placeholder="To"
+						 readonly/>
+						<span class="input-group-btn">
+							<div class="calendar-btn btn btn-default" ng-click="home.open2()">
+								<i class="glyphicon glyphicon-calendar"></i>
+							</div>
+						</span>
+					</div>
+				</div>
+				<div class="when-container" ng-if="home.whichPin==='wish'" ng-class="{greyed: home.whichPin==='wish'}">
+					<div class=" question when" ng-class="{greyed: home.whichPin==='wish'}">When?</div>
+					<div class="from-to-btns" ng-class="{greyed: home.whichPin==='wish'}">
+						<div ng-class="{selected: home.from, greyed: home.whichPin==='wish'}" class="from cursor">From</div>
+						<div ng-class="{selected: !home.from, greyed: home.whichPin==='wish'}" class="from cursor">To</div>
+					</div>
+					<div class="date-container" ng-class="{greyed: home.whichPin==='wish'}">
+						<input type="text" class="name" uib-datepicker-popup ng-model="home.dateTo" is-open="home.popup2.opened" datepicker-options="home.dateOptions"
+						 ng-required="true" show-button-bar="false" on-open-focus="false" placeholder="To" readonly/>
+						<span class="input-group-btn">
+							<div ng-class="{greyed: home.whichPin==='wish'}" class="calendar-btn btn btn-default">
+								<i ng-class="{greyed: home.whichPin==='wish'}" class="glyphicon glyphicon-calendar"></i>
+							</div>
+						</span>
+					</div>
+				</div>
+
+				<div class="rating-container" ng-if="home.whichPin==='going' || home.whichPin==='been'">
+					<div class="question rating">Rating:</div>
+					<div class="star-rating">
+						<rating class="cursor" value="home.rating" max="5" color="#333" interactive="true"></rating>
+					</div>
+				</div>
+				<div class="rating-container" ng-if="home.whichPin==='wish'" ng-class="{greyed: home.whichPin==='wish'}">
+					<div class="question rating" ng-class="{greyed: home.whichPin==='wish'}">Rating:</div>
+					<div class="star-rating" ng-class="{greyed: home.whichPin==='wish'}">
+						<span class="star glyphicon glyphicon-star ng-scope star-grey"></span>
+						<span class="star glyphicon glyphicon-star ng-scope star-grey"></span>
+						<span class="star glyphicon glyphicon-star ng-scope star-grey"></span>
+						<span class="star glyphicon glyphicon-star ng-scope star-grey"></span>
+						<span class="star glyphicon glyphicon-star ng-scope star-grey"></span>
+					</div>
+				</div>
+
+				<div class="notes-container" ng-if="home.whichPin==='going' || home.whichPin==='been' || home.whichPin==='wish'">
+					<div class="question notes">Notes:</div>
+					<div class="notes-and-submit">
+						<textarea class="notes-text" ng-model="home.pin.note"></textarea>
+						<button ng-if="home.whichPin==='going' || home.whichPin==='been' || home.whichPin==='wish'" class="submit cursor" ng-click="home.savePin()">Submit</button>
+					</div>
+				</div>
+				<div class="friends-pins-container">
+					<div class="friends-pins-title">Friends that have pinned this location:</div>
+					<div class="friends-pins-loading" ng-if="!home.gotFriendsPins">Loading...</div>
+					<div class="friends-pins-loading" ng-if="home.friendsNearby.length === 0 && home.gotFriendsPins">No friends' pins nearby!</div>
+					<div class="friends-pins-list" ng-repeat="friendPin in home.friendsNearby">
+						<img class="friends-pins-pic" ng-src="{{friendPin.user.profilePic}}" ng-if="home.gotFriendsPins">
+						<div class="friends-pins-name" ng-if="home.gotFriendsPins">{{friendPin.user.firstName}} {{friendPin.user.lastName}}</div>
+					</div>
+				</div>
+			</div>
+			<div class="bottom-info-container" ng-class="{'no-bottom': home.whichPin==='going' || home.whichPin==='been' || home.whichPin==='wish', 'disappear': parent.mobileScreen, 'wish-bottom': home.whichPin==='wish'}">
+				<div class=" extra-links-container">
+					<div class="extra-links">
+						<div class="extra-link cursor" ng-class="{ 'friend-page': parent.friendMap}" ui-sref="app.about">About | </div>
+						<div class="extra-link cursor" ng-class="{ 'friend-page': parent.friendMap}" ui-sref="app.careers"> Careers | </div>
+						<div class="extra-link cursor" ng-class="{ 'friend-page': parent.friendMap}" ui-sref="app.invest"> Invest | </div>
+						<div class="extra-link cursor" ng-class="{ 'friend-page': parent.friendMap}">
+							<a class="insta" href="https://www.instagram.com/the_jurnie">Instagram</a>
+						</div>
+					</div>
+				</div>
+				<div ng-class="{ 'friend-page': parent.friendMap}" class="copyright-info">&copy; Copyright Jurnie Pty Ltd. ACN 621 547 886 2017
+					<br>All Rights Reserved.</div>
+			</div>
+		</div>
+
+
+	</div>
+
+	<div class="mobile-info" ng-if="!home.mapChosen" ng-class="{'disappear': !parent.mobileScreen}">
+		<div class="random-city-container">
+			<h1 class="have-you">Have you been to:</h1>
+			<div class="name-and-skip" ng-if="home.randomCity">
+				<h1 class="random-city hidden-sm hidden-xs">{{home.randomCity.city}}, {{home.randomCity.country}}?</h1>
+				<h2 class="random-city visible-sm visible-xs">{{home.randomCity.city}}, {{home.randomCity.country}}?</h2>
+				<div class="skip-btn cursor" ng-click="home.skip()">Next</div>
+			</div>
+			<div class="name-and-skip" ng-if="!home.randomCity">
+				<div class="cursor random-default" ng-click="home.skip()">Checkout Random City</div>
+			</div>
+		</div>
+		<!-- the pin options, row in desktop, stack on mobile -->
+		<div class="pin-options">
+			<div class="option wish-list" ng-click="home.whichPin = 'wish'">
+				<img class="pin-pic cursor" src="assets/Orange Pin - Large.png">
+				<div class="pin-type cursor" ng-class="{selectedwish: home.whichPin === 'wish'}">Wish List</div>
+			</div>
+			<div class="option going-here" ng-click="home.whichPin = 'going'">
+				<img class="pin-pic cursor" src="assets/Green Pin - Large.png">
+				<div class="pin-type cursor" ng-class="{selectedgoing: home.whichPin === 'going'}">Going Here</div>
+			</div>
+			<div class="option been-here" ng-click="home.whichPin = 'been'">
+				<img class="pin-pic cursor" src="assets/Blue Pin - Large.png">
+				<div class="pin-type cursor" ng-class="{selectedbeen: home.whichPin === 'been'}">Been Here</div>
+			</div>
+		</div>
+
+
+		<div class="pin-details-container-mobile">
+
+			<div class="when-container" ng-if="home.whichPin==='going' || home.whichPin==='been'">
+				<div class=" question when">When?</div>
+				<div class="from-to-btns">
+					<div ng-class="{selected: home.from, greyed: home.whichPin==='wish'}" class="from cursor" ng-click="home.from=true">From</div>
+					<div ng-class="{selected: !home.from, greyed: home.whichPin==='wish'}" class="from cursor" ng-click="home.from=false">To</div>
+				</div>
+				<!--<div uib-datepicker ng-if="home.from" ng-model="home.dateFrom" class="well well-sm" datepicker-options="home.options"></div>
+				<div uib-datepicker ng-if="!home.from" ng-model="home.dateTo" class="well well-sm" datepicker-options="home.options"></div>-->
+				<div class="date-container" ng-if="home.from">
+					<input type="text" ng-click="home.open1()" class="name" uib-datepicker-popup ng-model="home.dateOptionsTo.minDate" is-open="home.popup1.opened"
+					 datepicker-options="home.dateOptionsFrom" ng-required="true" show-button-bar="false" on-open-focus="false" placeholder="From"
+					 readonly/>
+					<span class="input-group-btn">
+						<div class="calendar-btn btn btn-default" ng-click="home.open1()">
+							<i class="glyphicon glyphicon-calendar"></i>
+						</div>
+					</span>
+				</div>
+				<div class="date-container" ng-if="!home.from">
+					<input type="text" ng-click="home.open2()" class="name" uib-datepicker-popup ng-model="home.dateTo" is-open="home.popup2.opened"
+					 datepicker-options="home.dateOptionsTo" ng-required="true" show-button-bar="false" on-open-focus="false" placeholder="To"
+					 readonly/>
+					<span class="input-group-btn">
+						<div class="calendar-btn btn btn-default" ng-click="home.open2()">
+							<i class="glyphicon glyphicon-calendar"></i>
+						</div>
+					</span>
+				</div>
+			</div>
+			<div class="when-container" ng-if="home.whichPin==='wish'" ng-class="{greyed: home.whichPin==='wish'}">
+				<div class=" question when" ng-class="{greyed: home.whichPin==='wish'}">When?</div>
+				<div class="from-to-btns" ng-class="{greyed: home.whichPin==='wish'}">
+					<div ng-class="{selected: home.from, greyed: home.whichPin==='wish'}" class="from cursor">From</div>
+					<div ng-class="{selected: !home.from, greyed: home.whichPin==='wish'}" class="from cursor">To</div>
+				</div>
+				<div class="date-container" ng-class="{greyed: home.whichPin==='wish'}">
+					<input type="text" class="name" uib-datepicker-popup ng-model="home.dateTo" is-open="home.popup2.opened" datepicker-options="home.dateOptions"
+					 ng-required="true" show-button-bar="false" on-open-focus="false" placeholder="To" readonly/>
+					<span class="input-group-btn">
+						<div ng-class="{greyed: home.whichPin==='wish'}" class="calendar-btn btn btn-default">
+							<i ng-class="{greyed: home.whichPin==='wish'}" class="glyphicon glyphicon-calendar"></i>
+						</div>
+					</span>
+				</div>
+			</div>
+
+			<div class="rating-container" ng-if="home.whichPin==='going' || home.whichPin==='been'" ng-class="{greyed: home.whichPin==='wish'}">
+				<div class="question rating" ng-class="{greyed: home.whichPin==='wish'}">Rating:</div>
+				<div class="star-rating" ng-class="{greyed: home.whichPin==='wish'}">
+					<rating ng-class="{greyed: home.whichPin==='wish'}" class="cursor" value="home.rating" max="5" color="#333" interactive="true"></rating>
+				</div>
+			</div>
+			<div class="rating-container" ng-if="home.whichPin==='wish'" ng-class="{greyed: home.whichPin==='wish'}">
+				<div class="question rating" ng-class="{greyed: home.whichPin==='wish'}">Rating:</div>
+				<div class="star-rating" ng-class="{greyed: home.whichPin==='wish'}">
+					<span class="star glyphicon glyphicon-star ng-scope star-grey"></span>
+					<span class="star glyphicon glyphicon-star ng-scope star-grey"></span>
+					<span class="star glyphicon glyphicon-star ng-scope star-grey"></span>
+					<span class="star glyphicon glyphicon-star ng-scope star-grey"></span>
+					<span class="star glyphicon glyphicon-star ng-scope star-grey"></span>
+				</div>
+			</div>
+
+			<div class="notes-container" ng-if="home.whichPin==='going' || home.whichPin==='been' || home.whichPin==='wish'">
+				<div class="question notes">Notes:</div>
+				<div class="notes-and-submit">
+					<textarea class="notes-text" ng-model="home.pin.note"></textarea>
+					<button ng-if="home.whichPin==='going' || home.whichPin==='been' || home.whichPin==='wish'" class="submit cursor
+			" ng-click="home.savePinMobile()">Submit</button>
+				</div>
+			</div>
+			<div class="friends-pins-container-mobile">
+				<div class="friends-pins-title">Friends that have pinned this location:</div>
+				<div class="friends-pins-loading" ng-if="!home.gotFriendsPins">Loading...</div>
+				<div class="friends-pins-loading" ng-if="home.friendsNearby.length === 0 && home.gotFriendsPins">No friends' pins nearby!</div>
+				<div class="friends-pins-list" ng-repeat="friendPin in home.friendsNearby">
+					<img class="friends-pins-pic" ng-src="{{friendPin.user.profilePic}}" ng-if="home.gotFriendsPins">
+					<div class="friends-pins-name" ng-if="home.gotFriendsPins">{{friendPin.user.firstName}} {{friendPin.user.lastName}}</div>
+				</div>
+			</div>
+
+
+		</div>
+		<div class="screen-btn-container" ng-class="{verySmall: (home.whichPin === 'going' || home.whichPin === 'been' || home.whichPin === 'wish')}"
+		 ng-if="!home.feedOpen && !home.mapChosen">
+			<div class="screen-btns">
+				<div class="map-btn">
+					<img ng-if="home.mapChosen" ng-src="/assets/Selected Map.png">
+					<img ng-if="!home.mapChosen" ng-src="/assets/Map.png" ng-click="home.screenChange('map')">
+				</div>
+				<div class="info-btn">
+					<img ng-if="!home.mapChosen" ng-src="/assets/Selected Info.png">
+					<img ng-if="home.mapChosen" ng-src="/assets/Info.png" ng-click="home.screenChange('info')">
+				</div>
+			</div>
+		</div>
+	</div>
+
+
+</div>

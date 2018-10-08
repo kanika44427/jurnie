@@ -1,0 +1,56 @@
+#analytics{
+    padding: 50px;
+    height: 96vh;
+    overflow-y: scroll;
+}
+
+#analytics .top-level-stats{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    margin: 15px 0;
+}
+#analytics .top-stats-row{
+    display: flex;
+    flex-direction: column;
+    font-size: 20px;
+}
+
+#analytics .chart-btn{
+    background-color: #F7914C;
+    color: white;
+    border: none;
+}
+
+#analytics th {
+    padding: 7px;
+    border: 1px solid black;
+}
+
+#analytics .all-dates-btn{
+    background-color: white;
+    color: #F7914C;
+    border: none;
+}
+
+#analytics table{
+    margin: 10px 0;
+}
+
+#analytics .aggregate-charts{
+    display: flex;
+    justify-content: space-around;
+}
+
+#analytics .header{
+    display: flex;
+    justify-content: space-around;
+    margin: 0 0 30px 0;
+    font-size: 28px;
+}
+
+#analytics .loading{
+    color: #F7914C;
+    font-size: 25px;
+    margin: 50px;
+}

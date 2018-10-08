@@ -1,0 +1,20 @@
+<div id="login">
+    <form name="form" novalidate>
+        <div>
+            <label>Email</label>
+            <input ng-model="login.email" type="email" name="email" required/><br />
+            <span class="error-message" ng-show="form.email.$touched">
+                <p ng-show="form.email.$error.required">Email required</p>
+                <p ng-show="form.email.$error.email">Must be a valid email address</p>
+            </span>
+        </div>
+        <div>
+            <label>Password</label>
+            <input ng-model="login.password" type="password" name="password" required/><br />
+            <span class="error-message" ng-show="form.password.$touched">
+                <p ng-show="form.password.$error.required">Password required</p>
+            </span>
+        </div>
+    </form>
+    <button ng-click="login.login()" class="btn btn-default cursor" ng-disabled="form.$invalid">Login</button>
+</div>

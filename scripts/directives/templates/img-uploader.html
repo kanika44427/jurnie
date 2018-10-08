@@ -1,0 +1,15 @@
+<div style="height:125px">
+    <div ng-show="!fu.imgUrl && !fu.loading" ng-class="fu.imgClass" style="margin: 0 auto; background-color:#E6E7E8; display:inline-block; height: 120px; width:120px; vertical-align:middle;text-align:center;padding-top:50px;">
+        <span style="color:white;" class="clickable">
+            Choose Photo
+            <input type="file" id={{fu.id}} multiple="false" style="visibility:hidden;width:0px;height:0px;">
+        </span>
+    </div>
+    <div ng-show="fu.imgUrl && !fu.loading" ng-class="fu.imgClass" style="margin: 0 auto; border: 1px solid rgb(204, 204, 204); padding-top:0px; display:inline-block; vertical-align:middle;text-align:center;">
+        <img class="clickable" src="{{fu.imgUrl}}" style="max-width:120px; max-height: 120px">
+    </div>
+    <div ng-show="fu.loading" style="margin: 0 auto; background-color:#E6E7E8; display:inline-block; height: 120px; width:120px; vertical-align:middle;text-align:center;padding-top:20px;">
+        <div id="loading-gif-wrapper-small" class="loading-icon"><img class="logo-loading" src="assets/Jurnie Logo.png"><span>.</span><span>.</span><span>.</span>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,291 @@
+
+
+#newPin h3{
+	color: #F7914C;
+	font-size: 30px;
+}
+
+#newPin .modal-header{
+	text-align: center;
+}
+
+#newPin .pin-options{
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: space-around;
+  margin-bottom: 15px;
+}
+
+#newPin .pin-type{
+  color: black;
+      margin: auto 5px;
+}
+
+#newPin .when-container{
+  width: 100%;
+  text-align: center;
+  margin: 15px 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+#newPin .rating-container{
+  width: 100%;
+  text-align: center;
+  margin: 15px 0;
+}
+
+#newPin .notes-container{
+  width: 100%;
+  text-align: center;
+  margin: 15px 0;
+}
+
+#newPin .question{
+  color: #F7914C;
+  font-size: 40px;
+    margin: 20px auto 10px auto;
+}
+
+
+#newPin .loading-pic{
+	height: 100%;
+	width: 100%;
+	background-image: url("../assets/Jurnie Logo.png");
+	content: 'Loading...'
+}
+
+#newPin .pin-options{
+	display: -webkit-flex;
+   display: flex;
+   -webkit-flex-direction: row; /* works with row or column */
+   flex-direction: row;
+   flex-wrap: wrap;
+  margin-top: 20px;
+}
+
+#newPin .option{
+  display: inline-flex;
+}
+
+#newPin .pin-pic{
+  height: 40px;
+  width: 30px;
+}
+
+#newPin .date-container{
+         z-index: 1;
+    width: 272px;
+    float: right;
+    margin-top: -30px;
+}
+
+#newPin .form-control[disabled], .form-control[readonly], fieldset[disabled] .form-control {
+    background-color: white;
+    opacity: 1;
+}
+
+#newPin .well{
+  background-color: white !important;
+  border: none !important;
+      width: 270px;
+}
+
+#newPin table {
+    background-color: #F7914C;
+    color: white;
+}
+
+#newPin .btn-default {
+    color: #F7914C;
+    background-color: #fff;
+    border-color: #F7914C;
+}
+
+#newPin .text-muted {
+    color: #ffdb99;
+}
+
+#newPin .btn-info.active, .btn-info:active, .open>.dropdown-toggle.btn-info {
+    color: white !important;
+    background-color: #F9A15E !important;
+    border-color: #F9A15E;
+}
+
+#newPin .star-rating{
+  margin-top: 20px;
+}
+
+#newPin .star.star-on {
+    color: #F7914C ;
+}
+
+#newPin .star+.star {
+    margin-left: 10px ;
+}
+
+#newPin .star {
+    color: white ;
+    cursor: pointer;
+    text-shadow: -1px 0 #F7914C, 0 1px #F7914C, 1px 0 #F7914C, 0 -1px #F7914C ;
+}
+
+#newPin .star.star-high{
+  color: #F7914C;
+}
+
+#newPin .notes-text{
+      height: 150px;
+    width: 85%;
+    min-width: 290px;
+    border-color: #F7914C;
+    border-width: 2px;
+}
+
+#newPin .submit{
+       color: white;
+    background-color: #F7914C;
+    border: none;
+    height: 34px;
+    font-size: 25px;
+    line-height: 1;
+    text-align: center;
+}
+
+#newPin .selectedbeen {
+  color: #27AAE1;
+  font-weight: bold;
+}
+#newPin .selectedgoing {
+  color: #6DC17C;
+  font-weight: bold;
+}
+#newPin .selectedwish {
+  color: #F7914C;
+  font-weight: bold;
+}
+#newPin .selected{
+  color: #F7914C;
+  font-weight: bold;
+}
+
+#newPin .from-to-btns{
+	    display: flex;
+    justify-content: space-between;
+    flex-direction: row;
+    width: 174px;
+}
+
+#newPin .from{
+	
+}
+
+#newPin .to{
+	
+}
+
+#newPin .cancel{
+  background-color: #A7A9AC;
+    color: white;
+    border: none;
+    font-size: 23px;
+    padding: 1px 8px 0px 8px;
+}
+
+#newPin .delete{
+  background-color: #A7A9AC;
+    color: white;
+    border: none;
+    font-size: 23px;
+    padding: 1px 8px 0px 8px;
+}
+
+#newPin .modal-footer {
+    padding: 15px 0;
+    text-align: right;
+    border-top: 1px solid #e5e5e5;
+    display: flex;
+    justify-content: space-between;
+}
+
+#newPin .choose-name-row{
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+}
+
+#newPin .search-dropdown{
+  border: 1px solid #F7914C;
+  margin-bottom: 17px;
+}
+
+#newPin .custom-place{
+  color: #F7914C;
+}
+
+#newPin .custom-place-input{
+	    /*min-width: 360px;*/
+    border: none;
+    border-bottom: 2px solid #F7914C;
+    margin: 12px 10px;
+    margin: 12px auto;
+    width: 96%;
+    border-radius: 0;
+    font-size: 26px;
+    padding-top: 12px;
+    height: 40px;
+}
+
+#newPin .friends-pins-container{
+    width: 75%;
+  margin: 20px auto;
+}
+
+#newPin .friends-pins-title{
+    font-size: 16px;
+}
+
+#newPin .friends-pins-list{
+    display: flex;
+    margin: 5px;
+}
+
+#newPin .friends-pins-pic{
+    height: 30px;
+}
+
+#newPin .friends-pins-name{
+    align-self: center;
+    margin-left: 10px;
+}
+
+@media screen and (max-width: 768px){
+  #newPin .modal-footer{
+      display: flex;
+      flex-wrap: nowrap;
+  }
+  #newPin .submit{
+    font-size: 20px;
+  }
+  #newPin .cancel{
+    font-size: 20px;
+  }
+  #newPin .delete{
+    font-size: 20px;
+  }
+  #newPin .question{
+    font-size: 33px;
+  }
+}
+
+@media screen and (min-width: 1200px){
+  #newPin .pin-type{
+    font-size: 20px;
+  }
+  #newPin .pin-pic {
+    height: 45px;
+    width: 32px;
+  }
+}

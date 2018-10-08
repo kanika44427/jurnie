@@ -1,0 +1,22 @@
+<div style="position:relative">
+    <input class="search cursor nav-search" ng-focus="search.searchFocused = true" ng-blur="search.searchFocused = false" ng-model="search.searchText"
+        type="text" ng-keyup="search.search()">
+
+    <div class="search-dropdown" ng-if="search.searchFocused">
+        <ul ng-if="search.people || search.places ">
+            <li class="search-result-title " ng-if="search.places && !search.ignorePlaces ">Locations</li>
+            <li class="cursor search-place " ng-if="search.places && !search.ignorePlaces " ng-repeat="place in search.places
+        | limitTo:3 " ng-mousedown="search.placeCb()(place.placeId) ">{{place.description.main}}<br>
+                <div class="search-place-secondary">{{place.description.secondary}}</div>
+            </li>
+            <hr ng-if="search.people && search.places && !search.ignorePlaces " class="search-divider ">
+            <li class="search-result-title " ng-if="search.people ">Friends</li>
+            <li class="cursor search-friend " ng-if="search.people " ng-repeat="person in search.people | limitTo:3
+        " ng-mousedown="search.personCb()(person.id) ">
+                <img class="search-pic " src="{{person.profilePic}} ">{{person.name}}</li>
+        </ul>
+    </div>
+</div>
+
+
+<!---->

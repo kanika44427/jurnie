@@ -1,0 +1,238 @@
+#add-friends{
+	max-width: 1500px;
+	margin: auto;
+	min-height: 72vh;
+    margin-top: 7vh;
+}
+
+#add-friends .add-options{
+	display: -webkit-flex;
+   display: flex;
+   -webkit-flex-direction: row; /* works with row or column */
+   flex-direction: row;
+   flex-wrap: wrap;
+    justify-content: space-around;
+        margin: 4vw;
+}
+
+#add-friends .option{
+	min-width: 200px;
+	text-align: center;
+	max-width: 275px;
+}
+
+#add-friends .pic-container {
+    height: 200px;
+    border: 2px solid #F7914C;
+    border-radius: 17px;
+    position: relative;
+    width: 200px;
+}
+
+#add-friends .selected{
+	border: 5px solid #F7914C;
+}
+
+#add-friends .pic{
+	display: block;
+	margin: auto auto;
+	position: absolute;
+	top: 0;
+	bottom: 0;
+	left: 0;
+	right: 0;
+}
+
+#add-friends .facebook-pic {
+    width: 100px;
+    height: 100px;
+}
+
+#add-friends .email-pic {
+    width: 137px;
+    height: 91px;
+}
+
+#add-friends .jurnie-pic {
+    width: 152px;
+    height: 83px;
+}
+
+#add-friends .option-title{
+	color: #F7914C;
+	font-size: 20px;
+}
+
+#add-friends input{
+	max-width: 374px;
+    border: none;
+    border-bottom: 2px solid #F7914C;
+    margin: 12px 10px;
+	    width: 50vw;
+		border-radius: 0;
+}
+
+#add-friends .top-text{
+	width: 100%;
+	text-align: center;
+}
+
+#add-friends .question{
+	color: #F7914C;
+	font-size: 30px;
+}
+
+#add-friends .answer{
+	color: #F7914C;
+	font-size: 35px;
+	font-weight: bold;
+}
+
+#add-friends .email-chosen{
+	display: -webkit-flex;
+   display: flex;
+   -webkit-flex-direction: column; /* works with column or column */
+   flex-direction: column;
+   -webkit-align-items: center;
+   align-items: center;
+	width: 100%;
+}
+
+#add-friends .friend-emails{
+	display: -webkit-flex;
+   display: flex;
+   -webkit-flex-direction: column; /* works with column or column */
+   flex-direction: column;
+	 -webkit-align-items: flex-end;
+   align-items: flex-end;
+
+}
+
+#add-friends .submit{
+	color: #F7914C;
+}
+
+#add-friends .email-addresses{
+	color: #F7914C;
+}
+
+#add-friends .emails-display{
+	    border: 2px solid #F7914C;
+    max-width: 374px;
+    margin: 20px 9px;
+    width: 50vw;
+	padding-left: 5px;
+}
+
+#add-friends .jurnie-chosen{
+	display: -webkit-flex;
+   display: flex;
+   -webkit-flex-direction: column; /* works with column or column */
+   flex-direction: column;
+   -webkit-align-items: center;
+   align-items: center;
+	width: 100%;
+	margin-bottom: 20px;
+}
+
+#add-friends .add-jurnie-btn{
+	margin-left: 30vw;
+}
+
+#add-friends .go-home{
+	text-align: right;
+    color: #F7914C;
+    cursor: pointer;
+    margin-right: 2vw;
+	font-size: 19px;
+}
+
+#add-friends .go-home-btn {
+    background-color: #00A99D;
+    color: white;
+    border: none;
+    border-radius: 3px;
+}
+
+#add-friends .jurnie-input-container{
+	display: flex;
+	flex-direction: column;
+}
+
+#add-friends .jurnie-search-area{
+	display: flex;
+	flex-direction: row;
+}
+
+#add-friends .jurnie-friends-display{
+	border: 2px solid #F7914C;
+    max-width: 374px;
+    margin: 20px 9px;
+}
+
+#add-friends .jurnie-peeps{
+	display: flex;
+	padding: 5px;
+}
+
+#add-friends .user-pic{
+	border: 2px solid gray;
+    width: 21px;
+    height: 21px;
+    border-radius: 50%;
+    margin-left: 25px;
+	margin-top: 0;
+}
+
+#add-friends .jurnie-name{
+	margin-left: 10px;
+	color: #A7A9AC;
+}
+
+#add-friends .remove-jurnie-name{
+	    color: #F7914C;
+    float: right;
+    position: absolute;
+}
+@media screen and (min-width: 768px){
+	#add-friends .question {
+		margin-top: 8vh;
+	}
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+#add-friends
+
+
+

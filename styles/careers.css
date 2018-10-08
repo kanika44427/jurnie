@@ -1,0 +1,83 @@
+#careers{
+	max-width: 1500px;
+	margin: auto;
+}
+
+#careers .careers-container{
+	width: 100%;
+	margin-top: -1vh;
+}
+
+#careers input{
+    border: none;
+    border-bottom: 2px solid #F7914C;
+    margin: 12px 0;
+    -webkit-flex: 2 0 0; 
+   flex: 2 0 0; 
+   border-radius: 0;
+}
+
+#careers textarea{
+    border: 2px solid #F7914C;
+    margin: 12px 0;
+    -webkit-flex: 2 0 0; 
+   flex: 2 0 0; 
+}
+
+#careers .title{
+    font-size: 32px;
+    color: #F7914C;
+    font-weight: bold;
+}
+
+#careers .text-side{
+	padding: 0px 7vw;
+}
+
+#careers .text{
+	font-size: 24px;
+	color: #F7914C;
+}
+
+#careers .label{
+	font-size: 24px;
+	font-weight: bold;
+	color: #F7914C;
+	/* -webkit-flex: 1 0 0; 
+   flex: 1 0 0; */
+}
+
+#careers .submit{
+	font-size: 24px;
+	font-weight: bold;
+	color: #F7914C;
+	text-decoration: underline;
+	text-align: right;
+}
+
+#careers .form{
+	display: -webkit-flex;
+   display: flex;
+   -webkit-flex-direction: column;
+   flex-direction: column;
+   align-content: flex-start;
+   padding: 0px 5vw;
+   margin-top: 25px;
+}
+
+#careers .form-row{
+	display: -webkit-flex;
+   display: flex;
+   -webkit-flex-direction: row; 
+   flex-direction: row;
+   -webkit-justify-content: flex-start;
+   justify-content: flex-start;
+   line-height: 1;
+
+}
+
+#careers .posted{
+	color: green;
+	font-size: 3vh;
+	font-weight: bold;
+}

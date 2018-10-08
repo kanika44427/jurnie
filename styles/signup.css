@@ -1,0 +1,280 @@
+#signup {
+	max-width: 1500px;
+	margin: auto;
+	margin-top: 40px;
+	margin-bottom: 20px;
+}
+
+#signup .profile-pic {
+	width: 100%;
+}
+
+#signup .pro-pic-container {
+	width: 200px;
+	margin: 0 auto;
+	text-align: center;
+}
+
+#signup .pro-pic {
+	margin: 0 auto;
+}
+
+#signup .landing-container {
+	display: -webkit-flex;
+	display: flex;
+	-webkit-flex-direction: row; /* works with row or column */
+	flex-direction: row;
+	-webkit-justify-content: flex-end;
+	justify-content: flex-end;
+}
+
+#signup .signup-form-container{
+}
+
+#signup .signup-form{
+	    display: -webkit-flex;
+    display: flex;
+    -webkit-flex-direction: column;
+    flex-direction: column;
+    -webkit-align-items: center;
+    align-items: center;
+    width: 50vw;
+    margin: auto;
+    min-width: 320px;
+	    max-width: 600px;
+}
+
+#signup .left-image {
+	color: blue;
+	background-color: blue;
+}
+
+#signup .radio-birthday {
+	display: -webkit-flex;
+   display: flex;
+   -webkit-flex-direction: row; /* works with row or column */
+   flex-direction: row;
+       width: 95%;
+}
+
+#signup .birthday {
+	border: none;
+	border-bottom: 2px solid #f7914c;
+	line-height: 2;
+	width: 177px;
+	margin-right: 10px;
+	border-radius: 0;
+}
+
+#signup .tagline {
+	font-size: 22px;
+	font-weight: bold;
+}
+
+#signup .name-entry{
+    display: flex;
+        width: 100%;
+}
+
+
+
+#signup input{
+	    /*min-width: 360px;*/
+    border: none;
+    border-bottom: 2px solid #F7914C;
+    margin: 12px 10px;
+        margin: 12px auto;
+    width: 96%;
+	border-radius: 0;
+}
+
+#signup input.name {
+	/*min-width: 170px;*/
+	border: none;
+	border-bottom: 2px solid #f7914c;
+	    width: 46%;
+	border-radius: 0;
+}
+
+#signup input[type=radio] {
+	width: 30px;
+	display: block;
+	border: 1px solid #f7914c;
+	content: "Male";
+	border-radius: 5px;
+}
+
+#signup .signup {
+    border-radius: 24px;
+    height: 25px;
+    color: white;
+    background-color: #f7914c;
+    margin-top: 10px;
+    border: none;
+    width: 53px;
+    align-self: flex-end;
+    margin-right: 1vw;
+}
+
+#signup .selector {
+    border: none;
+    border-bottom: 2px solid #F7914C;
+    margin: 12px auto;
+    background-color: transparent;
+    color: #F7914C;
+    width: 96%;
+	border-radius: 0;
+    
+}
+
+#signup select {
+	-webkit-appearance: none;
+	-webkit-border-radius: 0px;
+}
+
+#signup .date-container {
+	z-index: 1;
+	width: 272px;
+	float: right;
+	margin-top: -30px;
+}
+
+#signup .form-control {
+	width: 175px;
+	border: none;
+	border-bottom: 2px solid #f7914c;
+	border-radius: 0;
+}
+
+#signup .full button span {
+	background-color: black;
+	border-radius: 32px;
+	color: black;
+}
+
+#signup .partially button span {
+	background-color: #f7914c;
+	border-radius: 32px;
+	color: black;
+}
+#signup .btn-default {
+	color: #f7914c;
+}
+
+#signup .text-muted {
+	color: #ffdb99;
+}
+
+#signup table {
+	background-color: #f7914c;
+	color: white;
+}
+
+#signup .uib-datepicker-popup.dropdown-menu {
+	display: block;
+	float: none;
+	margin: 0;
+	padding: 0px;
+}
+
+#signup .form-control[disabled],
+.form-control[readonly],
+fieldset[disabled] .form-control {
+	background-color: white;
+	opacity: 1;
+}
+
+#signup .calendar-btn {
+	margin: 0 0 -12px -11px;
+	top: 7px;
+	border: none;
+	padding-left: inherit;
+}
+
+#signup .btn:focus,
+.btn:active {
+	outline: none !important;
+}
+
+
+#signup .glyphicon-chevron-down {
+    color: #F7914C;
+    top: -31px;
+    right: 17px;
+    z-index: -1;
+    width: 100%;
+    text-align: right;
+}
+
+#signup .btn-default:hover {
+	background-color: transparent;
+}
+
+#signup .radio-circle {
+	width: 20px;
+	height: 20px;
+	background: white;
+	-moz-border-radius: 50px;
+	-webkit-border-radius: 50px;
+	border-radius: 50px;
+	border: #f7914c 2px solid;
+	margin: auto 5px auto auto;
+}
+
+#signup .circle-selected {
+	width: 20px;
+	height: 20px;
+	background: #f9a15e;
+	-moz-border-radius: 50px;
+	-webkit-border-radius: 50px;
+	border-radius: 50px;
+	border: #f7914c 2px solid;
+}
+
+#signup .radio-title {
+	margin: auto 1px auto auto;
+	color: #f7914c;
+}
+
+@media screen and (max-width: 390px) {
+	#signup .tagline {
+		align-self: center;
+	}
+	#signup input {
+		width: 354px;
+	}
+	#signup input.name {
+		width: 165px;
+	}
+	#signup .radio-title {
+		margin: auto 6px auto auto;
+	}
+	#signup .selector {
+		min-width: 305px;
+	}
+}
+
+@media screen and (max-width: 360px) {
+	#signup input {
+		width: 304px;
+	}
+	#signup input.name {
+		width: 139px;
+	}
+	#signup .signup {
+		margin-right: 5px;
+	}
+}
+
+@media screen and (min-width: 900px) {
+	#signup .radio-title {
+		margin: auto 20px auto auto;
+		color: #f7914c;
+	}
+}
+
+@media screen and (min-width: 1100px) {
+	#signup .radio-title {
+		margin: auto 45px auto auto;
+	}
+}

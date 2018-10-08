@@ -1,0 +1,19 @@
+#invest{
+	max-width: 1500px;
+	margin: auto;
+	min-height: 70vh;
+	padding: 0 7vw;
+}
+
+#invest .title{
+	font-size: 32px;
+	font-weight: bold;
+	color: #F7914C;
+	margin-top: 25px;
+	    margin-top: 8vh;
+}
+
+#invest .text{
+	font-size: 24px;
+	color: #F7914C;
+}

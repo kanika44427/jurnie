@@ -1,0 +1,82 @@
+<div id="add-friends">
+
+	<div class="top-text">
+		<div class="question">Want to see where your friends have been?</div>
+		<div class="answer">ADD THEM!</div>
+	</div>
+
+	<!-- three add friend options, facebook email and jurnie, row on desktop, stack on mobile, each one's border gets thicker when clicked -->
+	<div class="add-options">
+		<div class="option facebook-option">
+			<div class="pic-container" ng-class="{selected: add.facebookChosen}">
+				<img class="pic facebook-pic cursor" src="assets/FACEBOOK IMAGE.png" ng-click="add.selectMethod('fb')">
+			</div>
+			<div class="option-title">Facebook</div>
+		</div>
+		<div class="option email-option">
+			<div class="pic-container" ng-class="{selected: add.emailChosen}">
+				<img class="pic email-pic cursor" src="assets/Email Symbol.png" ng-click="add.selectMethod('email')">
+			</div>
+			<div class="option-title">Email</div>
+		</div>
+		<div class="option jurnie-option">
+			<div class="pic-container" ng-class="{selected: add.jurnieChosen}">
+				<img class="pic jurnie-pic cursor" src="assets/Jurnie Logo.png" ng-click="add.selectMethod('jurnie')">
+			</div>
+			<div class="option-title">Explore</div>
+		</div>
+	</div>
+
+	<div class="facebook-chosen" ng-if="add.facebookChosen">
+		<button class="facebook-btn" ng-if="add.facebookBtn" ng-click="add.facebookAuth()"><span class="facebook-logo">F</span>Log in with Facebook</button>
+	</div>
+
+	<div class="email-chosen" ng-if="add.emailChosen">
+		<ng-form name="friend-emails" class="friend-emails">
+			<input ng-model="add.emailName" type="text" placeholder="Friend's Name" required/><br>
+			<input ng-model="add.emailAddress" type="text" placeholder="Friend's Email" required/>
+			<div class="submit add-email-btn cursor" ng-click="add.addEmail()">Add</div>
+			<div class="emails-display" ng-if="add.emailsList.length">
+				<div ng-repeat="email in add.emailsList" class="email-addresses">
+					<div class="remove-jurnie-name cursor" ng-click="add.removeEmailName(email)">X</div>
+					<div class="jurnie-name">{{email.email}}</div>
+				</div>
+			</div>
+			<div class="submit send-email-btn cursor" ng-if="add.emailsList.length" ng-click="add.sendEmails()">Send</div>
+		</ng-form>
+	</div>
+
+	<div class="jurnie-chosen" ng-if="add.jurnieChosen">
+		<div class="jurnie-input-container">
+
+			<!--<input class="jurnie-add" ng-model="add.jurnieName">-->
+			<div class="jurnie-search-area">
+				<img class="magnifying-glass" src="assets/Magnify Glass.png">
+				<search-bar ignore-places="true" person-cb="add.addJurnieUser"></search-bar>
+			</div>
+			<div class="jurnie-friends-display" ng-if="add.jurnieUsers && add.jurnieUsers.length">
+				<div class="jurnie-peeps" ng-repeat="friend in add.jurnieUsers">
+					<img class="user-pic" src="{{friend.profilePic}} ">
+					<div class="jurnie-name ">{{friend.firstName + ' ' + friend.lastName}}</div>
+					<div class="remove-jurnie-name cursor" ng-click="add.removeJurnieName(friend)">X</div>
+				</div>
+			</div>
+		</div>
+		<div class="submit add-jurnie-btn cursor " ng-if="add.jurnieUsers && add.jurnieUsers.length" ng-click="add.addJurnieFriends() ">Add Friends</div>
+	</div>
+
+	<div class=" go-home ">
+		<button ng-click="add.goToHome()" class="go-home-btn cursor">Start your Jurnie</button>
+	</div>
+
+
+
+
+
+
+
+
+
+
+
+</div>

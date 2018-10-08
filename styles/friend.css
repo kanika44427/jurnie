@@ -1,0 +1,117 @@
+#main-body#friend{
+    margin-top: -13vh;
+}
+
+#friend {
+    height: 86vh;
+    margin-top: -10vh;
+}
+
+#friend .friendmap{
+height: 91vh;
+    width: 100vw;
+}
+
+#map-friend {
+    width: 100%;
+    min-height: 500px;
+    height: 100vh;
+    max-height: 775px;
+    background: transparent url("../assets/Jurnie Logo.png") no-repeat center center;
+    background-size: 50vw 45vw;
+}
+
+
+#friend .loading-pic{
+	height: 100%;
+	width: 100%;
+	background-image: url("../assets/Jurnie Logo.png");
+	content: 'Loading...';
+        margin-top: 25px;
+}
+
+#friend .pin-options{
+	display: -webkit-flex;
+   display: flex;
+   -webkit-flex-direction: row; /* works with row or column */
+   flex-direction: row;
+   flex-wrap: wrap;
+}
+
+#friend .not-friends {
+    width: 100%;
+    height: 100%;
+    background-color: #fff;
+    background-color: rgba(255,255,255,0.8);
+    position: absolute;
+    z-index: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  justify-content: center;
+}
+
+#friend .not-friends-message{
+    min-width: 200px;
+    width: 50vw;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+}
+
+#friend .friend-pic{
+    border: 5px solid #D8D9DA;
+    border-radius: 50%;
+    width: 175px;
+    height: 175px;
+    margin-top: -25vh;
+}
+
+#friend .place-name{
+    margin: auto;
+    margin-bottom: 4px;
+}
+
+#friend .add-message{
+    color: #F7914C;
+    font-size: 30px;
+}
+
+#friend .add-btn{
+    margin-top: 10px;
+    color: #F7914C;
+    font-size: 33px;
+    font-weight: bold;
+}
+@media screen and (max-width: 768px){
+    #friend{
+        height: 90vh;
+    }
+    #friend .friendmap{
+		    height: 90vh;
+	}
+
+}
+
+
+@media screen and (max-width: 992px) and (min-width: 770px){
+    #friend {
+        height: 86vh;
+        margin-top: -10vh;
+    }
+}
+
+@media screen and (max-width: 768px) and (min-height: 735px){
+    #friend {
+        height: 84vh;
+    }
+}
+
+@media screen and (min-height: 1000px){
+	#friend {
+		height: 80vh;
+	}
+}

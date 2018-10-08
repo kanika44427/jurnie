@@ -1,0 +1,118 @@
+#not-friend .friendmap{
+      height: 76vh;
+    width: 100vw;
+}
+
+#map-not-friend {
+    width: 100%;
+    min-height: 500px;
+    height: 100vh;
+    max-height: 775px;
+    background: transparent url("../assets/Jurnie Logo.png") no-repeat center center;
+    background-size: 50vw 45vw;
+}
+
+
+#not-friend .loading-pic{
+	height: 100%;
+	width: 100%;
+	background-image: url("../assets/Jurnie Logo.png");
+	content: 'Loading...'
+}
+
+#not-friend .pin-options{
+	display: -webkit-flex;
+   display: flex;
+   -webkit-flex-direction: row; /* works with row or column */
+   flex-direction: row;
+   flex-wrap: wrap;
+}
+
+#not-friend .not-friends {
+    width: 100%;
+    height: 90%;
+    background-color: #fff;
+    background-color: rgba(255,255,255,0.8);
+    position: absolute;
+    z-index: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  justify-content: center;
+}
+
+#not-friend .not-friends-message{
+    min-width: 200px;
+    width: 50vw;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+}
+
+#not-friend .friend-pic{
+        border: 5px solid #D8D9DA;
+    border-radius: 50%;
+    min-width: 100px;
+    margin-top: -18vh;
+}
+
+#not-friend .friend-name{
+    color: #A7A9AC;
+    font-size: 40px;
+    margin: 10px auto;
+}
+
+#not-friend .add-message{
+    color: #F7914C;
+    font-size: 30px;
+    width: 480px;
+}
+
+#not-friend .add-btn{
+    margin-top: 10px;
+    color: #F7914C;
+    font-size: 33px;
+    font-weight: bold;
+}
+
+#not-friend .notfriendmap{
+    height: 90vh;
+    width: 100vw;
+    margin-top: -4vh;
+}
+
+@media screen and (max-width: 768px){
+    #not-friend .not-friends-message{
+        margin-right: 5vw;
+    }
+    
+    #not-friend .friend-name{
+        color: #A7A9AC;
+        font-size: 30px;
+        margin: 10px auto;
+    }
+
+    #not-friend .add-message{
+        color: #F7914C;
+        font-size: 20px;
+        width: 265px;
+    }
+
+    #not-friend .add-btn{
+        margin-top: 10px;
+        color: #F7914C;
+        font-size: 23px;
+        font-weight: bold;
+    }
+    #not-friend .friendmap{
+        height: 89.5vh;
+        width: 100vw;
+    }
+    #not-friend .not-friends{
+        height: 89.5vh;
+        width: 100vw;
+    }
+}
