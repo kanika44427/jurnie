@@ -45,6 +45,7 @@
                 //ks : start 
 				//windowClass: 'large-Modal',
 			    //size: 'lg',
+			    windowClass  : 'vaibhavClass',
                 //ks : end
 				resolve: {
 					pinToEdit: function(Pin) {
