@@ -14,7 +14,7 @@
 	</div>
 
 	<div class="left-side" ng-if="!parent.mobileScreen">
-		<div class="random-city-container">
+		<!--<div class="random-city-container">
 			<h1 class="have-you">Have you been to:</h1>
 			<div class="name-and-skip" ng-if="home.randomCity">
 				<h1 class="random-city hidden-sm hidden-xs">{{home.randomCity.city}}, {{home.randomCity.country}}?</h1>
@@ -24,9 +24,9 @@
 			<div class="name-and-skip" ng-if="!home.randomCity">
 				<div class="random-default cursor" ng-click="home.skip()">Checkout Random City</div>
 			</div>
-		</div>
+		</div>-->
 		<!-- the pin options, row in desktop, stack on mobile -->
-		<div class="pin-options">
+		<!--<div class="pin-options">
 			<div class="option wish-list" ng-click="home.whichPin = 'wish'">
 				<img class="pin-pic cursor" src="assets/Orange Pin - Large.png">
 				<div class="pin-type cursor" ng-class="{selectedwish: home.whichPin === 'wish'}">Wish List</div>
@@ -39,7 +39,7 @@
 				<img class="pin-pic cursor" src="assets/Blue Pin - Large.png">
 				<div class="pin-type cursor" ng-class="{selectedbeen: home.whichPin === 'been'}">Been Here</div>
 			</div>
-		</div>
+		</div>-->
 
 
 		<div class="pin-details-container">
@@ -144,7 +144,8 @@
 	</div>
 
 	<div class="mobile-info" ng-if="!home.mapChosen" ng-class="{'disappear': !parent.mobileScreen}">
-		<div class="random-city-container">
+        <!--ks: removing random city generator-->
+		<!--<div class="random-city-container">
 			<h1 class="have-you">Have you been to:</h1>
 			<div class="name-and-skip" ng-if="home.randomCity">
 				<h1 class="random-city hidden-sm hidden-xs">{{home.randomCity.city}}, {{home.randomCity.country}}?</h1>
@@ -154,9 +155,9 @@
 			<div class="name-and-skip" ng-if="!home.randomCity">
 				<div class="cursor random-default" ng-click="home.skip()">Checkout Random City</div>
 			</div>
-		</div>
+		</div>-->
 		<!-- the pin options, row in desktop, stack on mobile -->
-		<div class="pin-options">
+		<!--<div class="pin-options">
 			<div class="option wish-list" ng-click="home.whichPin = 'wish'">
 				<img class="pin-pic cursor" src="assets/Orange Pin - Large.png">
 				<div class="pin-type cursor" ng-class="{selectedwish: home.whichPin === 'wish'}">Wish List</div>
@@ -169,7 +170,7 @@
 				<img class="pin-pic cursor" src="assets/Blue Pin - Large.png">
 				<div class="pin-type cursor" ng-class="{selectedbeen: home.whichPin === 'been'}">Been Here</div>
 			</div>
-		</div>
+		</div>-->
 
 
 		<div class="pin-details-container-mobile">

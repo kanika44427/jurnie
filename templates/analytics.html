@@ -65,7 +65,6 @@
             <th>{{pin.pinType.description}}</th>
         </tr>
     </table>
-
     <table ng-if="analytics.chart === 'signup'" ng-hide="analytics.loading">
         <tr>
             <th ng-click="analytics.signupCarotSet('firstName')">First Name
@@ -117,7 +116,6 @@
             <th>{{signup.startDate | date: 'dd-MM-yyyy'}}</th>
         </tr>
     </table>
-
     <div class="aggregate-charts" ng-if="analytics.chart === 'aggregate'" ng-hide="analytics.loading">
         <table>
             <tr>
@@ -159,6 +157,4 @@
             </tr>
         </table>
     </div>
-
-
 </div>

@@ -235,13 +235,14 @@
 			<div ng-class="{ 'friend-page': parent.friendMap}" class="copyright-info">&copy; Copyright Jurnie Pty Ltd. ACN 621 547 886 2017
 				<br>All Rights Reserved.</div>
 		</div>
-		<div class="mountain-container visible-md visible-lg visible-xl" ng-class="{ 'home-page':
+        <!--ks : removal of orange area-->
+		<!--<div class="mountain-container visible-md visible-lg visible-xl" ng-class="{ 'home-page':
                         parent.currState==='app.home' }" ng-if="!parent.mobileScreen">
-			<img class="mountain-range visible-md visible-lg visible-xl" ng-if="!parent.friendMap
+			 <img class="mountain-range visible-md visible-lg visible-xl" ng-if="!parent.friendMap
                     " src="assets/Mountain Range - Orange.png">
-			<img class="mountain-range visible-md visible-lg visible-xl" ng-if="parent.friendMap
+			 <img class="mountain-range visible-md visible-lg visible-xl" ng-if="parent.friendMap
                     " src="assets/Mountain Range - Green.png">
-		</div>
+		</div>-->
 		<div class="mountain-container-mobile visible-xs visible-sm" ng-class="{ 'home-page':
                         parent.currState==='app.home' }" ng-if="parent.mobileScreen">
 			<img class="mountain-range-mobile visible-xs visible-sm" ng-if="!parent.friendMap && parent.mobileScreen

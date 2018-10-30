@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html>
 
 <head>
@@ -52,9 +52,7 @@
 	<link rel="stylesheet" type="text/css" href="styles/notMyFriend.css" />
 	<link rel="stylesheet" type="text/css" href="styles/passwordRecovery.css" />
 	<link rel="stylesheet" type="text/css" href="styles/analytics.css" />
-
-
-
+    <link href="styles/phase2.css" rel="stylesheet" type="text/css" />
 </head>
 
 <body ng-app="jurnie" ng-cloak>
@@ -68,7 +66,6 @@
 			});
 			FB.AppEvents.logPageView();
 		};
-
 		(function (d, s, id) {
 			var js, fjs = d.getElementsByTagName(s)[0];
 			if (d.getElementById(id)) { return; }
@@ -97,9 +94,9 @@
 	<script src="node_modules/angular-toastr/dist/angular-toastr.min.js" charset="UTF-8"></script>
 	<script src="node_modules/angular-toastr/dist/angular-toastr.tpls.js" charset="UTF-8"></script>
 	<!--<script src="node_modules/mapCluster.js" charset="UTF-8"></script>-->
-	<script src="https://developers.google.com/maps/documentation/javascript/examples/markerclusterer/markerclusterer.js"></script>
+	<script src="https://developers.google.com/maps/documentation/javascript/examples/markerclusterer/markerclusterer.js">
+    </script>
 	<script src="node_modules/angular-recaptcha/release/angular-recaptcha.min.js" charset="UTF-8">
-
 	</script>
 
 	<!-- General Application -->
