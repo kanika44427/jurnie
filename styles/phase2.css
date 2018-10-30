@@ -1,0 +1,199 @@
+﻿
+
+    .modal-backdrop {
+                 /* bug fix - no overlay */
+                 display: none;
+             }
+
+             .modal-content {
+                 -webkit-box-shadow: 0 5px 15px rgba(0,0,0,0);
+                 -moz-box-shadow: 0 5px 15px rgba(0,0,0,0);
+                 -o-box-shadow: 0 5px 15px rgba(0,0,0,0);
+                 box-shadow: 0 5px 15px rgba(0,0,0,0);
+             }
+
+     .modal-dialog.modify-pop {
+         top: 30%;
+         left: 8%;
+     }
+
+     #newPin .modal-header {
+         text-align: center;
+         background: #F7914C;
+         padding: 0;
+         padding-left: 10px;
+         border-top-left-radius: 5px;
+         border-top-right-radius: 5px;
+         padding-right: 10px;
+         position: relative;
+     }
+
+     span.right-cross {
+         position: absolute;
+         left: 0px;
+         top: -4px;
+     }
+
+         span.right-cross button {
+             width: 0px !important;
+             height: 0px !important;
+         }
+
+     #newPin .modal-header .box-head-right.trash-pic.glyphicon.glyphicon-edit {
+         position: absolute;
+         right: 0px;
+         color: #fff;
+         top: 3px;
+         right: 5px;
+     }
+
+     div#newPin .modal-body {
+         padding-top: 3px;
+     }
+
+     #newPin .custom-place-input {
+         /* min-width: 360px; */
+         border: none;
+         border-bottom: 2px solid #F7914C;
+         margin: 12px 10px;
+         margin: 12px auto;
+         width: 100%;
+         border-radius: 0;
+         font-size: 16px;
+         padding-top: 0px;
+         height: 32px;
+         margin: 0px;
+     }
+
+     #newPin .pin-options {
+         display: -webkit-flex;
+         display: flex;
+         -webkit-flex-direction: row;
+         flex-direction: row;
+         flex-wrap: wrap;
+         margin-top: 12px;
+         margin-bottom: 15px;
+     }
+
+     #newPin .option {
+         display: inline;
+     }
+
+     #newPin .pin-options .option {
+         float: left;
+         width: 33.33%;
+         text-align: center;
+     }
+
+     #newPin .friends-pins-container {
+         width: 100%;
+         margin: -15px auto 0px;
+         padding: 0px 15px 15px;
+         text-align: center;
+         font-size: 13px;
+         padding-bottom: 10px;
+     }
+
+     .modal-footer {
+         padding: 10px 15px;
+         text-align: right;
+         border-top: 1px solid #e5e5e5;
+     }
+     .pin-details-container {
+    position: fixed;
+    width: 100%;
+    background: #f7914c;
+    bottom: 0;
+    text-align: center;
+}
+     .extra-links
+{
+
+color: #fff;
+}
+     .insta {
+    color: #fff;
+}
+
+
+     #newPin .friends-pins-title {
+         font-size: 14px;
+     }
+     #newPin h3 {
+    color: #fff !important;
+    font-size: 18px;
+}
+.vaibhavClass .modal-dialog .modal-content {
+    width: 260px !important;
+}
+.vaibhavClass  #newPin .pin-pic {
+    height: 30px !important;
+    width: auto !important;
+}
+.vaibhavClass #newPin .pin-type {
+    font-size: 15px;
+}
+.vaibhavClass  div#modal-body input {
+    width: 100%;
+    border: none;
+    border-bottom: 2px solid #F7914C;
+    height: 40px;
+}
+.vaibhavClass  #newPin .question {
+    color: #F7914C;
+    font-size: 21px;
+    margin: 20px auto 10px auto;
+}
+.vaibhavClass   #newPin .notes-text {
+    height: 50px;
+    width: 85%;
+    min-width: 290px;
+    border-color: #F7914C;
+    border-width: 2px;
+}
+.vaibhavClass #newPin .pin-options {
+    margin-bottom: 0px;
+}
+.vaibhavClass  #newPin h3 {
+    color: #fff;
+    font-size: 18px;
+}
+.vaibhavClass   div#newPin .modal-body {
+    padding-top: 3px;
+    padding-bottom: 15px;
+}
+.vaibhavClass   #newPin .question {
+    color: #F7914C;
+    font-size: 21px;
+    margin: 10px auto 10px auto;
+}
+.vaibhavClass    .modal-dialog {
+    top: 35%;
+    left: 11%;
+}
+
+.copyright-info {
+    text-align: center;
+    color: #fff;
+    /* margin-bottom: 13px; */
+}
+.pin-details-container {
+    position: fixed;
+    width: 100%;
+    background: #f7914c;
+    bottom: 0;
+    text-align: center;
+    padding: 5px 0px;
+}
+#not-friend .not-friends {
+    width: 100%;
+    height: 100%;
+    background-color: #fff;
+    background-color: rgba(255,255,255,0.8);
+    position: absolute;
+    z-index: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
