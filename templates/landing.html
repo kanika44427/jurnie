@@ -41,7 +41,7 @@
 			<input type="submit" tabindex='9' ui-sref="app.signup({firstName:landing.firstName, lastName: landing.lastName, email: landing.email, bday: landing.birthday, password: landing.password, gender: landing.gender})"
 			 class="signup cursor" value="Sign Up!"></input>
             <div class="social-btns">
-                <a class="btn btn-block btn-social btn-facebook">
+                <a class="btn btn-block btn-social btn-facebook" ng-click="landing.signUpWithFacebook()">
                     <span class="fa fa-facebook"></span> Sign up with Facebook
                 </a><a class="btn btn-block btn-social btn-instagram">
                     <span class="fa fa-instagram"></span> Sign up with Instagram

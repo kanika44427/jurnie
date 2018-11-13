@@ -1,7 +1,7 @@
 (function() {
 	angular.module('jurnie').controller('LandingController', landingCtrl);
 
-	function landingCtrl(Auth, $stateParams) {
+	function landingCtrl(Auth, $stateParams, facebookService) {
 		var vm = this;
 
 		vm.firstName = null;
@@ -30,6 +30,13 @@
 			vm.popup1.opened = true;
 		};
 
+		vm.signUpWithFacebook = function () {
+		    facebookService.login()
+                  .then(function (response) {
+                      console.log(response);
+                  }
+                );
+		}
 		vm.open2 = function() {
 			vm.popup2.opened = true;
 			vm.noBday = false;
