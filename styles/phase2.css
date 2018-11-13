@@ -197,3 +197,27 @@ color: #fff;
     align-items: center;
     justify-content: center;
 }
+
+a.btn.btn-block.btn-social.btn-facebook {
+    background: #3b5998;
+    color: #fff;
+    font-size: 18px;
+}
+span.fa.fa-facebook {
+    display: inline-block;
+    /* border-right: 1px solid #ccc; */
+    float: left;
+    margin-top: 5px;
+    margin-right: 15px;
+}
+a.btn.btn-block.btn-social.btn-instagram {
+    background: #3f729b;
+    color: #fff;
+    font-size: 18px;
+}
+span.fa.fa-instagram {
+    display: inline-block;
+    float: left;
+    margin-top: 4px;
+    margin-right: 15px;
+}
