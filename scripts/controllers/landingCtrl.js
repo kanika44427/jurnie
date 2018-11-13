@@ -1,7 +1,7 @@
 (function() {
 	angular.module('jurnie').controller('LandingController', landingCtrl);
 
-	function landingCtrl(Auth, $stateParams, facebookService) {
+	function landingCtrl(Auth, $stateParams, facebookService, $state) {
 		var vm = this;
 
 		vm.firstName = null;
@@ -34,6 +34,8 @@
 		    facebookService.login()
                   .then(function (response) {
                       console.log(response);
+                      //alert("login with facebook successfully"+ JSON.toString(response));
+                      $state.go('app.about');
                   }
                 );
 		}

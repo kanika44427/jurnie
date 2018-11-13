@@ -377,7 +377,14 @@
 								'</div>' +
 								'</div>' +
 								'<div class="tab-content">' +
-								'<div class="note-pic-display" ng-if="maps.notes">' +
+								'<div class="note-pic-display" ng-if="maps.notes" style="width: 95%;margin: 0 auto;height: 155px;overflow-y: scroll;border-radius: 0;">' +
+                                '<div class="upload-header" style="background: orange;padding: 5px;text-align: center;color: #fff;border-top-left-radius: 5px;border-top-right-radius: 5px;margin-top: 10px;">'+
+                                'Upload Photo <input type="file" accept="image/*" data-ng-model="categoryImage"/><i class="trash-pic glyphicon glyphicon-plus"></i>'+
+                                '</div>'+
+                                '<div class="upload-box" style="width:100%;height: 100px;background:#eee;overflow: hidden;overflow: hidden;">'+
+                                   '<img src="http://ritsexpo.com/images/events/01.jpg" style="width: 100%;height: 60px;padding: 5px 0px;">'+
+                                   '</div>'+
+                                '</div>'+
 								'<div class="note-date">' +
 								noteDate +
 								'</div>' +
