@@ -221,3 +221,75 @@ span.fa.fa-instagram {
     margin-top: 4px;
     margin-right: 15px;
 }
+
+.btn-block {
+    display: inherit;
+    width: auto;
+    float: left;
+}
+.social-btns {
+    float: right;
+}
+.btn-block+.btn-block {
+    margin-top: 0;
+}
+.social-btns {
+    float: right;
+    padding: 0px 0px;
+    margin-top: -4px;
+}
+a.btn.btn-block.btn-social.btn-facebook {
+    margin-right: 15px;
+    margin-left:15px;
+}
+span.fa.fa-facebook {
+    display: inline-block;
+    /* border-right: 1px solid #ccc; */
+    float: left;
+    margin-top: 0px;
+    margin-right: 0;
+}
+span.fa.fa-instagram {
+    display: inline-block;
+    float: left;
+    margin-top: 0px;
+    margin-right: 0px;
+}
+.forgot-btn {
+    color: #f7914c;
+    border: none;
+    background-color: transparent;
+    margin-right: 75px;
+}
+span.or {
+    font-size: 18px;
+    margin-left: 10px;
+}
+.clearfix span.or {
+    font-size: 16px;
+    margin-bottom: 10px;
+    display: block;
+    margin-right: 10px;
+}
+.social-btns.signup-btn span.fa.fa-facebook {
+    margin-right: 10px;
+    margin-top: 4px;
+}
+.social-btns.signup-btn span.fa.fa-instagram
+{
+    margin-right: 10px;
+    margin-top: 4px;
+}
+#landing input {
+    width: 405px;
+    border: none;
+    border-bottom: 2px solid #f7914c;
+    margin: 12px 10px;
+    border-radius: 0;
+}
+#landing input.name {
+    width: 191px;
+    border: none;
+    border-bottom: 2px solid #f7914c;
+    border-radius: 0;
+}

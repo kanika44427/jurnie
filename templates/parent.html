@@ -15,22 +15,26 @@
 					</li>
 					<li>
 						<button tabindex='3' class="top-login-btn cursor" ng-click="parent.login()" class="login-btn">Login</button>
+                       <span class="or"> or </span>
 					</li>
-
+                    <li>
+                        <div class="social-btns">
+                            <a class="btn btn-block btn-social btn-facebook" ng-click="parent.signUpWithFacebook()">
+                                <span class="fa fa-facebook"></span>
+                            </a><a class="btn btn-block btn-social btn-instagram" ng-click="parent.signUpWithInstagram()">
+                                <span class="fa fa-instagram"></span>
+                            </a>
+                        </div>
+                    </li>
 				</ul>
                
 				<div class="forgot-li">
 					<button tabindex='3' class="forgot-btn cursor" ng-click="parent.goToForgot()">Forgot Password?</button>
 				</div>
 			</div>
+            
 		</div>
-        <div class="social-btns">
-            <a class="btn btn-block btn-social btn-facebook" ng-click="parent.signUpWithFacebook()">
-                <span class="fa fa-facebook"></span> login with Facebook
-            </a><a class="btn btn-block btn-social btn-instagram" ng-click="parent.signUpWithInstagram()">
-    <span class="fa fa-instagram"></span> log wiith Instagram
-</a>
-        </div>
+      
 	</div>
 
 	<!--       Navbar for the opening screen, MOBILE -->
