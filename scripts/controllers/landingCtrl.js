@@ -33,8 +33,7 @@
 		vm.signUpWithFacebook = function () {
 		    facebookService.login()
                   .then(function (response) {
-                      console.log(response);
-                      //alert("login with facebook successfully"+ JSON.toString(response));
+                      alert("login with facebook successfully" + JSON.stringify(response) + "redirecting to about page as currently token is not generating through node code");
                       $state.go('app.about');
                   }
                 );

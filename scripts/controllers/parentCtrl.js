@@ -15,7 +15,9 @@
 		Search,
 		Friend,
 		SweetAlert,
-		$localStorage
+		$localStorage,
+        facebookService, 
+        InstagramService
 	) {
 		var vm = this;
 		vm.isAdmin = false;
@@ -40,7 +42,8 @@
 		vm.openMobileLogin = openMobileLogin;
 		vm.goToForgot = goToForgot;
 		vm.wasSeen = wasSeen;
-
+		vm.signUpWithFacebook = signUpWithFacebook;
+		vm.signUpWithInstagram = signUpWithInstagram;
 		$scope.$watch(
 			function() {
 				vm.isLoggedIn = !!$localStorage.token;
@@ -278,7 +281,7 @@
 			Auth.login(vm.email, vm.password).then(function(response) {
 				if (response) {
 					Auth.getMe().then(function() {
-						$state.go('app.home');
+					    $state.go('app.home');
 						vm.isLoggedIn = true;
 					});
 				}
@@ -472,6 +475,24 @@
 		}
 		function goToAnalytics() {
 			$state.go('app.analytics');
+		}
+
+		function signUpWithFacebook() {
+		    facebookService.login()
+                  .then(function (response) {
+                      alert("login with facebook successfully" + JSON.stringify(response) + "redirecting to about page as currently token is not generating through node code");
+                      $state.go('app.about');
+                  }
+                );
+		}
+
+		function signUpWithInstagram() {
+		    InstagramService.login()
+                  .then(function (response) {
+                      alert("login with instagram successfully" + JSON.stringify(response) + "redirecting to about page as currently token is not generating through node code");
+                      $state.go('app.about');
+                  })
+               
 		}
 	}
 })();
