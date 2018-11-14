@@ -17,11 +17,7 @@
 				controller: 'ParentController as parent',
 				cache: false
 			})
-            .state('oauthsuccess', {
-                url: '/access_token={access_token}',
-                templateUrl: '../templates/landing.html',
-                controller: 'OAuthLoginController'
-            })
+            
 			.state('app.landing', {
 			    url: '/landing',
 			    templateUrl: '../templates/landing.html',
@@ -210,11 +206,3 @@
 	});
 })();
 
-
-angular.module('jurnie').controller("OAuthLoginController", function ($scope, $stateParams, $window, $state) {
-    var $parentScope = $window.opener.angular.element(window.opener.document).scope();
-    if (angular.isDefined($stateParams.access_token)) {
-        $parentScope.$broadcast("igAccessTokenObtained", { access_token: $stateParams.access_token })
-    }
-    $window.close();
-});

@@ -68,7 +68,7 @@
 		);
 
 		init();
-
+		alert("at parent");
 		var isChromium = window.chrome,
 			winNav = window.navigator,
 			vendorName = winNav.vendor,
