@@ -17,7 +17,7 @@
 		SweetAlert,
 		$localStorage,
         facebookService, 
-        InstagramService
+        instagramService
 	) {
 		var vm = this;
 		vm.isAdmin = false;

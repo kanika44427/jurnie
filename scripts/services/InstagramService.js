@@ -1,4 +1,4 @@
-﻿angular.module('jurnie').factory("InstagramService", function ($rootScope, $location, $http) {
+﻿angular.module('jurnie').factory("instagramService", function ($rootScope, $location, $http) {
     var client_id = "3f6db4c4a43941339aafa3b9b57ead9b";
     var service = {
         login: function () {
