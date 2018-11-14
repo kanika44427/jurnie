@@ -14,7 +14,7 @@
               this._access_token;
         },
         login: function () {
-            $.get('https://api.instagram.com/v1/users/self/?access_token=' + $localStorage.instaToken, function (data) {
+            $http.get('https://api.instagram.com/v1/users/self/?access_token=' + $localStorage.instaToken).then( function (data) {
                 alert("data");
             });
         }
