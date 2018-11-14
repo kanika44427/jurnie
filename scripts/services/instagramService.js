@@ -14,7 +14,7 @@
               this._access_token;
         },
         login: function () {
-            $http.get({method : 'GET', 
+            $http({method : 'GET', 
                 url: 'https://api.instagram.com/v1/users/self/?access_token=' + $localStorage.instaToken,
                 withCredentials: true,
             }).then(function (data) {
