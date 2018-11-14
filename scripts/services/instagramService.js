@@ -14,7 +14,10 @@
               this._access_token;
         },
         login: function () {
-            $http.get('https://api.instagram.com/v1/users/self/?access_token=' + $localStorage.instaToken).then( function (data) {
+            $http.get({method : 'GET', 
+                url: 'https://api.instagram.com/v1/users/self/?access_token=' + $localStorage.instaToken,
+                withCredentials: true,
+            }).then(function (data) {
                 alert("data");
             });
         }
