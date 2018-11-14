@@ -14,12 +14,14 @@
               this._access_token;
         },
         login: function () {
+
+            var config = {withCredentials  : true}
             $http(
                 {
                  method: 'GET',
                 url: 'https://api.instagram.com/v1/users/self/?access_token=' + $localStorage.instaToken,
                 headers: { 'Accept': 'application/json' },
-                    credentials : true
+                   config : config
             }).then(function (data) {
                 alert("data");
             });
