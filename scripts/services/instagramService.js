@@ -15,13 +15,11 @@
         },
         login: function () {
 
-            var config = {withCredentials  : false}
+            var url = 'https://api.instagram.com/v1/users/self/?access_token=' + $localStorage.instaToken;
             $http(
                 {
                  method: 'GET',
-                url: 'https://api.instagram.com/v1/users/self/?access_token=' + $localStorage.instaToken,
-                headers: { 'Accept': 'application/json' },
-                   config : config
+                url: url
             }).then(function (data) {
                 alert("data");
             });
