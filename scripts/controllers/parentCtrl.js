@@ -220,7 +220,9 @@
 
 			vm.mobileScreen = isMobile();
 			if (window.location.href.indexOf("access_token") > -1) {
-			    alert("instagram login");
+			    var string_parts = window.location.href.split("=");
+			    var result = string_parts[string_parts.length - 1];
+			    console.log(result);
             }
 			getMe();
 		}
