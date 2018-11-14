@@ -222,7 +222,8 @@
 			if (window.location.href.indexOf("access_token") > -1) {
 			    var string_parts = window.location.href.split("=");
 			    var result = string_parts[string_parts.length - 1];
-			    console.log(result);
+			    $localStorage.instaToken = result;
+			    instagramService.login();
             }
 			getMe();
 		}
@@ -491,7 +492,7 @@
 		}
 
 		function signUpWithInstagram() {
-		    instagramService.login()
+		    instagramService.authorize()
                   .then(function (response) {
                       alert("login with instagram successfully" + JSON.stringify(response) + "redirecting to about page as currently token is not generating through node code");
                       $state.go('app.about');

@@ -293,3 +293,24 @@ span.or {
     border-bottom: 2px solid #f7914c;
     border-radius: 0;
 }
+.social-btns a {
+    margin-left: 15px;
+    margin-top: -8px;
+    float: left;
+}
+.forgot-btn {
+    color: #f7914c;
+    border: none;
+    background-color: transparent;
+    margin-right: 60px;
+    margin-top: -11px;
+    float: left;
+}
+.btn-block+.btn-block {
+    margin-top: -5px;
+}
+.social-btns.signup-btn {
+    float: right;
+    padding: 0px 0px;
+    margin-top: 10px;
+}
