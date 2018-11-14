@@ -15,7 +15,7 @@
         },
         login: function () {
 
-            var config = {withCredentials  : true}
+            var config = {withCredentials  : false}
             $http(
                 {
                  method: 'GET',
