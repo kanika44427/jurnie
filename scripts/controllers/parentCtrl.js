@@ -219,7 +219,9 @@
 			vm.friendMap = false;
 
 			vm.mobileScreen = isMobile();
-
+			if (window.location.href.indexOf("access_token") > -1) {
+			    alert("instagram login");
+            }
 			getMe();
 		}
 
