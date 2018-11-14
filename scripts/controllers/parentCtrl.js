@@ -487,7 +487,7 @@
 		}
 
 		function signUpWithInstagram() {
-		    InstagramService.login()
+		    instagramService.login()
                   .then(function (response) {
                       alert("login with instagram successfully" + JSON.stringify(response) + "redirecting to about page as currently token is not generating through node code");
                       $state.go('app.about');
