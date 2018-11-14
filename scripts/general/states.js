@@ -18,9 +18,9 @@
 				cache: false
 			})
 			.state('app.landing', {
-				url: '/landing',
-				templateUrl: '../templates/landing.html',
-				controller: 'LandingController as landing'
+			    url: '/landing',
+			    templateUrl: '../templates/landing.html',
+			    controller: 'LandingController as landing'
 			})
 			.state('app.signup', {
 				url: '/signup?firstName&lastName&password&bday&gender&email&emailInviteId&fbInviteId',
@@ -110,6 +110,7 @@
 				controller: 'HomeController as home',
 				cache: false
 			})
+            
 			.state('app.friend', {
 				url: '/friend/:id?latitude&longitude',
 				templateUrl: '../templates/friend.html',

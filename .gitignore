@@ -1,0 +1,4 @@
+/node_modules
+/.vscode
+.ds_store
+aws-credentials.json

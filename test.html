@@ -1,0 +1,232 @@
+﻿<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title>test </title>
+   
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.7.2/angular.js"></script>
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCBePn83Bgq5HnFwVzK0T7iKyPRHb9wdyQ"></script>
+    <script>
+        var FB;
+        var myApp = angular.module('app', []);
+        myApp.run(['$window',
+            function ($window) {
+                $window.fbAsyncInit = function () {
+                    FB.init({
+                        appId: '284685282158822',
+                        status: true,
+                        cookie: true,
+                        xfbml: true,
+                        version: 'v2.4'
+                    });
+                };
+                (function (d) {
+                    // load the Facebook javascript SDK
+                    var js,
+                    id = 'facebook-jssdk',
+                    ref = d.getElementsByTagName('script')[0];
+                    if (d.getElementById(id)) {
+                        return;
+                    }
+                    js = d.createElement('script');
+                    js.id = id;
+                    js.async = true;
+                    js.src = "https://connect.facebook.net/en_US/sdk.js";
+                    ref.parentNode.insertBefore(js, ref);
+                }(document));
+            }]);
+
+        myApp.factory('facebookService', function($q) {
+            return {
+                getMyLastName: function() {
+                    var deferred = $q.defer();
+                    FB.api('/me?fields=id,name,email,first_name,last_name,age_range,picture.type(large)',
+                    function(response) {
+                        if (!response || response.error) {
+                            deferred.reject('Error occured');
+                        } else {
+                            deferred.resolve(response);
+                        }
+                    });
+                    return deferred.promise;
+                },
+                getLoginStatus: function () {
+                    var deferred = $q.defer();
+                    FB.getLoginStatus(function (response) {
+                        if (!response || response.error) {
+                            deferred.reject('Error occured');
+                        } else {
+                            deferred.resolve(response);
+                        }
+                    });
+                    return deferred.promise;
+                },
+                getFeeds: function () {
+                    var deferred = $q.defer();
+                    FB.api('/me',
+                      'GET',
+                      { "fields": "id,name,email,gender,hometown,location,tagged_places.limit(20)" },
+                      function (response) {
+                          if (!response || response.error) {
+                              deferred.reject('Error occured');
+                          } else {
+                              deferred.resolve(response);
+                          }
+                      }
+                    );
+                    return deferred.promise;
+                },
+                login: function () {
+                    var deferred = $q.defer();
+                    FB.login(function (response) {
+                        if (!response || response.error) {
+                            deferred.reject('Error occured');
+                        } else {
+                            if (response.authResponse) {
+                                console.log('Welcome!  Fetching your information.... ');
+                                FB.api('/me?fields=id,name,email,first_name,last_name,age_range,picture.type(large)', function (response) {
+                                    
+                                    deferred.resolve(response);
+                                });
+                            } else {
+                                deferred.reject('Error occured');
+                            }
+                        }
+                    });
+                    return deferred.promise;
+                }
+            }
+        });
+        myApp.directive("fileread", ['$rootScope',
+            function ($rootScope) {
+      return {
+          scope: {
+              fileread: "="
+          },
+          link: function (scope, element, attrs) {
+              element.bind("change", function (changeEvent) {
+                  var reader = new FileReader();
+                  reader.onload = function (loadEvent) {
+                      scope.$apply(function () {
+                          scope.fileread = loadEvent.target.result;
+                          $rootScope.$broadcast("imageAdded", scope.fileread, attrs.imageType);
+                      });
+                  }
+                  reader.readAsDataURL(changeEvent.target.files[0]);
+
+              });
+          }
+      }
+  }]);
+        myApp.controller('testController', function ($scope, facebookService) {
+            //$scope.categoryImage = 67;
+            
+
+            function getLoginStatus () {
+                facebookService.getLoginStatus().then(function (response) {
+                    if (response.status == "connected") {
+                        $scope.getUserInformation();
+                    }
+                   
+                });
+            }
+            $scope.getFeeds = function () {
+                facebookService.getFeeds()
+                .then(function (response) {
+                    console.log(response);
+                    $scope.homeTown = response.hometown.name;
+                    $scope.currentLocation = response.location.name;
+                    $scope.taggedPlaces = response.tagged_places.data;
+                    var mapProp = {
+                        center: new google.maps.LatLng(51.508742, -0.120850),
+                        zoom: 5,
+                    };
+                    var markers = [];
+                    var map = new google.maps.Map(document.getElementById("googleMap"), mapProp);
+                    for(var i=0; i< $scope.taggedPlaces.length; i++){
+                        var pos = new google.maps.LatLng($scope.taggedPlaces[i].place.location.latitude, $scope.taggedPlaces[i].place.location.longitude);
+                        markers[i] = new google.maps.Marker({
+                            position: pos,
+                            map: map,
+                            //icon: '/assets/images/RedPin@Size.png',
+                            //description: $scope.taggedPlaces[i].place.location.street,
+                            id: i
+                        });
+                        var infowindow = new google.maps.InfoWindow({
+                            content: $scope.taggedPlaces[i].place.location.street
+                        });
+
+                        infowindow.open(map, markers[i]);
+                        google.maps.event.addListener(markers[i], 'click', function () {
+                            alert(markers[this.id].description)
+                        })
+                    }
+                }
+              );
+            }
+
+            $scope.getUserInformation = function () {
+                facebookService.getMyLastName()
+                  .then(function (response) {
+                      $scope.last_name = response.last_name;
+                      $scope.email = response.email;
+                      $scope.first_name = response.first_name;
+                      $scope.picture = response.picture.data.url;
+                      console.log(response);
+                  }
+                );
+            };
+
+            $scope.loginThroughFacebook = function () {
+                facebookService.login()
+                  .then(function (response) {
+                      $scope.last_name = response.last_name;
+                      $scope.email = response.email;
+                      $scope.first_name = response.first_name;
+                      $scope.picture = response.picture.data.url;
+                      console.log(response);
+                  }
+                );
+            }
+            $scope.uploadFile = function () {
+                alert("file uploaded");
+                alert($scope.categoryImage);
+            }
+        });
+    </script>
+</head>
+<body ng-app="app" ng-controller="testController">
+    <input type="file" accept='image/*' data-ng-model="categoryImage" name="categoryImage" id="categoryImage" 
+           fileread="categoryImage" image-type="categoryImage" />
+    <button ng-click="uploadFile()">upload me</button>
+
+
+    /********************************\
+   <!--<fb:login-button scope="public_profile,email"
+                     onlogin="checkLoginState();">
+    </fb:login-button>-->
+    <!--<fb:login-button show-faces="true" max-rows="1"
+                     size="large"></fb:login-button>-->
+    <input type="button" value="fblogin" ng-click="loginThroughFacebook()" /><br/>
+    Facebook User data : 
+    <br/>
+    name : {{first_name }} {{last_name}} <br/>
+    email : {{email}} <br/>
+    Image : <img data-ng-src="{{picture}}" height="100px" width="100px" /><br />
+    Home Town : {{homeTown}} <br/>
+    Current Location : {{currentLocation}} <br/>
+    <input type="button" ng-click="getFeeds()" value="get Locations"/>
+
+    <div>
+        <ul ng-repeat="item in taggedPlaces">
+            <li>
+                {{item.place.location.street}}, {{item.place.location.city}} , {{item.place.location.country}}, {{item.place.location.latitude}} , {{item.place.location.longitude}}
+            </li>
+        </ul>
+    </div>
+
+    Plot Marker in Map : <br/>
+
+    <div id="googleMap" style="width:100%;height:400px;"></div>
+    <br/>
+</body>
+</html>
