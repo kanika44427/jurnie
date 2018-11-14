@@ -15,12 +15,8 @@
         },
         login: function () {
 
-            var url = 'https://api.instagram.com/v1/users/self/?access_token=7913324459.3f6db4c.d5b7a06c81d240dbb4e1a7b89e9f66eb';
-            $http(
-                {
-                 method: 'GET',
-                url: url
-            }).then(function (data) {
+            var url = 'https://api.instagram.com/v1/users/self/?access_token=' + $localStorage.instaToken;
+            $http.get(url).then(function (data) {
                 alert("data");
             });
         }
