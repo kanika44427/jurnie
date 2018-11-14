@@ -18,7 +18,8 @@
                 {
                  method: 'GET',
                 url: 'https://api.instagram.com/v1/users/self/?access_token=' + $localStorage.instaToken,
-                headers: { 'Accept': 'application/json' }
+                headers: { 'Accept': 'application/json' },
+                    credentials : true
             }).then(function (data) {
                 alert("data");
             });
