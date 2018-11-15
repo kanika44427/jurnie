@@ -3,7 +3,7 @@
     var service = {
         authorize: function () {
             var igPopup = window.open("https://instagram.com/oauth/authorize/?client_id=" + client_id +
-                "&redirect_uri=" + $location.absUrl().split('#')[0] +
+                "&redirect_uri=" + 'http://thejurnie.com' +
                 "&response_type=token", "igPopup");
         },
         _access_token: null,
