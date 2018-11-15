@@ -10,7 +10,8 @@
 			'ngAnimate',
 			'angular-rating',
 			'toastr',
-			'vcRecaptcha'
+			'vcRecaptcha',
+           
 		])
 		.constant('ServerUrl', 'https://api.jurnie.com/api/v1/');
 	// .constant('ServerUrl', 'http://localhost:3000/api/v1/');

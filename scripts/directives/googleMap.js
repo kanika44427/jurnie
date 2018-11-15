@@ -14,7 +14,7 @@
 		vm.open = open;
 		vm.editPin = editPin;
 		vm.init = init;
-
+		vm.uploadImageOnIcon = uploadImageOnIcon;
 		vm.init(() => {});
 
 		function init(cb) {
@@ -32,7 +32,12 @@
 		function makeNewPin(latLng) {
 			vm.open(null, latLng);
 		}
-
+	
+		function uploadImageOnIcon(){
+		    
+		        $("#imgupload").click();
+		    
+		}
         
 		function open(id, latLng, lat, long) {
 			var modalInstance = $uibModal.open({
@@ -354,6 +359,8 @@
 								')">' +
 								'<div class="trash-pic glyphicon glyphicon-edit">' +
 								'</div>' +
+                                '<div class="trash-pic glyphicon glyphicon-trash">' +
+								'</div>' +
 								'</div>' +
 								'</div>' +
 								'<div class="dates-there">' +
@@ -379,10 +386,10 @@
 								'<div class="tab-content">' +
 								'<div class="note-pic-display" ng-if="maps.notes" style="width: 95%;margin: 0 auto;height: 155px;overflow-y: scroll;border-radius: 0;">' +
                                 '<div class="upload-header" style="background: orange;padding: 5px;text-align: center;color: #fff;border-top-left-radius: 5px;border-top-right-radius: 5px;margin-top: 10px;">'+
-                                'Upload Photo <input type="file" accept="image/*" data-ng-model="categoryImage"/><i class="trash-pic glyphicon glyphicon-plus"></i>'+
+                                'Upload Photo <input type="file" id="imgupload" style="display:none;" accept="image/*" data-ng-model="categoryImage"/><button style="padding:0; background:none; border:none;" id="OpenImgUpload" ng-click="maps.uploadImageOnIcon()" ><i class="trash-pic glyphicon glyphicon-plus"></i></button>'+
                                 '</div>'+
                                 '<div class="upload-box" style="width:100%;height: 100px;background:#eee;overflow: hidden;overflow: hidden;">'+
-                                   '<img src="http://ritsexpo.com/images/events/01.jpg" style="width: 100%;height: 60px;padding: 5px 0px;">'+
+                                  // '<img src="http://ritsexpo.com/images/events/01.jpg" style="width: 100%;height: 60px;padding: 5px 0px;">'+
                                    '</div>'+
                                 '</div>'+
 								'<div class="note-date">' +
@@ -409,7 +416,7 @@
 								'<img class="friend-pin" ng-src="{{friendPin.pinPic}}">' +
 								'</div>' +
 								'</div>' +
-								'</div>' +
+								//'</div>' +
 								'<div class="bottom-bar">' +
 								'<rating value="' +
 								rating +
@@ -442,9 +449,10 @@
 							}
 						]
 					});
+
 				});
 			}
-
+			
 			function addInfoWindow(marker, message, record) {
 				marker.infoWindow = new google.maps.InfoWindow({
 					content: message,

@@ -314,3 +314,8 @@ span.or {
     padding: 0px 0px;
     margin-top: 10px;
 }
+#home .googlemap {
+    height: 130vh;
+    width: 100%;
+    margin-right: -10px;
+}
