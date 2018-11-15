@@ -1,7 +1,7 @@
 (function() {
 	angular.module('jurnie').controller('LandingController', landingCtrl);
 
-	function landingCtrl(Auth, $stateParams, facebookService, $state) {
+	function landingCtrl(Auth, $stateParams, facebookService, $state, instagramService) {
 		var vm = this;
 
 		vm.firstName = null;
@@ -37,6 +37,9 @@
                       $state.go('app.about');
                   }
                 );
+		}
+		vm.signUpWithInstagram = function () {
+		    instagramService.login();
 		}
 		vm.open2 = function() {
 			vm.popup2.opened = true;
