@@ -1,4 +1,5 @@
-﻿angular.module('jurnie').factory("instagramService", function ($rootScope, $location, $http, $localStorage) {
+﻿
+angular.module('jurnie').factory("instagramService", function ($rootScope, $location, $http, $localStorage, $sce) {
     var client_id = "3f6db4c4a43941339aafa3b9b57ead9b";
     var service = {
         authorize: function () {
@@ -16,8 +17,9 @@
         login: function () {
 
             var url = 'https://api.instagram.com/v1/users/self/?access_token=' + $localStorage.instaToken;
-            $http.get(url).then(function (data) {
-                alert("data");
+            var trustedUrl = $sce.trustAsResourceUrl(url);
+            $http.jsonp(trustedUrl, { jsonpCallbackParam: 'callback' }).then(function (data) {
+                alert(JSON.stringify(data));
             });
         }
     };

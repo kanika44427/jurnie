@@ -1,9 +1,9 @@
 (function() {
 	angular.module('jurnie').config(function($httpProvider) {
-		//$httpProvider.defaults.useXDomain = true;
-		//delete $httpProvider.defaults.headers.common['X-Requested-With'];
-		//$httpProvider.defaults.withCredentials = true; //allow cookies
-		// $httpProvider.interceptors.push(function($q, $location, $rootScope, ServerUrl, $localStorage, PageLoad) {
+		$httpProvider.defaults.useXDomain = true;
+	    delete $httpProvider.defaults.headers.common['X-Requested-With'];
+		 $httpProvider.defaults.withCredentials = true; //allow cookies
+		 //$httpProvider.interceptors.push(function($q, $location, $rootScope, ServerUrl, $localStorage, PageLoad) {
 		$httpProvider.interceptors.push(function($q, $location, $rootScope, ServerUrl, $localStorage) {
 			return {
 				request: function(config) {
