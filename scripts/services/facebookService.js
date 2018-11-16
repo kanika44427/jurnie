@@ -19,6 +19,17 @@ angular.module('jurnie').factory('facebookService', function ($q) {
                 }
             });
             return deferred.promise;
+        },
+        getLoginStatus: function () {
+            var deferred = $q.defer();
+            FB.getLoginStatus(function (response) {
+                if (!response || response.error) {
+                    deferred.reject('Error occured');
+                } else {
+                    deferred.resolve(response);
+                }
+            });
+            return deferred.promise;
         }
     }
 });

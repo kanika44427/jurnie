@@ -483,12 +483,19 @@
 		}
 
 		function signUpWithFacebook() {
-		    facebookService.login()
-                  .then(function (response) {
-                      alert("login with facebook successfully" + JSON.stringify(response) + "redirecting to about page as currently token is not generating through node code");
-                      $state.go('app.about');
-                  }
-                );
+		    facebookService.getLoginStatus().then(function (response) {
+		        if (response.status == "connected") {
+		            $state.go('app.about');
+		        }
+		        else {
+		            facebookService.login().then(function (response) {
+		                alert("login with facebook successfully" + JSON.stringify(response) + "redirecting to about page as currently token is not generating through node code");
+		                $state.go('app.about');
+		            });
+		        }
+
+		    });
+		    
 		}
 
 		function signUpWithInstagram() {
