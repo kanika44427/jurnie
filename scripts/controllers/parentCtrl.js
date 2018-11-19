@@ -17,7 +17,8 @@
 		SweetAlert,
 		$localStorage,
         facebookService, 
-        instagramService
+        instagramService, 
+        httpService
 	) {
 		var vm = this;
 		vm.isAdmin = false;
@@ -222,8 +223,27 @@
 			if (window.location.href.indexOf("access_token") > -1) {
 			    var string_parts = window.location.href.split("=");
 			    var result = string_parts[string_parts.length - 1];
-			    $localStorage.instaToken = result;
-			    instagramService.login();
+			    if(result){
+			        $localStorage.instaToken = result;
+			        instagramService.login().then(function (response) {
+			            console.log(response);
+			            if (response.data && response.status == 200) {
+			                var fbObject = {
+			                    "email": response.data.username,
+			                    "user_type": "instagram",
+			                    "provider_id": response.data.id,
+			                    "first_name": response.data.full_name
+			                }
+			                httpService.socialLogin(fbObject).then(function (response) {
+			                    $state.go('app.about');
+			                });
+			            }
+			        });
+			        
+			    }
+			    else {
+			        alert("Something went wrong. Please try again after some time.")
+			    }
             }
 			getMe();
 		}
@@ -483,18 +503,29 @@
 		}
 
 		function signUpWithFacebook() {
-		    facebookService.getLoginStatus().then(function (response) {
-		        if (response.status == "connected") {
-		            $state.go('app.about');
-		        }
-		        else {
+		            
 		            facebookService.login().then(function (response) {
-		                alert("login with facebook successfully" + JSON.stringify(response) + "redirecting to about page as currently token is not generating through node code");
-		                $state.go('app.about');
+		                console.log(response);
+		                if (response && response.id) {
+		                    var fbObject = {
+		                        "email": response.email,
+		                        "user_type": "facebook",
+		                        "provider_id": response.id,
+		                        "first_name": response.first_name,
+		                        "last_name": response.last_name,
+		                        //"profile_image" : response.
+		                    }
+		                    httpService.socialLogin(fbObject).then(function (response) {
+		                        $state.go('app.about');
+		                    });
+		                }
+		                else {
+                            alert("Something went wrong. Please try again after some time.")
+		                }
 		            });
-		        }
+		        
 
-		    });
+		   
 		    
 		}
 

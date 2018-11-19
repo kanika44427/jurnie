@@ -46,7 +46,7 @@
 			startingDay: 1,
 			showWeeks: false
 		};
-
+		
 		$scope.$watch(
 			function() {
 				return vm.dateOptionsTo.minDate;
@@ -82,6 +82,10 @@
 		init();
 
 		function init() {
+		    $(function () {
+		        $("#datepicker-1").datepicker();
+		        $("#datepicker-2").datepicker();
+		    });
 			Pin.getNearbyFriendPins(vm.lat, vm.long).then(
 				function(response) {
 					var userIds = {};

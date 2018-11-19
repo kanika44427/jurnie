@@ -33,10 +33,12 @@
 	<link rel="stylesheet" type="text/css" href="node_modules/font-awesome/css/font-awesome.min.css" />
 	<link rel="stylesheet" type="text/css" href="node_modules/angular-toastr/dist/angular-toastr.css" />
 	<!-- Ionicons -->
+   
 	<link rel="stylesheet" href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
 
 	<!-- Site Style -->
 	<link href=“https://www.fontify.me/wf/1f53a8cec1efcf29063a5295f1af12d7” rel=“stylesheet” type=“text/css”>
+   
 	<link rel="stylesheet" type="text/css" href="styles/project.css" />
 	<link rel="stylesheet" type="text/css" href="styles/landing.css" />
 	<link rel="stylesheet" type="text/css" href="styles/signup.css" />
@@ -52,7 +54,12 @@
 	<link rel="stylesheet" type="text/css" href="styles/notMyFriend.css" />
 	<link rel="stylesheet" type="text/css" href="styles/passwordRecovery.css" />
 	<link rel="stylesheet" type="text/css" href="styles/analytics.css" />
+    <link href="styles/bootstrap-datetimepicker.css" rel="stylesheet" />
     <link href="styles/phase2.css" rel="stylesheet" type="text/css" />
+    <link href="https://code.jquery.com/ui/1.10.4/themes/ui-lightness/jquery-ui.css"
+          rel="stylesheet">
+    <script src="https://code.jquery.com/jquery-1.10.2.js"></script>
+    <script src="https://code.jquery.com/ui/1.10.4/jquery-ui.js"></script>
 </head>
 
 <body ng-app="jurnie" ng-cloak>
@@ -60,7 +67,7 @@
 		window.fbAsyncInit = function () {
 			FB.init({
 			    //appId: '330614977349377',
-			    appId: '284685282158822',
+			    appId: '2101132089919853',
 				autoLogAppEvents: true,
 				xfbml: true,
 				version: 'v2.9'
@@ -75,11 +82,10 @@
 			fjs.parentNode.insertBefore(js, fjs);
 		}(document, 'script', 'facebook-jssdk'));
 	</script>
-
 	<div ui-view ng-cloak></div>
-    <script src="https://code.jquery.com/jquery-3.3.1.js"
-            integrity="sha256-2Kok7MbOyxpgUVvAk/HJ2jigOSYS2auK4Pfzbm7uH60="
-            crossorigin="anonymous"></script>
+    
+   
+
 	<!-- Angular Dependencies -->
 	<script src="node_modules/angular/angular.min.js"></script>
 	<script src="node_modules/angular-ui-router/release/angular-ui-router.min.js"></script>
@@ -96,6 +102,7 @@
 	<script src="node_modules/angular-rating/src/angular-rating.js" charset="UTF-8"></script>
 	<script src="node_modules/angular-toastr/dist/angular-toastr.min.js" charset="UTF-8"></script>
 	<script src="node_modules/angular-toastr/dist/angular-toastr.tpls.js" charset="UTF-8"></script>
+ 
 	<!--<script src="node_modules/mapCluster.js" charset="UTF-8"></script>-->
 	<script src="https://developers.google.com/maps/documentation/javascript/examples/markerclusterer/markerclusterer.js">
     </script>
@@ -123,7 +130,7 @@
 	<script src="scripts/services/Friend.js" charset="UTF-8"></script>
     <script src="scripts/services/facebookService.js" charset="UTF-8"></script>
     <script src="scripts/services/instagramService.js" charset="UTF-8"></script>
-
+	<script src="scripts/services/http-service.js" charset="UTF-8"></script>
 	<!-- Controllers -->
 	<script src="scripts/controllers/parentCtrl.js" charset="UTF-8"></script>
 	<script src="scripts/controllers/landingCtrl.js" charset="UTF-8"></script>

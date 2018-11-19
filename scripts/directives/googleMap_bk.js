@@ -2,7 +2,7 @@
 	'use strict';
 	angular.module('jurnie').controller('MapsCtrl', mapsCtrl).directive('googlemaps', googleMaps);
 
-	function mapsCtrl(Pin, $uibModal, Search,httpService) {
+	function mapsCtrl(Pin, $uibModal, Search) {
 		var vm = this;
 
 		vm.notes = true;
@@ -13,7 +13,6 @@
 		vm.makeNewPin = makeNewPin;
 		vm.open = open;
 		vm.editPin = editPin;
-		vm.deletePin = deletePin;
 		vm.init = init;
 		vm.uploadImageOnIcon = uploadImageOnIcon;
 		vm.init(() => {});
@@ -30,19 +29,14 @@
 			open(id, latLng, lat, long);
 		}
 
-		function deletePin(userId, pinId) {
-			//console.log('userId',userId,'pinid',pinId);
-			httpService.deleteMarker(userId, pinId).then(function(response) {
-				//console.log('here',response);
-			});
-		}
-
 		function makeNewPin(latLng) {
 			vm.open(null, latLng);
 		}
 	
 		function uploadImageOnIcon(){
-				$("#imgupload").click();
+		    
+		        $("#imgupload").click();
+		    
 		}
         
 		function open(id, latLng, lat, long) {
@@ -262,8 +256,7 @@
 
 			function loadMarkers(changed) {
 				// console.log('STACK TRACE: ', new Error().stack);
-			    Pin.list(changed).then(function(pins) {
-			       
+				Pin.list(changed).then(function(pins) {
 					var records = pins.data;
 					var markers = [];
 					// console.log('pins result:', pins);
@@ -366,14 +359,8 @@
 								')">' +
 								'<div class="trash-pic glyphicon glyphicon-edit">' +
 								'</div>' +
-								'<button  ng-click="maps.deletePin(\'' +
-								record.userId +
-								"','" + 
-								record.id + "'"+
-								')">' +
                                 '<div class="trash-pic glyphicon glyphicon-trash">' +
 								'</div>' +
-								'</button>'+
 								'</div>' +
 								'</div>' +
 								'<div class="dates-there">' +
@@ -462,11 +449,7 @@
 							}
 						]
 					});
-					var bounds = new google.maps.LatLngBounds();
-					for (var i = 0; i < markers.length; i++) {
-					    bounds.extend(markers[i].getPosition());
-					}
-					//map.fitBounds(bounds);
+
 				});
 			}
 			

@@ -31,15 +31,42 @@
 		};
 
 		vm.signUpWithFacebook = function () {
-		    facebookService.login()
-                  .then(function (response) {
-                      alert("login with facebook successfully" + JSON.stringify(response) + "redirecting to about page as currently token is not generating through node code");
-                      $state.go('app.about');
-                  }
-                );
+		    facebookService.login().then(function (response) {
+		        console.log(response);
+		        if (response && response.id) {
+		            var fbObject = {
+		                "email": response.email,
+		                "first_name": response.first_name,
+		                "last_name": response.last_name,
+		                "user_type": "facebook",
+		                "provider_id": response.id,
+		                //"profile_image" : 
+		            }
+		            httpService.socialSignup(fbObject).then(function (response) {
+		                $state.go('app.about');
+		            });
+		        }
+		        else {
+		            alert("Something went wrong. Please try again after some time.")
+		        }
+		    });
+
 		}
 		vm.signUpWithInstagram = function () {
-		    instagramService.login();
+		    instagramService.login().then(function (response) {
+		        console.log(response);
+		        if (response.data && response.status == 200) {
+		            var fbObject = {
+		                "email": response.data.username,
+		                "user_type": "instagram",
+		                "provider_id": response.data.id,
+		                "first_name": response.data.full_name
+		            }
+		            httpService.socialLogin(fbObject).then(function (response) {
+		                $state.go('app.about');
+		            });
+		        }
+		    });
 		}
 		vm.open2 = function() {
 			vm.popup2.opened = true;

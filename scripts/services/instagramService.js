@@ -18,9 +18,10 @@ angular.module('jurnie').factory("instagramService", function ($rootScope, $loca
 
             var url = 'https://api.instagram.com/v1/users/self/?access_token=' + $localStorage.instaToken;
             var trustedUrl = $sce.trustAsResourceUrl(url);
-            $http.jsonp(trustedUrl, { jsonpCallbackParam: 'callback' }).then(function (data) {
-                alert(JSON.stringify(data));
+            return $http.jsonp(trustedUrl, { jsonpCallbackParam: 'callback' }).then(function (data) {
+                return data;
             });
+            return data;
         }
     };
 

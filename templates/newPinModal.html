@@ -52,8 +52,14 @@
                     <div ng-class="{selected: newPin.from}" class="from cursor" ng-click="newPin.from = true">From</div>
                     <div ng-class="{selected: !newPin.from}" class="from cursor" ng-click="newPin.from = false">To</div>
                 </div>
-                <div uib-datepicker ng-if="newPin.from" ng-model="newPin.dateOptionsTo.minDate" class="well well-sm" datepicker-options="newPin.dateOptionsFrom"></div>
-                <div uib-datepicker ng-if="!newPin.from" ng-model="newPin.dateTo" class="well well-sm" datepicker-options="newPin.dateOptionsTo"></div>
+                <!--<div uib-datepicker ng-if="newPin.id="dfrom" ng-model="newPin.dateOptionsTo.minDate" class="well well-sm" datepicker-options="newPin.dateOptionsFrom"></div>-->
+                <!--<div ng-show="newPin.from">-->
+                    <input type="text" id="datepicker-1" >
+                <!--</div>-->
+                 <!--<div uib-datepicker ng-if="!newPin.from" ng-model="newPin.dateTo" class="well well-sm" datepicker-options="newPin.dateOptionsTo"></div>-->
+                <!--<div ng-show="!newPin.from">-->
+                    <input type="text" id="datepicker-2">
+                <!--</div>-->
             </div>
 
             <div class="rating-container" ng-if="newPin.whichPin === 'going' || newPin.whichPin === 'been'">

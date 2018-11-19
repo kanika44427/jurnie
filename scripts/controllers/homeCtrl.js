@@ -1,9 +1,16 @@
 (function() {
 	angular.module('jurnie').controller('HomeController', homeCtrl);
 
-	function homeCtrl(Auth, $timeout, City, $rootScope, Pin, $stateParams, $scope) {
+	function homeCtrl(Auth, $timeout, City, $rootScope, Pin, $stateParams, $scope, facebookService) {
 		var vm = this;
+		init();
 
+		function init() {
+		    /*facebookService.getFeedData().then(function (response) {
+		        alert(JSON.stringify(response));
+		        var fbfeedData = response;
+		    });*/
+		}
 		vm.changeChoice = changeChoice;
 		vm.skip = skip;
 		vm.savePin = savePin;
