@@ -80,12 +80,12 @@
 		}
 
 		init();
-
+		$(document).ready(function () {
+		    $("#datepicker-1").datepicker();
+		   
+		});
 		function init() {
-		    $(function () {
-		        $("#datepicker-1").datepicker();
-		        $("#datepicker-2").datepicker();
-		    });
+		   
 			Pin.getNearbyFriendPins(vm.lat, vm.long).then(
 				function(response) {
 					var userIds = {};

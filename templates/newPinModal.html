@@ -16,6 +16,7 @@
                 </span>
             </div>
             <div class="modal-body" id="modal-body">
+                
                 <div class="choose-name-row" ng-if="!newPin.editing">
                     <!--<h3>Where is this?</h3>-->
                     <!--<h5 class="custom-place cursor" ng-click="newPin.makeCustom()" ng-if="!newPin.custom">Custom place</h5>
@@ -28,7 +29,7 @@
                         </li>
                     </ul>
                 </div>-->
-                <input class="c
+               
                 <input class="custom-place-input" autofocus placeholder="Location Name" ng-model="newPin.placeName" maxlength="35">
                 <div class="pin-options">
                     <div class="option wish-list" ng-click="newPin.whichPin = 'wish'; newPin.pin.pinTypeId = 3">
@@ -53,13 +54,13 @@
                     <div ng-class="{selected: !newPin.from}" class="from cursor" ng-click="newPin.from = false">To</div>
                 </div>
                 <!--<div uib-datepicker ng-if="newPin.id="dfrom" ng-model="newPin.dateOptionsTo.minDate" class="well well-sm" datepicker-options="newPin.dateOptionsFrom"></div>-->
-                <!--<div ng-show="newPin.from">-->
-                    <input type="text" id="datepicker-1" >
-                <!--</div>-->
+                <datepicker ng-if="newPin.from" dfrom" ng-model="newPin.dateOptionsTo.minDate">
+                    <input ng-model="date" type="text" />
+                </datepicker>
                  <!--<div uib-datepicker ng-if="!newPin.from" ng-model="newPin.dateTo" class="well well-sm" datepicker-options="newPin.dateOptionsTo"></div>-->
-                <!--<div ng-show="!newPin.from">-->
-                    <input type="text" id="datepicker-2">
-                <!--</div>-->
+                <datepicker ng-if="!newPin.from" ng-model="newPin.dateTo">
+                    <input ng-model="date" type="text" />
+                </datepicker>
             </div>
 
             <div class="rating-container" ng-if="newPin.whichPin === 'going' || newPin.whichPin === 'been'">

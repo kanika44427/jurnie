@@ -11,7 +11,7 @@
 			'angular-rating',
 			'toastr',
 			'vcRecaptcha',
-           
+           '720kb.datepicker'
 		])
          .config(['$httpProvider', function ($httpProvider) {
             //Enable cross domain calls
@@ -20,5 +20,6 @@
             delete $httpProvider.defaults.headers.common['X-Requested-With'];
         }])
 		.constant('ServerUrl', 'https://api.jurnie.com/api/v1/');
+	  //  .constant('ServerUrl', 'http://api.thejurnie.com/api/v1/');
 	// .constant('ServerUrl', 'http://localhost:3000/api/v1/');
 })();

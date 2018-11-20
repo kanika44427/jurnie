@@ -60,9 +60,11 @@
           rel="stylesheet">
     <script src="https://code.jquery.com/jquery-1.10.2.js"></script>
     <script src="https://code.jquery.com/ui/1.10.4/jquery-ui.js"></script>
+
 </head>
 
 <body ng-app="jurnie" ng-cloak>
+    
 	<script>
 		window.fbAsyncInit = function () {
 			FB.init({
@@ -83,7 +85,7 @@
 		}(document, 'script', 'facebook-jssdk'));
 	</script>
 	<div ui-view ng-cloak></div>
-    
+   
    
 
 	<!-- Angular Dependencies -->
@@ -114,7 +116,8 @@
 	<script src="scripts/general/states.js" charset="UTF-8"></script>
 	<script src="scripts/general/auth-routing.js" charset="UTF-8"></script>
 	<script src="scripts/general/interceptors.js" charset="UTF-8"></script>
-
+    <link href="styles/angular-datepicker.css" rel="stylesheet" />
+    <script src="scripts/general/angular-datepicker.js"></script>
 	<!-- Services -->
 	<script src="scripts/services/auth.js" charset="UTF-8"></script>
 	<script src="scripts/services/Career.js" charset="UTF-8"></script>

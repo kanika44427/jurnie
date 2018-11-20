@@ -46,6 +46,8 @@
 		}
         
 		function open(id, latLng, lat, long) {
+		  
+		    
 			var modalInstance = $uibModal.open({
 				animation: vm.animationsEnabled,
 				ariaLabelledBy: 'modal-title',
@@ -58,7 +60,8 @@
 			    //size: 'lg',
 			    windowClass  : 'vaibhavClass',
                 //ks : end
-				resolve: {
+			    resolve: {
+			       
 					pinToEdit: function(Pin) {
 						if (id) {
 							return Pin.getOnePin(id).then(
@@ -96,6 +99,8 @@
 					}
 				}
 			});
+
+			
 			modalInstance.closed = function() {
 				vm.loadMarkers(false);
 			};
