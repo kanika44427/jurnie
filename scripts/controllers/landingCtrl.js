@@ -1,7 +1,7 @@
 (function() {
 	angular.module('jurnie').controller('LandingController', landingCtrl);
 
-	function landingCtrl(Auth, $stateParams, facebookService, $state, instagramService) {
+	function landingCtrl(Auth, $stateParams, facebookService, $state, instagramService, httpService) {
 		var vm = this;
 
 		vm.firstName = null;
@@ -43,7 +43,21 @@
 		                //"profile_image" : 
 		            }
 		            httpService.socialSignup(fbObject).then(function (response) {
-		                $state.go('app.about');
+		                if (response.status == 0 && response.message == 'User already registered ') {
+                            alert("You are already registered. Please login. ")
+		                }
+		                else if (response.status == 200) {
+		                    httpService.socialLogin(fbObject).then(function (response) {
+		                        Auth.getMe().then(function (response) {
+		                            if (response) {
+		                                $state.go('app.dashboard');
+		                            }
+		                        });
+
+		                    });
+		                   
+		                }
+		                
 		            });
 		        }
 		        else {
@@ -119,6 +133,46 @@
 			}
 
 			return '';
+		}
+		vm.signUpWithFacebook = function () {
+		    facebookService.login().then(function (response) {
+		        console.log(response);
+		        if (response && response.id) {
+		            var fbObject = {
+		                "email": response.email,
+		                "first_name": response.first_name,
+		                "last_name": response.last_name,
+		                "user_type": "facebook",
+		                "provider_id": response.id,
+		                //"profile_image" : 
+		            }
+		            httpService.socialSignup(fbObject).then(function (response) {
+		                if (response.status == 0 && response.message == 'User already registered ') {
+		                    alert("You are already registered. Please login. ")
+		                }
+		                else if (response.status == 200) {
+		                    httpService.socialLogin(fbObject).then(function (response) {
+		                        setTimeout(function () {
+		                            Auth.getMe().then(function (response) {
+		                                if (response) {
+		                                    $state.go('app.home');
+		                                }
+		                            });
+		                        }, 5000);
+
+		                       
+
+		                    });
+
+		                }
+
+		            });
+		        }
+		        else {
+		            alert("Something went wrong. Please try again after some time.")
+		        }
+		    });
+
 		}
 	}
 })();

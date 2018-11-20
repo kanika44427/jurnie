@@ -516,7 +516,11 @@
 		                        //"profile_image" : response.
 		                    }
 		                    httpService.socialLogin(fbObject).then(function (response) {
-		                        $state.go('app.about');
+		                        Auth.getMe().then(function (response) {
+		                            if (response) {
+		                                $state.go('app.dashboard');
+		                            }
+		                        });
 		                    });
 		                }
 		                else {
