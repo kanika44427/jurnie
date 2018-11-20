@@ -319,3 +319,22 @@ span.or {
     width: 100%;
     margin-right: -10px;
 }
+
+._720kb-datepicker-calendar._720kb-datepicker-open, ._720kb-datepicker-calendar._720kb-datepicker-forced-to-open {
+    visibility: visible;
+    width: 80%;
+    margin: 0 auto;
+    left: 10%;
+    margin-top: 15px;
+}
+.when-container input {
+    width: 60%;
+    height: 40px;
+    border-radius: 5px;
+    box-shadow: none;
+    border: 1px solid #ccc;
+}
+.top-bar button {
+    background: none;
+    border: none;
+}
