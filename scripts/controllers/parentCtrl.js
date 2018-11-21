@@ -518,7 +518,7 @@
 		                    httpService.socialLogin(fbObject).then(function (response) {
 		                        Auth.getMe().then(function (response) {
 		                            if (response) {
-		                                $state.go('app.dashboard');
+		                                $state.go('app.home');
 		                            }
 		                        });
 		                    });
