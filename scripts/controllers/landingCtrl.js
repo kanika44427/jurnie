@@ -74,7 +74,7 @@
 		                "email": response.data.username,
 		                "user_type": "instagram",
 		                "provider_id": response.data.id,
-		                "first_name": response.data.full_name, 
+		                "first_name": response.data.full_name,
 		                "last_name": response.last_name
 		            }
 
@@ -84,7 +84,7 @@
 		                }
 		                else if (response.status == 200) {
 		                    httpService.socialLogin(fbObject).then(function (response) {
-                              
+
 		                        Auth.getMe().then(function (response) {
 		                            if (response) {
 		                                $state.go('app.dashboard');
@@ -92,10 +92,12 @@
 		                        });
 
 		                    });
-		                   
+
 		                }
-		                
-		            
+
+
+		            });
+		        }
 		    });
 		}
 		vm.open2 = function() {
