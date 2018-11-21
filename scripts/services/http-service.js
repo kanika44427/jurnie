@@ -17,7 +17,7 @@ angular.module('jurnie').factory('httpService', ['$http', 'ServerUrl','$localSto
         function socialLogin(socialUser) {
             return $http.post(ServerUrl + 'user/sociallogin', socialUser, { headers: { 'Content-Type': 'application/json' } }).
                 then(function (response) {
-                    $localStorage.token = response.token;
+                    $localStorage.token = response.data.token;
                  return response;
              });
         }
