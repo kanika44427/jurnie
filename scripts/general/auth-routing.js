@@ -14,8 +14,8 @@
 					'app.forgotPassword'
 				].includes(toState.name)
 			) {
-				event.preventDefault();
-				$state.transitionTo('app.landing');
+				//event.preventDefault();
+				//$state.transitionTo('app.landing');
 			} else if (Auth.payload && ['app.landing', 'app.signup'].includes(toState.name)) {
 				//if logged-in and heading to login page, go to profile page instead
 				event.preventDefault();
