@@ -338,3 +338,23 @@ span.or {
     background: none;
     border: none;
 }
+._720kb-datepicker-calendar-header:nth-child(odd) {
+    background: #F7914C;
+}
+.when-container input {
+    width: 90%;
+    height: 40px;
+    border-radius: 5px;
+    box-shadow: none;
+    border: 1px solid #ccc;
+}
+._720kb-datepicker-calendar._720kb-datepicker-open, ._720kb-datepicker-calendar._720kb-datepicker-forced-to-open {
+    visibility: visible;
+    width: 90%;
+    margin: 0 auto;
+    left: 5%;
+    margin-top: 15px;
+}
+#newPin span.star.glyphicon.glyphicon-star {
+    font-size: 30px;
+}
