@@ -339,7 +339,7 @@ span.or {
     border: none;
 }
 ._720kb-datepicker-calendar-header:nth-child(odd) {
-    background: #F7914C;
+    background: #F7914C !important;
 }
 .when-container input {
     width: 90%;

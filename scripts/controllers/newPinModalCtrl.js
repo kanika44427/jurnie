@@ -21,8 +21,8 @@
 		vm.whichPin = null;
 		vm.editing = false;
 		vm.from = true;
-		vm.dateFrom = pinToEdit ? pinToEdit.startDate : new Date();
-		vm.dateTo = pinToEdit ? pinToEdit.endDate : new Date();
+		vm.dateFrom = pinToEdit ? pinToEdit.startDate : getTodayDate();
+		vm.dateTo = pinToEdit ? pinToEdit.endDate : getTodayDate();
 		vm.lat = coords ? coords.latitude : pinToEdit ? pinToEdit.latitude : null;
 		vm.long = coords ? coords.longitude : pinToEdit ? pinToEdit.longitude : null;
 		vm.rating = 3;
@@ -39,13 +39,13 @@
 			startingDay: 1,
 			showWeeks: false
 		};
-		vm.dateOptionsFrom = {
-			formatYear: 'yyyy',
-			maxDate: null,
-			minDate: null,
-			startingDay: 1,
-			showWeeks: false
-		};
+		//vm.dateOptionsFrom = {
+		//	formatYear: 'yyyy',
+		//	maxDate: null,
+		//	minDate: null,
+		//	startingDay: 1,
+		//	showWeeks: false
+		//};
 		
 		$scope.$watch(
 			function() {
@@ -55,6 +55,10 @@
 				vm.dateTo = newVal;
 			}
 		);
+
+		$("#fromDate").datepicker("setDate", new Date());
+
+		$("#toDate").datepicker("setDate", new Date());
 
 		vm.pin = {
 			pinTypeId: null,
@@ -80,10 +84,21 @@
 		}
 
 		init();
-		$(document).ready(function () {
-		    $("#datepicker-1").datepicker();
-		   
-		});
+		
+		function getTodayDate() {
+		    var today = new Date();
+		    var dd = today.getDate();
+		    var mm = today.getMonth() + 1;
+		    var yyyy = today.getFullYear();
+		    if (dd < 10) {
+		        dd = '0' + dd;
+		    }
+		    if (mm < 10) {
+		        mm = '0' + mm;
+		    }
+		    today = mm + '-' + dd + '-' + yyyy;
+		    return today;
+		}
 		function init() {
 		   
 			Pin.getNearbyFriendPins(vm.lat, vm.long).then(
@@ -117,9 +132,10 @@
 		}
 
 		function submit() {
-			vm.pin.description = vm.placeName;
-			vm.pin.startDate = vm.dateOptionsTo.minDate;
-			vm.pin.endDate = vm.dateTo;
+		    vm.pin.description = vm.placeName;
+           
+		    vm.pin.startDate = new Date(vm.dateOptionsTo.minDate);
+			vm.pin.endDate = new Date(vm.dateTo);
 			Pin.add(vm.pin).then(
 				function() {
 					$uibModalInstance.dismiss('cancel');

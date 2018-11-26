@@ -54,12 +54,12 @@
                     <div ng-class="{selected: !newPin.from}" class="from cursor" ng-click="newPin.from = false">To</div>
                 </div>
                 <!--<div uib-datepicker ng-if="newPin.id="dfrom" ng-model="newPin.dateOptionsTo.minDate" class="well well-sm" datepicker-options="newPin.dateOptionsFrom"></div>-->
-                <datepicker ng-if="newPin.from" dfrom" ng-model="newPin.dateOptionsTo.minDate">
-                    <input ng-model="date" type="text" />
+                <datepicker ng-if="newPin.from" date-format='MM-dd-yy' id="fromDate">
+                    <input ng-model="newPin.dateOptionsTo.minDate" type="text" />
                 </datepicker>
                  <!--<div uib-datepicker ng-if="!newPin.from" ng-model="newPin.dateTo" class="well well-sm" datepicker-options="newPin.dateOptionsTo"></div>-->
-                <datepicker ng-if="!newPin.from" ng-model="newPin.dateTo">
-                    <input ng-model="date" type="text" />
+                <datepicker ng-if="!newPin.from" date-format='MM-dd-yy' id="toDate">
+                    <input ng-model="newPin.dateTo" type="text" />
                 </datepicker>
             </div>
 
