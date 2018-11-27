@@ -25,7 +25,12 @@ angular.module('jurnie').factory('httpService', ['$http', 'ServerUrl','$localSto
              });
         }
         function uploadPhoto(user) {
-            return $http.post(ServerURL_2 + 'uploadImage ', user, { headers: { 'Content-Type': 'application/json' } }).
+            return $.post(ServerURL_2 + 'uploadImage ', user, {
+                headers: { 'Content-Type': 'application/json' ,
+                    //'Authorization': null,
+                    noAuth: true
+                }
+            }).
                 then(function (response) {
                     return response;
                 });
