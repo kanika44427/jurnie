@@ -2,7 +2,7 @@
 	'use strict';
 	angular.module('jurnie').controller('MapsCtrl', mapsCtrl).directive('googlemaps', googleMaps);
 
-	function mapsCtrl(Pin, $uibModal, Search,httpService) {
+	function mapsCtrl(Pin, $uibModal, Search,httpService ) {
 		var vm = this;
 
 		vm.notes = true;
@@ -17,6 +17,7 @@
 		vm.init = init;
 		vm.uploadImageOnIcon = uploadImageOnIcon;
 		vm.init(() => {});
+		vm.fileChanged = fileChanged;
 
 		function init(cb) {
 			// console.log('STACK TRACE: ', new Error().stack);
@@ -45,6 +46,34 @@
 				$("#imgupload").click();
 		}
         
+		function fileChanged($event,userId, pinId){
+		    var file = $event.target.files[0];
+		    var my_pdf_file_as_base64 = "";
+		    var file_base64 = getBase64(file, function(e) {
+		        my_pdf_file_as_base64 = e.target.result;
+		        var user = {
+		            userId : userId,
+		            pinId : pinId,
+		            image : my_pdf_file_as_base64
+		        }
+		        httpService.uploadPhoto(user).then(function(res){
+		            alert("Photo uploaded sucessfully.");
+		        });
+		    });
+
+		   
+		}
+		
+		function getBase64(file, onLoadCallback) {
+		    var reader = new FileReader();
+		    reader.readAsDataURL(file);
+		    reader.onload = onLoadCallback;
+		    reader.onerror = function (error) {
+		        console.log('Error: ', error);
+		    };
+		}
+
+		
 		function open(id, latLng, lat, long) {
 		  
 		    
@@ -352,22 +381,22 @@
 						console.log('friend pins nearby:', record.nearbyPins);
 
 						var infoWindowContent = $compile(
-							'<div class="everything">' +
+							    '<div class="everything">' +
 								'<div id="infowindow" class="infowindow" ng-controller="MapsCtrl as maps">' +
 								'<div class="top-bar">' +
 								'<div class="empty-space">' +
 								'</div>' +
 								'<div class="place-name">' +
-								placeDescription +
+								    placeDescription +
 								'</div>' +
 								'<div class="trash-btn cursor" ng-click="maps.editPin(\'' +
-								record.id +
+								    record.id +
 								"'," +
 								null +
 								',' +
-								record.latitude +
+								    record.latitude +
 								',' +
-								record.longitude +
+								    record.longitude +
 								')">' +
 								'<div class="trash-pic glyphicon glyphicon-edit">' +
 								'</div>' +
@@ -404,7 +433,11 @@
 								'<div class="tab-content">' +
 								'<div class="note-pic-display" ng-if="maps.notes" style="width: 95%;margin: 0 auto;height: 155px;overflow-y: scroll;border-radius: 0;">' +
                                 '<div class="upload-header" style="background: orange;padding: 5px;text-align: center;color: #fff;border-top-left-radius: 5px;border-top-right-radius: 5px;margin-top: 10px;">'+
-                                'Upload Photo <input type="file" id="imgupload" style="display:none;" accept="image/*" data-ng-model="categoryImage"/><button style="padding:0; background:none; border:none;" id="OpenImgUpload" ng-click="maps.uploadImageOnIcon()" ><i class="trash-pic glyphicon glyphicon-plus"></i></button>'+
+                                'Upload Photo <input type="file" id="imgupload" name="imgupload" ng-upload-change="maps.fileChanged($event, \''+
+								record.userId +
+								"','" + 
+								record.id + "'"+
+								')" style="display:none;" accept="image/*" /><button style="padding:0; background:none; border:none;" id="OpenImgUpload" ng-click="maps.uploadImageOnIcon()" ><i class="trash-pic glyphicon glyphicon-plus"></i></button>'+
                                 '</div>'+
                                 '<div class="upload-box" style="width:100%;height: 100px;background:#eee;overflow: hidden;overflow: hidden;">'+
                                   // '<img src="http://ritsexpo.com/images/events/01.jpg" style="width: 100%;height: 60px;padding: 5px 0px;">'+

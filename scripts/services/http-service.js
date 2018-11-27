@@ -1,10 +1,13 @@
 angular.module('jurnie').factory('httpService', ['$http', 'ServerUrl','$localStorage',  function ($http, ServerUrl, $localStorage) {
-    
+        
+    var ServerURL_2 = 'http://api2.thejurnie.com/';
       
         var httpService = {
             deleteMarker: deleteMarker,
             socialLogin: socialLogin,
-            socialSignup: socialSignup
+            socialSignup: socialSignup,
+            uploadPhoto: uploadPhoto,
+            getAllPhotos: getAllPhotos
         };
         
         function deleteMarker(userId,pinId) {
@@ -20,6 +23,18 @@ angular.module('jurnie').factory('httpService', ['$http', 'ServerUrl','$localSto
                     $localStorage.token = response.data.token;
                  return response;
              });
+        }
+        function uploadPhoto(user) {
+            return $http.post(ServerURL_2 + 'uploadImage ', user, { headers: { 'Content-Type': 'application/json' } }).
+                then(function (response) {
+                    return response;
+                });
+        }
+        function getAllPhotos(userId, pinId) {
+            return $http.get(ServerURL_2 + 'getAllPhotos?userId='+userId + '&pinId=' + pinId, { headers: { 'Content-Type': 'application/json' } }).
+                then(function (response) {
+                    return response;
+                });
         }
         function socialSignup(socialUser) {
             alert(socialUser);
