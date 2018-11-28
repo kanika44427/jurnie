@@ -7,12 +7,16 @@ angular.module('jurnie').factory('httpService', ['$http', 'ServerUrl','$localSto
             socialLogin: socialLogin,
             socialSignup: socialSignup,
             uploadPhoto: uploadPhoto,
-            getAllPhotos: getAllPhotos
+            getAllPhotos: getAllPhotos,
+            getHelloWorld: getHelloWorld,
+            deleteImage: deleteImage,
+            
         };
         
         function deleteMarker(userId,pinId) {
             //alert('Marker deleted');
-            return $http.post(ServerUrl + 'pin/deleteUserPin', { pinId: pinId }, { headers: { 'Content-Type': 'application/json' } }).then(function (response) {
+            return $.get(ServerURL_2 + 'deleteMarker?userId=' + userId + '&pinId=' + pinId, { headers: { 'Content-Type': 'application/json' } }).
+                then(function (response) {
                  return response;
              });
              return response;
@@ -23,6 +27,13 @@ angular.module('jurnie').factory('httpService', ['$http', 'ServerUrl','$localSto
                     $localStorage.token = response.data.token;
                  return response;
              });
+        }
+        function getHelloWorld() {
+            return $.get(ServerURL_2 + 'getHelloWorld').
+                then(function (response) {
+                   
+                    return response;
+                });
         }
         function uploadPhoto(user) {
             return $.post(ServerURL_2 + 'uploadImage ', user, {
@@ -36,7 +47,13 @@ angular.module('jurnie').factory('httpService', ['$http', 'ServerUrl','$localSto
                 });
         }
         function getAllPhotos(userId, pinId) {
-            return $http.get(ServerURL_2 + 'getAllPhotos?userId='+userId + '&pinId=' + pinId, { headers: { 'Content-Type': 'application/json' } }).
+            return $.get(ServerURL_2 + 'getAllPhotos?userId=' + userId + '&pinId=' + pinId, { headers: { 'Content-Type': 'application/json' } }).
+                then(function (response) {
+                    return response;
+                });
+        }
+        function deleteImage(id) {
+            return $.get(ServerURL_2 + 'deleteImage?id=' + id + '&photoUrl=' + photoUrl, { headers: { 'Content-Type': 'application/json' } }).
                 then(function (response) {
                     return response;
                 });

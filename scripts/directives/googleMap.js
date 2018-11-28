@@ -5,11 +5,11 @@
 	function mapsCtrl(Pin, $uibModal, Search,httpService ) {
 		var vm = this;
 
-		vm.notes = true;
+		vm.notes = false;
 		vm.friends = true;
 		// vm.records = Pin.pins;
 		vm.animationsEnabled = true;
-
+		vm.photos = [];
 		vm.makeNewPin = makeNewPin;
 		vm.open = open;
 		vm.editPin = editPin;
@@ -18,7 +18,8 @@
 		vm.uploadImageOnIcon = uploadImageOnIcon;
 		vm.init(() => {});
 		vm.fileChanged = fileChanged;
-
+		vm.photoTabClick = photoTabClick;
+		vm.deleteImage = deleteImage;
 		function init(cb) {
 			// console.log('STACK TRACE: ', new Error().stack);
 			Pin.list().then(function(response) {
@@ -27,17 +28,51 @@
 			});
 		}
 
+		function photoTabClick(userId, id){
+		    vm.notes = true;
+		    
+		        httpService.getAllPhotos(userId, id).then(function(response){
+		            var response = JSON.parse(response);
+		            if(response.message == 'Record found' && response.status == 1){
+		                vm.photos = response.data;
+		                vm.noPhotoFound = false;
+		                //alert("response");
+		            }
+		            else{
+		                vm.photos = [];
+		                vm.noPhotoFound = true;
+		            }
+		        });
+		    
+		}
 		function editPin(id, latLng, lat, long) {
 			open(id, latLng, lat, long);
 		}
 
 		function deletePin(userId, pinId) {
-			//console.log('userId',userId,'pinid',pinId);
+			
 			httpService.deleteMarker(userId, pinId).then(function(response) {
-				//console.log('here',response);
+			    alert("pin deleted successfully.");
+			    vm.init(() => {});
 			});
 		}
-
+		function deleteImage(id, url){
+		    httpService.deleteImage(id, url).then(function(response) {
+		        alert("Image deleted successfully.");
+		        httpService.getAllPhotos(userId, id).then(function(response){
+		            var response = JSON.parse(response);
+		            if(response.message == 'Record found' && response.status == 1){
+		                vm.photos = response.data;
+		                vm.noPhotoFound = false;
+		                //alert("response");
+		            }
+		            else{
+		                vm.photos = [];
+		                vm.noPhotoFound = true;
+		            }
+		        });
+		    });
+		}
 		function makeNewPin(latLng) {
 			vm.open(null, latLng);
 		}
@@ -57,7 +92,22 @@
 		            image : my_pdf_file_as_base64
 		        }
 		        httpService.uploadPhoto(user).then(function(res){
-		            alert("Photo uploaded sucessfully.");
+		            var res = JSON.parse(res);
+		            if(res.status == 1 && res.message == "Record inserted successfully"){
+		                alert("Photo uploaded sucessfully.");
+		                httpService.getAllPhotos(userId, pinId).then(function(response) {
+		                    var response = JSON.parse(response);
+		                    if(response.message == 'Record found' && response.status == 1){
+		                        vm.photos= [];
+		                        vm.photos = response.data;
+		                        vm.noPhotoFound = false;
+		                    }
+		                    else{
+		                        vm.photos = [];
+		                        vm.noPhotoFound = true;
+		                    }
+		                });
+		            }
 		        });
 		    });
 
@@ -136,7 +186,7 @@
 		}
 	}
 
-	function googleMaps(Pin, $localStorage, $compile, $window, $filter, $rootScope, City, $location) {
+	function googleMaps(Pin, $localStorage, $compile, $window, $filter, $rootScope, City, $location, httpService, $q) {
 		return {
 			restrict: 'E',
 			replace: true,
@@ -146,7 +196,9 @@
 				changeChoice: '&',
 				onMarkerClick: '&',
 				lat: '<',
-				long: '<'
+				long: '<',
+				photos: '<'
+
 			},
 			controller: 'MapsCtrl',
 			controllerAs: 'maps',
@@ -294,12 +346,14 @@
 				return new google.maps.LatLng(coords.latitude, coords.longitude);
 			}
 
+			
 			function loadMarkers(changed) {
 				// console.log('STACK TRACE: ', new Error().stack);
 			    Pin.list(changed).then(function(pins) {
 			       
 					var records = pins.data;
 					var markers = [];
+					
 					// console.log('pins result:', pins);
 					// console.log('fresh load pins:', pins.data);
 					for (var i = 0; i < records.length; i++) {
@@ -325,7 +379,7 @@
 							record.pinMessage = 'Wish List';
 						}
 						var markerPos = new google.maps.LatLng(record.latitude, record.longitude);
-
+					    
 						// Add the markerto the map
 						var image = {
 							url: record.pinPic,
@@ -351,7 +405,8 @@
 						});
 
 						markers.push(marker);
-
+						//var photos = getAllPhotos(record.userId, record.id);
+						//console.log("photos", photos);
 						var placeDescription = record.description;
 						var startDate = $filter('date')(record.startDate, 'yyyy-M-d');
 						var endDate = $filter('date')(record.endDate, 'yyyy-M-d');
@@ -362,7 +417,7 @@
 						var pinMessage = record.pinMessage;
 						var noteDate = $filter('date')(record.createdAt, 'yyyy-M-d');
 						var noteMessage = record.note ? record.note : 'No notes yet';
-
+                        
 						if (record.nearbyPins.length) {
 							var friendsPinsNearby = [];
 							var nearbyPins = record.nearbyPins.filter(function(el) {
@@ -421,11 +476,15 @@
 								'</div>' +
 								'</div>' +
 								'<div class="tabs">' +
-								'<div class="note-pic-tab tab" ng-class="{selected:maps.notes === true}" ng-click="maps.notes = true">' +
+								'<div class="note-pic-tab tab" ng-class="{selected:maps.notes === false}" ng-click="maps.photoTabClick(\''+
+								record.userId +
+								"','" + 
+								record.id + "'"+
+                                ')">' +
 								'<img class="camera" ng-if="maps.notes" src="../assets/Notes - White.png">' +
 								'<img class="camera" ng-if="!maps.notes" src="../assets/Notes - Grey.png">' +
 								'</div>' +
-								'<div class="friend-tab tab" ng-class="{selected:maps.notes === false}" ng-click="maps.notes = false">' +
+								'<div class="friend-tab tab" ng-class="{selected:maps.notes === true}" ng-click="maps.notes = false">' +
 								'<img class="little-man" ng-if="!maps.notes" src="../assets/Pin Man - White.png">' +
 								'<img class="little-man" ng-if="maps.notes" src="../assets/Pin Man - Grey.png">' +
 								'</div>' +
@@ -440,7 +499,17 @@
 								')" style="display:none;" accept="image/*" /><button style="padding:0; background:none; border:none;" id="OpenImgUpload" ng-click="maps.uploadImageOnIcon()" ><i class="trash-pic glyphicon glyphicon-plus"></i></button>'+
                                 '</div>'+
                                 '<div class="upload-box" style="width:100%;height: 100px;background:#eee;overflow: hidden;overflow: hidden;">'+
-                                  // '<img src="http://ritsexpo.com/images/events/01.jpg" style="width: 100%;height: 60px;padding: 5px 0px;">'+
+                                    '<div ng-repeat="item in maps.photos">'+ //photo div loop start 
+                                            '<img ng-src="{{item.photoUrl}}" style="width: 100%;height: 60px;padding: 5px 0px;">'+
+                                            //'<button ng-if="maps.photos.length > 0"  ng-click="maps.deleteImage(\'' +
+								            //    item.id +
+								            //    "','" + 
+								            //    item.photoUrl + "'"+
+								            //    ')">' +
+                                            //  '<div class="trash-pic glyphicon glyphicon-trash"></div>'+
+								            //  '</button>'+
+                                    '</div>'+ //photo div loop ends
+                                    '<div ng-if="maps.noPhotoFound"> No photo found. </div>'+
                                    '</div>'+
                                 '</div>'+
 								'<div class="note-date">' +
@@ -520,6 +589,7 @@
 					if (infoWindow !== null) {
 						infoWindow.close();
 					}
+					maps.photos= [];
 					marker.infoWindow.open(map, marker);
 					maps.onMarkerClick({
 						choice: true
