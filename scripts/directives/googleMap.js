@@ -2,7 +2,7 @@
 	'use strict';
 	angular.module('jurnie').controller('MapsCtrl', mapsCtrl).directive('googlemaps', googleMaps);
 
-	function mapsCtrl(Pin, $uibModal, Search,httpService ) {
+	function mapsCtrl(Pin, $uibModal, Search,httpService,$rootScope) {
 		var vm = this;
 
 		vm.notes = false;
@@ -49,12 +49,13 @@
 			open(id, latLng, lat, long);
 		}
 
-		function deletePin(userId, pinId) {
+		function deletePin(userId, pinId, lat, lng) {
 			
 			httpService.deleteMarker(userId, pinId).then(function(response) {
 			    alert("pin deleted successfully.");
-			    vm.init(() => {});
+			    $rootScope.$emit('reload_map', { longitude: lat, latitude: lng, changed: false});
 			});
+		
 		}
 		function deleteImage(id, url){
 		    httpService.deleteImage(id, url).then(function(response) {
@@ -125,8 +126,6 @@
 
 		
 		function open(id, latLng, lat, long) {
-		  
-		    
 			var modalInstance = $uibModal.open({
 				animation: vm.animationsEnabled,
 				ariaLabelledBy: 'modal-title',
@@ -196,9 +195,7 @@
 				changeChoice: '&',
 				onMarkerClick: '&',
 				lat: '<',
-				long: '<',
-				photos: '<'
-
+				long: '<'
 			},
 			controller: 'MapsCtrl',
 			controllerAs: 'maps',
@@ -444,7 +441,8 @@
 								'<div class="place-name">' +
 								    placeDescription +
 								'</div>' +
-								'<div class="trash-btn cursor" ng-click="maps.editPin(\'' +
+								'<div class="trash-btn cursor">' +
+								'<div class="trash-pic glyphicon glyphicon-edit" ng-click="maps.editPin(\'' +
 								    record.id +
 								"'," +
 								null +
@@ -453,12 +451,16 @@
 								',' +
 								    record.longitude +
 								')">' +
-								'<div class="trash-pic glyphicon glyphicon-edit">' +
 								'</div>' +
+                               
 								'<button  ng-click="maps.deletePin(\'' +
 								record.userId +
 								"','" + 
 								record.id + "'"+
+                                ',' +
+								    record.latitude +
+								',' +
+								    record.longitude +
 								')">' +
                                 '<div class="trash-pic glyphicon glyphicon-trash">' +
 								'</div>' +
@@ -492,11 +494,11 @@
 								'<div class="tab-content">' +
 								'<div class="note-pic-display" ng-if="maps.notes" style="width: 95%;margin: 0 auto;height: 155px;overflow-y: scroll;border-radius: 0;">' +
                                 '<div class="upload-header" style="background: orange;padding: 5px;text-align: center;color: #fff;border-top-left-radius: 5px;border-top-right-radius: 5px;margin-top: 10px;">'+
-                                'Upload Photo <input type="file" id="imgupload" name="imgupload" ng-upload-change="maps.fileChanged($event, \''+
+                                '<input type="file" id="imgupload" name="imgupload" ng-upload-change="maps.fileChanged($event, \''+
 								record.userId +
 								"','" + 
 								record.id + "'"+
-								')" style="display:none;" accept="image/*" /><button style="padding:0; background:none; border:none;" id="OpenImgUpload" ng-click="maps.uploadImageOnIcon()" ><i class="trash-pic glyphicon glyphicon-plus"></i></button>'+
+								')" style="display:none;" accept="image/*" /><button style="padding:0; background:none; border:none;" id="OpenImgUpload" ng-click="maps.uploadImageOnIcon()" >Upload Button<i class="trash-pic glyphicon glyphicon-plus"></i></button>'+
                                 '</div>'+
                                 '<div class="upload-box" style="width:100%;height: 100px;background:#eee;overflow: hidden;overflow: hidden;">'+
                                     '<div ng-repeat="item in maps.photos">'+ //photo div loop start 
