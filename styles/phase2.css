@@ -358,3 +358,40 @@ span.or {
 #newPin span.star.glyphicon.glyphicon-star {
     font-size: 30px;
 }
+.when-container input {
+    width: 90%;
+    height: 40px;
+    border-radius: 5px;
+    box-shadow: none;
+    border: 1px solid #ccc;
+    margin-bottom: 15px;
+    padding-left: 15px;
+}
+.upload-header {
+    background: #f7914c !important;
+}
+.upload-box {
+    padding: 5px;
+    text-align: center;
+}
+.bottom-info-container.ng-scope .extra-links {
+    color: #f7914c;
+}
+.bottom-info-container .insta {
+    color: #f7914c;
+}
+.bottom-info-container  .copyright-info {
+    text-align: center;
+    color: #f7914c;
+    /* margin-bottom: 13px; */
+}
+
+.upload-box .ng-scope {
+    width: 33.33%;
+    display: inline-block;
+    padding: 2px;
+}
+
+.upload-box .ng-scope img {
+    border: 1px solid #ccc;
+}
