@@ -28,7 +28,8 @@
 			});
 		}
 
-		function photoTabClick(userId, id){
+		function photoTabClick(userId, id)
+		{
 		    vm.notes = true;
 		    
 		        httpService.getAllPhotos(userId, id).then(function(response){
@@ -500,7 +501,7 @@
 								record.id + "'"+
 								')" style="display:none;" accept="image/*" /><button style="padding:0; background:none; border:none;" id="OpenImgUpload" ng-click="maps.uploadImageOnIcon()" >Upload Button<i class="trash-pic glyphicon glyphicon-plus"></i></button>'+
                                 '</div>'+
-                                '<div class="upload-box" style="width:100%;height: 100px;background:#eee;overflow: hidden;overflow: hidden;">'+
+                                '<div class="upload-box" style="width:100%;height: 100px;background:#f7914c;overflow: hidden;overflow: hidden;">'+
                                     '<div ng-repeat="item in maps.photos">'+ //photo div loop start 
                                             '<img ng-src="{{item.photoUrl}}" style="width: 100%;height: 60px;padding: 5px 0px;">'+
                                             //'<button ng-if="maps.photos.length > 0"  ng-click="maps.deleteImage(\'' +
