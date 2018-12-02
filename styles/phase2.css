@@ -372,7 +372,7 @@ span.or {
 }
 .upload-box {
     padding: 5px;
-    text-align: center;
+
 }
 .bottom-info-container.ng-scope .extra-links {
     color: #f7914c;
@@ -385,11 +385,24 @@ span.or {
     color: #f7914c;
     /* margin-bottom: 13px; */
 }
-
+.upload-box .ng-scope button {
+    position: absolute;
+    right: 0;
+    font-size: 8px;
+    border-radius: 50%;
+    border: 0;
+    background: #f7914c;
+    color: #fff;
+    height: 15px;
+    width: 15px;
+    text-align: center;
+    padding: 0;
+}
 .upload-box .ng-scope {
     width: 33.33%;
     display: inline-block;
     padding: 2px;
+    position: relative;
 }
 
 .upload-box .ng-scope img {

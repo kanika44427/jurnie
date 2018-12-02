@@ -20,6 +20,7 @@
 		vm.fileChanged = fileChanged;
 		vm.photoTabClick = photoTabClick;
 		vm.deleteImage = deleteImage;
+		vm.openDeleteImageConfirmation = openDeleteImageConfirmation;
 		function init(cb) {
 			// console.log('STACK TRACE: ', new Error().stack);
 			Pin.list().then(function(response) {
@@ -58,22 +59,41 @@
 			});
 		
 		}
+		function openDeleteImageConfirmation() {
+		    //var modalInstance = $uibModal.open({
+		    //    animation: vm.animationsEnabled,
+		    //    ariaLabelledBy: 'modal-title',
+		    //    ariaDescribedBy: 'modal-body',
+		    //    templateUrl: '../templates/newPinModal.html'
+		    //});
+
+			
+		    //modalInstance.closed = function() {
+		    //   // vm.loadMarkers(false);
+		    //};
+		    $('#deleteImage').modal({
+		        backdrop: 'static',
+		        keyboard: false
+		    })
+		}
+
 		function deleteImage(id, url){
-		    httpService.deleteImage(id, url).then(function(response) {
-		        alert("Image deleted successfully.");
-		        httpService.getAllPhotos(userId, id).then(function(response){
-		            var response = JSON.parse(response);
-		            if(response.message == 'Record found' && response.status == 1){
-		                vm.photos = response.data;
-		                vm.noPhotoFound = false;
-		                //alert("response");
-		            }
-		            else{
-		                vm.photos = [];
-		                vm.noPhotoFound = true;
-		            }
-		        });
-		    });
+		   
+		    //httpService.deleteImage(id, url).then(function(response) {
+		    //    alert("Image deleted successfully.");
+		    //    httpService.getAllPhotos(userId, id).then(function(response){
+		    //        var response = JSON.parse(response);
+		    //        if(response.message == 'Record found' && response.status == 1){
+		    //            vm.photos = response.data;
+		    //            vm.noPhotoFound = false;
+		    //            //alert("response");
+		    //        }
+		    //        else{
+		    //            vm.photos = [];
+		    //            vm.noPhotoFound = true;
+		    //        }
+		    //    });
+		    //});
 		}
 		function makeNewPin(latLng) {
 			vm.open(null, latLng);
@@ -494,16 +514,21 @@
 								'</div>' +
 								'<div class="tab-content">' +
 								'<div class="note-pic-display" ng-if="maps.notes" style="width: 95%;margin: 0 auto;height: 155px;overflow-y: scroll;border-radius: 0;">' +
-                                '<div class="upload-header" style="background: #f7914c;;padding: 5px;text-align: center;color: #fff;border-top-left-radius: 5px;border-top-right-radius: 5px;margin-top: 10px;">'+
+                                '<div class="upload-header" id="OpenImgUpload" style="background: #f7914c;;padding: 5px;text-align: center;color: #fff;border-top-left-radius: 5px;border-top-right-radius: 5px;margin-top: 10px;">'+
                                 '<input type="file" id="imgupload" name="imgupload" ng-upload-change="maps.fileChanged($event, \''+
 								record.userId +
 								"','" + 
 								record.id + "'"+
-								')" style="display:none;" accept="image/*" /><button style="padding:0; background:none; border:none;" id="OpenImgUpload" ng-click="maps.uploadImageOnIcon()" >Upload Button<i class="trash-pic glyphicon glyphicon-plus"></i></button>'+
+								')" style="display:none;" accept="image/*" />'+
+                                '<button style="padding:0; background:none; border:none;" id="" ng-click="maps.uploadImageOnIcon()" >Upload Button <i class="trash-pic glyphicon glyphicon-plus"></i></button>'+
                                 '</div>'+
                                 '<div class="upload-box" style="width:100%;background:#eee;overflow: hidden;overflow: hidden;">'+
                                     '<div ng-repeat="item in maps.photos">'+ //photo div loop start 
-                                      '<button  type="button">X</button>'+
+                                      '<button  type="button" ng-click="maps.openDeleteImageConfirmation(\''+
+                                       record.userId +
+								        "','" + 
+								       record.id + "'"+
+                                       ')">X</button>'+
                                             '<img ng-src="{{item.photoUrl}}" style="width: 100%;height: 60px;padding: 5px 0px;">'+
                                             //'<button ng-if="maps.photos.length > 0"  ng-click="maps.deleteImage(\'' +
 								            //    item.id +
