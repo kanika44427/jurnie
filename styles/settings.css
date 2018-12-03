@@ -136,6 +136,7 @@ border: 2px solid #fff;
     border: none;
     font-size: 23px;
     padding: 1px 8px 0px 8px;
+    margin-right:55px;
 }
 
 #newPin span.star.glyphicon.glyphicon-star{
@@ -216,4 +217,17 @@ border: 2px solid #fff;
 		width: 50vw;
 	}
 }
-
+.modal {
+position: absolute;
+top: 50%;
+left: 50%;
+z-index: 1050;
+display: none;
+-webkit-overflow-scrolling: touch;
+outline: 0;
+transform: translate(-50%,-50%);
+-ms-transform: translate(-50%,-50%);
+-moz-transform: translate(-50%,-50%);
+-webkit-transform: translate(-50%,-50%);
+transform: translate(-50%,-50%);
+}
