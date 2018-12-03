@@ -408,3 +408,40 @@ span.or {
 .upload-box .ng-scope img {
     border: 1px solid #ccc;
 }
+.desktop-login-navbar.org-clr {
+   background: #f8a15c;
+}
+
+.desktop-login-navbar.org-clr button.forgot-btn {
+   color: #fff;
+}
+
+.desktop-login-navbar.org-clr .top-login-btn.cursor {
+   background: #fff;
+   color: #f8a15c;
+}
+
+.desktop-login-navbar.org-clr li input {
+   border-bottom: 2px solid #fff;
+   background: #f8a15c;
+   color: #fff;
+}
+/*CHANGES THE COLOR OF PLACEHOLDER TEXT*/
+.desktop-login-navbar.org-clr li input::-webkit-input-placeholder {
+/* Chrome */
+color: #ffffff;
+}
+.desktop-login-navbar.org-clr li input:-ms-input-placeholder {
+/* IE 10+ */
+color: #ffffff;
+}
+.desktop-login-navbar.org-clr li input::-moz-placeholder {
+/* Firefox 19+ */
+color: #ffffff;
+opacity: 1;
+}
+.desktop-login-navbar.org-clr li input:-moz-placeholder {
+/* Firefox 4 - 18 */
+color: #ffffff;
+opacity: 1;
+}
