@@ -106,11 +106,11 @@
     bottom: 0;
     text-align: center;
 }
-     .extra-links
+/*     .extra-links
 {
 
 color: #fff;
-}
+}*/
      .insta {
     color: #fff;
 }
@@ -180,7 +180,7 @@ color: #fff;
 .pin-details-container {
     position: fixed;
     width: 100%;
-    background: #f7914c;
+    background: #fff;
     bottom: 0;
     text-align: center;
     padding: 5px 0px;
@@ -445,3 +445,4 @@ opacity: 1;
 color: #ffffff;
 opacity: 1;
 }
+#landing .signup-form-container{margin-top:0}
