@@ -145,11 +145,12 @@ color: #fff;
     margin: 20px auto 10px auto;
 }
 .vaibhavClass   #newPin .notes-text {
-    height: 50px;
+    height: 45px;
     width: 85%;
-    min-width: 290px;
+    min-width: 267px;
     border-color: #F7914C;
     border-width: 2px;
+    margin-bottom: 10px;
 }
 .vaibhavClass #newPin .pin-options {
     margin-bottom: 0px;
@@ -165,7 +166,7 @@ color: #fff;
 .vaibhavClass   #newPin .question {
     color: #F7914C;
     font-size: 21px;
-    margin: 10px auto 10px auto;
+    margin: 5px auto 5px auto;
 }
 .vaibhavClass    .modal-dialog {
     top: 35%;
@@ -356,7 +357,7 @@ span.or {
     margin-top: 15px;
 }
 #newPin span.star.glyphicon.glyphicon-star {
-    font-size: 30px;
+    font-size: 23px;
 }
 .when-container input {
     width: 90%;
@@ -364,7 +365,7 @@ span.or {
     border-radius: 5px;
     box-shadow: none;
     border: 1px solid #ccc;
-    margin-bottom: 15px;
+    margin-bottom: 5px;
     padding-left: 15px;
 }
 .upload-header {

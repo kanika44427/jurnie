@@ -61,7 +61,7 @@
 }
 
 #infowindow .trash-pic {
-	width: 15px;
+	width: 11px;
 	height: 15px;
 	margin-right: 5px;
 }
@@ -292,4 +292,8 @@ flex-grow: 1;
     color: white;
     cursor: pointer;
     text-shadow: -1px 0 transparent, 0 1px transparent, 1px 0 transparent, 0 -1px transparent;
+}
+
+button.gm-ui-hover-effect {
+    width: 14px !important;
 }

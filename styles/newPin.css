@@ -25,7 +25,7 @@
 #newPin .when-container{
   width: 100%;
   text-align: center;
-  margin: 15px 0;
+  margin: 0;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -34,13 +34,13 @@
 #newPin .rating-container{
   width: 100%;
   text-align: center;
-  margin: 15px 0;
+  margin: 0;
 }
 
 #newPin .notes-container{
   width: 100%;
   text-align: center;
-  margin: 15px 0;
+  margin: 0;
 }
 
 #newPin .question{
@@ -115,7 +115,7 @@
 }
 
 #newPin .star-rating{
-  margin-top: 20px;
+  margin-top: 5px;
 }
 
 #newPin .star.star-on {
