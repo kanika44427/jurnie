@@ -4,7 +4,7 @@
 
 	function mapsCtrl(Pin, $uibModal, Search,httpService,$rootScope) {
 		var vm = this;
-
+		
 		vm.notes = false;
 		vm.friends = true;
 		// vm.records = Pin.pins;
@@ -13,14 +13,17 @@
 		vm.makeNewPin = makeNewPin;
 		vm.open = open;
 		vm.editPin = editPin;
-		vm.deletePin = deletePin;
+		
 		vm.init = init;
 		vm.uploadImageOnIcon = uploadImageOnIcon;
 		vm.init(() => {});
 		vm.fileChanged = fileChanged;
 		vm.photoTabClick = photoTabClick;
-		vm.deleteImage = deleteImage;
+		//vm.deleteImage = deleteImage;
 		vm.openDeleteImageConfirmation = openDeleteImageConfirmation;
+		//vm.cancelImageDelete = cancelImageDelete;
+		vm.openDeletePinConfirmation = openDeletePinConfirmation;
+		var modalInstance, id, url ;
 		function init(cb) {
 			// console.log('STACK TRACE: ', new Error().stack);
 			Pin.list().then(function(response) {
@@ -51,50 +54,65 @@
 			open(id, latLng, lat, long);
 		}
 
-		function deletePin(userId, pinId, lat, lng) {
-			
-			httpService.deleteMarker(userId, pinId).then(function(response) {
-			    alert("pin deleted successfully.");
-			    $rootScope.$emit('reload_map', { longitude: lat, latitude: lng, changed: false});
-			});
 		
-		}
-		function openDeleteImageConfirmation() {
-		    //var modalInstance = $uibModal.open({
-		    //    animation: vm.animationsEnabled,
-		    //    ariaLabelledBy: 'modal-title',
-		    //    ariaDescribedBy: 'modal-body',
-		    //    templateUrl: '../templates/newPinModal.html'
-		    //});
-
-			
-		    //modalInstance.closed = function() {
-		    //   // vm.loadMarkers(false);
-		    //};
-		    $('#deleteImage').modal({
-		        backdrop: 'static',
-		        keyboard: false
-		    })
-		}
-
-		function deleteImage(id, url){
+	
+		function openDeleteImageConfirmation(i)
+		{
+		    var imageDetail = vm.photos[i];
 		   
-		    //httpService.deleteImage(id, url).then(function(response) {
-		    //    alert("Image deleted successfully.");
-		    //    httpService.getAllPhotos(userId, id).then(function(response){
-		    //        var response = JSON.parse(response);
-		    //        if(response.message == 'Record found' && response.status == 1){
-		    //            vm.photos = response.data;
-		    //            vm.noPhotoFound = false;
-		    //            //alert("response");
-		    //        }
-		    //        else{
-		    //            vm.photos = [];
-		    //            vm.noPhotoFound = true;
-		    //        }
-		    //    });
-		    //});
+		    var imageDetail = {id : imageDetail.id, photoUrl: imageDetail.photoUrl, pinId :imageDetail.pinId , userId:imageDetail.userId};
+		    var pinDetail = {};
+		    modalInstance = $uibModal.open({
+		        animation: vm.animationsEnabled,
+		        ariaLabelledBy: 'modal-title',
+		        ariaDescribedBy: 'modal-body',
+		        templateUrl: '../templates/deleteImage.html',
+		        controller: 'deletePinCtrl',
+		        controllerAs: 'maps',
+		        resolve: {
+		            imageDetail: function () {
+		                return imageDetail;
+		            },
+		            pinDetail: function () {
+		                return pinDetail;
+		            }
+		        }
+		        //windowClass  : 'vaibhavClass',
+		     
+		    }).closed.then(function(){
+		       // alert('modal closed');
+		    });
+		    
 		}
+		function openDeletePinConfirmation(userid, id, lat, lng) {
+		   // userid = userid;
+		    //id = id;
+		    lat = lat;
+		    lng = lng;
+		    var pinDetail = {userid : userid , id : id, lat : lat, lng :lng};
+		    var imageDetail = {id : id, url: url};
+		    modalInstance = $uibModal.open({
+		        animation: vm.animationsEnabled,
+		        ariaLabelledBy: 'modal-title',
+		        ariaDescribedBy: 'modal-body',
+		        templateUrl: '../templates/deletePin.html',
+		        controller: 'deletePinCtrl',
+		        controllerAs: 'maps',
+		        resolve: {
+		            pinDetail: function () {
+		                return pinDetail;
+		            },
+		            imageDetail: function () {
+		                return imageDetail;
+		            }
+		        }
+		       
+		    }).closed.then(function(){
+		        $rootScope.$emit('reload_map', { latitude: lat, longitude: lng });
+		    });
+		    
+		}
+		
 		function makeNewPin(latLng) {
 			vm.open(null, latLng);
 		}
@@ -210,7 +228,7 @@
 		return {
 			restrict: 'E',
 			replace: true,
-			template: '<div id="map"></div>',
+			templateUrl: '../templates/map.html',
 			scope: {
 				choice: '=',
 				changeChoice: '&',
@@ -375,7 +393,8 @@
 					// console.log('pins result:', pins);
 					// console.log('fresh load pins:', pins.data);
 					for (var i = 0; i < records.length; i++) {
-						var record = records[i];
+					    var record = records[i];
+					    
 						for (var k = 0; k < record.nearbyPins.length; k++) {
 							record.nearbyPins[k];
 							if (record.nearbyPins[k].pinTypeId === 1) {
@@ -448,7 +467,7 @@
 							});
 							record.nearbyPins = nearbyPins;
 						}
-
+                       
 						$rootScope.nearbyPins = $rootScope.nearbyPins || {};
 						$rootScope.nearbyPins[record.id] = record.nearbyPins;
 						console.log('friend pins nearby:', record.nearbyPins);
@@ -474,7 +493,7 @@
 								')">' +
 								'</div>' +
                                
-								'<button  ng-click="maps.deletePin(\'' +
+								'<button  ng-click="maps.openDeletePinConfirmation(\'' +
 								record.userId +
 								"','" + 
 								record.id + "'"+
@@ -524,10 +543,7 @@
                                 '</div>'+
                                 '<div class="upload-box" style="width:100%;background:#eee;overflow: hidden;overflow: hidden;">'+
                                     '<div ng-repeat="item in maps.photos">'+ //photo div loop start 
-                                      '<button  type="button" ng-click="maps.openDeleteImageConfirmation(\''+
-                                       record.userId +
-								        "','" + 
-								       record.id + "'"+
+                                      '<button  type="button" ng-click="maps.openDeleteImageConfirmation($index'+
                                        ')">X</button>'+
                                             '<img ng-src="{{item.photoUrl}}" style="width: 100%;height: 60px;padding: 5px 0px;">'+
                                             //'<button ng-if="maps.photos.length > 0"  ng-click="maps.deleteImage(\'' +
