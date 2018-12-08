@@ -38,18 +38,7 @@
 
             httpService.deleteImage($scope.imageDetail.id, $scope.imageDetail.photoUrl).then(function (response) {
                 alert("Image deleted successfully.");
-                httpService.getAllPhotos($scope.imageDetail.userId, $scope.imageDetail.pinId).then(function (response) {
-                    var response = JSON.parse(response);
-                    if (response.message == 'Record found' && response.status == 1) {
-                        vm.photos = response.data;
-                        vm.noPhotoFound = false;
-                        //alert("response");
-                    }
-                    else {
-                        vm.photos = [];
-                        vm.noPhotoFound = true;
-                    }
-                });
+                $uibModalInstance.dismiss('cancel');
             });
         }
     }

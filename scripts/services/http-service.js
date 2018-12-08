@@ -53,7 +53,7 @@ angular.module('jurnie').factory('httpService', ['$http', 'ServerUrl','$localSto
                 });
         }
         function deleteImage(id, photoUrl) {
-            return $.get(ServerURL_2 + 'deleteImage?id=' + id + '&photoUrl=' + photoUrl, { headers: { 'Content-Type': 'application/json' } }).
+            return $.get(ServerURL_2 + 'deleteImage?id=' + id + '&image=' + photoUrl, { headers: { 'Content-Type': 'application/json' } }).
                 then(function (response) {
                     return response;
                 });
