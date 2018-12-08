@@ -447,3 +447,15 @@ color: #ffffff;
 opacity: 1;
 }
 #landing .signup-form-container{margin-top:0}
+.bottom-section {
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+}
+.vaibhavClass .modal-dialog {
+    top: 0%;
+    left: 11%;
+}
+::-webkit-scrollbar { 
+    display: none; 
+}

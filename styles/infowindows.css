@@ -297,3 +297,13 @@ flex-grow: 1;
 button.gm-ui-hover-effect {
     width: 14px !important;
 }
+#infowindow .top-bar {
+    background-color: #F7914C;
+    color: white;
+    display: flex;
+    flex-direction: row;
+    height: 25px;
+    padding-top: 6px;
+    justify-content: space-between;
+    border-radius: 10px 10px 0px 0px;
+}

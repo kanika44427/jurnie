@@ -232,3 +232,33 @@ transform: translate(-50%,-50%);
 transform: translate(-50%,-50%);
     min-height: 505px;
 }
+#settings .close-btn {
+    color: #fff;
+    background: #f7914c;
+    display: inline-block;
+    height: 22px;
+    line-height: 18px;
+    width: 22px;
+    text-align: center;
+    border-radius: 100%;
+    font-size: 14px;
+    position: absolute;
+    right: 0;
+    top: 0;
+    border: 2px solid #fff;
+    text-align: center;
+}
+#settings .settings-title {
+    color: #f7914c;
+    margin-left: 59px;
+    font-size: 38px;
+    font-weight: bold;
+}
+#settings .save-btn {
+    background-color: #00A99D;
+    color: white;
+    border: none;
+    font-size: 23px;
+    padding: 1px 8px 0px 8px;
+    margin-right: 50px;
+}
