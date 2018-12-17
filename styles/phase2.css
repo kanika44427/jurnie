@@ -459,3 +459,113 @@ opacity: 1;
 ::-webkit-scrollbar { 
     display: none; 
 }
+#landing img.coming-soon {
+    width: 440px;
+    margin-top: -40px;
+}
+#landing img.coming-soon {
+    width: 440px;
+    margin-top: 60px;
+}
+#landing img.coming-soon {
+    width: 440px;
+    margin-top: -50px;
+}
+#landing .signup-form-container {
+    margin-top: -50px;
+}
+.bottom-section {
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+    margin-bottom: 15px;
+}
+div#newPin .modal-header button {
+    background: none !important;
+}
+.btn-warning {
+    color: #fff;
+    background-color: #f7914c;
+    border-color: #f7914c;
+}
+div#newPin .modal-header button {
+    background: none !important;
+}
+div#newPin .modal-header button {
+    background: none !important;
+    color:#fff !important!
+}
+div#newPin .modal-header button span{
+    color:#fff !important;
+}
+/*undo to keep background white */
+.pin-details-container {
+    position: fixed;
+    width: 100%;
+    background: none;
+    bottom: 0;
+    text-align: center;
+    padding: 5px 0px;
+}
+.vaibhavClass #newPin .pin-pic {
+    height: 20px !important;
+    width: auto !important;
+}
+.vaibhavClass #newPin .question {
+    color: #F7914C;
+    font-size: 18px;
+    margin: 0px auto 5px auto;
+}
+.when-container input {
+    width: 90%;
+    height: 30px;
+    border-radius: 5px;
+    box-shadow: none;
+    border: 1px solid #ccc;
+    margin-bottom: 5px;
+    padding-left: 15px;
+}
+.vaibhavClass #newPin .question {
+    color: #F7914C;
+    font-size: 16px;
+    margin: 0px auto 5px auto;
+}
+#newPin span.star.glyphicon.glyphicon-star {
+    font-size: 16px;
+}
+.vaibhavClass #newPin .question {
+    color: #F7914C;
+    font-size: 16px;
+    margin: 0px auto 0px auto;
+}
+.vaibhavClass #newPin .notes-text
+{
+height:40px;
+}
+.vaibhavClass div#modal-body input {
+    width: 100%;
+    border: none;
+    border-bottom: 2px solid #F7914C;
+    height: 35px;
+}
+#infowindow .place-name {
+    font-weight: bold;
+    width: 68%;
+    text-align: center !important;
+    padding-left: 30px;
+}
+.gm-ui-hover-effect {
+    opacity: 1;
+}
+#infowindow .friends-table-head {
+    background-color: #9F9F9E;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    margin-top: -20px;
+    border-top-left-radius: 6px;
+    border-top-right-radius: 6px;
+}
+.EVERYTHING {
+    height: 83vh;
+}
