@@ -22,7 +22,7 @@
 	) {
 		var vm = this;
 		vm.isAdmin = false;
-
+		//$rootScope.loaderIndicator = false;
 		vm.mobileScreen = false;
 		vm.mobileLogClicked = false;
 

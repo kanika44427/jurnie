@@ -5,8 +5,8 @@
 	function mapsCtrl(Pin, $uibModal, Search,httpService,$rootScope) {
 		var vm = this;
 		
-		vm.notes = false;
-		vm.friends = true;
+		vm.notes = true;
+		vm.friends = false;
 		// vm.records = Pin.pins;
 		vm.animationsEnabled = true;
 		vm.photos = [];
@@ -19,6 +19,7 @@
 		vm.init(() => {});
 		vm.fileChanged = fileChanged;
 		vm.photoTabClick = photoTabClick;
+		vm.photo = false;
 		//vm.deleteImage = deleteImage;
 		vm.openDeleteImageConfirmation = openDeleteImageConfirmation;
 		//vm.cancelImageDelete = cancelImageDelete;
@@ -34,7 +35,10 @@
 
 		function photoTabClick(userId, id)
 		{
-		    vm.notes = true;
+		    
+		    vm.notes = false; 
+		    vm.photo = true; 
+		    vm.friend = false;
 		    
 		        httpService.getAllPhotos(userId, id).then(function(response){
 		            var response = JSON.parse(response);
@@ -80,9 +84,16 @@
 		        //windowClass  : 'vaibhavClass',
 		     
 		    }).closed.then(function(){
+		        $rootScope.loaderIndicator = true;;
 		        httpService.getAllPhotos(imageDetail.userId, imageDetail.pinId).then(function (response) {
+		            alert("in loader");
+		            $rootScope.loaderIndicator = false;
+		            vm.$apply();
+		            $rootScope.apply();
 		            var response = JSON.parse(response);
+		           
 		            if (response.message == 'Record found' && response.status == 1) {
+		               
 		                vm.photos = response.data;
 		                vm.noPhotoFound = false;
 		                //alert("response");
@@ -142,8 +153,10 @@
 		            pinId : pinId,
 		            image : my_pdf_file_as_base64
 		        }
+		        $rootScope.loaderIndicator = true;
 		        httpService.uploadPhoto(user).then(function(res){
 		            var res = JSON.parse(res);
+		            $rootScope.loaderIndicator = false;
 		            if(res.status == 1 && res.message == "Record inserted successfully"){
 		                alert("Photo uploaded sucessfully.");
 		                httpService.getAllPhotos(userId, pinId).then(function(response) {
@@ -529,60 +542,64 @@
 								'</div>' +
 								'</div>' +
 								'<div class="tabs">' +
-								'<div class="note-pic-tab tab" ng-class="{selected:maps.notes === false}" ng-click="maps.photoTabClick(\''+
-								record.userId +
-								"','" + 
-								record.id + "'"+
-                                ')">' +
-								'<img class="camera" ng-if="maps.notes" src="../assets/Notes - White.png">' +
-								'<img class="camera" ng-if="!maps.notes" src="../assets/Notes - Grey.png">' +
-								'</div>' +
-								'<div class="friend-tab tab" ng-class="{selected:maps.notes === true}" ng-click="maps.notes = false">' +
-								'<img class="little-man" ng-if="!maps.notes" src="../assets/Pin Man - White.png">' +
-								'<img class="little-man" ng-if="maps.notes" src="../assets/Pin Man - Grey.png">' +
-								'</div>' +
+								    '<div class="note-pic-tab tab" ng-class="{selected:maps.notes == true}" ng-click="maps.notes = true; maps.photo = false; maps.friend = false">'+
+								        '<img class="camera" ng-if="maps.notes" src="../assets/Notes - White.png">' +
+								        '<img class="camera" ng-if="!maps.notes" src="../assets/Notes - Grey.png">' +
+								    '</div>' +
+								    '<div class="friend-tab tab" ng-class="{selected:maps.friend === true }" ng-click="maps.notes = false; maps.photo = false; maps.friend = true">' +
+								        '<img class="little-man" ng-if="maps.friend" src="../assets/Pin Man - White.png">' +
+								        '<img class="little-man" ng-if="!maps.friend" src="../assets/Pin Man - Grey.png">' +
+								    '</div>' +
+                                    '<div class="friend-tab tab" ng-class="{selected:maps.photo === true}" ng-click="maps.photoTabClick(\''+
+								        record.userId +
+								        "','" + 
+								        record.id + "'"+
+                                        ')">' +
+								        '<img class="camera" ng-if="maps.photo" src="../assets/Notes - White.png">' +
+								        '<img class="camera" ng-if="!maps.photo" src="../assets/Notes - Grey.png">' +
+								    '</div>' +
 								'</div>' +
 								'<div class="tab-content">' +
 								'<div class="note-pic-display" ng-if="maps.notes" style="width: 95%;margin: 0 auto;height: 155px;overflow-y: scroll;border-radius: 0;">' +
-                                '<div class="upload-header" id="OpenImgUpload" style="background: #f7914c;;padding: 5px;text-align: center;color: #fff;border-top-left-radius: 5px;border-top-right-radius: 5px;margin-top: 10px;">'+
-                                '<input type="file" id="imgupload" name="imgupload" ng-upload-change="maps.fileChanged($event, \''+
-								record.userId +
-								"','" + 
-								record.id + "'"+
-								')" style="display:none;" accept="image/*" />'+
-                                '<button style="padding:0; background:none; border:none;" id="" ng-click="maps.uploadImageOnIcon()" >Upload Button <i class="trash-pic glyphicon glyphicon-plus"></i></button>'+
+                                    '<div class="note-date">' +
+								        noteDate +
+								    '</div>' +
+								    '<div class="note-message">' +
+								        noteMessage +
+								    '</div>' +
+								'</div>' +
+                                '<div class="note-pic-display" ng-if="maps.photo" style="width: 95%;margin: 0 auto;height: 155px;overflow-y: scroll;border-radius: 0;">'+
+                                  '<div class="upload-header" id="OpenImgUpload" style="background: #f7914c;;padding: 5px;text-align: center;color: #fff;border-top-left-radius: 5px;border-top-right-radius: 5px;margin-top: 10px;">'+
+                                    '<input type="file" id="imgupload" name="imgupload" ng-upload-change="maps.fileChanged($event, \''+
+                                      record.userId + "','" + record.id + "'"+')" style="display:none;" accept="image/*" />'+
+                                     '<button style="padding:0; background:none; border:none;" id="" ng-click="maps.uploadImageOnIcon()" >Upload Button <i class="trash-pic glyphicon glyphicon-plus"></i></button>'+
+                                  '</div>'+
+                                  '<div class="upload-box" style="width:100%;background:#eee;overflow: hidden;overflow: hidden;">'+
+                                  '<div ng-repeat="item in maps.photos">'+ //photo div loop start 
+                            '<button  type="button" ng-click="maps.openDeleteImageConfirmation($index'+
+                                                                   ')">X</button>'+
+                                '<img ng-src="{{item.photoUrl}}" style="width: 100%;height: 60px;padding: 5px 0px;">'+
+					    //'<button ng-if="maps.photos.length > 0"  ng-click="maps.deleteImage(\'' +
+					    //    item.id +
+					    //    "','" + 
+					    //    item.photoUrl + "'"+
+					    //    ')">' +
+					    //  '<divclass="trash-pic glyphicon glyphicon-trash"></div>'+
+								
+					    //  '</button>'+
+                            '</div>'+ //photo div loop ends
+                            '<div ng-if="maps.noPhotoFound"> No photo found. </div>'+
+                            '</div>'+
+                         '</div>'+
                                 '</div>'+
-                                '<div class="upload-box" style="width:100%;background:#eee;overflow: hidden;overflow: hidden;">'+
-                                    '<div ng-repeat="item in maps.photos">'+ //photo div loop start 
-                                      '<button  type="button" ng-click="maps.openDeleteImageConfirmation($index'+
-                                       ')">X</button>'+
-                                            '<img ng-src="{{item.photoUrl}}" style="width: 100%;height: 60px;padding: 5px 0px;">'+
-                                            //'<button ng-if="maps.photos.length > 0"  ng-click="maps.deleteImage(\'' +
-								            //    item.id +
-								            //    "','" + 
-								            //    item.photoUrl + "'"+
-								            //    ')">' +
-                                            //  '<div class="trash-pic glyphicon glyphicon-trash"></div>'+
-								            //  '</button>'+
-                                    '</div>'+ //photo div loop ends
-                                    '<div ng-if="maps.noPhotoFound"> No photo found. </div>'+
-                                   '</div>'+
-                                '</div>'+
-								'<div class="note-date">' +
-								noteDate +
-								'</div>' +
-								'<div class="note-message">' +
-								noteMessage +
-								'</div>' +
-								'</div>' +
-								'<div class="friends-display" ng-if="!maps.notes">' +
-								'<div class="friends-table-head">' +
-								'<div class="friend-col who">Who...</div>' +
-								'<div class="white-vert1">|</div>' +
-								'<div class="friend-col when">When...</div>' +
-								'<div class="white-vert2">|</div>' +
-								'<div class="friend-col pin">Pin...</div>' +
-								'</div>' +
+								'<div class="friends-display" ng-if="maps.friend">' +
+								    '<div class="friends-table-head">' +
+								       '<div class="friend-col who">Who...</div>' +
+								        '<div class="white-vert1">|</div>' +
+								        '<div class="friend-col when">When...</div>' +
+								         '<div class="white-vert2">|</div>' +
+								         '<div class="friend-col pin">Pin...</div>' +
+								 '</div>' +
 								'<div class="friends-table-content" ng-repeat="friendPin in nearbyPins[\'' +
 								record.id +
 								'\']">' +
@@ -658,7 +675,7 @@
 					map.setCenter(
 						new google.maps.LatLng(marker.getPosition().lat() + 0.003, marker.getPosition().lng() - 0.007)
 					);
-					map.setZoom(15);
+					map.setZoom(10);
 					infoWindow = marker.infoWindow;
 				});
 

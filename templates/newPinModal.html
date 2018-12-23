@@ -117,31 +117,73 @@
 
 
 
-<!-- Vaibhav Code -->
-
-<!--<div style="width: 95%;margin: 0 auto;height: 155px;overflow-y: scroll;border-radius: 0;" ng-if="maps.notes" class="note-pic-display ng-scope">
-    <div class="upload-header" style="
-    background: orange;
-    padding: 5px;
-    text-align: center;
-    color: #fff;
-    border-top-left-radius: 5px;
-    border-top-right-radius: 5px;
-    margin-top: 10px;
-">Upload Photo<i class="trash-pic glyphicon glyphicon-plus"></i></div>
-    <div class="upload-box" style="width:100%;height: 100px;background:#eee;overflow: hidden;overflow: hidden;">
-        *Australia
-        <img src="http://ritsexpo.com/images/events/01.jpg" style="width: 100%;height: 60px;padding: 5px 0px;">
-        *At my Work Place
+<!--<div class="everything">
+    <div id="infowindow" class="infowindow" ng-controller="MapsCtrl as maps">
+        <div class="top-bar">
+            <div class="empty-space">
+            </div>
+            <div class="place-name">
+            </div>
+            <div class="trash-btn cursor">
+               <div class="trash-pic glyphicon glyphicon-edit" >
+                </div>
+               <button >
+                   <div class="trash-pic glyphicon glyphicon-trash">
+                   </div>
+              </button>
+            </div>
+     </div>
+        <div class="dates-there">
+            <div class="date from"></div>
+            <div class="date to"></div>
+        </div>
+    <div class="tabs">
+      
+        <div class="note-pic-tab tab" ng-class="{selected:maps.notes === false}">
+           
+            <img class="camera" ng-if="maps.notes" src="../assets/Notes - White.png">
+            <img class="camera" ng-if="!maps.notes" src="../assets/Notes - Grey.png">
+        </div>
+        <div class="friend-tab tab" ng-class="{selected:maps.notes === true}" ng-click="maps.notes = false">
+           
+            <img class="little-man" ng-if="!maps.notes" src="../assets/Pin Man - White.png">
+            <img class="little-man" ng-if="maps.notes" src="../assets/Pin Man - Grey.png" />
+            
+        </div>
     </div>
-    <div class="upload-box" style="width:100%;height: 100px;background:#eee;overflow: hidden;overflow: hidden;">
-        *Australia
-        <img src="http://ritsexpo.com/images/events/01.jpg" style="width: 100%;height: 60px;padding: 5px 0px;">
-        *At my Work Place
+    <div class="tab-content">
+        <div class="note-pic-display" ng-if="maps.notes" style="width: 95%;margin: 0 auto;height: 155px;overflow-y: scroll;border-radius: 0;">
+            <div class="note-date">
+            </div>
+            <div class="note-message">
+            </div>
+           </div>
+        <div class="friends-display" ng-if="!maps.notes">
+            <div class="friends-table-head">
+                
+                <div class="friend-col who">Who...</div>
+                <div class="white-vert1">|</div>
+                <div class="friend-col when">When...</div>
+                <div class="white-vert2">|</div>
+                <div class="friend-col pin">Pin...</div>
+            </div>
+            <div class="friends-table-content" ng-repeat="friendPin in nearbyPins[\'' +
+								record.id +
+								'\']">
+                <img class="friend-pic profile-pic" ng-src="{{friendPin.user.profilePic}}">
+                <div class="friend-name">{{friendPin.user.firstName}} {{friendPin.user.lastName}}</div>
+                <div class="friend-pin-date">{{friendPin.createdAt | date: \'yyyy-M-d\'}}</div>
+                <img class="friend-pin" ng-src="{{friendPin.pinPic}}">
+            </div>
+        </div>
     </div>
-    <div class="upload-box" style="width:100%;height: 100px;background:#eee;overflow: hidden;overflow: hidden;">
-        *Australia
-        <img src="http://ritsexpo.com/images/events/01.jpg" style="width: 100%;height: 60px;padding: 5px 0px;">
-        *At my Work Place
+    <div class="bottom-bar">
+        <rating value="' +rating +'" max="5" color="#FFF" interactive="false"></rating>
+        <div class="pin-message">
+        </div>
+        <img class="my-pin" src="">
+    </div>
+   </div>
+    <div class="arrow">
     </div>
 </div>-->

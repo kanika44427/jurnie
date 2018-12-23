@@ -64,7 +64,9 @@
 </head>
 
 <body ng-app="jurnie" ng-cloak>
-    
+    <div class="loader" data-ng-if="loaderIndicator">
+        <img src="assets/ajax-loader.gif" />
+    </div>
 	<script>
 		window.fbAsyncInit = function () {
 			FB.init({

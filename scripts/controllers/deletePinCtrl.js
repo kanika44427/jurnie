@@ -35,8 +35,9 @@
             $uibModalInstance.dismiss('cancel');
         }
         function deleteImage() {
-
+            $rootScope.loaderIndicator = true;
             httpService.deleteImage($scope.imageDetail.id, $scope.imageDetail.photoUrl).then(function (response) {
+                $rootScope.loaderIndicator = false;
                 alert("Image deleted successfully.");
                 $uibModalInstance.dismiss('cancel');
             });
