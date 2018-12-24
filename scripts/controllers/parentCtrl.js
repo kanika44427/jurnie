@@ -30,6 +30,7 @@
 		vm.logout = logout;
 		vm.goToAnalytics = goToAnalytics;
 		vm.openSettings = openSettings;
+		vm.openMyPins = openMyPins;
 		vm.placeCB = placeCB;
 		vm.personCB = personCB;
 		vm.acceptFriend = acceptFriend;
@@ -319,17 +320,30 @@
 			init();
 		}
 
-		function openSettings(screenSize, size) {
+		function openMyPins(screenSize, size) {
 			var modalInstance = $uibModal.open({
 				animation: vm.animationsEnabled,
 				ariaLabelledBy: 'settings-title',
 				ariaDescribedBy: 'settings-body',
-				templateUrl: '../templates/settingsModal.html',
-				controller: 'SettingsController',
-				controllerAs: 'settings',
+				templateUrl: '../templates/myPinModal.html',
+				controller: 'myPinController',
+				controllerAs: 'myPin',
 				windowClass: 'large-modal',
 				size: 'lg'
 			});
+		}
+
+		function openSettings(screenSize, size) {
+		    var modalInstance = $uibModal.open({
+		        animation: vm.animationsEnabled,
+		        ariaLabelledBy: 'settings-title',
+		        ariaDescribedBy: 'settings-body',
+		        templateUrl: '../templates/settingsModal.html',
+		        controller: 'SettingsController',
+		        controllerAs: 'settings',
+		        windowClass: 'large-modal',
+		        size: 'lg'
+		    });
 		}
 
 		function acceptFriend(id) {

@@ -1,0 +1,31 @@
+﻿
+            <!--
+            SETTINGS MODAL -->
+            <div id="settings" class="ng-scope">
+                <div class="settings-header">
+                    <h3 class="settings-title" id="settings-title">My Pins</h3>
+                    <div class="close-btn cursor" ng-click="close()">X</div>
+                </div>
+                <div class="settings-body" id="settings-body" ng-if="recordsIndicator">
+                    <div class="pins-listing" ng-repeat="pin in records">
+                        <div class="map-thumb">
+                            <div ng-if="pin.pinTypeId == 2">
+                                <image src="assets/Green Pin - Small.png" />
+                            </div>
+                            <div ng-if="pin.pinTypeId == 1">
+                                <image src="assets/Blue Pin - Small.png" />
+                            </div>
+                            <div ng-if="pin.pinTypeId == 3">
+                                <image src="assets/Orange Pin - Small.png" />
+                            </div>
+                        </div>
+                        <div class="pins-content">
+                            <h3>{{pin.description}}</h3>
+                            <p>Place : {{pin.city}}, {{pin.country}}</p>
+                            <p>Date : {{pin.createdAt | date}}</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+ '
+

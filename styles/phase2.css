@@ -587,3 +587,34 @@ height:40px;
     -webkit-transform: translate(-50%, -50%);
         -ms-transform: translate(-50%, -50%);
             transform: translate(-50%, -50%); }
+
+  .pins-listing {
+    padding: 15px;
+    float: left;
+    width: 100%;
+    background: #fff;
+}
+.map-thumb {
+    width: 30%;
+    height: 115px;
+    float: left;
+    padding-right: 0;
+    background: #ccc;
+}
+.pins-content {
+    padding-left: 15px;
+    float: left;
+    width: 70%;
+}
+.pins-content h3 {
+    margin-top: 0px;
+}
+.pins-content p {
+    font-size: 18px !important;
+    line-height: 20px;
+}
+#home {
+margin-top: -6vh;
+display: flex;
+flex-direction: column;
+}
