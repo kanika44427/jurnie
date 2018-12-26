@@ -560,7 +560,7 @@
 								    '</div>' +
 								'</div>' +
 								'<div class="tab-content">' +
-								'<div class="note-pic-display" ng-if="maps.notes" style="width: 95%;margin: 0 auto;height: 155px;overflow-y: scroll;border-radius: 0;">' +
+								'<div class="note-pic-display" ng-if="maps.notes" style="width: 95%;margin: 0 auto;height: 175px;overflow-y: scroll;border-radius: 0;">' +
                                     '<div class="note-date">' +
 								        noteDate +
 								    '</div>' +
@@ -568,16 +568,16 @@
 								        noteMessage +
 								    '</div>' +
 								'</div>' +
-                                '<div class="note-pic-display" ng-if="maps.photo" style="width: 95%;margin: 0 auto;height: 155px;overflow-y: scroll;border-radius: 0;">'+
+                                '<div class="note-pic-display" ng-if="maps.photo" style="width: 95%;margin: 0 auto;height: 175px !important;overflow-y: scroll;border-radius: 0;">'+
                                   '<div class="upload-header" id="OpenImgUpload" style="background: #f7914c;;padding: 5px;text-align: center;color: #fff;border-top-left-radius: 5px;border-top-right-radius: 5px;margin-top: 10px;">'+
                                     '<input type="file" id="imgupload" name="imgupload" ng-upload-change="maps.fileChanged($event, \''+
                                       record.userId + "','" + record.id + "'"+')" style="display:none;" accept="image/*" />'+
-                                     '<button style="padding:0; background:none; border:none;" id="" ng-click="maps.uploadImageOnIcon()" >Upload Button <i class="trash-pic glyphicon glyphicon-plus"></i></button>'+
+                                     '<button style="padding:0; width:100%;background:none; border:none;" id="" ng-click="maps.uploadImageOnIcon()" >Upload Button <i class="trash-pic glyphicon glyphicon-plus"></i></button>'+
                                   '</div>'+
                                   '<div class="upload-box" style="width:100%;background:#eee;overflow: hidden;overflow: hidden;">'+
                                   '<div ng-repeat="item in maps.photos">'+ //photo div loop start 
-                            '<button  type="button" ng-click="maps.openDeleteImageConfirmation($index'+
-                                                                   ')">X</button>'+
+                                    '<button  type="button" ng-click="maps.openDeleteImageConfirmation($index'+
+                                                                           ')">X</button>'+
                                 '<img ng-src="{{item.photoUrl}}" style="width: 100%;height: 60px;padding: 5px 0px;">'+
 					    //'<button ng-if="maps.photos.length > 0"  ng-click="maps.deleteImage(\'' +
 					    //    item.id +
@@ -592,8 +592,7 @@
                             '<div ng-if="maps.noPhotoFound"> No photo found. </div>'+
                             '</div>'+
                          '</div>'+
-                                '</div>'+
-								'<div class="friends-display" ng-if="maps.friend">' +
+								'<div class="friends-display" ng-if="maps.friend" style="width: 100%;margin: 0 auto;height: 175px !important;overflow-y: scroll;border-radius: 0;">' +
 								    '<div class="friends-table-head">' +
 								       '<div class="friend-col who">Who...</div>' +
 								        '<div class="white-vert1">|</div>' +
@@ -611,7 +610,7 @@
 								'</div>' +
 								'</div>' +
 								//'</div>' +
-								'<div class="bottom-bar">' +
+								     '<div class="bottom-bar">' +
 								'<rating value="' +
 								rating +
 								'" max="5" color="#FFF" interactive="false"></rating>' +
@@ -622,6 +621,7 @@
 								pinPic +
 								'">' +
 								'</div>' +
+                           
 								'</div>' +
 								'<div class="arrow">' +
 								'</div>' +

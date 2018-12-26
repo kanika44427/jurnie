@@ -16,8 +16,8 @@
 }
 
 #infowindow .camera {
-    width: 35px;
-    height: 23px;
+    width: 22px;
+    height: 22px;
     margin: 4px;
 }
 
@@ -140,7 +140,7 @@
 }
 
 #infowindow .friends-display {
-	background-color: #E0E0E0;
+	background-color: #fff;
 	border-radius: 40px;
 }
 

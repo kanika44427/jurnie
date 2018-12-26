@@ -622,3 +622,16 @@ margin-top: -6vh;
 display: flex;
 flex-direction: column;
 }
+#infowindow .friends-table-head {
+    background-color: #9F9F9E;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    margin-top: 0px;
+    border-top-left-radius: 6px;
+    border-top-right-radius: 6px;
+}
+/*.modal.vaibhavClass .modal-dialog {
+    width: 600px;
+    margin: 0px auto;
+}*/
