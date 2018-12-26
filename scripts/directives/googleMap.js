@@ -585,7 +585,8 @@
 					    //    item.photoUrl + "'"+
 					    //    ')">' +
 					    //  '<divclass="trash-pic glyphicon glyphicon-trash"></div>'+
-								
+								
+
 					    //  '</button>'+
                             '</div>'+ //photo div loop ends
                             '<div ng-if="maps.noPhotoFound"> No photo found. </div>'+

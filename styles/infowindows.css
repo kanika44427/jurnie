@@ -302,8 +302,23 @@ button.gm-ui-hover-effect {
     color: white;
     display: flex;
     flex-direction: row;
-    height: 25px;
+    height: auto;
     padding-top: 6px;
     justify-content: space-between;
     border-radius: 10px 10px 0px 0px;
+}
+._720kb-datepicker-calendar-day {
+font-size: 10.5px !important;
+margin: 2px 1% !important;
+    line-height: 11px;
+}
+._720kb-datepicker-calendar-header {
+font-size: 12px !important; 
+line-height: 28px !important;
+}
+._720kb-datepicker-calendar-days-header div{
+    padding:2px 0 !important;
+}
+._720kb-datepicker-calendar-day:hover, ._720kb-datepicker-calendar-day._720kb-datepicker-active {
+    color: #000;
 }

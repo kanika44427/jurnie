@@ -531,7 +531,7 @@ div#newPin .modal-header button span{
     margin: 0px auto 5px auto;
 }
 #newPin span.star.glyphicon.glyphicon-star {
-    font-size: 16px;
+    font-size: 20px;
 }
 .vaibhavClass #newPin .question {
     color: #F7914C;
@@ -567,7 +567,11 @@ height:40px;
     border-top-right-radius: 6px;
 }
 .EVERYTHING {
-    height: 83vh;
+   /*height: 83vh;*/ 
+    justify-content: inherit;
+}
+#main-body {
+    margin-top: 30px;
 }
 /* line 1438, src/assets/scss/origin/_style.scss */
 .loader {
