@@ -18,7 +18,8 @@
 		$localStorage,
         facebookService, 
         instagramService, 
-        httpService
+        httpService,
+        Pin
 	) {
 		var vm = this;
 		vm.isAdmin = false;
@@ -321,16 +322,26 @@
 		}
 
 		function openMyPins(screenSize, size) {
-			var modalInstance = $uibModal.open({
-				animation: vm.animationsEnabled,
-				ariaLabelledBy: 'settings-title',
-				ariaDescribedBy: 'settings-body',
-				templateUrl: '../templates/myPinModal.html',
-				controller: 'myPinController',
-				controllerAs: 'myPin',
-				windowClass: 'large-modal',
-				size: 'lg'
-			});
+		    var modalInstance = $uibModal.open({
+		        animation: vm.animationsEnabled,
+		        ariaLabelledBy: 'settings-title',
+		        ariaDescribedBy: 'settings-body',
+		        templateUrl: '../templates/myPinModal.html',
+		        controller: 'myPinController',
+		        controllerAs: 'myPin',
+		        windowClass: 'large-modal',
+		        size: 'lg',
+		        resolve: {
+		            getAllPins : function () {
+		                return Pin.list().then(function (response) {
+								    return response.data;
+								},
+								function (err) {
+								    console.log(err);
+								});
+		            }
+		        }
+		    });
 		}
 
 		function openSettings(screenSize, size) {
