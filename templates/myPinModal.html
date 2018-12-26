@@ -9,16 +9,22 @@
                 <div class="settings-body" id="settings-body" ng-if="recordsIndicator">
                     <div class="pins-listing" ng-repeat="pin in records">
                         <div class="map-thumb">
-                            <div ng-if="pin.pinTypeId == 2">
-                                <image src="assets/Green Pin - Small.png" />
-                            </div>
-                            <div ng-if="pin.pinTypeId == 1">
-                                <image src="assets/Blue Pin - Small.png" />
-                            </div>
-                            <div ng-if="pin.pinTypeId == 3">
-                                <image src="assets/Orange Pin - Small.png" />
-                            </div>
-                        </div>
+                            <a style="cursor:pointer" ng-click="goToMap(pin.latitude, pin.longitude)">
+                                <div ng-if="pin.pinTypeId == 2">
+                                    <image src="assets/Green Pin - Small.png" />
+                                </div>
+                            </a>
+                            <a style="cursor:pointer" ng-click="goToMap(pin.latitude, pin.longitude)">
+                                <div ng-if="pin.pinTypeId == 1">
+                                    <image src="assets/Blue Pin - Small.png" />
+                                </div>
+                            </a>
+                            <a style="cursor:pointer" ng-click="goToMap(pin.latitude, pin.longitude)">
+                                <div ng-if="pin.pinTypeId == 3">
+                                    <image src="assets/Orange Pin - Small.png" />
+                                </div>
+                            </a>
+                         </div>
                         <div class="pins-content">
                             <h3>{{pin.description}}</h3>
                             <p>Place : {{pin.city}}, {{pin.country}}</p>
