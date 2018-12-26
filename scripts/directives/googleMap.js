@@ -543,8 +543,8 @@
 								'</div>' +
 								'<div class="tabs">' +
 								    '<div class="note-pic-tab tab" ng-class="{selected:maps.notes == true}" ng-click="maps.notes = true; maps.photo = false; maps.friend = false">'+
-								        '<img class="camera" ng-if="maps.notes" src="../assets/Notes - White.png">' +
-								        '<img class="camera" ng-if="!maps.notes" src="../assets/Notes - Grey.png">' +
+								        '<img class="camera" ng-if="maps.notes" src="../assets/doc-icon-white.png">' +
+								        '<img class="camera" ng-if="!maps.notes" src="../assets/doc-icon.png">' +
 								    '</div>' +
 								    '<div class="friend-tab tab" ng-class="{selected:maps.friend === true }" ng-click="maps.notes = false; maps.photo = false; maps.friend = true">' +
 								        '<img class="little-man" ng-if="maps.friend" src="../assets/Pin Man - White.png">' +
@@ -555,8 +555,8 @@
 								        "','" + 
 								        record.id + "'"+
                                         ')">' +
-								        '<img class="camera" ng-if="maps.photo" src="../assets/Notes - White.png">' +
-								        '<img class="camera" ng-if="!maps.photo" src="../assets/Notes - Grey.png">' +
+								        '<img class="camera" ng-if="maps.photo" src="../assets/camera-icon-white.png">' +
+								        '<img class="camera" ng-if="!maps.photo" src="../assets/camera-icon.png">' +
 								    '</div>' +
 								'</div>' +
 								'<div class="tab-content">' +
