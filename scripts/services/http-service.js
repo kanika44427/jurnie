@@ -36,15 +36,29 @@ angular.module('jurnie').factory('httpService', ['$http', 'ServerUrl','$localSto
                 });
         }
         function uploadPhoto(user) {
-            return $.post(ServerURL_2 + 'uploadImage ', user, {
-                headers: { 'Content-Type': 'application/json' ,
-                    //'Authorization': null,
-                    noAuth: true
+            //return $.post(ServerURL_2 + 'uploadImage', user, {
+            //    headers: {
+            //        //contentType: false,
+            //        //'Content-Type': undefined,
+            //        //'Authorization': null,
+            //        noAuth: true
+            //    }
+            //}).
+            //    then(function (response) {
+            //        return response;
+            //    });
+            return $.ajax({
+                url: ServerURL_2 + 'uploadImage',
+                data: user,
+                contentType: false,
+                processData: false,
+                type: 'POST',
+                success: function (data) {
+                    alert(data);
+                    return data;
                 }
-            }).
-                then(function (response) {
-                    return response;
-                });
+            });
+
         }
         function getAllPhotos(userId, pinId) {
             return $.get(ServerURL_2 + 'getAllPhotos?userId=' + userId + '&pinId=' + pinId, { headers: { 'Content-Type': 'application/json' } }).

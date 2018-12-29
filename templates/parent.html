@@ -69,8 +69,7 @@
 	</div>
 
 	<!-- navbar for the rest of the site, desktop -->
-	<div class="navbar navbar-light navbar-static bg-faded visible-md visible-lg visible-xl" role="navigation
-                    " ng-if="parent.isLoggedIn">
+	<div class="navbar navbar-light navbar-static bg-faded visible-md visible-lg visible-xl" role="navigation" ng-if="parent.isLoggedIn">
 		<div class="container-fluid desktop-navbar" ng-class="{greenbar: parent.friendMap}">
 			<div class="max-navbar">
 				<div class="navbar-left desktop-navbar-left">
@@ -256,13 +255,13 @@
 			 <img class="mountain-range visible-md visible-lg visible-xl" ng-if="parent.friendMap
                     " src="assets/Mountain Range - Green.png">
 		</div>-->
-		<div class="mountain-container-mobile visible-xs visible-sm" ng-class="{ 'home-page':
+		<!--<div class="mountain-container-mobile visible-xs visible-sm" ng-class="{ 'home-page':
                         parent.currState==='app.home' }" ng-if="parent.mobileScreen">
 			<img class="mountain-range-mobile visible-xs visible-sm" ng-if="!parent.friendMap && parent.mobileScreen
                     " src="assets/Mountain Range - Phone (Orange).png">
 			<img class="mountain-range-mobile visible-xs visible-sm" ng-if="parent.friendMap && parent.mobileScreen
                     " src="assets/Mountain Range - Phone (Green).png">
-		</div>
+		</div>-->
 	</div>
 </div>
 

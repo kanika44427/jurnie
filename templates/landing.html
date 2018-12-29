@@ -29,15 +29,19 @@
 				<div class="radio-title">Male</div>
 				<div tabindex='8' class="radio-circle cursor" ng-class="{'circle-selected': landing.gender === 'female'}" ng-click="landing.gender = 'female'"></div>
 				<div class="radio-title">Female</div>
-				<input tabindex='9' type="text" class="name cursor" ng-click="landing.open2()" placeholder="Birthday" ng-if="landing.noBday"
-				 readonly/>
-				<input tabindex='10' type="text" class="name cursor" uib-datepicker-popup ng-model="landing.birthday" is-open="landing.popup2.opened"
+				<!--<input tabindex='9' type="text" class="name cursor" ng-click="landing.open2()" placeholder="Birthday" ng-if="landing.noBday"
+				 readonly/>-->
+				<!--<input tabindex='10' type="text" class="name cursor" uib-datepicker-popup ng-model="landing.birthday" is-open="landing.popup2.opened"
 				 datepicker-options="landing.dateOptions" ng-click="landing.open2()" ng-required="true" show-button-bar="false" on-open-focus="false"
 				 placeholder="BIRTHDAY" ng-if="!landing.noBday" readonly/>
 				<span class="input-group-btn cursor" ng-if="!landing.noBday">
 					<button type="button" class="calendar-btn cursor" ng-click="landing.open2()"><i class="glyphicon glyphicon-calendar"></i></button>
-				</span>
+				</span>-->
+                <datepicker tabindex='10' date-format='yyyy-MM-dd' id="birthdayDatePicker" class="name cursor">
+                    <input data-ng-model="landing.birthday" type="text" readonly />
+                </datepicker>
 			</div>
+         
 			<input type="submit" tabindex='9' ui-sref="app.signup({firstName:landing.firstName, lastName: landing.lastName, email: landing.email, bday: landing.birthday, password: landing.password, gender: landing.gender})"
 			 class="signup cursor" value="Sign Up!"></input>
             <div class="clearfix"><span class="or"> OR </div>

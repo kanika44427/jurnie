@@ -50,7 +50,7 @@
 			firstName: $stateParams.firstName || null,
 			lastName: $stateParams.lastName || null,
 			email: $stateParams.email || null,
-			birthday: new Date($stateParams.bday + 'Z'),
+			birthday: $stateParams.bday,
 			password: $stateParams.password || null,
 			gender: $stateParams.gender || null,
 			nationality: 'Nationality',

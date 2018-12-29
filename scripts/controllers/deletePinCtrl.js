@@ -19,7 +19,9 @@
         $scope.imageDetail = imageDetail;
         vm.cancelImageDelete = cancelImageDelete;
         function deletePin() {
+            $rootScope.loaderIndicator = true;
             Pin.remove($scope.pinDetail.id).then(function (response) {
+                $rootScope.loaderIndicator = false;
                 alert("pin deleted successfully.");
                 $uibModalInstance.dismiss('cancel');
                 $rootScope.$emit('cancel');

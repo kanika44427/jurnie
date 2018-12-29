@@ -13,7 +13,7 @@
 		vm.makeNewPin = makeNewPin;
 		vm.open = open;
 		vm.editPin = editPin;
-		
+		//$rootScope.loaderIndicator = true;
 		vm.init = init;
 		vm.uploadImageOnIcon = uploadImageOnIcon;
 		vm.init(() => {});
@@ -144,17 +144,24 @@
 		}
         
 		function fileChanged($event,userId, pinId){
-		    var file = $event.target.files[0];
-		    var my_pdf_file_as_base64 = "";
-		    var file_base64 = getBase64(file, function(e) {
-		        my_pdf_file_as_base64 = e.target.result;
-		        var user = {
-		            userId : userId,
-		            pinId : pinId,
-		            image : my_pdf_file_as_base64
-		        }
+		    var form = new FormData();
+		    //angular.forEach($event.target.files[0], function (item) {
+		    //    form.append('file', $event.target.files[0]);
+		    //});
+		    form.append('file', $event.target.files[0]);
+		    form.append('userId', userId);
+		    form.append('pinId', pinId);
+		    //var file = $event.target.files[0];
+		    //var my_pdf_file_as_base64 = "";
+		    //var file_base64 = getBase64(file, function(e) {
+		       // my_pdf_file_as_base64 = e.target.result;
+		        //var user = {
+		        //    userId : userId,
+		        //    pinId : pinId,
+		        //    image : form
+		        //}
 		        $rootScope.loaderIndicator = true;
-		        httpService.uploadPhoto(user).then(function(res){
+		        httpService.uploadPhoto(form).then(function(res){
 		            var res = JSON.parse(res);
 		            $rootScope.loaderIndicator = false;
 		            if(res.status == 1 && res.message == "Record inserted successfully"){
@@ -173,7 +180,7 @@
 		                });
 		            }
 		        });
-		    });
+		   // });
 
 		   
 		}
@@ -610,7 +617,10 @@
 								'</div>' +
 								'</div>' +
 								//'</div>' +
-								     '<div class="bottom-bar">' +
+                                '<div class="arow-new">'+
+                                    '<div class="trash-pic glyphicon glyphicon-arrow-right"></div>'+
+                                '</div>'+
+								'<div class="bottom-bar">' +
 								'<rating value="' +
 								rating +
 								'" max="5" color="#FFF" interactive="false"></rating>' +
