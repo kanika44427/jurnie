@@ -86,9 +86,9 @@
 		    }).closed.then(function(){
 		        $rootScope.loaderIndicator = true;;
 		        httpService.getAllPhotos(imageDetail.userId, imageDetail.pinId).then(function (response) {
-		            alert("in loader");
+		           // alert("in loader");
 		            $rootScope.loaderIndicator = false;
-		            vm.$apply();
+		            //vm.$apply();
 		            $rootScope.apply();
 		            var response = JSON.parse(response);
 		           
@@ -162,8 +162,8 @@
 		        //}
 		        $rootScope.loaderIndicator = true;
 		        httpService.uploadPhoto(form).then(function(res){
-		            var res = JSON.parse(res);
 		            $rootScope.loaderIndicator = false;
+		            var res = JSON.parse(res);
 		            if(res.status == 1 && res.message == "Record inserted successfully"){
 		                alert("Photo uploaded sucessfully.");
 		                httpService.getAllPhotos(userId, pinId).then(function(response) {
