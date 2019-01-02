@@ -794,6 +794,23 @@ div#settings {
     padding: 1px 8px 0px 8px;
     margin-left: 50px;
 }
+.text-side.col-md-6.col-lg-6.col-xl-6 {
+    padding-top: 30px !important;
+}
+#landing .radio-circle {
+    width: 60px;
+    height: 30px;
+    background: white;
+    -moz-border-radius: 50px;
+    -webkit-border-radius: 50px;
+    border-radius: 100%;
+    border: #f7914c 2px solid;
+    margin: auto 5px auto auto;
+    line-height: 30px;
+}
+.modal.large-modal.ng-scope.ng-isolate-scope.in .modal-content {
+    left: 13%;
+}
 }
 
 /* responsive screen close*/
