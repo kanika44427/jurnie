@@ -42,7 +42,7 @@
                 $rootScope.loaderIndicator = false;
                 alert("Image deleted successfully.");
                 $uibModalInstance.dismiss('cancel');
-                $rootScope.loaderIndicator = false;
+                //$rootScope.loaderIndicator = false;
             });
         }
     }

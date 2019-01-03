@@ -54,7 +54,6 @@ angular.module('jurnie').factory('httpService', ['$http', 'ServerUrl','$localSto
                 processData: false,
                 type: 'POST',
                 success: function (data) {
-                    alert(data);
                     return data;
                 }
             });

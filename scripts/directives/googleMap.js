@@ -13,6 +13,7 @@
 		vm.makeNewPin = makeNewPin;
 		vm.open = open;
 		vm.editPin = editPin;
+		vm.noPhotoFound = false;
 		//$rootScope.loaderIndicator = true;
 		vm.init = init;
 		vm.uploadImageOnIcon = uploadImageOnIcon;
@@ -44,6 +45,7 @@
 		            var response = JSON.parse(response);
 		            if(response.message == 'Record found' && response.status == 1){
 		                vm.photos = response.data;
+		                $('#uploadBox').trigger('click');
 		                vm.noPhotoFound = false;
 		                //alert("response");
 		            }
@@ -84,23 +86,24 @@
 		        //windowClass  : 'vaibhavClass',
 		     
 		    }).closed.then(function(){
-		        $rootScope.loaderIndicator = true;;
+		        //$rootScope.loaderIndicator = true;;
 		        httpService.getAllPhotos(imageDetail.userId, imageDetail.pinId).then(function (response) {
 		           // alert("in loader");
-		            $rootScope.loaderIndicator = false;
+		            //$rootScope.loaderIndicator = false;
 		            //vm.$apply();
-		            $rootScope.apply();
+		            //$rootScope.apply();
 		            var response = JSON.parse(response);
 		           
 		            if (response.message == 'Record found' && response.status == 1) {
-		               
 		                vm.photos = response.data;
 		                vm.noPhotoFound = false;
+		                $('#uploadBox').trigger('click');
 		                //alert("response");
 		            }
 		            else {
 		                vm.photos = [];
 		                vm.noPhotoFound = true;
+		                $('#uploadBox').trigger('click');
 		            }
 		        });
 		    });
@@ -169,12 +172,17 @@
 		                httpService.getAllPhotos(userId, pinId).then(function(response) {
 		                    var response = JSON.parse(response);
 		                    if(response.message == 'Record found' && response.status == 1){
+		                        vm.noPhotoFound = false;
 		                        vm.photos= [];
 		                        vm.photos = response.data;
-		                        vm.noPhotoFound = false;
+		                        $('#uploadBox').trigger('click');
+		                        $rootScope.loaderIndicator = false;
+		                       
 		                    }
 		                    else{
 		                        vm.photos = [];
+		                        $('#uploadBox').trigger('click');
+		                        $rootScope.loaderIndicator = false;
 		                        vm.noPhotoFound = true;
 		                    }
 		                });
@@ -581,21 +589,14 @@
                                       record.userId + "','" + record.id + "'"+')" style="display:none;" accept="image/*" />'+
                                      '<button style="padding:0; width:100%;background:none; border:none;" id="" ng-click="maps.uploadImageOnIcon()" >Upload Button <i class="trash-pic glyphicon glyphicon-plus"></i></button>'+
                                   '</div>'+
-                                  '<div class="upload-box" style="width:100%;background:#eee;overflow: hidden;overflow: hidden;">'+
+                                  '<div class="upload-box" id="uploadBox" style="width:100%;background:#eee;overflow: hidden;overflow: hidden;">'+
+                                 
                                   '<div ng-repeat="item in maps.photos">'+ //photo div loop start 
-                                    '<button  type="button" ng-click="maps.openDeleteImageConfirmation($index'+
+                                           '<button  type="button" ng-click="maps.openDeleteImageConfirmation($index'+
                                                                            ')">X</button>'+
-                                '<img ng-src="{{item.photoUrl}}" style="width: 100%;height: 60px;padding: 5px 0px;">'+
-					    //'<button ng-if="maps.photos.length > 0"  ng-click="maps.deleteImage(\'' +
-					    //    item.id +
-					    //    "','" + 
-					    //    item.photoUrl + "'"+
-					    //    ')">' +
-					    //  '<divclass="trash-pic glyphicon glyphicon-trash"></div>'+
-								
-
-					    //  '</button>'+
-                            '</div>'+ //photo div loop ends
+                                           '<img ng-src="{{item.photoUrl}}" style="width: 100%;height: 60px;padding: 5px 0px;">'+
+                                    '</div>'+ //photo div loop ends
+                          
                             '<div ng-if="maps.noPhotoFound"> No photo found. </div>'+
                             '</div>'+
                          '</div>'+
