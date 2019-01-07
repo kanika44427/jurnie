@@ -317,7 +317,8 @@
 								longitude: response.data[0].longitude,
 								latitude: response.data[0].latitude
 							});
-						} else if (navigator.geolocation) {
+						} 
+						else if (navigator.geolocation) {
 							navigator.geolocation.getCurrentPosition(function(position) {
 								showPosition({
 									longitude: position.coords.longitude,

@@ -161,7 +161,8 @@ color: #fff;
 }
 .vaibhavClass   div#newPin .modal-body {
     padding-top: 3px;
-    padding-bottom: 15px;
+    padding-bottom: 15px
+
 }
 .vaibhavClass   #newPin .question {
     color: #F7914C;
@@ -813,4 +814,27 @@ div#settings {
 }
 }
 
+
 /* responsive screen close*/
+#landing .name-container {
+    width: 71%;
+}
+.radio-birthday input.ng-pristine.ng-valid.ng-empty.ng-touched {
+    width: 89% !important;
+}
+#landing .radio-circle {
+    width: 35px;
+    height: 20px;
+    background: white;
+    -moz-border-radius: 50px;
+    -webkit-border-radius: 50px;
+    border-radius: 50px;
+    border: #f7914c 2px solid;
+    margin: auto 5px auto auto;
+}
+#landing .name-container {
+    width: 100%;
+}
+#landing .signup-form-container {
+    margin-top: -20px;
+}

@@ -29,8 +29,8 @@
 						<i class="glyphicon glyphicon-calendar"></i>
 					</div>
 				</span>-->
-                <datepicker tabindex='10' date-format='yyyy-MM-dd' id="birthda">
-                    <input type="text" readonly ng-model="signup.user.birthday" />
+                <datepicker tabindex='10' date-format='yyyy-MM-dd' id="birthday">
+                    <input type="text" ng-model="signup.user.birthday" class="name" />
                 </datepicker>
 			</div>
 			<select tabindex='11' class="selector nationality-select" ng-model="signup.user.nationality" ng-options="country.name as country.name for country in signup.countries"></select>

@@ -9,7 +9,7 @@
 		vm.password = null;
 		vm.email = null;
 		vm.gender = null;
-		vm.birthday = "";
+		vm.birthday = getTodayDate();
 
 		vm.noBday = true;
 
@@ -42,7 +42,7 @@
 		    if (mm < 10) {
 		        mm = '0' + mm;
 		    }
-		    today = mm + '-' + dd + '-' + yyyy;
+		    today = yyyy + '-' + mm + '-' + dd;
 		    return today;
 		}
 
