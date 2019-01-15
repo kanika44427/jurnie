@@ -879,3 +879,47 @@ div#settings {
 form.signup-form {
     padding-bottom: 150px;
 }
+#about {
+    max-width: 1500px;
+    margin: auto;
+    margin-bottom: 0;
+    height: 450px;
+    overflow-y: scroll;
+}
+#careers {
+    max-width: 1500px;
+    margin: auto;
+    height: 420px;
+    overflow-y: scroll;
+}
+#signup {
+    max-width: 1500px;
+    margin: auto;
+    margin-top: 20px;
+    margin-bottom: 0px;
+    height: 435px;
+    overflow-y: scroll;
+}
+#landing .circle-selected {
+    width: 20px;
+    height: 20px;
+    background: #f9a15e;
+    -moz-border-radius: 50px;
+    -webkit-border-radius: 50px;
+    border-radius: 50px;
+    border: #f7914c 2px solid;
+}
+#landing .circle-selected {
+    width: 35px;
+    height: 20px;
+    background: #f9a15e;
+    -moz-border-radius: 50px;
+    -webkit-border-radius: 50px;
+    border-radius: 50px;
+    border: #f7914c 2px solid;
+}
+#signup .radio-circle {
+    width: 29px;
+}#about img {
+    height: 135px;
+}

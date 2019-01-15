@@ -228,11 +228,16 @@ fieldset[disabled] .form-control {
 
 @media screen and (max-width: 390px) {
 	#landing .logo {
-		display: none;
+		/*display: none;*/
+        margin-top:15px;
 	}
 	#landing .tagline {
-		align-self: center;
-	}
+        text-align: right;
+    }
+    #landing .logo {
+    float: left;
+    margin-top: 15px;
+}
 	#landing input {
 		width: 354px;
 	}

@@ -25,9 +25,11 @@
 			<input tabindex='5' ng-model="landing.email" type="email" name="email" placeholder="* Email" required/>
 			<input tabindex='6' ng-model="landing.password" type="password" placeholder="* Password" name="password" required/>
 			<div class="radio-birthday">
-				<div tabindex='7' class="radio-circle cursor" ng-class="{'circle-selected': landing.gender === 'male'}" ng-click="landing.gender = 'male'"></div>
+				<div tabindex='7' class="radio-circle cursor" ng-class="{'circle-selected': landing.gender === 'male'}" 
+                     ng-click="landing.gender = 'male'"></div>
 				<div class="radio-title">Male</div>
-				<div tabindex='8' class="radio-circle cursor" ng-class="{'circle-selected': landing.gender === 'female'}" ng-click="landing.gender = 'female'"></div>
+				<div tabindex='8' class="radio-circle cursor" ng-class="{'circle-selected': landing.gender === 'female'}" 
+                     ng-click="landing.gender = 'female'"></div>
 				<div class="radio-title">Female</div>
 				<!--<input tabindex='9' type="text" class="name cursor" ng-click="landing.open2()" placeholder="Birthday" ng-if="landing.noBday"
 				 readonly/>-->
