@@ -923,3 +923,35 @@ form.signup-form {
 }#about img {
     height: 135px;
 }
+ #signup {
+    max-width: 1500px;
+    margin: auto;
+    margin-top: 20px;
+    margin-bottom: 0px;
+    height: auto;
+    overflow-y: inherit;
+}
+.copyright-info {
+    padding-bottom: 10px;
+}
+.bottom-section {
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+    padding-bottom: 0px;
+    background: #fff;
+    margin-bottom: 0px;
+}
+#careers {
+    max-width: 1500px;
+    margin: auto;
+    height: auto;
+    overflow-y: inherit;
+}
+#about {
+    max-width: 1500px;
+    margin: auto;
+    margin-bottom: 0;
+    height: auto;
+    overflow-y: inherit;
+}
