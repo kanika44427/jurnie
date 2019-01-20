@@ -39,9 +39,9 @@
 				<span class="input-group-btn cursor" ng-if="!landing.noBday">
 					<button type="button" class="calendar-btn cursor" ng-click="landing.open2()"><i class="glyphicon glyphicon-calendar"></i></button>
 				</span>-->
-                <datepicker tabindex='9' date-format='yyyy-MM-dd' id="birthdayDatePicker">
-                    <input data-ng-model="landing.birthday" type="text"  class="name"/>
-                </datepicker>
+                <!--<datepicker tabindex='9' date-format='yyyy-MM-dd' id="birthdayDatePicker">-->
+                <input data-ng-model="landing.birthday" ng-change="birthDateFormatted()" type="date" class="name" />
+                <!--</datepicker>-->
 			</div>
          
 			<input type="submit" tabindex='9' ui-sref="app.signup({firstName:landing.firstName, lastName: landing.lastName, email: landing.email, bday: landing.birthday, password: landing.password, gender: landing.gender})"
