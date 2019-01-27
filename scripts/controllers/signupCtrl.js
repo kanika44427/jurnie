@@ -45,12 +45,13 @@
 		vm.emailInvite = emailInvite;
 		vm.travelerTypes = [{ id: '?', description: 'Traveller Type' }].concat(travellerTypes);
 		vm.countries = Country.staticList;
-
+		var formattedDate = new Date($stateParams.bday);
+		
 		vm.user = {
 			firstName: $stateParams.firstName || null,
 			lastName: $stateParams.lastName || null,
 			email: $stateParams.email || null,
-			birthday: $stateParams.bday,
+			birthday: formattedDate || null,
 			password: $stateParams.password || null,
 			gender: $stateParams.gender || null,
 			nationality: 'Nationality',

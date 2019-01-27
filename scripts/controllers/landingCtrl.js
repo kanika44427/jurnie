@@ -10,7 +10,7 @@
 		vm.email = null;
 		vm.gender = null;
 		vm.birthday = getTodayDate();
-
+		vm.landingBirthday = null;
 		vm.noBday = true;
 
 		vm.inlineOptions = {
@@ -46,7 +46,8 @@
 		    return today;
 		}
 		function birthDateFormatted() {
-		    vm.birthday = GetDateFormat(vm.birthday);
+		    vm.birthday = GetDateFormat(vm.landingBirthday);
+		    console.log("birthday", vm.birthday);
 		}
 		function GetDateFormat(inputDate) {
 		    var date = new Date(inputDate); 
