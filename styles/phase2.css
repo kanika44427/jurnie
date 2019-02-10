@@ -955,3 +955,38 @@ form.signup-form {
     height: auto;
     overflow-y: inherit;
 }
+@media screen and (max-width: 1920px)
+{
+#landing {
+    min-height: 73vh;
+    margin-top: 10vh;
+}
+}
+@media screen and (max-width: 1680px)
+{
+#landing {
+    min-height: 73vh;
+    margin-top: 10vh;
+}
+}
+@media screen and (max-width: 1480px)
+{
+#landing {
+    min-height: 73vh;
+    margin-top: 10vh;
+}
+}
+@media screen and (max-width: 1366px)
+{
+#landing {
+    min-height: 73vh;
+    margin-top: 8vh;
+}
+}
+@media screen and (max-width: 1280px)
+{
+#landing {
+    min-height: 73vh;
+    margin-top: 10vh;
+}
+}
