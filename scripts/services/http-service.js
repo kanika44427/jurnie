@@ -73,7 +73,7 @@ angular.module('jurnie').factory('httpService', ['$http', 'ServerUrl','$localSto
                 });
         }
         function socialSignup(socialUser) {
-            alert(socialUser);
+            //alert(socialUser);
             return $http.post(ServerUrl + 'user/socialsignup', socialUser, { headers: { 'Content-Type': 'application/json' } }).
                 then(function (response) {
                     return response;

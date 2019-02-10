@@ -231,12 +231,14 @@
 			            console.log(response);
 			            if (response.data && response.status == 200) {
 			                var fbObject = {
-			                    "email": response.data.username,
+			                    "email": "kanikasethi0@gmail.com",
 			                    "user_type": "instagram",
-			                    "provider_id": response.data.id,
-			                    "first_name": response.data.full_name
+			                    "provider_id": response.data.data.id,
+			                    "first_name": response.data.data.full_name,
+			                    "last_name": response.data.data.full_name,
+			                    "profile_image" : response.data.data.profile_picture
 			                }
-			                httpService.socialLogin(fbObject).then(function (response) {
+			                httpService.socialSignup(fbObject).then(function (response) {
 			                    $state.go('app.about');
 			                });
 			            }
