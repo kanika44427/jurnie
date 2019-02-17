@@ -141,6 +141,14 @@
 		$rootScope.$on('logout', function() {
 			vm.user = null;
 			vm.isLoggedIn = false;
+		    //var cookies = document.cookie.split(";");
+			for (var i = 0; i < cookies.length; i++) {
+			    var cookie = cookies[i];
+			    var eqPos = cookie.indexOf("=");
+			    var name = eqPos > -1 ? cookie.substr(0, eqPos) : cookie;
+			    document.cookie = name + "=;expires=Thu, 01 Jan 1970 00:00:00 GMT";
+			}
+			window.localStorage.clear();
 		});
 
 		$scope.$on('$stateChangeStart', function(event, toState, toParams, fromState, fromParams) {
@@ -229,18 +237,38 @@
 			        $localStorage.instaToken = result;
 			        instagramService.login().then(function (response) {
 			            console.log(response);
-			            if (response.data && response.status == 200) {
+			            if (response.data && response.data.data && response.status == 200) {
 			                var fbObject = {
-			                    "email": "kanikasethi0@gmail.com",
-			                    "user_type": "instagram",
+			                    "userSocialType": "instagram",
 			                    "provider_id": response.data.data.id,
 			                    "first_name": response.data.data.full_name,
 			                    "last_name": response.data.data.full_name,
-			                    "profile_image" : response.data.data.profile_picture
+			                    "profile_image": response.data.data.profile_picture,
+			                    "social_user_name": response.data.data.username
 			                }
 			                httpService.socialSignup(fbObject).then(function (response) {
-			                    $state.go('app.about');
+			                    if (response.data.message == "User already registered" && response.data.status == 0) {
+			                        httpService.socialLogin(fbObject).then(function (response) {
+			                            Auth.getMe().then(function (response) {
+			                                if (response) {
+			                                    $state.go('app.home');
+			                                }
+			                            });
+			                        });
+			                    }
+			                    else if (response.data.message == "Thank you for registration using facebook" && response.data.status == 1) {
+			                        httpService.socialLogin(fbObject).then(function (response) {
+			                            Auth.getMe().then(function (response) {
+			                                if (response) {
+			                                    $state.go('app.home');
+			                                }
+			                            });
+			                        });
+			                    }
 			                });
+			            }
+			            else {
+			                alert("something went wrong");
 			            }
 			        });
 			        
@@ -535,19 +563,32 @@
 		                console.log(response);
 		                if (response && response.id) {
 		                    var fbObject = {
-		                        "email": response.email,
-		                        "user_type": "facebook",
-		                        "provider_id": response.id,
 		                        "first_name": response.first_name,
 		                        "last_name": response.last_name,
-		                        //"profile_image" : response.
+		                        "profile_image" : response.picture ? response.picture.data.url : '',
+		                        "social_user_name": response.email,
+		                        "userSocialType": "facebook",
+		                        "provider_id": response.id
 		                    }
-		                    httpService.socialLogin(fbObject).then(function (response) {
-		                        Auth.getMe().then(function (response) {
-		                            if (response) {
-		                                $state.go('app.home');
-		                            }
-		                        });
+		                    httpService.socialSignup(fbObject).then(function (response) {
+		                        if (response.data.message == "User already registered" && response.data.status == 0) {
+		                            httpService.socialLogin(fbObject).then(function (response) {
+		                                Auth.getMe().then(function (response) {
+		                                    if (response) {
+		                                        $state.go('app.home');
+		                                    }
+		                                });
+		                            });
+		                        }
+		                        else if (response.data.message == "Thank you for registration using facebook" && response.data.status == 1) {
+		                            httpService.socialLogin(fbObject).then(function (response) {
+		                                Auth.getMe().then(function (response) {
+		                                    if (response) {
+		                                        $state.go('app.home');
+		                                    }
+		                                });
+		                            });
+		                        }
 		                    });
 		                }
 		                else {
