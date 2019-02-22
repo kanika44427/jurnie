@@ -1,0 +1,39 @@
+<div id="careers">
+
+	<div class="container careers-container">
+		<div class="text-side col-md-6 col-lg-6 col-xl-6">
+			<div class="title">Careers</div>
+			<div class="text">We're always looking for new and exciting people to join the Jurnie<br><br>However, at this present time, we're not looking
+				for anything in particular. But maybe, just maybe, if you send us you details (resume, folio, etc) we might just be able
+				to find something for you to do.<br><br>Fill out the form, and if we this you've got what it takes, we'll be in touch!</div>
+		</div>
+
+		<div class="form col-md-6 col-lg-6 col-xl-6">
+			<div class="posted" ng-if="careers.posted">Thank you for your interest in Jurnie! If we think you'd make a strong addition to our team, we'll get back to you!</div>
+			<div class="form-row">
+				<div class="label">Name</div><input type="text" ng-model="careers.applicant.name">
+			</div>
+			<div class="form-row">
+				<div class="label">Location</div><input type="text" ng-model="careers.applicant.location">
+			</div>
+			<div class="form-row">
+				<div class="label">Email</div><input type="email" ng-model="careers.applicant.email">
+			</div>
+			<div class="form-row">
+				<div class="label">Phone</div><input type="phone" ng-model="careers.applicant.phone">
+			</div>
+
+			<div class="form-row">
+				<div class="label">Notes</div>
+				<textarea ng-model="careers.applicant.notes"></textarea>
+			</div>
+
+			<div class="form-row">
+				<div class="label">Attach</div>
+				<file-uploader upload-url="careerInquiry/resume" img-url="careers.applicant.resume" on-upload="careers.onResumeUpload" class="cursor"></file-uploader>
+			</div>
+
+			<div class="submit cursor" ng-click="careers.submitApplication()">Submit</div>
+		</div>
+	</div>
+</div>

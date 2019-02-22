@@ -1,0 +1,62 @@
+<!-- 
+SETTINGS MODAL -->
+<div id="settings">
+	<div class="settings-header">
+		<h3 class="settings-title" id="settings-title">Settings</h3>
+		<div class="close-btn cursor" ng-click="settings.close()">X</div>
+	</div>
+	<div class="settings-body" id="settings-body">
+		<div class="picture-container">
+			<img-uploader class="cursor" upload-url="photo" on-upload="settings.updateProfilePic" img-class="" img-url="settings.user.profilePic"></img-uploader>
+		</div>
+		<div class="info-container">
+			<div class="titles">
+				<div class="title">First Name</div>
+				<div class="title">Surname</div>
+				<div class="title">Email</div>
+				<div class="title">D.O.B.</div>
+				<div class="title">Nationality</div>
+				<div class="title">Type of Traveller</div>
+			</div>
+			<div class="infos">
+				<div class="info cursor" ng-click="settings.edit('firstName')">
+					<span ng-hide="settings.editing === 'firstName'">{{settings.user.firstName}}</span>
+					<span ng-show="!settings.user.firstName && settings.editing !== 'firstName'">Click to set</span>
+					<input ng-show="settings.editing === 'firstName'" ng-model="settings.user.firstName">
+				</div>
+				<div class="info cursor" ng-click="settings.edit('lastName')">
+					<span ng-hide="settings.editing === 'lastName'">{{settings.user.lastName}}</span>
+					<span ng-show="!settings.user.lastName && settings.editing !== 'lastName'">Click to set</span>
+					<input ng-show="settings.editing === 'lastName'" ng-model="settings.user.lastName">
+				</div>
+				<div class="info cursor" ng-click="settings.edit('email')">
+					<span ng-hide="settings.editing === 'email'">{{settings.user.email}}</span>
+					<span ng-show="!settings.user.email && settings.editing !== 'email'">Click to set</span>
+					<input ng-show="settings.editing === 'email'" ng-model="settings.user.email">
+				</div>
+				<div class="info cursor" ng-click="settings.edit('birthday')">
+					<span ng-hide="settings.editing === 'birthday'">{{(settings.user.birthday | date) || "Click to set"}}</span>
+					<input style="border: none; border-bottom: 2px solid #F7914C;" ng-show="settings.editing === 'birthday'" type="text" ng-click="settings.open2()"
+					 class="name" uib-datepicker-popup ng-model="settings.user.birthday" is-open="settings.popup2.opened" datepicker-options="settings.dateOptions"
+					 ng-required="true" show-button-bar="false" on-open-focus="false" placeholder="BIRTHDAY" readonly/>
+				</div>
+				<div class="info cursor" ng-click="settings.edit('nationality')">
+					<span ng-hide="settings.editing === 'nationality'">{{settings.user.nationality}}</span>
+					<span ng-show="!settings.user.nationality && settings.editing !== 'nationality'">Click to set</span>
+					<select style="width:90%" ng-show="settings.editing === 'nationality'" class="selector nationality-select" ng-model="settings.user.nationality"
+					 ng-options="country.name as country.name for country in settings.countries"></select>
+				</div>
+				<div class="info cursor" ng-click="settings.edit('travellerType')">
+					<span ng-hide="settings.editing === 'travellerType'">{{settings.user.travellerType.description}}</span>
+					<span ng-show="!settings.user.travellerType && settings.editing !== 'travellerType'">Click to set</span>
+					<select style="width:90%" ng-show="settings.editing === 'travellerType'" class="selector traveler-select" ng-model="settings.user.travellerTypeId"
+					 ng-options="type.id as type.description for type in settings.travellerTypes"></select>
+				</div>
+			</div>
+		</div>
+		<div class="settings-buttons">
+			<button class="delete-btn" ng-click="settings.deleteAccount(settings.user.id)">Delete Account</button>
+			<button class="save-btn" ng-click="settings.save()">Save</button>
+		</div>
+	</div>
+</div>

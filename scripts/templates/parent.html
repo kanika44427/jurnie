@@ -1,0 +1,268 @@
+<div ng-click="parent.collapseEverything()" class="EVERYTHING">
+	<!--       Navbar for the opening screen, DESKTOP -->
+	<div class="visible-sm visible-md visible-lg visible-xl navbar desktop-login-navbar org-clr" ng-if="!parent.isLoggedIn">
+		<div class="container-fluid login-nav-container">
+			<div class="navbar-left desktop-login-header">
+				<img class="logo" src="assets/Jurnie Logo - White.png">
+			</div>
+			<div class="navbar-collapse navbar-right">
+				<ul class="navbar-nav desktop-log">
+					<li>
+						<input tabindex='1' class="top-login" ng-model="parent.email" type="email" name="email" placeholder="email" required/>
+					</li>
+					<li>
+						<input tabindex='2' class="top-login" ng-model="parent.password" type="password" placeholder="password" name="password" required/>
+					</li>
+					<li>
+						<button tabindex='3' class="top-login-btn cursor" ng-click="parent.login()" class="login-btn">Login</button>
+                       <span class="or"> or </span>
+					</li>
+                    <li>
+                        <div class="social-btns">
+                            <a class="" ng-click="parent.signUpWithFacebook()">
+                                <img src="assets/fb-icon.png" />
+                            </a><a class="" ng-click="parent.signUpWithInstagram()">
+                                 <img src="assets/insta-icon.png" />
+                            </a>
+                        </div>
+                    </li>
+				</ul>
+               
+				<div class="forgot-li">
+					<button tabindex='3' class="forgot-btn cursor" ng-click="parent.goToForgot()">Forgot Password?</button>
+				</div>
+			</div>
+            
+		</div>
+      
+	</div>
+
+	<!--       Navbar for the opening screen, MOBILE -->
+	<div class="hidden-sm hidden-md hidden-lg hidden-xl" ng-if="!parent.isLoggedIn">
+		<div class="mobile-login-container">
+			<div class="navbar-left mobile-login-nav">
+				<div ng-click="parent.isMobileCollapsed = !parent.isMobileCollapsed" class="mobile-login-opener cursor">&#9776;</div>
+				<div class="navbar-left mobile-login-logo">
+					<img class="logo" src="assets/Jurnie Logo - White.png">
+				</div>
+
+			</div>
+			<div class="mobile-login-menu-container">
+				<div uib-collapse="parent.isMobileCollapsed" class="mobile-menu-login">
+					<div class="mobile-login-initial" ng-if="!parent.mobileLogClicked">
+						<div class="mobile-login-prompt">You are currently not logged in to an account; would you like to
+							<a ng-click="parent.openMobileLogin()">login?</a>
+						</div>
+					</div>
+					<form class="mobile-login-form" ng-if="parent.mobileLogClicked">
+						<input tabindex='1' class="mobile-login-input" ng-model="parent.email" type="email" name="email" placeholder="email" required/>
+						<input tabindex='2' class="mobile-login-input" ng-model="parent.password" type="password" placeholder="password
+                        " name="password" required/>
+						<input type="submit" tabindex='3' ng-click="parent.login()" class="login-btn-mobile cursor" value="Login">
+						<button class="forgot-btn-mobile cursor" ng-click="parent.goToForgot()">Forgot Password?</button>
+					</form>
+					<div class="feed-legal">&copy; Copyright Jurnie Pty Ltd. ACN 621 547 886 2017
+						<br>All Rights Reserved</div>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<!-- navbar for the rest of the site, desktop -->
+	<div class="navbar navbar-light navbar-static bg-faded visible-md visible-lg visible-xl" role="navigation" ng-if="parent.isLoggedIn">
+		<div class="container-fluid desktop-navbar" ng-class="{greenbar: parent.friendMap}">
+			<div class="max-navbar">
+				<div class="navbar-left desktop-navbar-left">
+					<a class="navbar-brand" ui-sref="app.home">
+						<img class="logo cursor" src="assets/Jurnie Logo - White.png">
+					</a>
+					<div class="nav-item search-container" ng-if="parent.currState !=='app.add_friends'">
+						<img class="magnifying-glass" src="assets/Magnify Glass - White.png">
+						<search-bar class="search-desktop" person-cb="parent.personCB" place-cb="parent.placeCB"></search-bar>
+					</div>
+					<a ng-if="parent.isAdmin" class="go-to-analytics" ng-click="parent.goToAnalytics()">View Analytics</a>
+				</div>
+				<div class="navbar-right desktop-navbar-right">
+					<rank user="parent.user" pins="parent.user.pins.length"></rank>
+					<div class="nav-item">
+						<div class="vertical-divider" ng-if="parent.currState !=='app.add_friends'"></div>
+					</div>
+					<div class="nav-item name-container-nav cursor" ng-click="parent.toggleRightSidebar($event)">
+						<div class="vertical-line-top" ng-if="parent.currState !=='app.add_friends'"></div>
+						<a class="nav-link desktop-name">{{parent.user.firstName}}</a>
+						<img class="user-pic" ng-src="{{parent.user.profilePic}}">
+						<div ng-if="parent.newUpdates && parent.newUpdates > 0" class="new-updates-num">{{parent.newUpdates > 0 ? parent.newUpdates : ''}}</div>
+					</div>
+				</div>
+				<div id="right-side-bar" class="feed-container-desktop" ng-blur="parent.closeRightSidebar()
+                    " ng-click="parent.closeRightSidebar()">
+					<div uib-collapse="parent.feedCollapsed" class="feed-desktop-menu">
+						<div class="arrow-up"></div>
+						<div class="feed-title">Notifications</div>
+						<div class="feed-updates" ng-repeat="update in parent.updates">
+                            <div class="feed-pic-desc cursor" ng-if="update.isNew" ng-click="parent.wasSeen(update)" ui-sref="app.friend({id: update.interactionTypeId===2 ?
+                        update.inviter.id : update.user.id, latitude: update.pin ? update.pin.latitude : null, longitude: update.pin?
+                        update.pin.longitude : null})">
+                                <img class="feed-pic" ng-src="{{update.user.profilePic || assets/Annonymous.png}}" ng-if="update.interactionTypeId
+                        !==2">
+                                <img class="feed-pic" ng-src="{{update.inviter.profilePic || assets/Annonymous.png}}" ng-if="update.interactionTypeId===2">
+                                <div class="feed-update-description">{{update.message}}</div>
+                            </div>
+							<div class="feed-accept-friend-btn" ng-if="update.invite">
+								<div class="feed-friend-accept cursor" ng-click="parent.acceptFriend(update.invite.id)">Accept</div>
+								<div class="vertical-line-feed"></div>
+								<div class="feed-friend-accept cursor" ng-click="parent.denyFriend(update.invite.id, $index)">Deny</div>
+							</div>
+							<hr class="feed-divider">
+							<div class="new-update-dot-desktop" ng-if="update.isNew"></div>
+						</div>
+						<hr class="feed-thicker-divider">
+						<div class="feed-bottom-btn feed-settings cursor" ng-click="parent.openSettings()">Settings</div>
+                        <div class="feed-bottom-btn feed-settings cursor" ng-click="parent.openMyPins()">My Pins</div>
+						<div class="feed-bottom-btn feed-logout cursor" ng-click="parent.logout()">Logout</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="friend-name-container" ng-if="parent.friendMap">
+			<div class="friend-name-subcontainer">
+				<img class="friend-picture" src="{{parent.friend.profilePic}}">
+				<div class="friend-nomen">{{parent.friend.firstName}} {{parent.friend.lastName}}</div>
+			</div>
+		</div>
+	</div>
+
+
+	<!--   Pop out side nav, for mobile -->
+	<div id="mobile" class="navbar navbar-light navbar-static bg-faded hidden-md hidden-lg hidden-xl hidden-lg hidden-xl
+                        horizontal-collapse" role="navigation" ng-if="parent.isLoggedIn">
+		<div class="container-fluid float-left mobile-navbar" ng-class="{greenbar: parent.friendMap}">
+			<div class="mobile-navbar-alignment">
+				<span class="mobile-sidenav-btn pull-xs-left cursor" ng-click="parent.toggleLeftSideNav($event)">
+					&#9776;
+				</span>
+				<div class="mobile-navbar-title cursor" ui-sref="app.home">
+					<img class="logo mobile-nav-logo" src="assets/Jurnie Logo - White.png">
+				</div>
+			</div>
+			<div class="search-container-mobile" ng-if="parent.isMainCollapsedHorizontal">
+				<div class="magnifying-glass-mobile fa fa-search"></div>
+				<search-bar class="search-mobile" person-cb="parent.personCB" place-cb="parent.placeCB"></search-bar>
+			</div>
+			<div class="mobile-menu-container">
+				<div uib-collapse="parent.isMainCollapsedHorizontal" horizontal class="mobile-menu">
+					<div class="mobile-main">
+						<div class="nav-item cursor" ng-click="parent.feedClick()">
+							<div class="mobile-name-pic cursor">
+								<div class="nav-link mobile-name">{{parent.user.firstName}}</div>
+								<img class="user-pic" ng-src="{{parent.user.profilePic}}">
+							</div>
+						</div>
+						<div class="nav-item rank-mobile">
+							<rank user="parent.user" pins="parent.user.pins.length" ng-if="parent.currState
+                        !=='app.add_friends'"></rank>
+						</div>
+						<div class="feed-container-mobile">
+							<div class="feed-title">Notifications</div>
+							<div class="feed-updates" ng-click="parent.wasSeen(update)" ng-repeat="update in parent.updates">
+                                <div class="feed-pic-desc cursor" ng-if="update.isNew" ui-sref="app.friend({id: update.interactionTypeId===2
+                        ? update.inviter.id : update.user.id, latitude: update.pin ? update.pin.latitude : null, longitude: update.pin?
+                        update.pin.longitude : null})">
+                                    <img class="feed-pic" ng-src="{{update.user.profilePic}}" ng-if="update.interactionTypeId
+                        !==2">
+                                    <img class="feed-pic" ng-src="{{update.inviter.profilePic}}" ng-if="update.interactionTypeId===2">
+                                    <div class="feed-update-description">{{update.message}}</div>
+                                </div>
+								<div class="feed-accept-friend-btn" ng-if="update.friendRequest">
+									<div class="feed-friend-accept">Accept
+										<div class="vertical-line"> Deny</div>
+									</div>
+									<hr class="feed-divider">
+								</div>
+								<div class="feed-accept-friend-btn" ng-if="update.invite">
+									<div class="feed-friend-accept cursor" ng-click="parent.acceptFriend(update.invite.id)">Accept</div>
+									<div class="vertical-line"></div>
+									<div class="feed-friend-accept cursor" ng-click="parent.denyFriend(update.invite.id,
+                        $index)">Deny</div>
+								</div>
+								<hr class="feed-divider">
+								<div class="new-update-dot-mobile" ng-if="update.isNew"></div>
+							</div>
+							<hr class="mobile-feed-thicker-divider">
+							<div class="feed-mobile-bottom">
+                                <div class="feed-bottom-btn feed-settings cursor" ng-click="parent.openMyPins()">My Pins</div>
+								<div class="feed-bottom-btn feed-settings cursor" ng-click="parent.openSettings()">Settings</div>
+								<div class="feed-bottom-btn feed-logout cursor" ng-click="parent.logout()">Logout</div>
+							</div>
+							<div class="feed-legal">&copy; Copyright Jurnie Pty Ltd. ACN 621 547 886 2017
+								<br>All Rights Reserved</div>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="overlay"></div>
+
+		</div>
+	</div>
+
+	<!-- NAVBAR FOR SIGN UP PROCESS -->
+	<div class="navbar signup-navbar" ng-if="parent.isSigningUp">
+		<div class="container-fluid">
+			<div class="navbar-left desktop-login-header">
+				<img class="logo" src="assets/Jurnie Logo - White.png">
+			</div>
+			<div class="navbar-collapse navbar-right">
+				<div class="nav-item cursor" ng-click="parent.feedClick()">
+					<a class="nav-link user-name">{{parent.user.firstName}}</a>
+					<img class="user-pic" ng-src="{{parent.user.profilePic}}">
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<!-- LOADING SPINNER -->
+	<div id="main-body">
+		<div id="loading-gif-wrapper" class="loading-icon" ng-show="parent.showSpinner">
+			<img class="logo-loading
+                    " src="assets/Jurnie Logo.png">
+			<span>.</span>
+			<span>.</span>
+			<span>.</span>
+		</div>
+		<ui-view ng-hide="parent.showSpinner"></ui-view>
+	</div>
+
+	<!-- THE MOUNTAIN RANGE, PLUS EXTRA PAGE LINKS -->
+	<div class="bottom-section" ng-class="{friendmountain: parent.friendMap}">
+		<div class="bottom-info-container" ng-if="parent.currState !=='app.home' && !parent.friendMap">
+			<div class="extra-links-container">
+				<div class="extra-links">
+					<div class="extra-link cursor" ng-class="{ 'friend-page': parent.friendMap}" ui-sref="app.about">About | </div>
+					<div class="extra-link cursor" ng-class="{ 'friend-page': parent.friendMap}" ui-sref="app.careers"> Careers | </div>
+					<div class="extra-link cursor" ng-class="{ 'friend-page': parent.friendMap}" ui-sref="app.invest"> Invest | </div>
+					<div class="extra-link cursor" ng-class="{ 'friend-page': parent.friendMap}">
+						<a class="insta" href="https://www.instagram.com/the_jurnie">Instagram</a>
+					</div>
+				</div>
+			</div>
+			<div ng-class="{ 'friend-page': parent.friendMap}" class="copyright-info">&copy; Copyright Jurnie Pty Ltd. ACN 621 547 886 2017
+				<br>All Rights Reserved.</div>
+		</div>
+        <!--ks : removal of orange area-->
+		<!--<div class="mountain-container visible-md visible-lg visible-xl" ng-class="{ 'home-page':
+                        parent.currState==='app.home' }" ng-if="!parent.mobileScreen">
+			 <img class="mountain-range visible-md visible-lg visible-xl" ng-if="!parent.friendMap
+                    " src="assets/Mountain Range - Orange.png">
+			 <img class="mountain-range visible-md visible-lg visible-xl" ng-if="parent.friendMap
+                    " src="assets/Mountain Range - Green.png">
+		</div>-->
+		<!--<div class="mountain-container-mobile visible-xs visible-sm" ng-class="{ 'home-page':
+                        parent.currState==='app.home' }" ng-if="parent.mobileScreen">
+			<img class="mountain-range-mobile visible-xs visible-sm" ng-if="!parent.friendMap && parent.mobileScreen
+                    " src="assets/Mountain Range - Phone (Orange).png">
+			<img class="mountain-range-mobile visible-xs visible-sm" ng-if="parent.friendMap && parent.mobileScreen
+                    " src="assets/Mountain Range - Phone (Green).png">
+		</div>-->
+	</div>
+</div>
+

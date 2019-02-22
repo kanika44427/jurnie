@@ -1,0 +1,144 @@
+
+<!-- MY INFOWINDOW -->
+<div class="infowindow" id="infowindow">
+		<div class="top-bar">
+			<div class="empty-space"></div>
+			<div class="place-name">CITY_NAME , COUNTRY_CODE</div>
+			<div class="trash-btn" ng-click="maps.deletePin()"><img class="trash-pic" src="../assets/Trash Can.png"></div>
+		</div>
+		<div class="dates-there">
+			<div class="date from">From: FIRST_DATE</div>
+			<div class="date to">To: SECOND_DATE</div>
+		</div>
+		<div class="tabs">
+			<div class="note-pic-tab tab" ng-class="{selected:maps.notes === true}" ng-click="maps.notes = true; maps.friends = false">
+				<img ng-if="maps.notes" src="../assets/Notes - White.png">
+				<img ng-if="!maps.notes" src="../assets/Notes - Grey.png">
+			</div>
+			<div class="friend-tab tab" ng-class="{selected:maps.friends === true}" ng-click="maps.notes = false; maps.friends = true">
+				<img ng-if="maps.friends" src="../assets/Pin Man - White.png">
+				<img ng-if="!maps.friends" src="../assets/Pin Man - Grey.png">
+			</div>
+		</div>
+		<div class="tab-content">
+			<div class="note-pic-display" ng-if="maps.notes">
+				<div class="note-date">note.date</div>
+				<div class="note-message">note.message</div>
+			</div>
+			<div class="friends-display" ng-if="maps.friends">
+				<div class="friends-table-head">
+					<div class="friend-col who">Who...</div>
+					<div class="friend-col when">When...</div>
+					<div class="friend-col pin">Pin...</div>
+				</div>
+				<div class="friends-table-content" ng-repeat="friend in maps.records.friends">
+					<img class="friend-pic" src="friend.pic">
+					<div class="friend-name">friend.name</div>
+					<div class="friend-pin-date">friend.pinDate</div>
+					<img class="friend-pin" src="friend.pin">
+				</div>
+			</div>
+		</div>
+		<div class="bottom-bar">
+			<rating value="' + rating + '" max="5" size="50px" color="#333" interactive="false"></rating>
+			<div class="pin-message">pinMessage</div>
+			<img class="my-pin" src="pinPic">
+		</div>
+	</div>
+
+
+
+
+<!-- FRIEND INFOWINDOW -->
+<div class="infowindow" id="infowindow">
+		<div class="friend-top-bar">
+			<div class="place-name">CITY_NAME , COUNTRY_CODE</div>
+		</div>
+		<div class="dates-there">
+			<div class="date from">From: FIRST_DATE</div>
+			<div class="date to">To: SECOND_DATE</div>
+		</div>
+		<div class="tabs">
+			<div class="friend-note-pic-tab tab">
+				<img ng-if="maps.notes" src="../assets/Notes - White.png">
+				<img ng-if="!maps.notes" src="../assets/Notes - Grey.png">
+			</div>
+		</div>
+		<div class="tab-content">
+			<div class="note-pic-display" ng-repeat="note in maps.records.notes" ng-if="maps.notes">
+				<div class="note-date">note.date</div>
+				<div class="note-message">note.message</div>
+			</div>
+		</div>
+		<div class="bottom-bar">
+			<rating value="' + rating + '" max="5" size="50px" color="#333" interactive="false"></rating>
+			<div class="pin-message">pinMessage</div>
+			<img class="my-pin" src="pinPic">
+		</div>
+	</div>
+
+
+
+
+
+
+
+    
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    <div></div>

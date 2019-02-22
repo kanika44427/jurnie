@@ -1,0 +1,17 @@
+<div id="not-friend">
+    <div class="loading-pic">
+        <div class="not-friends" ng-if="!notMyFriend.friendAdded">
+            <div class="not-friends-message">
+                <img class="friend-pic" style="max-height: 100px;" ng-src="{{notMyFriend.person.profilePic}}">
+                <div class="friend-name">{{notMyFriend.person.firstName}} {{notMyFriend.person.lastName}}</div>
+                <div class="add-message" ng-if="!notMyFriend.inviteSent">You need to add {{notMyFriend.person.firstName}} {{notMyFriend.person.lastName}} as a friend before you can
+                    see their Jurnie
+                </div>
+                <div class="add-message" ng-if="notMyFriend.inviteSent">Invite sent!</div>
+                <div class="add-btn cursor" ng-if="!notMyFriend.inviteSent" ng-click="notMyFriend.addFriend(notMyFriend.person.id)">Add</div>
+            </div>
+        </div>
+        <notfriendmap class="notfriendmap" on-marker-click="notMyFriend.changeChoice(choice)" choice="notMyFriend.choice" friend-id="notMyFriend.person.Id">
+        </notfriendmap>
+    </div>
+</div>
