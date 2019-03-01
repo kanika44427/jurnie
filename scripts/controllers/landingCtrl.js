@@ -63,70 +63,44 @@
 		        console.log(response);
 		        if (response && response.id) {
 		            var fbObject = {
-		                "email": response.email,
 		                "first_name": response.first_name,
 		                "last_name": response.last_name,
-		                "user_type": "facebook",
-		                "provider_id": response.id,
-		                //"profile_image" : 
+		                "profile_image" : response.picture ? response.picture.data.url : '',
+		                "social_user_name": response.email,
+		                "userSocialType": "facebook",
+		                "provider_id": response.id
 		            }
 		            httpService.socialSignup(fbObject).then(function (response) {
-		                if (response.status == 0 && response.message == 'User already registered ') {
-                            alert("You are already registered. Please login. ")
-		                }
-		                else if (response.status == 200) {
+		                if (response.data.message == "User already registered" && response.data.status == 0) {
 		                    httpService.socialLogin(fbObject).then(function (response) {
 		                        Auth.getMe().then(function (response) {
 		                            if (response) {
-		                                $state.go('app.dashboard');
+		                                $state.go('app.home');
 		                            }
 		                        });
-
 		                    });
-		                   
 		                }
-		                
+		                else if (response.data.message == "Thank you for registration using facebook" && response.data.status == 1) {
+		                    httpService.socialLogin(fbObject).then(function (response) {
+		                        Auth.getMe().then(function (response) {
+		                            if (response) {
+		                                $state.go('app.home');
+		                            }
+		                        });
+		                    });
+		                }
 		            });
 		        }
 		        else {
 		            alert("Something went wrong. Please try again after some time.")
 		        }
 		    });
+		        
+		    });
 
 		}
 		vm.signUpWithInstagram = function () {
-		    instagramService.login().then(function (response) {
-		        console.log(response);
-		        if (response.data && response.status == 200) {
-		            var fbObject = {
-		                "email": response.data.username,
-		                "user_type": "instagram",
-		                "provider_id": response.data.id,
-		                "first_name": response.data.full_name,
-		                "last_name": response.last_name
-		            }
-
-		            httpService.socialSignup(fbObject).then(function (response) {
-		                if (response.status == 0 && response.message == 'User already registered ') {
-		                    alert("You are already registered. Please login. ")
-		                }
-		                else if (response.status == 200) {
-		                    httpService.socialLogin(fbObject).then(function (response) {
-
-		                        Auth.getMe().then(function (response) {
-		                            if (response) {
-		                                $state.go('app.dashboard');
-		                            }
-		                        });
-
-		                    });
-
-		                }
-
-
-		            });
-		        }
-		    });
+		    instagramService.authorize();
 		}
 		vm.open2 = function() {
 			vm.popup2.opened = true;
