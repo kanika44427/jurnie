@@ -96,9 +96,9 @@
 		        }
 		    });
 		        
-		    });
-
 		}
+
+		
 		vm.signUpWithInstagram = function () {
 		    instagramService.authorize();
 		}

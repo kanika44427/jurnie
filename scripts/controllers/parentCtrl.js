@@ -346,7 +346,8 @@
 		}
 
 		function logout() {
-			vm.user = null;
+		    vm.user = null;
+		    facebookService.logout();
 			Auth.logout();
 			init();
 		}

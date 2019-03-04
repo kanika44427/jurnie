@@ -20,6 +20,20 @@ angular.module('jurnie').factory('facebookService', function ($q) {
             });
             return deferred.promise;
         },
+
+        logout: function () {
+            FB.getLoginStatus(function (response) {
+                console.log("check login status", response);
+                if (response.status == "connected") {
+                    FB.Auth.setAuthResponse(null, 'unknown');
+                    FB.logout(function () {
+                        console.log("user log out");
+                    });
+                }
+                
+            });
+        },
+
         getLoginStatus: function () {
             var deferred = $q.defer();
             FB.getLoginStatus(function (response) {
