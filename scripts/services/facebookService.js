@@ -25,7 +25,7 @@ angular.module('jurnie').factory('facebookService', function ($q) {
             FB.getLoginStatus(function (response) {
                 console.log("check login status", response);
                 if (response.status == "connected") {
-                    FB.Auth.setAuthResponse(null, 'unknown');
+                    //FB.Auth.setAuthResponse(null, 'unknown');
                     FB.logout(function () {
                         console.log("user log out");
                     });
