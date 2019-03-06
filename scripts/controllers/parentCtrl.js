@@ -141,7 +141,7 @@
 		$rootScope.$on('logout', function() {
 			vm.user = null;
 			vm.isLoggedIn = false;
-		    //var cookies = document.cookie.split(";");
+		    var cookies = document.cookie.split(";");
 			for (var i = 0; i < cookies.length; i++) {
 			    var cookie = cookies[i];
 			    var eqPos = cookie.indexOf("=");
