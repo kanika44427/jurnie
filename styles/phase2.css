@@ -847,10 +847,19 @@ text-align: center;
 .social-btns a {
 float: none !important;
 }
-.social-btns.signup-btn, .social-btns.login_btn {
-float: none !important;
-width: 100%;
-text-align: center;
+.social-btns.signup-btn, .mobile-login-initial.ng-scope .social-btns {
+    float: none !important;
+    width: 100%;
+    text-align: center;
+    margin-bottom: 20px;
+    margin-top: 10px;
+}
+.mobile-login-initial.ng-scope {
+    text-align: center;
+}
+
+.mobile-login-prompt {
+    margin: 0 auto 15px;
 }
 #landing .signup {
 margin-right: 0;
