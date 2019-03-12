@@ -840,6 +840,39 @@ div#settings {
     border-radius: 0;
     float: left !important;
 }  
+   .clearfix.social_icons {
+width: 100%;
+text-align: center;
+}
+.social-btns a {
+float: none !important;
+}
+.social-btns.signup-btn, .social-btns.login_btn {
+float: none !important;
+width: 100%;
+text-align: center;
+}
+#landing .signup {
+margin-right: 0;
+width: 100%;
+margin-top: 30px;
+}
+#landing .disclaimer {
+width: auto;
+text-align: center;
+font-size: 11px;
+margin-top: 15px;
+}
+#landing .tagline {
+text-align: center;
+line-height: 22px;
+}
+#landing {
+margin-top: 4vh;
+}
+#landing .logo {
+display: none !important;
+}
 }
 
 
