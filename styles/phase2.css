@@ -990,3 +990,14 @@ form.signup-form {
     margin-top: 10vh;
 }
 }
+
+@media screen and (max-width: 1366px) {
+    #landing {
+        min-height: 80vh;
+        margin-top: 8vh;
+    }
+
+        #landing .signup-form-container {
+            margin-top: -50px;
+        }
+}
