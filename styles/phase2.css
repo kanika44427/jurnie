@@ -840,7 +840,7 @@ div#settings {
     border-radius: 0;
     float: left !important;
 }  
-   .clearfix.social_icons {
+   form.signup-form-container.ng-pristine .clearfix {
 width: 100%;
 text-align: center;
 }
