@@ -12,6 +12,7 @@
 		vm.birthday = getTodayDate();
 		vm.landingBirthday = null;
 		vm.noBday = true;
+		vm.birthDateFormatted = birthDateFormatted;
 
 		vm.inlineOptions = {
 			customClass: getDayClass,
@@ -45,7 +46,9 @@
 		    today = yyyy + '-' + mm + '-' + dd;
 		    return today;
 		}
+
 		function birthDateFormatted() {
+            
 		    vm.birthday = GetDateFormat(vm.landingBirthday);
 		    console.log("birthday", vm.birthday);
 		}
