@@ -424,9 +424,9 @@
 
 			
 			function loadMarkers(changed) {
-				// console.log('STACK TRACE: ', new Error().stack);
+				
 			    Pin.list(changed).then(function(pins) {
-			       
+			        console.log("markers loading", pins);
 					var records = pins.data;
 					var markers = [];
 					
@@ -440,7 +440,7 @@
 							if (record.nearbyPins[k].pinTypeId === 1) {
 								record.nearbyPins[k].pinPic = 'assets/Blue Pin - Small.png';
 							} else if (record.nearbyPins[k].pinTypeId === 2) {
-								record.nearbyPins[k].pinPic = 'assets/Green Pin - Small.png';
+							    record.nearbyPins[k].pinPic = 'assets/Green Pin - Small.png';
 							} else {
 								record.nearbyPins[k].pinPic = 'assets/Orange Pin - Small.png';
 							}

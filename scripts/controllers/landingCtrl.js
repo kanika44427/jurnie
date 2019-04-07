@@ -76,20 +76,57 @@
 		            httpService.socialSignup(fbObject).then(function (response) {
 		                if (response.data.message == "User already registered" && response.data.status == 0) {
 		                    httpService.socialLogin(fbObject).then(function (response) {
-		                        Auth.getMe().then(function (response) {
-		                            if (response) {
-		                                $state.go('app.home');
+		                        facebookService.getFeedData().then(function (response) {
+		                            if (response.tagged_places && response.tagged_places.data && response.tagged_places.data.length > 0) {
+		                                var tagged_places = response.tagged_places.data;
+		                                console.log("tagged places", tagged_places);
+		                                for (var i = 0; i < tagged_places.length ; i++) {
+		                                    createFBMarker(tagged_places[i]);
+		                                    if (i == (tagged_places.length - 1)) {
+		                                        Auth.getMe().then(function (response) {
+		                                            if (response) {
+		                                                $state.go('app.home');
+		                                            }
+		                                        });
+		                                    }
+		                                }
+		                            }
+		                            else {
+		                                Auth.getMe().then(function (response) {
+		                                    if (response) {
+		                                        $state.go('app.home');
+		                                    }
+		                                });
 		                            }
 		                        });
 		                    });
 		                }
 		                else if (response.data.message == "Thank you for registration using facebook" && response.data.status == 1) {
 		                    httpService.socialLogin(fbObject).then(function (response) {
-		                        Auth.getMe().then(function (response) {
-		                            if (response) {
-		                                $state.go('app.home');
-		                            }
-		                        });
+		                        //register tagged places in jurnie account 
+		                        facebookService.getFeedData().then(function (response) {
+		                                if (response.tagged_places && response.tagged_places.data && response.tagged_places.data.length > 0 ) {
+		                                    var tagged_places = response.tagged_places.data;
+		                                    console.log("tagged places", tagged_places);
+		                                    for (var i = 0; i < tagged_places.length ; i++){
+		                                        createFBMarker(tagged_places[i]);
+		                                        if (i == (tagged_places.length -1)) {
+		                                            Auth.getMe().then(function (response) {
+		                                                if (response) {
+		                                                    $state.go('app.home');
+		                                                }
+		                                            });
+		                                        }
+		                                    }
+		                                }
+		                                else {
+		                                    Auth.getMe().then(function (response) {
+		                                        if (response) {
+		                                            $state.go('app.home');
+		                                        }
+		                                    });
+		                                }
+		                            });
 		                    });
 		                }
 		            });
@@ -101,7 +138,22 @@
 		        
 		}
 
-		
+		function createFBMarker(taggedInfo) {
+		    var req_obj = {
+		        "pinTypeId": 3,
+		        "latitude": taggedInfo.place.location.latitude,
+		        "longitude": taggedInfo.place.location.longitude,
+		        "startDate": taggedInfo.created_time,
+		        "endDate": taggedInfo.created_time,
+		        "rating": -1,
+		        "note": "",
+		        "description": null
+		    }
+		    Pin.add(req_obj).then(function () {
+                console.log("fb pin created")
+		    });
+		}
+
 		vm.signUpWithInstagram = function () {
 		    instagramService.authorize();
 		}

@@ -1,15 +1,20 @@
 (function() {
 	angular.module('jurnie').controller('HomeController', homeCtrl);
 
-	function homeCtrl(Auth, $timeout, City, $rootScope, Pin, $stateParams, $scope, facebookService) {
+	function homeCtrl(Auth, $timeout, City, $rootScope, Pin, $stateParams, $scope, facebookService, 
+		$localStorage) {
 		var vm = this;
 		init();
 
 		function init() {
-		    /*facebookService.getFeedData().then(function (response) {
-		        alert(JSON.stringify(response));
-		        var fbfeedData = response;
-		    });*/
+		    //if ($localStorage.loginType == 'FB') {
+		    //    facebookService.getFeedData().then(function (response) {
+		    //        if(response.tagged_places && response.tagged_places.data){
+		    //            var tagged_places = response.tagged_places.data;
+		    //            console.log("tagged places", tagged_places);
+		    //        }
+		    //    });
+		    //}
 		}
 		vm.changeChoice = changeChoice;
 		vm.skip = skip;
