@@ -249,22 +249,45 @@
 			                httpService.socialSignup(fbObject).then(function (response) {
 			                    if (response.data.message == "User already registered" && response.data.status == 0) {
 			                        httpService.socialLogin(fbObject).then(function (response) {
-			                            Auth.getMe().then(function (response) {
-			                                if (response) {
-			                                    $localStorage.loginType = "Instagram";
-			                                    $state.go('app.home');
+			                            instagramService.getInstaMarkers().then(function (res) {
+			                                var taggedPlaces = res.data.data;
+			                                if(taggedPlaces && taggedPlaces.length > 0 ){
+			                                    for (var i = 0; i < taggedPlaces.length; i++) {
+			                                        var taggedInfo = taggedPlaces[i];
+			                                        if (taggedInfo.location && taggedInfo.location != null)
+			                                            createInstaMarker(taggedInfo);
+			                                        var taggedInfo = taggedPlaces[i];
+			                                        if (i == (taggedInfo.length - 1)) {
+			                                            redirectToHome();
+			                                        }
+			                                    }
+			                                }
+			                                else {
+			                                    redirectToHome();
 			                                }
 			                            });
+			                            
 			                        });
 			                    }
 			                    else if (response.data.message == "Thank you for registration using facebook" && response.data.status == 1) {
 			                        httpService.socialLogin(fbObject).then(function (response) {
-			                            Auth.getMe().then(function (response) {
-			                                if (response) {
-			                                    $localStorage.loginType = "Instagram";
-			                                    $state.go('app.home');
+			                            instagramService.getInstaMarkers().then(function (res) {
+			                                var taggedPlaces = res.data.data;
+			                                if (taggedPlaces && taggedPlaces.length > 0) {
+			                                    for (var i = 0; i < taggedPlaces.length; i++) {
+			                                        var taggedInfo = taggedPlaces[i];
+			                                        if (taggedInfo.location && taggedInfo.location != null)
+			                                            createInstaMarker(taggedInfo);
+			                                        if (i == (taggedPlaces.length - 1)) {
+			                                            redirectToHome();
+			                                        }
+			                                    }
+			                                }
+			                                else {
+			                                    redirectToHome();
 			                                }
 			                            });
+
 			                        });
 			                    }
 			                });
@@ -273,7 +296,6 @@
 			                alert("something went wrong");
 			            }
 			        });
-			        
 			    }
 			    else {
 			        alert("Something went wrong. Please try again after some time.")
@@ -281,6 +303,16 @@
             }
 			getMe();
 		}
+
+		function redirectToHome() {
+		    Auth.getMe().then(function (response) {
+		        if (response) {
+		            $localStorage.loginType = "Instagram";
+		            $state.go('app.home');
+		        }
+		    });
+		}
+		
 
 		function getMe() {
 			if (Auth.payload) {
@@ -651,6 +683,22 @@
 		    }
 		    Pin.add(req_obj).then(function () {
 		        console.log("fb pin created")
+		    });
+		}
+
+		function createInstaMarker(taggedInfo) {
+		    var req_obj = {
+		        "pinTypeId": 3,
+		        "latitude": taggedInfo.location.latitude,
+		        "longitude": taggedInfo.location.longitude,
+		        "startDate": "",
+		        "endDate": "",
+		        "rating": -1,
+		        "note": "",
+		        "description": null
+		    }
+		    Pin.add(req_obj).then(function (res) {
+		        console.log("insta pin created");
 		    });
 		}
 
