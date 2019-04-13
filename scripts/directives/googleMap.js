@@ -666,7 +666,7 @@
 			function addInfoWindow(marker, message, record) {
 				marker.infoWindow = new google.maps.InfoWindow({
 					content: message,
-					maxWidth: 260,
+					maxWidth: 242,
 					maxHeight: 300,
 					disableAutoPan: true
 				});
