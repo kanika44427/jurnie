@@ -619,9 +619,9 @@
 								'</div>' +
 								'</div>' +
 								//'</div>' +
-                                '<div class="arow-new">'+
-                                    '<div class="trash-pic glyphicon glyphicon-arrow-right"></div>'+
-                                '</div>'+
+                                //'<div class="arow-new">'+
+                                //    '<div class="trash-pic glyphicon glyphicon-arrow-right"></div>'+
+                                //'</div>'+
 								'<div class="bottom-bar">' +
 								'<rating value="' +
 								rating +
@@ -666,7 +666,7 @@
 			function addInfoWindow(marker, message, record) {
 				marker.infoWindow = new google.maps.InfoWindow({
 					content: message,
-					maxWidth: 242,
+					maxWidth: 260,
 					maxHeight: 300,
 					disableAutoPan: true
 				});
@@ -696,7 +696,7 @@
 					var iwOuter = document.getElementsByClassName('gm-style-iw')[0];
 					var iwBackground = iwOuter.previousElementSibling;
 					// Remove the background shadow DIV
-					iwBackground.children[3].style.width = '242px';
+					iwBackground.children[3].style.width = '220px';
 					iwBackground.children[3].style.display = 'none';
 					iwBackground.children[3].style.width = '0px';
 					iwBackground.children[1].style.height = '255px';
