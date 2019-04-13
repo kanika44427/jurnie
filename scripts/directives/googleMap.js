@@ -696,7 +696,7 @@
 					var iwOuter = document.getElementsByClassName('gm-style-iw')[0];
 					var iwBackground = iwOuter.previousElementSibling;
 					// Remove the background shadow DIV
-					iwBackground.children[3].style.width = '220px';
+					iwBackground.children[3].style.width = '242px';
 					iwBackground.children[3].style.display = 'none';
 					iwBackground.children[3].style.width = '0px';
 					iwBackground.children[1].style.height = '255px';
