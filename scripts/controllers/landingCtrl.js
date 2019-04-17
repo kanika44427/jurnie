@@ -138,21 +138,9 @@
 		        
 		}
 
-		function createFBMarker(taggedInfo) {
-		    var req_obj = {
-		        "pinTypeId": 3,
-		        "latitude": taggedInfo.place.location.latitude,
-		        "longitude": taggedInfo.place.location.longitude,
-		        "startDate": taggedInfo.created_time,
-		        "endDate": taggedInfo.created_time,
-		        "rating": -1,
-		        "note": "",
-		        "description": null
-		    }
-		    Pin.add(req_obj).then(function () {
-                console.log("fb pin created")
-		    });
-		}
+		
+
+
 
 		vm.signUpWithInstagram = function () {
 		    instagramService.authorize();

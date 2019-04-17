@@ -250,6 +250,7 @@ flex-grow: 1;
 	width: 242px !important;
 	top: 0 !important;
 	left: 0 !important;
+    z-index : 1;
 }
 
 #infowindow .friend-note-pic-tab {

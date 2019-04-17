@@ -576,7 +576,7 @@
 								    '</div>' +
 								'</div>' +
 								'<div class="tab-content">' +
-								'<div class="note-pic-display" ng-if="maps.notes" style="width: 95%;margin: 0 auto;height: 175px;overflow-y: scroll;border-radius: 0;">' +
+								'<div class="note-pic-display" ng-if="maps.notes" style="width: 100% !important;margin: 0 auto;height: 175px;overflow-y: scroll;border-radius: 0;padding:8px">' +
                                     '<div class="note-date">' +
 								        noteDate +
 								    '</div>' +
@@ -584,7 +584,7 @@
 								        noteMessage +
 								    '</div>' +
 								'</div>' +
-                                '<div class="note-pic-display" ng-if="maps.photo" style="width: 95%;margin: 0 auto;height: 175px !important;overflow-y: scroll;border-radius: 0;">'+
+                                '<div class="note-pic-display" ng-if="maps.photo" style="width: 100% !important;margin: 0 auto;padding:8px !important;height: 175px !important;overflow-y: scroll;border-radius: 0;">'+
                                   '<div class="upload-header" id="OpenImgUpload" style="background: #f7914c;;padding: 5px;text-align: center;color: #fff;border-top-left-radius: 5px;border-top-right-radius: 5px;margin-top: 10px;">'+
                                     '<input type="file" id="imgupload" name="imgupload" ng-upload-change="maps.fileChanged($event, \''+
                                       record.userId + "','" + record.id + "'"+')" style="display:none;" accept="image/*" />'+
@@ -635,8 +635,8 @@
 								'</div>' +
                            
 								'</div>' +
-								'<div class="arrow">' +
-								'</div>' +
+								//'<div class="arrow">' +
+								//'</div>' +
 								'<div>'
 						)($rootScope);
 
