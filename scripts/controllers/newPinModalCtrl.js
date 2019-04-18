@@ -26,7 +26,7 @@
 		vm.lat = coords ? coords.latitude : pinToEdit ? pinToEdit.latitude : null;
 		vm.long = coords ? coords.longitude : pinToEdit ? pinToEdit.longitude : null;
 		vm.rating = 3;
-		vm.placeName = null;
+		vm.placeName = pinToEdit ? pinToEdit.description : null;
 		vm.custom = false;
 		vm.places = nearby;
 		vm.gotFriendsPins = false;
