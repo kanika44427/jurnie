@@ -1,7 +1,7 @@
 angular.module('jurnie').factory('httpService', ['$http', 'ServerUrl','$localStorage',  function ($http, ServerUrl, $localStorage) {
         
     //var ServerURL_2 = 'http://api2.thejurnie.com/';
-    var ServerURL_2 = 'http://api2.jurnie.com/';
+    var ServerURL_2 = 'https://api2.jurnie.com/';
       
         var httpService = {
             deleteMarker: deleteMarker,
