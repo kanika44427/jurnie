@@ -256,10 +256,10 @@
 			                                        var taggedInfo = taggedPlaces[i];
 			                                        if (taggedInfo.location && taggedInfo.location != null)
 			                                            createInstaMarker(taggedInfo);
-			                                        var taggedInfo = taggedPlaces[i];
-			                                        if (i == (taggedInfo.length - 1)) {
-			                                            redirectToHome();
-			                                        }
+			                                            var taggedInfo = taggedPlaces[i];
+			                                            if (i == (taggedPlaces.length - 1)) {
+			                                             redirectToHome();
+			                                           }
 			                                    }
 			                                }
 			                                else {
@@ -309,6 +309,7 @@
 		        if (response) {
 		            $localStorage.loginType = "Instagram";
 		            $state.go('app.home');
+                    vm.isLoggedIn = true;
 		        }
 		    });
 		}

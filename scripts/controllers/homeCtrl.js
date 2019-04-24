@@ -71,6 +71,7 @@
 		if ($stateParams.lat && $stateParams.long) {
 			vm.lat = $stateParams.lat;
 			vm.long = $stateParams.long;
+			
 		}
 
 		$rootScope.$watch(

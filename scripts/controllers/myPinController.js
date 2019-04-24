@@ -1,7 +1,7 @@
 ﻿(function () {
     angular.module('jurnie').controller('myPinController', myPinController);
 
-    function myPinController($uibModal, $uibModalInstance, Pin, $scope, $state, getAllPins) {
+    function myPinController($uibModal, $uibModalInstance, Pin, $scope, $state, getAllPins, $rootScope) {
         var vm = this;
         $scope.close = close;
         $scope.goToMap = goToMap;
@@ -24,7 +24,8 @@
         }
         function goToMap(lat, lng) {
             $uibModalInstance.dismiss('cancel');
-            $state.go('app.home', { searched: true, lat: lat, long: lng});
+            $state.go('app.home', { searched: true, lat: lat, long: lng });
+           
             
         }
     }

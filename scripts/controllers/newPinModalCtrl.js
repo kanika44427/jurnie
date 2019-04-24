@@ -21,8 +21,8 @@
 		vm.whichPin = null;
 		vm.editing = false;
 		vm.from = true;
-		vm.dateFrom = pinToEdit ? pinToEdit.startDate : getTodayDate();
-		vm.dateTo = pinToEdit ? pinToEdit.endDate : getTodayDate();
+		vm.dateFrom = pinToEdit ? getEditedDate(pinToEdit.startDate) : getTodayDate();
+		vm.dateTo = pinToEdit ? getEditedDate(pinToEdit.endDate) : getTodayDate();
 		vm.lat = coords ? coords.latitude : pinToEdit ? pinToEdit.latitude : null;
 		vm.long = coords ? coords.longitude : pinToEdit ? pinToEdit.longitude : null;
 		vm.rating = 3;
@@ -31,6 +31,22 @@
 		vm.places = nearby;
 		vm.gotFriendsPins = false;
 		vm.friendsNearby = null;
+
+		function getEditedDate(editdt) {
+		    var dt = new Date(editdt);
+		    var dd = dt.getDate();
+		    var mm = dt.getMonth() + 1;
+		    var yyyy = dt.getFullYear();
+		    if (dd < 10) {
+		        dd = '0' + dd;
+		    }
+		    if (mm < 10) {
+		        mm = '0' + mm;
+		    }
+		    var today = mm + '-' + dd + '-' + yyyy;
+		    return today;
+		}
+        
 
 		vm.dateOptionsTo = {
 			formatYear: 'yyyy',
@@ -169,6 +185,7 @@
 		function updatePin() {
 			vm.pin.startDate = vm.dateFrom;
 			vm.pin.endDate = vm.dateTo;
+			vm.pin.description = vm.placeName;
 			Pin.updatePin(vm.pin.id, vm.pin).then(function(response) {
 				$uibModalInstance.dismiss('cancel');
 			});

@@ -27,10 +27,12 @@
 		vm.openDeletePinConfirmation = openDeletePinConfirmation;
 		var modalInstance, id, url ;
 		function init(cb) {
-			// console.log('STACK TRACE: ', new Error().stack);
+		    // console.log('STACK TRACE: ', new Error().stack);
+		   
 			Pin.list().then(function(response) {
 				vm.records = response.data;
 				cb(response.data);
+				
 			});
 		}
 
@@ -263,7 +265,7 @@
 		}
 	}
 
-	function googleMaps(Pin, $localStorage, $compile, $window, $filter, $rootScope, City, $location, httpService, $q) {
+	function googleMaps(Pin, $localStorage, $compile, $window, $filter, $rootScope, City, $location, httpService, $q, $stateParams) {
 		return {
 			restrict: 'E',
 			replace: true,
@@ -306,7 +308,12 @@
 						Pin.list(changed).then(function(response) {
 							showPosition(options);
 						});
-					} else {
+					} else if ($stateParams.lat && $stateParams.long && $stateParams.searched == "true") {
+					    Pin.list(true).then(function(response) {
+					        showPosition(options);
+					    });
+					}
+					else {
 						showPosition(options);
 					}
 				} else {
@@ -426,7 +433,7 @@
 			function loadMarkers(changed) {
 				
 			    Pin.list(changed).then(function(pins) {
-			        console.log("markers loading", pins);
+			      
 					var records = pins.data;
 					var markers = [];
 					
