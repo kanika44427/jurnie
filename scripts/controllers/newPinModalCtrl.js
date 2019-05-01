@@ -36,7 +36,7 @@
 		    var dt = new Date(editdt);
 		    var dd = dt.getDate();
 		    var mm = dt.getMonth() + 1;
-		    var yyyy = dt.getFullYear();
+		    var yyyy = dt.getFullYear().toString().substr(-2);
 		    if (dd < 10) {
 		        dd = '0' + dd;
 		    }
