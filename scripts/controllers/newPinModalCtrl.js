@@ -68,7 +68,7 @@
 				return vm.dateOptionsTo.minDate;
 			},
 			function(newVal, oldVal) {
-				vm.dateTo = newVal;
+				//vm.dateTo = newVal;
 			}
 		);
 
