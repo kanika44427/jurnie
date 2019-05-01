@@ -595,7 +595,7 @@
                                   '<div class="upload-header" id="OpenImgUpload" style="background: #f7914c;;padding: 5px;text-align: center;color: #fff;border-top-left-radius: 5px;border-top-right-radius: 5px;margin-top: 10px;">'+
                                     '<input type="file" id="imgupload" name="imgupload" ng-upload-change="maps.fileChanged($event, \''+
                                       record.userId + "','" + record.id + "'"+')" style="display:none;" accept="image/*" />'+
-                                     '<button style="padding:0; width:100%;background:none; border:none;" id="" ng-click="maps.uploadImageOnIcon()" >Upload Button <i class="trash-pic glyphicon glyphicon-plus"></i></button>'+
+                                     '<button style="padding:0; width:100%;background:none; border:none;" id="uploadFileButton" ng-click="maps.uploadImageOnIcon()" >Upload Button <i class="trash-pic glyphicon glyphicon-plus"></i></button>'+
                                   '</div>'+
                                   '<div class="upload-box" id="uploadBox" style="width:100%;background:#eee;overflow: hidden;overflow: hidden;">'+
                                  
