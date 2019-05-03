@@ -3,150 +3,153 @@
 	angular.module('jurnie').controller('MapsCtrl', mapsCtrl).directive('googlemaps', googleMaps);
 
 	function mapsCtrl(Pin, $uibModal, Search,httpService,$rootScope) {
-		var vm = this;
+	    var vm = this;
 		
-		vm.notes = true;
-		vm.friends = false;
-		// vm.records = Pin.pins;
-		vm.animationsEnabled = true;
-		vm.photos = [];
-		vm.makeNewPin = makeNewPin;
-		vm.open = open;
-		vm.editPin = editPin;
-		vm.noPhotoFound = false;
-		//$rootScope.loaderIndicator = true;
-		vm.init = init;
-		vm.uploadImageOnIcon = uploadImageOnIcon;
-		vm.init(() => {});
-		vm.fileChanged = fileChanged;
-		vm.photoTabClick = photoTabClick;
-		vm.photo = false;
-		//vm.deleteImage = deleteImage;
-		vm.openDeleteImageConfirmation = openDeleteImageConfirmation;
-		//vm.cancelImageDelete = cancelImageDelete;
-		vm.openDeletePinConfirmation = openDeletePinConfirmation;
-		var modalInstance, id, url ;
-		function init(cb) {
-		    // console.log('STACK TRACE: ', new Error().stack);
+	    vm.notes = true;
+	    vm.friends = false;
+	    // vm.records = Pin.pins;
+	    vm.animationsEnabled = true;
+	    vm.photos = [];
+	    vm.makeNewPin = makeNewPin;
+	    vm.open = open;
+	    vm.editPin = editPin;
+	    vm.noPhotoFound = false;
+	    //$rootScope.loaderIndicator = true;
+	    vm.init = init;
+	    vm.uploadImageOnIcon = uploadImageOnIcon;
+	    vm.init(() => {});
+	    vm.fileChanged = fileChanged;
+	    vm.photoTabClick = photoTabClick;
+	    vm.photo = false;
+	    //vm.deleteImage = deleteImage;
+	    vm.openDeleteImageConfirmation = openDeleteImageConfirmation;
+	    //vm.cancelImageDelete = cancelImageDelete;
+	    vm.openDeletePinConfirmation = openDeletePinConfirmation;
+	    var modalInstance, id, url ;
+	    function init(cb) {
+	        // console.log('STACK TRACE: ', new Error().stack);
 		   
-			Pin.list().then(function(response) {
-				vm.records = response.data;
-				cb(response.data);
+	        Pin.list().then(function(response) {
+	            vm.records = response.data;
+	            cb(response.data);
 				
-			});
-		}
+	        });
+	    }
 
-		function photoTabClick(userId, id)
-		{
+	    function photoTabClick(userId, id)
+	    {
 		    
-		    vm.notes = false; 
-		    vm.photo = true; 
-		    vm.friend = false;
+	        vm.notes = false; 
+	        vm.photo = true; 
+	        vm.friend = false;
 		    
-		        httpService.getAllPhotos(userId, id).then(function(response){
-		            var response = JSON.parse(response);
-		            if(response.message == 'Record found' && response.status == 1){
-		                vm.photos = response.data;
-		                $('#uploadBox').trigger('click');
-		                vm.noPhotoFound = false;
-		                //alert("response");
-		            }
-		            else{
-		                vm.photos = [];
-		                vm.noPhotoFound = true;
-		            }
-		        });
+	        httpService.getAllPhotos(userId, id).then(function(response){
+	            var response = JSON.parse(response);
+	            if(response.message == 'Record found' && response.status == 1){
+	                vm.photos = response.data;
+	                $('#uploadBox').trigger('click');
+	                vm.noPhotoFound = false;
+	                //alert("response");
+	            }
+	            else{
+	                vm.photos = [];
+	                vm.noPhotoFound = true;
+	            }
+	        });
 		    
-		}
-		function editPin(id, latLng, lat, long) {
-			open(id, latLng, lat, long);
-		}
+	    }
+	    function editPin(id, latLng, lat, long) {
+	        open(id, latLng, lat, long);
+	    }
 
 		
 	
-		function openDeleteImageConfirmation(i)
-		{
-		    var imageDetail = vm.photos[i];
+	    function openDeleteImageConfirmation(i)
+	    {
+	        var imageDetail = vm.photos[i];
 		   
-		    var imageDetail = {id : imageDetail.id, photoUrl: imageDetail.photoUrl, pinId :imageDetail.pinId , userId:imageDetail.userId};
-		    var pinDetail = {};
-		    modalInstance = $uibModal.open({
-		        animation: vm.animationsEnabled,
-		        ariaLabelledBy: 'modal-title',
-		        ariaDescribedBy: 'modal-body',
-		        templateUrl: '../templates/deleteImage.html',
-		        controller: 'deletePinCtrl',
-		        controllerAs: 'maps',
-		        resolve: {
-		            imageDetail: function () {
-		                return imageDetail;
-		            },
-		            pinDetail: function () {
-		                return pinDetail;
-		            }
-		        }
-		        //windowClass  : 'vaibhavClass',
+	        var imageDetail = {id : imageDetail.id, photoUrl: imageDetail.photoUrl, pinId :imageDetail.pinId , userId:imageDetail.userId};
+	        var pinDetail = {};
+	        modalInstance = $uibModal.open({
+	            animation: vm.animationsEnabled,
+	            ariaLabelledBy: 'modal-title',
+	            ariaDescribedBy: 'modal-body',
+	            templateUrl: '../templates/deleteImage.html',
+	            controller: 'deletePinCtrl',
+	            controllerAs: 'maps',
+	            resolve: {
+	                imageDetail: function () {
+	                    return imageDetail;
+	                },
+	                pinDetail: function () {
+	                    return pinDetail;
+	                }
+	            }
+	            //windowClass  : 'vaibhavClass',
 		     
-		    }).closed.then(function(){
-		        //$rootScope.loaderIndicator = true;;
-		        httpService.getAllPhotos(imageDetail.userId, imageDetail.pinId).then(function (response) {
-		           // alert("in loader");
-		            //$rootScope.loaderIndicator = false;
-		            //vm.$apply();
-		            //$rootScope.apply();
-		            var response = JSON.parse(response);
+	        }).closed.then(function(){
+	            //$rootScope.loaderIndicator = true;;
+	            httpService.getAllPhotos(imageDetail.userId, imageDetail.pinId).then(function (response) {
+	                // alert("in loader");
+	                //$rootScope.loaderIndicator = false;
+	                //vm.$apply();
+	                //$rootScope.apply();
+	                var response = JSON.parse(response);
 		           
-		            if (response.message == 'Record found' && response.status == 1) {
-		                vm.photos = response.data;
-		                vm.noPhotoFound = false;
-		                $('#uploadBox').trigger('click');
-		                //alert("response");
-		            }
-		            else {
-		                vm.photos = [];
-		                vm.noPhotoFound = true;
-		                $('#uploadBox').trigger('click');
-		            }
-		        });
-		    });
+	                if (response.message == 'Record found' && response.status == 1) {
+	                    vm.photos = response.data;
+	                    vm.noPhotoFound = false;
+	                    $('#uploadBox').trigger('click');
+	                    //alert("response");
+	                }
+	                else {
+	                    vm.photos = [];
+	                    vm.noPhotoFound = true;
+	                    $('#uploadBox').trigger('click');
+	                }
+	            });
+	        });
 		    
-		}
-		function openDeletePinConfirmation(userid, id, lat, lng) {
-		   // userid = userid;
-		    //id = id;
-		    lat = lat;
-		    lng = lng;
-		    var pinDetail = {userid : userid , id : id, lat : lat, lng :lng};
-		    var imageDetail = {id : id, url: url};
-		    modalInstance = $uibModal.open({
-		        animation: vm.animationsEnabled,
-		        ariaLabelledBy: 'modal-title',
-		        ariaDescribedBy: 'modal-body',
-		        templateUrl: '../templates/deletePin.html',
-		        controller: 'deletePinCtrl',
-		        controllerAs: 'maps',
-		        resolve: {
-		            pinDetail: function () {
-		                return pinDetail;
-		            },
-		            imageDetail: function () {
-		                return imageDetail;
-		            }
-		        }
+	    }
+	    function openDeletePinConfirmation(userid, id, lat, lng) {
+	        // userid = userid;
+	        //id = id;
+	        lat = lat;
+	        lng = lng;
+	        var pinDetail = {userid : userid , id : id, lat : lat, lng :lng};
+	        var imageDetail = {id : id, url: url};
+	        modalInstance = $uibModal.open({
+	            animation: vm.animationsEnabled,
+	            ariaLabelledBy: 'modal-title',
+	            ariaDescribedBy: 'modal-body',
+	            templateUrl: '../templates/deletePin.html',
+	            controller: 'deletePinCtrl',
+	            controllerAs: 'maps',
+	            resolve: {
+	                pinDetail: function () {
+	                    return pinDetail;
+	                },
+	                imageDetail: function () {
+	                    return imageDetail;
+	                }
+	            }
 		       
-		    }).closed.then(function(){
-		        $rootScope.$emit('reload_map', { latitude: lat, longitude: lng });
-		    });
+	        }).closed.then(function(){
+	            $rootScope.$emit('reload_map', { latitude: lat, longitude: lng });
+	        });
 		    
-		}
+	    }
 		
-		function makeNewPin(latLng) {
-			vm.open(null, latLng);
-		}
+	    function makeNewPin(latLng) {
+	        vm.open(null, latLng);
+	    }
 	
-		function uploadImageOnIcon(){
-				$("#imgupload").click();
-		}
+	    function uploadImageOnIcon(){
+	        setTimeout(function(){ 
+	            $("#imgupload").click();
+	        }, 2000);
+				
+	    }}
         
 		function fileChanged($event,userId, pinId){
 		    var form = new FormData();
