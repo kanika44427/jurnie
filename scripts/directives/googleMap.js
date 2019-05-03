@@ -149,7 +149,7 @@
 	            $("#imgupload").click();
 	        }, 2000);
 				
-	    }}
+	    }
         
 		function fileChanged($event,userId, pinId){
 		    var form = new FormData();
