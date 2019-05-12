@@ -370,6 +370,7 @@
 		}
 
 		function login() {
+		    alert("gredy");
 			Auth.login(vm.email, vm.password).then(function(response) {
 				if (response) {
 				    Auth.getMe().then(function () {
