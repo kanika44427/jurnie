@@ -36,9 +36,10 @@ SETTINGS MODAL -->
 				</div>
 				<div class="info cursor" ng-click="settings.edit('birthday')">
 					<span ng-hide="settings.editing === 'birthday'">{{(settings.user.birthday | date) || "Click to set"}}</span>
-					<input style="border: none; border-bottom: 2px solid #F7914C;" ng-show="settings.editing === 'birthday'" type="text" ng-click="settings.open2()"
+					<!--<input style="border: none; border-bottom: 2px solid #F7914C;" ng-show="settings.editing === 'birthday'" type="text" ng-click="settings.open2()"
 					 class="name" uib-datepicker-popup ng-model="settings.user.birthday" is-open="settings.popup2.opened" datepicker-options="settings.dateOptions"
-					 ng-required="true" show-button-bar="false" on-open-focus="false" placeholder="BIRTHDAY" readonly/>
+					 ng-required="true" show-button-bar="false" on-open-focus="false" placeholder="BIRTHDAY kaika" readonly/>-->
+                    <input data-ng-model="settings.user.birthday" ng-change="settings.birthDateFormatted()" type="date" class="name" ng-show="settings.editing === 'birthday'" />
 				</div>
 				<div class="info cursor" ng-click="settings.edit('nationality')">
 					<span ng-hide="settings.editing === 'nationality'">{{settings.user.nationality}}</span>

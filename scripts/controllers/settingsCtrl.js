@@ -15,8 +15,9 @@
 		vm.open1 = open1;
 		vm.open2 = open2;
 		vm.edit = edit;
-
+		vm.birthDateFormatted = birthDateFormatted;
 		vm.user = angular.copy(Auth.user);
+		vm.user.birthday = new Date(vm.user.birthday);
 		vm.countries = Country.staticList;
 		vm.editing = null;
 		vm.popup1 = {
@@ -31,6 +32,22 @@
 			startingDay: 1,
 			showWeeks: false
 		};
+
+		function birthDateFormatted() {
+
+		   vm.user.birthday = GetDateFormat(vm.user.birthday);
+		    
+		}
+
+		function GetDateFormat(inputDate) {
+		    var date = new Date(inputDate);
+		    var month = (date.getMonth() + 1).toString();
+		    month = month.length > 1 ? month : '0' + month;
+		    var day = date.getDate().toString();
+		    day = day.length > 1 ? day : '0' + day;
+		    return date.getFullYear() + '-' + month + '-' + day;
+		}
+
 
 		function save() {
 			User.update(vm.user).then(
