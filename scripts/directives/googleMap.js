@@ -376,6 +376,7 @@
 					disableDefaultUI: true,
 					scrollwheel: true,
 					zoomControl: false,
+					gestureHandling: 'cooperative', 
 					zoomControlOptions: {
 						position: google.maps.ControlPosition.RIGHT_CENTER
 					},
