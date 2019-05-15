@@ -882,6 +882,11 @@ margin-top: 4vh;
 #landing .logo {
 display: none !important;
 }
+.gm-style-iw.gm-style-iw-c .gm-style-iw-d{
+overflow: scroll;
+max-width: 367px !important;
+max-height: 889px ;
+}
 }
 
 
@@ -1046,3 +1051,48 @@ form.signup-form {
 .gm-style .gm-style-iw-c {
     padding: 0;
 }
+
+/*.name-container-nav {
+    display: -webkit-inline-box;
+    flex-direction: unset;
+    margin-right: 0;
+    text-align: center;
+}
+.vertical-line-top {
+    color: white;
+    background-color: white;
+    width: 1px;
+    height: 80px;
+    margin-top: 6px;
+}
+.desktop-name {
+    color: white;
+    font-size: 17px;
+}
+@media screen and (min-width: 992px) {
+    width: 50px;
+    height: 50px;
+}*/
+
+.gm-style .gm-style-iw-c {
+    position: absolute;
+    box-sizing: border-box;
+    overflow: hidden;
+    top: 0 !important;
+    left: 0 !important;
+    transform: translate(-50%,-100%);
+    background-color: white;
+    border-radius: 8px;
+    /*padding: 12px;*/
+    box-shadow: 0 2px 7px 1px rgba(0,0,0,0.3);
+}
+
+#infowindow .to {
+    position: absolute;
+    right: 5px;
+}
+
+a.nav-link.desktop-name.ng-binding {
+width: max-content;
+}
+

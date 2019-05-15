@@ -673,7 +673,7 @@
 
 		function createFBMarker(taggedInfo) {
 		    var req_obj = {
-		        "pinTypeId": 3,
+		        "pinTypeId": 1,
 		        "latitude": taggedInfo.place.location.latitude,
 		        "longitude": taggedInfo.place.location.longitude,
 		        "startDate": taggedInfo.created_time,
@@ -689,7 +689,7 @@
 
 		function createInstaMarker(taggedInfo) {
 		    var req_obj = {
-		        "pinTypeId": 3,
+		        "pinTypeId": 1,
 		        "latitude": taggedInfo.location.latitude,
 		        "longitude": taggedInfo.location.longitude,
 		        "startDate": "",
