@@ -254,9 +254,11 @@
 			                                if(taggedPlaces && taggedPlaces.length > 0 ){
 			                                    for (var i = 0; i < taggedPlaces.length; i++) {
 			                                        var taggedInfo = taggedPlaces[i];
-			                                        if (taggedInfo.location && taggedInfo.location != null)
+			                                        console.log(taggedInfo[0]);
+			                                        if (taggedInfo.location && taggedInfo.location != null) {
 			                                            createInstaMarker(taggedInfo);
-			                                            var taggedInfo = taggedPlaces[i];
+			                                        }
+			                                            //var taggedInfo = taggedPlaces[i];
 			                                            if (i == (taggedPlaces.length - 1)) {
 			                                             redirectToHome();
 			                                           }
@@ -688,14 +690,18 @@
 		}
 
 		function createInstaMarker(taggedInfo) {
+		    var caption = "", created_time = ""; 
+		    if(taggedInfo.caption && taggedInfo.caption.text)
+		        caption = taggedInfo.caption.text;
+		    created_time = taggedInfo.created_time ? taggedInfo.created_time : "";
 		    var req_obj = {
 		        "pinTypeId": 1,
 		        "latitude": taggedInfo.location.latitude,
 		        "longitude": taggedInfo.location.longitude,
-		        "startDate": "",
-		        "endDate": "",
+		        "startDate": created_time,
+		        "endDate": created_time,
 		        "rating": -1,
-		        "note": "",
+		        "note": caption, 
 		        "description": null
 		    }
 		    Pin.add(req_obj).then(function (res) {
@@ -706,6 +712,15 @@
 		function signUpWithInstagram() {
 		    instagramService.authorize();
                
+		}
+		function Unix_timestamp(t) {
+
+		    var date = new Date(t * 1000);
+		    var month = (date.getMonth() + 1).toString();
+		    month = month.length > 1 ? month : '0' + month;
+		    var day = date.getDate().toString();
+		    day = day.length > 1 ? day : '0' + day;
+		    return date.getFullYear() + '-' + month + '-' + day + 'T00:00:00.000Z';
 		}
 	}
 })();
