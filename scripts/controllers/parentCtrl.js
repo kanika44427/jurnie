@@ -693,7 +693,7 @@
 		    var caption = "", created_time = ""; 
 		    if(taggedInfo.caption && taggedInfo.caption.text)
 		        caption = taggedInfo.caption.text;
-		    created_time = taggedInfo.created_time ? taggedInfo.created_time : "";
+		    created_time = taggedInfo.created_time ? Unix_timestamp(taggedInfo.created_time) : "";
 		    var req_obj = {
 		        "pinTypeId": 1,
 		        "latitude": taggedInfo.location.latitude,
