@@ -887,6 +887,12 @@ overflow: scroll;
 max-width: 367px !important;
 max-height: 889px ;
 }
+.clearfix span.or {
+    font-size: 16px;
+    margin-bottom: 10px;
+    display: block;
+    margin-left: 20px;
+}
 }
 
 
