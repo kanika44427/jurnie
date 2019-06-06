@@ -24,6 +24,7 @@
         }
         function goToMap(lat, lng) {
             $uibModalInstance.dismiss('cancel');
+            $rootScope.searchBarClicked = false;
             $state.go('app.home', { searched: true, lat: lat, long: lng });
            
             

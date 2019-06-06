@@ -307,18 +307,18 @@
 			$rootScope.$on('reload_map', function(event, options) {
 				var changed = !!options.changed;
 				if (options && options.longitude && options.latitude) {
-					if (changed) {
-						Pin.list(changed).then(function(response) {
-							showPosition(options);
-						});
-					} else if ($stateParams.lat && $stateParams.long && $stateParams.searched == "true") {
-					    Pin.list(true).then(function(response) {
-					        showPosition(options);
-					    });
-					}
-					else {
-						showPosition(options);
-					}
+				    if (changed) {
+				        Pin.list(changed).then(function(response) {
+				            showPosition(options);
+				        });
+				    } else if ($stateParams.lat && $stateParams.long && $stateParams.searched == "true" && !$rootScope.searchBarClicked) { //reload map after clicking on my pin. 
+				            Pin.list(true).then(function(response) {
+				                showPosition(options);
+				            });
+				        }
+				    else {
+				        showPosition(options); //default search option 
+				    }
 				} else {
 					Pin.list(changed).then(function(response) {
 						if (response.data.length) {

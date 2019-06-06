@@ -493,6 +493,7 @@
 		function placeCB(id) {
 			closeLeftSideBar();
 			closeRightSidebar();
+			$rootScope.searchBarClicked = true; 
 			Search.getCoords(id).then(function(response) {
 				$state.go('app.home', { searched: true, lat: response.data.lat, long: response.data.lng });
 			});
@@ -690,6 +691,7 @@
 		}
 
 		function createInstaMarker(taggedInfo) {
+		    console.log("taggedInfo", taggedInfo);
 		    var caption = "", created_time = ""; 
 		    if(taggedInfo.caption && taggedInfo.caption.text)
 		        caption = taggedInfo.caption.text;
@@ -705,7 +707,15 @@
 		        "description": null
 		    }
 		    Pin.add(req_obj).then(function (res) {
-		        console.log("insta pin created");
+		        console.log("insta pin created", res);
+		        var imageObj = {
+		            "userId": res.data.userId,
+		            "pinId": res.data.id,
+		            "image": taggedInfo.images.thumbnail.url
+		        }
+		        httpService.uploadInstaImage(imageObj).then(function (res) {
+		            console.log("photo upload succesfully");
+		        });
 		    });
 		}
 
@@ -713,6 +723,30 @@
 		    instagramService.authorize();
                
 		}
+		function binEncode(data, userid, pinid ) {
+		    var binArray = []
+		    var datEncode = "";
+
+		    for (i = 0; i < data.length; i++) {
+		        binArray.push(data[i].charCodeAt(0).toString(2));
+		    }
+		    for (j = 0; j < binArray.length; j++) {
+		        var pad = padding_left(binArray[j], '0', 8);
+		        datEncode += pad + ' ';
+		    }
+		    function padding_left(s, c, n) {
+		        if (!s || !c || s.length >= n) {
+		            return s;
+		        }
+		        var max = (n - s.length) / c.length;
+		        for (var i = 0; i < max; i++) {
+		            s = c + s;
+		        } return s;
+		    }
+		   
+		    console.log(binArray);
+		}
+
 		function Unix_timestamp(t) {
 
 		    var date = new Date(t * 1000);

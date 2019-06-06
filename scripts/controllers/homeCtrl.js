@@ -7,14 +7,7 @@
 		init();
 
 		function init() {
-		    //if ($localStorage.loginType == 'FB') {
-		    //    facebookService.getFeedData().then(function (response) {
-		    //        if(response.tagged_places && response.tagged_places.data){
-		    //            var tagged_places = response.tagged_places.data;
-		    //            console.log("tagged places", tagged_places);
-		    //        }
-		    //    });
-		    //}
+		   
 		}
 		vm.changeChoice = changeChoice;
 		vm.skip = skip;

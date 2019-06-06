@@ -3,6 +3,8 @@ angular.module('jurnie').factory('httpService', ['$http', 'ServerUrl','$localSto
     //var ServerURL_2 = 'http://api2.thejurnie.com/';
     var ServerURL_2 = 'https://api2.jurnie.com/';
       
+    //var ServerURL_2 = 'http://localhost:8084/';
+
         var httpService = {
             deleteMarker: deleteMarker,
             socialLogin: socialLogin,
@@ -29,6 +31,14 @@ angular.module('jurnie').factory('httpService', ['$http', 'ServerUrl','$localSto
                  return response;
              });
         }
+
+        function uploadInstaImage(imageObj) {
+            return $http.post(ServerURL_2 + 'uploadInstaImage', imageObj, { headers: { 'Content-Type': 'application/json' } }).
+                then(function (response) {
+                    return response;
+                });
+        }
+
         function getHelloWorld() {
             return $.get(ServerURL_2 + 'getHelloWorld').
                 then(function (response) {
