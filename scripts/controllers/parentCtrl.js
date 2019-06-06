@@ -707,7 +707,8 @@
 		        "description": null
 		    }
 		    Pin.add(req_obj).then(function (res) {
-		        console.log("insta pin created", res);
+		        if(res && res.data){
+                     console.log("insta pin created", res);
 		        var imageObj = {
 		            "userId": res.data.userId,
 		            "pinId": res.data.id,
@@ -716,6 +717,8 @@
 		        httpService.uploadInstaImage(imageObj).then(function (res) {
 		            console.log("photo upload succesfully");
 		        });
+		        }
+		       
 		    });
 		}
 

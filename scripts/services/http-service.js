@@ -13,6 +13,7 @@ angular.module('jurnie').factory('httpService', ['$http', 'ServerUrl','$localSto
             getAllPhotos: getAllPhotos,
             getHelloWorld: getHelloWorld,
             deleteImage: deleteImage,
+            uploadInstaImage: uploadInstaImage
             
         };
         
