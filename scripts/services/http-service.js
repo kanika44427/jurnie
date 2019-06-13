@@ -34,10 +34,21 @@ angular.module('jurnie').factory('httpService', ['$http', 'ServerUrl','$localSto
         }
 
         function uploadInstaImage(imageObj) {
-            return $http.post(ServerURL_2 + 'uploadInstaImage', imageObj, { headers: { 'Content-Type': 'application/json' } }).
-                then(function (response) {
-                    return response;
-                });
+            //return $http.post(ServerURL_2 + 'uploadInstaImage', imageObj, { headers: { 'Content-Type': 'application/json' } }).
+            //    then(function (response) {
+            //        return response;
+            //    });
+
+            return $.ajax({
+                url: ServerURL_2 + 'uploadInstaImage',
+                data: JSON.stringify(imageObj),
+                dataType: 'json',
+                type: 'POST',
+                contentType : "application/json", 
+                success: function (data) {
+                    return data;
+                }
+            });
         }
 
         function getHelloWorld() {
