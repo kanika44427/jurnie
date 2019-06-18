@@ -254,7 +254,7 @@
 			                                if(taggedPlaces && taggedPlaces.length > 0 ){
 			                                    for (var i = 0; i < taggedPlaces.length; i++) {
 			                                        var taggedInfo = taggedPlaces[i];
-			                                        console.log(taggedInfo[0]);
+			                                        //console.log(taggedInfo[0]);
 			                                        if (taggedInfo.location && taggedInfo.location != null) {
 			                                            createInstaMarker(taggedInfo);
 			                                        }
@@ -691,7 +691,7 @@
 		}
 
 		function createInstaMarker(taggedInfo) {
-		    console.log("taggedInfo", taggedInfo);
+		    //console.log("taggedInfo", taggedInfo);
 		    var caption = "", created_time = ""; 
 		    if(taggedInfo.caption && taggedInfo.caption.text)
 		        caption = taggedInfo.caption.text;
@@ -715,7 +715,7 @@
 		            "image": taggedInfo.images.thumbnail.url
 		        }
 		        httpService.uploadInstaImage(imageObj).then(function (res) {
-		            console.log("photo upload succesfully");
+		            console.log("photo upload succesfully", imageObj.pinId);
 		        });
 		        }
 		       

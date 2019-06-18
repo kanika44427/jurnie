@@ -653,19 +653,19 @@
 
 						addInfoWindow(marker, infoWindowContent[0], record);
 					}
-					var markerCluster = new MarkerClusterer(map, markers, {
-						// imagePath: '../assets/clusterMarker',
-						maxZoom: 12,
-						styles: [
-							{
-								url: '../assets/clusterMarker1.png',
-								width: 32,
-								textColor: 'white',
-								height: 48,
-								anchor: [0, 0]
-							}
-						]
-					});
+					//var markerCluster = new MarkerClusterer(map, markers, {
+					//	// imagePath: '../assets/clusterMarker',
+					//	maxZoom: 12,
+					//	styles: [
+					//		{
+					//			url: '../assets/clusterMarker1.png',
+					//			width: 32,
+					//			textColor: 'white',
+					//			height: 48,
+					//			anchor: [0, 0]
+					//		}
+					//	]
+					//});
 					var bounds = new google.maps.LatLngBounds();
 					for (var i = 0; i < markers.length; i++) {
 					    bounds.extend(markers[i].getPosition());

@@ -1,8 +1,8 @@
 ﻿
 angular.module('jurnie').factory("instagramService", function ($rootScope, $location, $http, $localStorage, $sce) {
-  // var    client_id = "3f6db4c4a43941339aafa3b9b57ead9b"; // local 
+      // var client_id = "3f6db4c4a43941339aafa3b9b57ead9b"; // local 
      //var client_id = "5803d3a724ed407ba3ba753bafc1312b"; // uat 
-    var client_id = "363b3e1a9dca4fcd85a3cc0354240b0f"; // production 
+     var client_id = "363b3e1a9dca4fcd85a3cc0354240b0f"; // production 
     var service = {
         authorize: function () {
             var igPopup = window.open("https://instagram.com/oauth/authorize/?client_id=" + client_id +
