@@ -39,122 +39,139 @@
     <button ng-hide="analytics.loading" class="chart-btn" ng-if="analytics.chart !== 'aggregate'" ng-click="analytics.showChart('aggregate')">Show Aggregate Data Chart</button>
 
     <h1 class="loading" ng-show="analytics.loading">LOADING...</h1>
-    <table ng-if="analytics.chart === 'pins'" ng-hide="analytics.loading">
-        <tr>
-            <th ng-click="analytics.pinCarotSet('dateCreated')">Date Created
-                <span class="down-carot" ng-if="analytics.pinCarot === 'dateCreated'">&#9660;</span>
-                <span class="up-carot" ng-if="analytics.pinCarot === '-dateCreated'">&#9650;</span>
-            </th>
-            <th ng-click="analytics.pinCarotSet('city')">City
-                <span class="down-carot" ng-if="analytics.pinCarot === 'city'">&#9660;</span>
-                <span class="up-carot" ng-if="analytics.pinCarot === '-city'">&#9650;</span>
-            </th>
-            <th ng-click="analytics.pinCarotSet('country')">Country
-                <span class="down-carot" ng-if="analytics.pinCarot === 'country'">&#9660;</span>
-                <span class="up-carot" ng-if="analytics.pinCarot === '-country'">&#9650;</span>
-            </th>
-            <th ng-click="analytics.pinCarotSet('pinType')">Pin Type
-                <span class="down-carot" ng-if="analytics.pinCarot === 'pinType'">&#9660;</span>
-                <span class="up-carot" ng-if="analytics.pinCarot === '-pinType'">&#9650;</span>
-            </th>
-        </tr>
-        <tr ng-repeat="pin in analytics.analytics.pins | orderBy: analytics.pinCarot">
-            <th>{{pin.pinType.createdAt | date: 'dd-MM-yyyy'}}</th>
-            <th>{{pin.city}}</th>
-            <th>{{pin.country}}</th>
-            <th>{{pin.pinType.description}}</th>
-        </tr>
-    </table>
-    <table ng-if="analytics.chart === 'signup'" ng-hide="analytics.loading">
-        <tr>
-            <th ng-click="analytics.signupCarotSet('firstName')">First Name
-                <span class="down-carot" ng-if="analytics.signupCarot === 'firstName'">&#9660;</span>
-                <span class="up-carot" ng-if="analytics.signupCarot === '-firstName'">&#9650;</span>
-            </th>
-            <th ng-click="analytics.signupCarotSet('lastName')">Last Name
-                <span class="down-carot" ng-if="analytics.signupCarot === 'lastName'">&#9660;</span>
-                <span class="up-carot" ng-if="analytics.signupCarot === '-lastName'">&#9650;</span>
-            </th>
-            <th ng-click="analytics.signupCarotSet('email')">Email
-                <span class="down-carot" ng-if="analytics.signupCarot === 'email'">&#9660;</span>
-                <span class="up-carot" ng-if="analytics.signupCarot === '-email'">&#9650;</span>
-            </th>
-            <th ng-click="analytics.signupCarotSet('birthday')">Birthday
-                <span class="down-carot" ng-if="analytics.signupCarot === 'birthday'">&#9660;</span>
-                <span class="up-carot" ng-if="analytics.signupCarot === '-birthday'">&#9650;</span>
-            </th>
-            <th ng-click="analytics.signupCarotSet('gender')">Gender
-                <span class="down-carot" ng-if="analytics.signupCarot === 'gender'">&#9660;</span>
-                <span class="up-carot" ng-if="analytics.signupCarot === '-gender'">&#9650;</span>
-            </th>
-            <th ng-click="analytics.signupCarotSet('favPlace')">Favorite Place
-                <span class="down-carot" ng-if="analytics.signupCarot === 'favPlace'">&#9660;</span>
-                <span class="up-carot" ng-if="analytics.signupCarot === '-favPlace'">&#9650;</span>
-            </th>
-            <th ng-click="analytics.signupCarotSet('nationality')">Nationality
-                <span class="down-carot" ng-if="analytics.signupCarot === 'nationality'">&#9660;</span>
-                <span class="up-carot" ng-if="analytics.signupCarot === '-nationality'">&#9650;</span>
-            </th>
-            <th ng-click="analytics.signupCarotSet('pins')">Number of Pins
-                <span class="down-carot" ng-if="analytics.signupCarot === 'pins'">&#9660;</span>
-                <span class="up-carot" ng-if="analytics.signupCarot === '-pins'">&#9650;</span>
-            </th>
-            <th ng-click="analytics.signupCarotSet('startDate')">Account Created
-                <span class="down-carot" ng-if="analytics.signupCarot === 'startDate'">&#9660;</span>
-                <span class="up-carot" ng-if="analytics.signupCarot === '-startDate'">&#9650;</span>
-            </th>
-        </tr>
-        <tr ng-repeat="signup in analytics.analytics.signups | orderBy: analytics.signupCarot">
-            <th>{{signup.firstName}}</th>
-            <th>{{signup.lastName}}</th>
-            <th>{{signup.email}}</th>
-            <th>{{signup.birthday | date: 'dd-MM-yyyy'}}</th>
-            <th>{{signup.gender}}</th>
-            <th>{{signup.favPlace}}</th>
-            <th>{{signup.nationality}}</th>
-            <th>{{signup.pins}}</th>
-            <th>{{signup.startDate | date: 'dd-MM-yyyy'}}</th>
-        </tr>
-    </table>
-    <div class="aggregate-charts" ng-if="analytics.chart === 'aggregate'" ng-hide="analytics.loading">
-        <table>
+    <div style="overflow:scroll; height:100 px">
+        <table ng-if="analytics.chart === 'pins'" ng-hide="analytics.loading">
             <tr>
-                <th ng-click="analytics.changeAgeFilter()">Age
-                    <span class="down-carot" ng-if="analytics.ageSort === '-age'">&#9660;</span>
-                    <span class="up-carot" ng-if="analytics.ageSort === 'age'">&#9650;</span>
+                <th ng-click="analytics.pinCarotSet('dateCreated')">
+                    Date Created
+                    <span class="down-carot" ng-if="analytics.pinCarot === 'dateCreated'">&#9660;</span>
+                    <span class="up-carot" ng-if="analytics.pinCarot === '-dateCreated'">&#9650;</span>
                 </th>
-                <th>Count</th>
-            </tr>
-            <tr ng-repeat="age in analytics.analytics.aggregate.ages | orderBy: analytics.ageSort">
-                <th>{{age.age}}</th>
-                <th>{{age.count}}</th>
-
-            </tr>
-        </table>
-        <table>
-            <tr>
-                <th>Gender</th>
-                <th>Count</th>
-            </tr>
-            <tr ng-repeat="gender in analytics.analytics.aggregate.genders">
-                <th>{{gender.gender}}</th>
-                <th>{{gender.count}}</th>
-
-            </tr>
-        </table>
-        <table>
-            <tr>
-                <th ng-click="analytics.changeNationalityFilter()">Nationality
-                    <span class="down-carot" ng-if="analytics.nationalitySort === '-nationality'">&#9660;</span>
-                    <span class="up-carot" ng-if="analytics.nationalitySort === 'nationality'">&#9650;</span>
+                <th ng-click="analytics.pinCarotSet('city')">
+                    City
+                    <span class="down-carot" ng-if="analytics.pinCarot === 'city'">&#9660;</span>
+                    <span class="up-carot" ng-if="analytics.pinCarot === '-city'">&#9650;</span>
                 </th>
-                <th>Count</th>
+                <th ng-click="analytics.pinCarotSet('country')">
+                    Country
+                    <span class="down-carot" ng-if="analytics.pinCarot === 'country'">&#9660;</span>
+                    <span class="up-carot" ng-if="analytics.pinCarot === '-country'">&#9650;</span>
+                </th>
+                <th ng-click="analytics.pinCarotSet('pinType')">
+                    Pin Type
+                    <span class="down-carot" ng-if="analytics.pinCarot === 'pinType'">&#9660;</span>
+                    <span class="up-carot" ng-if="analytics.pinCarot === '-pinType'">&#9650;</span>
+                </th>
             </tr>
-            <tr ng-repeat="nat in analytics.analytics.aggregate.nationalities | orderBy: analytics.nationalitySort">
-                <th>{{nat.nationality}}</th>
-                <th>{{nat.count}}</th>
-
+            <tr ng-repeat="pin in analytics.analytics.pins | orderBy: analytics.pinCarot">
+                <th>{{pin.pinType.createdAt | date: 'dd-MM-yyyy'}}</th>
+                <th>{{pin.city}}</th>
+                <th>{{pin.country}}</th>
+                <th>{{pin.pinType.description}}</th>
             </tr>
         </table>
     </div>
-</div>
+        <table ng-if="analytics.chart === 'signup'" ng-hide="analytics.loading">
+            <tr>
+                <th ng-click="analytics.signupCarotSet('firstName')">
+                    First Name
+                    <span class="down-carot" ng-if="analytics.signupCarot === 'firstName'">&#9660;</span>
+                    <span class="up-carot" ng-if="analytics.signupCarot === '-firstName'">&#9650;</span>
+                </th>
+                <th ng-click="analytics.signupCarotSet('lastName')">
+                    Last Name
+                    <span class="down-carot" ng-if="analytics.signupCarot === 'lastName'">&#9660;</span>
+                    <span class="up-carot" ng-if="analytics.signupCarot === '-lastName'">&#9650;</span>
+                </th>
+                <th ng-click="analytics.signupCarotSet('email')">
+                    Email
+                    <span class="down-carot" ng-if="analytics.signupCarot === 'email'">&#9660;</span>
+                    <span class="up-carot" ng-if="analytics.signupCarot === '-email'">&#9650;</span>
+                </th>
+                <th ng-click="analytics.signupCarotSet('birthday')">
+                    Birthday
+                    <span class="down-carot" ng-if="analytics.signupCarot === 'birthday'">&#9660;</span>
+                    <span class="up-carot" ng-if="analytics.signupCarot === '-birthday'">&#9650;</span>
+                </th>
+                <th ng-click="analytics.signupCarotSet('gender')">
+                    Gender
+                    <span class="down-carot" ng-if="analytics.signupCarot === 'gender'">&#9660;</span>
+                    <span class="up-carot" ng-if="analytics.signupCarot === '-gender'">&#9650;</span>
+                </th>
+                <th ng-click="analytics.signupCarotSet('favPlace')">
+                    Favorite Place
+                    <span class="down-carot" ng-if="analytics.signupCarot === 'favPlace'">&#9660;</span>
+                    <span class="up-carot" ng-if="analytics.signupCarot === '-favPlace'">&#9650;</span>
+                </th>
+                <th ng-click="analytics.signupCarotSet('nationality')">
+                    Nationality
+                    <span class="down-carot" ng-if="analytics.signupCarot === 'nationality'">&#9660;</span>
+                    <span class="up-carot" ng-if="analytics.signupCarot === '-nationality'">&#9650;</span>
+                </th>
+                <th ng-click="analytics.signupCarotSet('pins')">
+                    Number of Pins
+                    <span class="down-carot" ng-if="analytics.signupCarot === 'pins'">&#9660;</span>
+                    <span class="up-carot" ng-if="analytics.signupCarot === '-pins'">&#9650;</span>
+                </th>
+                <th ng-click="analytics.signupCarotSet('startDate')">
+                    Account Created
+                    <span class="down-carot" ng-if="analytics.signupCarot === 'startDate'">&#9660;</span>
+                    <span class="up-carot" ng-if="analytics.signupCarot === '-startDate'">&#9650;</span>
+                </th>
+            </tr>
+            <tr ng-repeat="signup in analytics.analytics.signups | orderBy: analytics.signupCarot">
+                <th>{{signup.firstName}}</th>
+                <th>{{signup.lastName}}</th>
+                <th>{{signup.email}}</th>
+                <th>{{signup.birthday | date: 'dd-MM-yyyy'}}</th>
+                <th>{{signup.gender}}</th>
+                <th>{{signup.favPlace}}</th>
+                <th>{{signup.nationality}}</th>
+                <th>{{signup.pins}}</th>
+                <th>{{signup.startDate | date: 'dd-MM-yyyy'}}</th>
+            </tr>
+        </table>
+        <div class="aggregate-charts" ng-if="analytics.chart === 'aggregate'" ng-hide="analytics.loading">
+            <table>
+                <tr>
+                    <th ng-click="analytics.changeAgeFilter()">
+                        Age
+                        <span class="down-carot" ng-if="analytics.ageSort === '-age'">&#9660;</span>
+                        <span class="up-carot" ng-if="analytics.ageSort === 'age'">&#9650;</span>
+                    </th>
+                    <th>Count</th>
+                </tr>
+                <tr ng-repeat="age in analytics.analytics.aggregate.ages | orderBy: analytics.ageSort">
+                    <th>{{age.age}}</th>
+                    <th>{{age.count}}</th>
+
+                </tr>
+            </table>
+            <table>
+                <tr>
+                    <th>Gender</th>
+                    <th>Count</th>
+                </tr>
+                <tr ng-repeat="gender in analytics.analytics.aggregate.genders">
+                    <th>{{gender.gender}}</th>
+                    <th>{{gender.count}}</th>
+
+                </tr>
+            </table>
+            <table>
+                <tr>
+                    <th ng-click="analytics.changeNationalityFilter()">
+                        Nationality
+                        <span class="down-carot" ng-if="analytics.nationalitySort === '-nationality'">&#9660;</span>
+                        <span class="up-carot" ng-if="analytics.nationalitySort === 'nationality'">&#9650;</span>
+                    </th>
+                    <th>Count</th>
+                </tr>
+                <tr ng-repeat="nat in analytics.analytics.aggregate.nationalities | orderBy: analytics.nationalitySort">
+                    <th>{{nat.nationality}}</th>
+                    <th>{{nat.count}}</th>
+
+                </tr>
+            </table>
+        </div>
+    </div>

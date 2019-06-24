@@ -90,7 +90,7 @@
 						<img class="magnifying-glass" src="assets/Magnify Glass - White.png">
 						<search-bar class="search-desktop" person-cb="parent.personCB" place-cb="parent.placeCB"></search-bar>
 					</div>
-                    <a ng-if="parent.isAdmin" class="go-to-analytics" ng-click="parent.goToAnalytics()">View Analytics</a>
+                    <a ng-if="parent.isAdmin" class="go-to-analytics" style="cursor: pointer" ng-click="parent.goToAnalytics()">View Analytics</a>
 				</div>
 				<div class="navbar-right desktop-navbar-right">
 					<rank user="parent.user" pins="parent.user.pins.length"></rank>

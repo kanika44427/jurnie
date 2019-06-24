@@ -23,6 +23,7 @@
 	    vm.photo = false;
 	    //vm.deleteImage = deleteImage;
 	    vm.openDeleteImageConfirmation = openDeleteImageConfirmation;
+	    vm.photoEnlarge = photoEnlarge;
 	    //vm.cancelImageDelete = cancelImageDelete;
 	    vm.openDeletePinConfirmation = openDeletePinConfirmation;
 	    var modalInstance, id, url ;
@@ -62,7 +63,27 @@
 	        open(id, latLng, lat, long);
 	    }
 
-		
+	    function photoEnlarge(url){
+	        modalInstance = $uibModal.open({
+	            animation: vm.animationsEnabled,
+	            ariaLabelledBy: 'modal-title',
+	            ariaDescribedBy: 'modal-body',
+	            templateUrl: '../templates/photoEnlarge.html',
+	            controller: 'deletePinCtrl',
+	            controllerAs: 'maps',
+	            resolve: {
+	                image: function () {
+	                    return url;
+	                }, 
+	                imageDetail: function () {
+	                    return {};
+	                },
+	                pinDetail: function () {
+	                    return {};
+	                },
+	            }
+	        });
+	    }
 	
 	    function openDeleteImageConfirmation(i)
 	    {
@@ -83,6 +104,9 @@
 	                },
 	                pinDetail: function () {
 	                    return pinDetail;
+	                },
+	                image : function(){
+	                    return {};
 	                }
 	            }
 	            //windowClass  : 'vaibhavClass',
@@ -604,9 +628,11 @@
                                   '<div class="upload-box" id="uploadBox" style="width:100%;background:#eee;overflow: hidden;overflow: hidden;">'+
                                  
                                   '<div ng-repeat="item in maps.photos">'+ //photo div loop start 
+                                        '<div style="cursor: pointer" ng-click="maps.photoEnlarge(item.photoUrl)">'+
                                            '<button  type="button" ng-click="maps.openDeleteImageConfirmation($index'+
                                                                            ')">X</button>'+
                                            '<img ng-src="{{item.photoUrl}}" style="width: 100%;height: 60px;padding: 5px 0px;">'+
+                                        '</div>'+
                                     '</div>'+ //photo div loop ends
                           
                             '<div ng-if="maps.noPhotoFound"> No photo found. </div>'+

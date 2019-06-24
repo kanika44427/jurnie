@@ -8,7 +8,8 @@
         pinDetail,
         $scope,
         Pin,
-        imageDetail
+        imageDetail,
+        image
 
 	) {
         var vm = this;
@@ -17,7 +18,14 @@
         vm.deleteImage = deleteImage;
         $scope.pinDetail = pinDetail;
         $scope.imageDetail = imageDetail;
+        $scope.image = image;
         vm.cancelImageDelete = cancelImageDelete;
+        vm.closePhotoPopup = closePhotoPopup;
+
+        function closePhotoPopup() {
+            $uibModalInstance.dismiss('cancel');
+        }
+
         function deletePin() {
             $rootScope.loaderIndicator = true;
             Pin.remove($scope.pinDetail.id).then(function (response) {
