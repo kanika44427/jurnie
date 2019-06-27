@@ -1,14 +1,21 @@
 ﻿<!--Modal back up -->
 <!--
 NEW PIN MODAL -->
-<div id="newPin">
-    <div class="modal-header">
-        <h3>Photo</h3>
+<div id="newPin" >
+    <div class="modal-header">       
+        <button class="cancel btn btn-warning cursor" style="float:right !important" type="button" ng-click="maps.closePhotoPopup()">X</button>
     </div>
     <div class="modal-body" id="modal-body">
-        <img ng-src="{{image}}">
+        <img ng-src="{{image}}" class="img-responsive">
     </div>
 </div>
-<div class="modal-footer">
-    <button class="cancel btn btn-warning cursor" type="button" ng-click="maps.closePhotoPopup()">OK</button>
-</div>
+<style>
+    @media screen and (max-width: 767px) {
+        .modal-open .modal {
+            overflow-x: hidden;
+            overflow-y: auto;
+            width: 100%;
+            left: 50%;
+        }
+    }
+</style>
