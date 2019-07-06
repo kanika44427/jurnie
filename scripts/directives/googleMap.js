@@ -168,56 +168,50 @@
 	        vm.open(null, latLng);
 	    }
 	
-	    function uploadImageOnIcon(){
-	        setTimeout(function(){ 
-	            $("#imgupload").click();
-	        }, 2000);
+	    function uploadImageOnIcon(event){
+	       // setTimeout(function(){ 
+	        $("#imgupload").click();
+	        event.stopPropagation();
+	       // }, 100);
 				
 	    }
         
-		function fileChanged($event,userId, pinId){
-		    var form = new FormData();
-		    //angular.forEach($event.target.files[0], function (item) {
-		    //    form.append('file', $event.target.files[0]);
-		    //});
-		    form.append('file', $event.target.files[0]);
-		    form.append('userId', userId);
-		    form.append('pinId', pinId);
-		    //var file = $event.target.files[0];
-		    //var my_pdf_file_as_base64 = "";
-		    //var file_base64 = getBase64(file, function(e) {
-		       // my_pdf_file_as_base64 = e.target.result;
-		        //var user = {
-		        //    userId : userId,
-		        //    pinId : pinId,
-		        //    image : form
-		        //}
-		        $rootScope.loaderIndicator = true;
-		        httpService.uploadPhoto(form).then(function(res){
-		            $rootScope.loaderIndicator = false;
-		            var res = JSON.parse(res);
-		            if(res.status == 1 && res.message == "Record inserted successfully"){
-		                alert("Photo uploaded sucessfully.");
-		                httpService.getAllPhotos(userId, pinId).then(function(response) {
-		                    var response = JSON.parse(response);
-		                    if(response.message == 'Record found' && response.status == 1){
-		                        vm.noPhotoFound = false;
-		                        vm.photos= [];
-		                        vm.photos = response.data;
-		                        $('#uploadBox').trigger('click');
-		                        $rootScope.loaderIndicator = false;
+	    function fileChanged($event,userId, pinId){
+	        if($event.target.files && $event.target.files.length > 0 ){ // file upload successfully.
+	            var form = new FormData();
+	            form.append('file', $event.target.files[0]);
+	            form.append('userId', userId);
+	            form.append('pinId', pinId);		    
+	            $rootScope.loaderIndicator = true;
+	            httpService.uploadPhoto(form).then(function(res){
+	                $rootScope.loaderIndicator = false;
+	                var res = JSON.parse(res);
+	                if(res.status == 1 && res.message == "Record inserted successfully"){
+	                    alert("Photo uploaded sucessfully.");
+	                    httpService.getAllPhotos(userId, pinId).then(function(response) {
+	                        var response = JSON.parse(response);
+	                        if(response.message == 'Record found' && response.status == 1){
+	                            vm.noPhotoFound = false;
+	                            vm.photos= [];
+	                            vm.photos = response.data;
+	                            $('#uploadBox').trigger('click');
+	                            $rootScope.loaderIndicator = false;
 		                       
-		                    }
-		                    else{
-		                        vm.photos = [];
-		                        $('#uploadBox').trigger('click');
-		                        $rootScope.loaderIndicator = false;
-		                        vm.noPhotoFound = true;
-		                    }
-		                });
-		            }
-		        });
-		   // });
+	                        }
+	                        else{
+	                            vm.photos = [];
+	                            $('#uploadBox').trigger('click');
+	                            $rootScope.loaderIndicator = false;
+	                            vm.noPhotoFound = true;
+	                        }
+	                    });
+	                }
+	            });
+		
+	        }
+	        else{
+	            $rootScope.loaderIndicator = false;
+	        }
 
 		   
 		}
@@ -621,9 +615,9 @@
 								'</div>' +
                                 '<div class="note-pic-display" ng-if="maps.photo" style="width: 100% !important;margin: 0 auto;padding:8px !important;height: 175px !important;overflow-y: scroll;border-radius: 0;">'+
                                   '<div class="upload-header" id="OpenImgUpload" style="background: #f7914c;;padding: 5px;text-align: center;color: #fff;border-top-left-radius: 5px;border-top-right-radius: 5px;margin-top: 10px;">'+
-                                    '<input type="file" id="imgupload" name="imgupload" ng-upload-change="maps.fileChanged($event, \''+
+                                    '<input type="file" size="1" id="imgupload" name="imgupload" ng-upload-change="maps.fileChanged($event, \''+
                                       record.userId + "','" + record.id + "'"+')" style="display:none;" accept="image/*" />'+
-                                     '<button style="padding:0; width:100%;background:none; border:none;" id="uploadFileButton" ng-click="maps.uploadImageOnIcon()" >Upload Button <i class="trash-pic glyphicon glyphicon-plus"></i></button>'+
+                                     '<button style="padding:0; width:100%;background:none; border:none;" id="uploadFileButton" ng-click="maps.uploadImageOnIcon($event)" >Upload Button <i class="trash-pic glyphicon glyphicon-plus"></i></button>'+
                                   '</div>'+
                                   '<div class="upload-box" id="uploadBox" style="width:100%;background:#eee;overflow: hidden;overflow: hidden;">'+
                                  
