@@ -169,10 +169,10 @@
 	    }
 	
 	    function uploadImageOnIcon(event){
-	       // setTimeout(function(){ 
+	        setTimeout(function(){ 
 	        $("#imgupload").click();
-	        event.stopPropagation();
-	       // }, 100);
+	       // event.stopPropagation();
+	        }, 100);
 				
 	    }
         
