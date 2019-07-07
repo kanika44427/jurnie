@@ -141,7 +141,8 @@
 	        lat = lat;
 	        lng = lng;
 	        var pinDetail = {userid : userid , id : id, lat : lat, lng :lng};
-	        var imageDetail = {id : id, url: url};
+	        var imageDetail = {};
+	        var image = {};
 	        modalInstance = $uibModal.open({
 	            animation: vm.animationsEnabled,
 	            ariaLabelledBy: 'modal-title',
@@ -155,6 +156,9 @@
 	                },
 	                imageDetail: function () {
 	                    return imageDetail;
+	                },
+	                image : function(){
+	                    return {};
 	                }
 	            }
 		       
