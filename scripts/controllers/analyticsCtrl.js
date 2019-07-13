@@ -25,7 +25,11 @@
 		console.log('analytics', vm.analytics);
 
 		vm.chart = 'pins';
+		init();
 
+		function init(){
+		    vm.rerun();
+		}
 		function showChart(chart) {
 			vm.chart = chart;
 		}

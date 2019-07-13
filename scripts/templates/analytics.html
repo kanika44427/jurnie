@@ -4,6 +4,8 @@
         <h1 ng-if="!analytics.allDatesSet">{{analytics.from | date: 'MM-yyyy'}} to {{analytics.to | date: 'MM-yyyy'}}</h1>
         <h1 ng-if="analytics.allDatesSet">ALL DATES</h1>
     </div>
+
+
     <div class="date-range-container">
         <label>From</label>
         <input type="month" ng-model="analytics.from" />
@@ -59,7 +61,7 @@
             </th>
         </tr>
         <tr ng-repeat="pin in analytics.analytics.pins | orderBy: analytics.pinCarot">
-            <th>{{pin.pinType.createdAt | date: 'dd-MM-yyyy'}}</th>
+            <th>{{pin.createdAt | date: 'dd-MM-yyyy'}}</th>
             <th>{{pin.city}}</th>
             <th>{{pin.country}}</th>
             <th>{{pin.pinType.description}}</th>
