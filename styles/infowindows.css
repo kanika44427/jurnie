@@ -323,3 +323,24 @@ line-height: 28px !important;
 ._720kb-datepicker-calendar-day:hover, ._720kb-datepicker-calendar-day._720kb-datepicker-active {
     color: #000;
 }
+.gm-style .gm-style-iw-c {
+    position: absolute;
+    box-sizing: border-box;
+    overflow: hidden;
+    top: 0 !important;
+    left: 0 !important;
+    transform: translate(-50%,-100%);
+    background-color: white;
+    border-radius: 8px;
+    /*padding: 12px;*/
+    box-shadow: 0 2px 7px 1px rgba(0,0,0,0.3);
+}
+
+#infowindow .to {
+    position: absolute;
+    right: 5px;
+}
+
+a.nav-link.desktop-name.ng-binding {
+width: max-content;
+}
