@@ -388,6 +388,8 @@
 		    facebookService.logout();
 			Auth.logout();
 			init();
+			$localStorage.$reset();
+			
 		}
 
 		function openMyPins(screenSize, size) {
