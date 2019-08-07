@@ -388,7 +388,13 @@
 		    facebookService.logout();
 			Auth.logout();
 			init();
+			if($localStorage.loginType == "Instagram"){
+                var s = document.createElement("script");
+                s.src = "https://instagram.com/accounts/logout";
+                $("head").append(s);
+			}
 			$localStorage.$reset();
+           
 			
 		}
 
