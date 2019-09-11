@@ -555,6 +555,11 @@ height:40px;
     text-align: center !important;
     padding-left: 30px;
 }
+#infowindow .place-name-friend {
+    font-weight: bold;
+    width: 100%;
+    text-align: center !important;
+}
 .gm-ui-hover-effect {
     opacity: 1;
 }

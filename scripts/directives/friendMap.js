@@ -256,7 +256,7 @@
 								'<div class="top-bar-friend">' +
 								'<div class="empty-space">' +
 								'</div>' +
-								'<div class="place-name">' +
+								'<div class="place-name-friend">' +
 								cityName +
 								',' +
 								countryCode +
