@@ -4,11 +4,10 @@
 
 #friend {
     height: 86vh;
-    margin-top: -10vh;
 }
 
 #friend .friendmap{
-height: 91vh;
+height: calc(100vh - 92px);
     width: 100vw;
 }
 
@@ -23,11 +22,11 @@ height: 91vh;
 
 
 #friend .loading-pic{
-	height: 100%;
+	height: calc(100vh - 92px);
 	width: 100%;
 	background-image: url("../assets/Jurnie Logo.png");
 	content: 'Loading...';
-        margin-top: 25px;
+        margin-top: 0px;
 }
 
 #friend .pin-options{
@@ -110,8 +109,12 @@ height: 91vh;
     }
 }
 
-@media screen and (min-height: 1000px){
-	#friend {
-		height: 80vh;
-	}
+@media screen and (min-height: 992px){
+    #friend {
+        height: calc(100vh - 92px);
+        margin: -10px;
+    }
+}
+#main-body {
+    margin-top: 18px;
 }
