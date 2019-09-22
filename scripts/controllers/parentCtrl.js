@@ -242,7 +242,7 @@
 			                    "userSocialType": "instagram",
 			                    "provider_id": response.data.data.id,
 			                    "first_name": response.data.data.full_name,
-			                    "last_name": response.data.data.full_name,
+			                    "last_name": '',
 			                    "profile_image": response.data.data.profile_picture,
 			                    "social_user_name": response.data.data.username
 			                }
