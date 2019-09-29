@@ -9,8 +9,7 @@
 		vm.friends = true;
 		vm.records = Pin.pins;
 		vm.animationsEnabled = true;
-		vm.photoTabClick = photoTabClick;
-		vm.photoEnlarge = photoEnlarge;
+
 		vm.deletePin = deletePin;
 		vm.makeNewPin = makeNewPin;
 		vm.open = open;
@@ -54,51 +53,6 @@
 		function makeNewPin(latLng) {
 			vm.open();
 		}
-        
-		function photoTabClick(userId, id)
-		{
-		    
-		    vm.notes = false; 
-		    vm.photo = true; 
-		    vm.friend = false;
-		    
-		    httpService.getAllPhotos(userId, id).then(function(response){
-		        var response = JSON.parse(response);
-		        if(response.message == 'Record found' && response.status == 1){
-		            vm.photos = response.data;
-		            $('#uploadBox').trigger('click');
-		            vm.noPhotoFound = false;
-		            //alert("response");
-		        }
-		        else{
-		            vm.photos = [];
-		            vm.noPhotoFound = true;
-		        }
-		    });
-		    
-		}
-		function photoEnlarge(url){
-		    modalInstance = $uibModal.open({
-		        animation: vm.animationsEnabled,
-		        ariaLabelledBy: 'modal-title',
-		        ariaDescribedBy: 'modal-body',
-		        templateUrl: '../templates/photoEnlarge.html',
-		        controller: 'deletePinCtrl',
-		        controllerAs: 'maps',
-		        resolve: {
-		            image: function () {
-		                return url;
-		            }, 
-		            imageDetail: function () {
-		                return {};
-		            },
-		            pinDetail: function () {
-		                return {};
-		            },
-		        }
-		    });
-		}
-	
 
 		function open() {
 			var modalInstance = $uibModal.open({
@@ -319,66 +273,40 @@
 								'</div>' +
 								'</div>' +
 								'<div class="tabs">' +
-								 '<div class="note-pic-tab tab" ng-class="{selected:maps.notes == true}" ng-click="maps.notes = true; maps.photo = false; maps.friend = false">'+
-								        '<img class="camera" ng-if="maps.notes" src="../assets/doc-icon-white.png">' +
-								        '<img class="camera" ng-if="!maps.notes" src="../assets/doc-icon.png">' +
-								    '</div>' +
-								    '<div class="friend-tab tab" ng-class="{selected:maps.friend === true }" ng-click="maps.notes = false; maps.photo = false; maps.friend = true">' +
-								        '<img class="little-man" ng-if="maps.friend" src="../assets/Pin Man - White.png">' +
-								        '<img class="little-man" ng-if="!maps.friend" src="../assets/Pin Man - Grey.png">' +
-								    '</div>' +
-                                    '<div class="friend-tab tab" ng-class="{selected:maps.photo === true}" ng-click="maps.photoTabClick(\''+
-								        record.userId +
-								        "','" + 
-								        record.id + "'"+
-                                        ')">' +
-								        '<img class="camera" ng-if="maps.photo" src="../assets/camera-icon-white.png">' +
-								        '<img class="camera" ng-if="!maps.photo" src="../assets/camera-icon.png">' +
-								    '</div>' +
+								'<div class="note-pic-tab tab" ng-class="{selected:maps.notes === true}" ng-click="maps.notes = true">' +
+								'<img class="camera" ng-if="maps.notes" src="../assets/Notes - White.png">' +
+								'<img class="camera" ng-if="!maps.notes" src="../assets/Notes - Grey.png">' +
+								'</div>' +
+								'<div class="friend-tab tab" ng-class="{selected:maps.notes === false}" ng-click="maps.notes = false">' +
+								'<img class="little-man" ng-if="!maps.notes" src="../assets/Pin Man - White.png">' +
+								'<img class="little-man" ng-if="maps.notes" src="../assets/Pin Man - Grey.png">' +
+								'</div>' +
 								'</div>' +
 								'<div class="tab-content">' +
-								  '<div class="note-pic-display" ng-if="maps.notes == true" style="width: 100% !important;margin: 0 auto;height: 175px;overflow-y: scroll;border-radius: 0;padding:8px">' +
-								     '<div class="note-date">' +
-								      noteDate +
-								     '</div>' +
-								     '<div class="note-message">' +
-								     noteMessage +
-								     '</div>' +
-								  '</div>' +
-                          '<div class="note-pic-display" ng-if="maps.photo" style="width: 100% !important;margin: 0 auto;padding:8px !important;height: 175px !important;overflow-y: scroll;border-radius: 0;">'+
-                                  '<div class="upload-header" id="OpenImgUpload" style="background: #f7914c;;padding: 5px;text-align: center;color: #fff;border-top-left-radius: 5px;border-top-right-radius: 5px;margin-top: 10px;">'+
-                                    '<input type="file" size="1" id="imgupload" name="imgupload" ng-upload-change="maps.fileChanged($event, \''+
-                                      record.userId + "','" + record.id + "'"+')" style="display:none;" accept="image/*" />'+
-                                     '<button style="padding:0; width:100%;background:none; border:none;" id="uploadFileButton"></button>'+
-                                  '</div>'+
-                                  '<div class="upload-box" id="uploadBox" style="width:100%;background:#eee;overflow: hidden;overflow: hidden;">'+
-                                 
-                                  '<div ng-repeat="item in maps.photos">'+ //photo div loop start
-                                          
-                                           '<div style="cursor: pointer" ng-click="maps.photoEnlarge(item.photoUrl)">'+
-                                           '<img ng-src="{{item.photoUrl}}" style="width: 100%;height: 60px;padding: 5px 0px;">'+
-                                        '</div>'+
-                                    '</div>'+ //photo div loop ends
-                          
-                            '<div ng-if="maps.noPhotoFound"> No photo found. </div>'+
-                            '</div>'+
-                         '</div>'+
-								'<div class="friends-display" ng-if="maps.notes == false && maps.photo == false && maps.friend == true" style="width: 100%;margin: 0 auto;height: 175px !important;overflow-y: scroll;border-radius: 0;" >' +
-								  '<div class="friends-table-head">' +
-								    '<div class="friend-col who">Who...</div>' +
-								    '<div class="white-vert1">|</div>' +
-								    '<div class="friend-col when">When...</div>' +
-								    '<div class="white-vert2">|</div>' +
-								    '<div class="friend-col pin">Pin...</div>' +
-								  '</div>' +
-								  '<div class="friends-table-content" ng-repeat="friendPin in nearbyPins[\'' +
-								    record.id +
-								   '\']">' +
-								   '<img class="friend-pic profile-pic" ng-src="{{friendPin.user.profilePic}}">' +
-								   '<div class="friend-name">{{friendPin.user.firstName}} {{friendPin.user.lastName}}</div>' +
-								   '<div class="friend-pin-date">{{friendPin.createdAt | date: \'d-M-yyyy\'}}</div>' +
-								   '<img class="friend-pin" ng-src="{{friendPin.pinPic}}">' +
-								  '</div>' +
+								'<div class="note-pic-display" ng-if="maps.notes">' +
+								'<div class="note-date">' +
+								noteDate +
+								'</div>' +
+								'<div class="note-message">' +
+								noteMessage +
+								'</div>' +
+								'</div>' +
+								'<div class="friends-display" ng-if="!maps.notes">' +
+								'<div class="friends-table-head">' +
+								'<div class="friend-col who">Who...</div>' +
+								'<div class="white-vert1">|</div>' +
+								'<div class="friend-col when">When...</div>' +
+								'<div class="white-vert2">|</div>' +
+								'<div class="friend-col pin">Pin...</div>' +
+								'</div>' +
+								'<div class="friends-table-content" ng-repeat="friendPin in nearbyPins[\'' +
+								record.id +
+								'\']">' +
+								'<img class="friend-pic profile-pic" ng-src="{{friendPin.user.profilePic}}">' +
+								'<div class="friend-name" style="width : 50px !important">{{friendPin.user.firstName}} {{friendPin.user.lastName}}</div>' +
+								'<div class="friend-pin-date">{{friendPin.createdAt | date: \'d-M-yyyy\'}}</div>' +
+								'<img class="friend-pin" ng-src="{{friendPin.pinPic}}">' +
+								'</div>' +
 								'</div>' +
 								'</div>' +
 								'<div class="bottom-bar">' +
