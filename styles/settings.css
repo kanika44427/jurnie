@@ -193,7 +193,7 @@ transform: translate(-50%,-50%);
     margin-right: 50px;
 }
 div#newPin .modal-body {
-    text-align: -webkit-center;
+    /*text-align: -webkit-center;*/
 }
 
 @media screen and (max-width: 768px) and (min-width: 401px){

@@ -48,7 +48,13 @@
      }
 
      div#newPin .modal-body {
-         padding-top: 3px;
+         padding: 0px;
+     }
+
+     #newPin .modal-body img {
+      width: 100%;
+      height: auto;
+      display: block;
      }
 
      #newPin .custom-place-input {
