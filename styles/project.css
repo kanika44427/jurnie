@@ -1220,3 +1220,24 @@ ul {
     font-size: 20px;
     color: white;
 }
+
+.feed-desktop-menu::-webkit-scrollbar,.feed-desktop-menu::-moz-scrollbar {
+display: block;
+}
+
+.feed-desktop-menu::-webkit-scrollbar-track,.feed-desktop-menu::-moz-scrollbar-track
+{
+-webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.3);
+background-color: #F5F5F5;
+}
+
+.feed-desktop-menu::-webkit-scrollbar,.feed-desktop-menu::-moz-scrollbar
+{
+width: 5px;
+background-color: #F5F5F5;
+}
+
+.feed-desktop-menu::-webkit-scrollbar-thumb,.feed-desktop-menu::-moz-scrollbar-thumb
+{
+background-color: #5a5a5a;
+}

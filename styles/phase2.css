@@ -1113,3 +1113,28 @@ a.nav-link.desktop-name.ng-binding {
 width: max-content;
 }
 
+@media screen and (min-height: 768px){
+div#main-body {
+margin-top: 18px;
+}
+}
+
+
+
+.modal-dialog.image-modal {
+max-width: 600px !important;
+width: 100% !important;
+margin: 0 !important;
+}
+
+.modal-dialog.image-modal .modal-content {
+width: 100%;
+background: #fff;
+min-width: inherit;
+}
+
+.modal-dialog.image-modal .modal-content .modal-body img {
+width: auto !important;
+margin: 0 auto;
+max-width: 100%;
+}
