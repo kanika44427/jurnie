@@ -71,6 +71,7 @@
 	            templateUrl: '../templates/photoEnlarge.html',
 	            controller: 'deletePinCtrl',
 	            controllerAs: 'maps',
+	            windowClass  : 'image-modal',
 	            resolve: {
 	                image: function () {
 	                    return url;

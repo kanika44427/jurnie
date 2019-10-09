@@ -1121,20 +1121,67 @@ margin-top: 18px;
 
 
 
-.modal-dialog.image-modal {
+.image-modal .modal-dialog {
 max-width: 600px !important;
 width: 100% !important;
 margin: 0 !important;
 }
 
-.modal-dialog.image-modal .modal-content {
+.image-modal .modal-dialog .modal-content {
 width: 100%;
-background: #fff;
+background: #eee;
 min-width: inherit;
 }
 
-.modal-dialog.image-modal .modal-content .modal-body img {
+.image-modal .modal-dialog .modal-content .modal-body img {
 width: auto !important;
 margin: 0 auto;
 max-width: 100%;
+}
+.image-modal .modal-dialog .modal-header {
+    position: absolute;
+    background: transparent;
+}
+
+#newPin .modal-header {
+    position: absolute;
+    right: 5px;
+    top: 5px;
+    border: 0;
+    padding: 0;
+    background: transparent;    z-index: 9;
+}
+
+.image-modal #newPin .modal-header button {
+    border-radius: 50%;
+    width: 25px;
+    height: 25px;
+    text-align: center;
+    background: #f7914c !important;
+    line-height: 15px;
+    font-size: 19px;
+    padding: 0;
+}
+.modal.image-modal {
+    min-height: inherit;
+}
+.feed-desktop-menu::-webkit-scrollbar,.feed-desktop-menu::-moz-scrollbar {
+display: block;
+}
+
+.feed-desktop-menu::-webkit-scrollbar-track,.feed-desktop-menu::-moz-scrollbar-track
+{
+-webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.3);
+background-color: #F5F5F5;
+}
+
+.feed-desktop-menu::-webkit-scrollbar,.feed-desktop-menu::-moz-scrollbar
+{
+width: 5px;
+background-color: #F5F5F5;
+}
+
+.feed-desktop-menu::-webkit-scrollbar-thumb,.feed-desktop-menu::-moz-scrollbar-thumb
+{
+background-color: #5a5a5a;
 }
