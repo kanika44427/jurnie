@@ -78,6 +78,7 @@
 		    
 		}
 		function photoEnlarge(url){
+		    
 		    modalInstance = $uibModal.open({
 		        animation: vm.animationsEnabled,
 		        ariaLabelledBy: 'modal-title',

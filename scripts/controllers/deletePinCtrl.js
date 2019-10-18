@@ -21,8 +21,12 @@
         $scope.image = image;
         vm.cancelImageDelete = cancelImageDelete;
         vm.closePhotoPopup = closePhotoPopup;
+        $('body').addClass("img-modal");
 
         function closePhotoPopup() {
+            var body = document.body;
+
+            body.classList.remove("img-modal");
             $uibModalInstance.dismiss('cancel');
         }
 

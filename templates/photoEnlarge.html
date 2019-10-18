@@ -3,11 +3,15 @@
 NEW PIN MODAL -->
 <div id="newPin" >
     <div class="modal-header">       
-        <button class="cancel btn btn-warning cursor" style="float:right !important" type="button" ng-click="maps.closePhotoPopup()">X</button>
+        
     </div>
     <div class="modal-body" id="modal-body">
-        <img ng-src="{{image}}" class="img-responsive">     
-           
+        <div>
+            <img ng-src="{{image}}" class="img-responsive">
+            <div class="popupclosebtn" style="text-align:center; margin: 10px 0">
+                <button class="cancel btn btn-warning cursor" type="button" ng-click="maps.closePhotoPopup()">close</button>
+            </div>
+        </div>
     </div>
 </div>
 <style>
