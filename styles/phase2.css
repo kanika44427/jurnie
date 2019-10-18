@@ -55,6 +55,7 @@
       width: 100%;
       height: auto;
       display: block;
+          max-height: 80vh;
      }
 
      #newPin .custom-place-input {
@@ -1172,7 +1173,7 @@ max-width: 100%;
     padding: 0;
 }
 .modal.image-modal {
-    min-height: inherit;
+    min-height: fit-content;
 }
 
 @media all and (min-width: 1920px) {
