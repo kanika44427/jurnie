@@ -1181,3 +1181,8 @@ div#main-body {
 margin-top: 0;
 }
 }
+
+@media (min-width:1920px){
+#friend {height: calc(100vh - 75px);margin: 0;}
+#friend .friendmap {height: calc(100vh - 75px);}
+}
