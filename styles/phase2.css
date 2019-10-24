@@ -1129,11 +1129,7 @@ opacity: 0.8;
 
 
 
-.image-modal .modal-dialog {
-max-width: 600px !important;
-width: 100% !important;
-margin: 0 !important;
-}
+.image-modal .modal-dialog {    max-width: 600px !important;    width: 100% !important;    margin: 0 auto !important;}
 
 .image-modal .modal-dialog .modal-content {
 width: 100%;
