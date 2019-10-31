@@ -1129,7 +1129,11 @@ opacity: 0.8;
 
 
 
-.image-modal .modal-dialog {    max-width: 600px !important;    width: 100% !important;    margin: 0 auto !important;}
+.image-modal .modal-dialog {
+    max-width: 600px !important;
+    width: 100% !important;
+    margin: 0 auto !important;
+}
 
 .image-modal .modal-dialog .modal-content {
 width: 100%;
@@ -1176,9 +1180,14 @@ max-width: 100%;
 div#main-body {
 margin-top: 0;
 }
+
 }
 
 @media (min-width:1920px){
-#friend {height: calc(100vh - 75px);margin: 0;}
+/*#friend {height: calc(100vh - 75px);margin: 0;}*/
+#friend{
+    height: 100vh;
+    margin:-10px;
+}
 #friend .friendmap {height: calc(100vh - 75px);}
 }
