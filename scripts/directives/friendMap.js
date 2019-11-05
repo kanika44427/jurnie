@@ -195,7 +195,7 @@
 			function showPosition(position) {
 				var mapOptions = {
 					center: getGoogleLatLong(position),
-					zoom: 8,
+					zoom: 15, //8 
 					mapTypeId: google.maps.MapTypeId.ROADMAP,
 					disableDefaultUI: true,
 					scrollwheel: true,
