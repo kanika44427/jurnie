@@ -3,8 +3,8 @@
 }
 
 #friend {
-    height: 86vh;
-}
+   /* height: 86vh;
+*/}
 
 #friend .friendmap{
 height: calc(100vh - 92px);
