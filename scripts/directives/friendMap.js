@@ -195,11 +195,12 @@
 			function showPosition(position) {
 				var mapOptions = {
 					center: getGoogleLatLong(position),
-					zoom: 15, //8 
+					zoom: 8, //8 
 					mapTypeId: google.maps.MapTypeId.ROADMAP,
 					disableDefaultUI: true,
 					scrollwheel: true,
 					zoomControl: false,
+					//gestureHandling: 'greedy',
 					zoomControlOptions: {
 						position: google.maps.ControlPosition.RIGHT_CENTER
 					},
@@ -260,7 +261,7 @@
 						var image = {
 							url: record.pinPic,
 							// This marker is 20 pixels wide by 32 pixels high.
-							scaledSize: new google.maps.Size(18, 25),
+							scaledSize: new google.maps.Size(18, 28), //ks:25
 							// The origin for this image is (0, 0).
 							origin: new google.maps.Point(0, 0),
 							// The anchor for this image is the base of the flagpole at (0, 32).
@@ -268,7 +269,7 @@
 						};
 
 						var shape = {
-							coords: [1, 1, 1, 20, 18, 20, 18, 1],
+							coords: [1, 1, 1, 30, 10, 30, 10, 1], //ks : 1,1,1,30,10,30,10,1
 							type: 'poly'
 						};
 
@@ -421,7 +422,8 @@
 				marker.infoWindow = new google.maps.InfoWindow({
 					content: message,
 					maxWidth: 260,
-					maxHeight: 300
+					maxHeight: 300,
+					//disableAutoPan: true
 				});
 
 				google.maps.event.addListener(marker, 'click', function() {
@@ -432,10 +434,15 @@
 					maps.onMarkerClick({
 						choice: true
 					});
+                    //ks : friend marker center copying landing page code.
+					//map.setCenter(
+					//	new google.maps.LatLng(marker.getPosition().lat() + 0.0012, marker.getPosition().lng() - 0.006)
+					//);
+				    //map.setZoom(15);
 					map.setCenter(
 						new google.maps.LatLng(marker.getPosition().lat() + 0.0012, marker.getPosition().lng() - 0.006)
 					);
-					map.setZoom(15);
+					map.setZoom(10);
 					infoWindow = marker.infoWindow;
 				});
 
