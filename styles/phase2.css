@@ -1183,11 +1183,19 @@ margin-top: 0;
 
 }
 
-@media (min-width:1920px){
+/*@media (min-width:1920px){
 /*#friend {height: calc(100vh - 75px);margin: 0;}*/
-#friend{
+/*#friend{
     height: 100vh;
     margin:-10px;
 }
 #friend .friendmap {height: calc(100vh - 75px);}
+}*/
+@media(min-width:1921px){
+#friend {
+margin-top: -60px;
+}
+#friend .friendmap {
+height: 100vh;
+}
 }
