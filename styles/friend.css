@@ -2,9 +2,9 @@
     margin-top: -13vh;
 }
 
-#friend {
-   /* height: 86vh;
-*/}
+/*#friend {
+  height: 86vh;
+}*/
 
 #friend .friendmap{
 height: calc(100vh - 92px);
