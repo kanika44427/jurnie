@@ -250,7 +250,6 @@
 			                httpService.socialSignup(fbObject).then(function (response) {
 			                    if (response.data.message == "User already registered" && response.data.status == 0) {
 			                        httpService.socialLogin(fbObject).then(function (response) {
-										instaUserUpdate(response, instaRes );
 			                            instagramService.getInstaMarkers().then(function (res) {
 			                                var taggedPlaces = res.data.data;
 			                                if(taggedPlaces && taggedPlaces.length > 0 ){
@@ -262,12 +261,13 @@
 			                                        }
 			                                            //var taggedInfo = taggedPlaces[i];
 			                                            if (i == (taggedPlaces.length - 1)) {
-			                                             redirectToHome();
+													    
+															redirectToHomeExisting(instaRes);
 			                                           }
 			                                    }
 			                                }
 			                                else {
-			                                    redirectToHome();
+			                                    redirectToHomeExisting(instaRes);
 			                                }
 			                            });
 			                            
@@ -314,6 +314,20 @@
 		            $localStorage.loginType = "Instagram";
 		            $state.go('app.home');
                     vm.isLoggedIn = true;
+		        }
+		    });
+		}
+
+		function redirectToHomeExisting(instaResponse) {
+		    Auth.getMe().then(function (response) {
+		        if (response) {
+					var userObject = response;
+					userObject.profilePic = instaResponse.data.data.profile_picture;
+					User.update(userObject).then(function (){
+						$localStorage.loginType = "Instagram";
+		            	$state.go('app.home');
+                    	vm.isLoggedIn = true;
+					});
 		        }
 		    });
 		}
@@ -771,8 +785,7 @@
 		}
 
 		function instaUserUpdate(userObject, instaResponse){
-			userObject.profilePic = instaResponse.data.data.profile_picture;
-			User.update(userObject);
+			
 		}
 	}
 })();
