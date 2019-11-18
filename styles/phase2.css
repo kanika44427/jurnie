@@ -1199,3 +1199,11 @@ margin-top: -60px;
 height: 100vh;
 }
 }
+
+
+
+@media (min-height: 992px){
+    #friend {
+    margin: 0;
+    }
+    }
