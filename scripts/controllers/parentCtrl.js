@@ -322,7 +322,7 @@
 		    Auth.getMe().then(function (response) {
 		        if (response) {
 					var userObject = response;
-					userObject.profilePic = instaResponse.data.data.profile_picture;
+					userObject.data.profilePic = instaResponse.data.data.profile_picture;
 					User.update(userObject).then(function (){
 						$localStorage.loginType = "Instagram";
 		            	$state.go('app.home');
