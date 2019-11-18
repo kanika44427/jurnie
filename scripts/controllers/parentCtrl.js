@@ -236,6 +236,7 @@
 			    if(result){
 			        $localStorage.instaToken = result;
 			        instagramService.login().then(function (response) {
+						var instaRes = response;
 			            console.log(response);
 			            if (response.data && response.data.data && response.status == 200) {
 			                var fbObject = {
@@ -249,6 +250,7 @@
 			                httpService.socialSignup(fbObject).then(function (response) {
 			                    if (response.data.message == "User already registered" && response.data.status == 0) {
 			                        httpService.socialLogin(fbObject).then(function (response) {
+										instaUserUpdate(response, instaRes );
 			                            instagramService.getInstaMarkers().then(function (res) {
 			                                var taggedPlaces = res.data.data;
 			                                if(taggedPlaces && taggedPlaces.length > 0 ){
@@ -766,6 +768,11 @@
 		    var day = date.getDate().toString();
 		    day = day.length > 1 ? day : '0' + day;
 		    return date.getFullYear() + '-' + month + '-' + day + 'T00:00:00.000Z';
+		}
+
+		function instaUserUpdate(userObject, instaResponse){
+			userObject.profilePic = instaResponse.data.data.profile_picture;
+			User.update(userObject);
 		}
 	}
 })();
