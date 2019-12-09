@@ -320,16 +320,31 @@
 
 		function redirectToHomeExisting(instaResponse) {
 		    Auth.getMe().then(function (response) {
-		        if (response) {
-					var userObject = response;
-					userObject.data.profilePic = instaResponse.data.data.profile_picture;
-					User.update(userObject).then(function (){
-						$localStorage.loginType = "Instagram";
-		            	$state.go('app.home');
-                    	vm.isLoggedIn = true;
-					});
+		        if (response && response.data) {
+		            vm.user = response.data; 
+		            vm.user.profilePic = instaResponse.data.data.profile_picture;
+		            $localStorage.loginType = "Instagram";
+		            $state.go('app.home');
+		            vm.isLoggedIn = true;
+		            //userObject.profilePic = instaResponse.data.data.profile_picture;
+		            //userObject.gender = "male";
+		            //userObject.lastName = userObject.firstName;
+		            //alert("if");
+		            //User.update(userObject).then(function () {
+		            //    $localStorage.loginType = "Instagram";
+		            //    $state.go('app.home');
+		            //    vm.isLoggedIn = true;
+		            //},
+		            //function () {
+
+		            //}
+		        }
+		        else {
+		            alert("something went wrong");
+		            logout();
 		        }
 		    });
+		    
 		}
 		
 
