@@ -338,3 +338,5 @@ fieldset[disabled] .form-control {
 		margin-left: 20px;
 	}
 }
+
+@media (min-width: 1440px){#landing .app-plug {    margin-top: 250px;    margin-left: 0;}}
