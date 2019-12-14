@@ -1,61 +1,71 @@
 <div id="landing">
 	<div class="landing-container">
-		<div class="left-image">
-			<img src="assets/Coming Soon.png" class="coming-soon">
-		</div>
-
-		<div class="app-plug">
-			<div class="plug-title">Jurnie - The App</div>
-			<div class="plug-text">Coming to your app store soon!</div>
-			<div class="app-store-pics">
-				<img class="store-pic apple-store" src="assets/appleStore.svg.png">
-				<img class="store-pic google-play" src="assets/googlePlay.png">
-			</div>
-		</div>
-
-		<!-- INITIAL SIGNUP, RIGHT JUSTIFIED -->
-		<form class="signup-form-container">
-			<img src="assets/Jurnie Logo.png" class="logo">
-			<div class="tagline"><i>Create an account - Inspire social travel</i></div>
-			<div class="name-container">
-				<input tabindex='3' ng-model="landing.firstName" name="firstName" placeholder="* First Name" class="name" maxlength="35"
-				 required/>
-				<input tabindex='4' ng-model="landing.lastName" name="lastName" placeholder="* Surname" class="name" maxlength="35" required/>
-			</div>
-			<input tabindex='5' ng-model="landing.email" type="email" name="email" placeholder="* Email" required/>
-			<input tabindex='6' ng-model="landing.password" type="password" placeholder="* Password" name="password" required/>
-			<div class="radio-birthday">
-				<div tabindex='7' class="radio-circle cursor" ng-class="{'circle-selected': landing.gender === 'male'}" 
-                     ng-click="landing.gender = 'male'"></div>
-				<div class="radio-title">Male</div>
-				<div tabindex='8' class="radio-circle cursor" ng-class="{'circle-selected': landing.gender === 'female'}" 
-                     ng-click="landing.gender = 'female'"></div>
-				<div class="radio-title">Female</div>
-				<!--<input tabindex='9' type="text" class="name cursor" ng-click="landing.open2()" placeholder="Birthday" ng-if="landing.noBday"
-				 readonly/>-->
-				<!--<input tabindex='10' type="text" class="name cursor" uib-datepicker-popup ng-model="landing.birthday" is-open="landing.popup2.opened"
-				 datepicker-options="landing.dateOptions" ng-click="landing.open2()" ng-required="true" show-button-bar="false" on-open-focus="false"
-				 placeholder="BIRTHDAY" ng-if="!landing.noBday" readonly/>
-				<span class="input-group-btn cursor" ng-if="!landing.noBday">
-					<button type="button" class="calendar-btn cursor" ng-click="landing.open2()"><i class="glyphicon glyphicon-calendar"></i></button>
-				</span>-->
-                <!--<datepicker tabindex='9' date-format='yyyy-MM-dd' id="birthdayDatePicker">-->
-                <input data-ng-model="landing.landingBirthday" ng-change="landing.birthDateFormatted()" type="date" class="name" />
-                <!--</datepicker>-->
-			</div>
-         
-			<input type="submit" tabindex='9' ui-sref="app.signup({firstName:landing.firstName, lastName: landing.lastName, email: landing.email, bday: landing.birthday, password: landing.password, gender: landing.gender})"
-			 class="signup cursor" value="Sign Up!"/>
-            <div class="clearfix"><span class="or"> or </span> </div>
-            <div class="social-btns signup-btn">
-                <!--<a class="" ng-click="landing.signUpWithFacebook()">
-                    <img src="assets/fb-icon.png" />-->
-                <!--</a>-->
-                <a class="" ng-click="landing.signUpWithInstagram()">
-                    <img src="assets/insta-icon.png" />
-                </a>
+        <div class="home-page-main">
+            <div class="home-img">
+                <img src="assets/coming_soon.png" alt="jurnie">
             </div>
-			<div class="disclaimer">By signing up, you agree to the Terms of Serviced Privacy Policy, including Cookies Use. Others will be able to find you
-				by email or Facebook profile when provided.</div>
-		</form>
-	</div>
+            <div class="home-content">
+                <h3>Help us, help You</h3>
+                <ul>
+                    <li>View your friends travel plans so you can plan 'meet ups' accordingly.
+                    <b>"We both going to be in Bali at the same time!"</b></li>
+                    <li>Discover credible travel information from your network.
+                    <b>"This is the best burger in Melbourne!"</b></li>
+                    <li>Document and share past, present and future travel experiences.<b>"I want to go to..."</b></li>
+                    <li>Find places you never knew you wanted to go to.<b>"Wow, that place looks amazing!"</b></li>
+                    <li>Stop posting "who has been to..." on social media sites.
+                        <b>"You're just showing off..."</b>
+                    </li>
+                </ul>
+            </div>
+            <!-- INITIAL SIGNUP, RIGHT JUSTIFIED -->
+            <div class="home-form">
+                <form class="signup-form-container">
+                    <img src="assets/Jurnie Logo.png" class="logo">
+                    <div class="tagline"><i>Create an account - Inspire social travel</i></div>
+                    <div class="name-container">
+                        <input tabindex='3' ng-model="landing.firstName" name="firstName" placeholder="* First Name" class="name" maxlength="35"
+                               required />
+                        <input tabindex='4' ng-model="landing.lastName" name="lastName" placeholder="* Surname" class="name" maxlength="35" required />
+                    </div>
+                    <input tabindex='5' ng-model="landing.email" type="email" name="email" placeholder="* Email" required />
+                    <input tabindex='6' ng-model="landing.password" type="password" placeholder="* Password" name="password" required />
+                    <div class="radio-birthday">
+                        <div tabindex='7' class="radio-circle cursor" ng-class="{'circle-selected': landing.gender === 'male'}"
+                             ng-click="landing.gender = 'male'"></div>
+                        <div class="radio-title">Male</div>
+                        <div tabindex='8' class="radio-circle cursor" ng-class="{'circle-selected': landing.gender === 'female'}"
+                             ng-click="landing.gender = 'female'"></div>
+                        <div class="radio-title">Female</div>
+                        <!--<input tabindex='9' type="text" class="name cursor" ng-click="landing.open2()" placeholder="Birthday" ng-if="landing.noBday"
+             readonly/>-->
+                        <!--<input tabindex='10' type="text" class="name cursor" uib-datepicker-popup ng-model="landing.birthday" is-open="landing.popup2.opened"
+             datepicker-options="landing.dateOptions" ng-click="landing.open2()" ng-required="true" show-button-bar="false" on-open-focus="false"
+             placeholder="BIRTHDAY" ng-if="!landing.noBday" readonly/>
+            <span class="input-group-btn cursor" ng-if="!landing.noBday">
+                <button type="button" class="calendar-btn cursor" ng-click="landing.open2()"><i class="glyphicon glyphicon-calendar"></i></button>
+            </span>-->
+                        <!--<datepicker tabindex='9' date-format='yyyy-MM-dd' id="birthdayDatePicker">-->
+                        <input data-ng-model="landing.landingBirthday" ng-change="landing.birthDateFormatted()" type="date" class="name" />
+                        <!--</datepicker>-->
+                    </div>
+
+                    <input type="submit" tabindex='9' ui-sref="app.signup({firstName:landing.firstName, lastName: landing.lastName, email: landing.email, bday: landing.birthday, password: landing.password, gender: landing.gender})"
+                           class="signup cursor" value="Sign Up!" />
+                    <div class="clearfix"><span class="or"> or </span> </div>
+                    <div class="social-btns signup-btn">
+                        <!--<a class="" ng-click="landing.signUpWithFacebook()">
+                <img src="assets/fb-icon.png" />-->
+                        <!--</a>-->
+                        <a class="" ng-click="landing.signUpWithInstagram()">
+                            <img src="assets/insta-icon.png" />
+                        </a>
+                    </div>
+                    <div class="disclaimer">
+                        By signing up, you agree to the Terms of Serviced Privacy Policy, including Cookies Use. Others will be able to find you
+                        by email or Facebook profile when provided.
+                    </div>
+                </form>
+            </div>
+         </div>
+</div>
