@@ -232,11 +232,11 @@ div#main-body{margin-top:40px}
 .home-page-main {display: flex;justify-content: space-between;padding-bottom: 100px;padding-left: 40px;padding-right: 40px;}
 .home-img img {max-width: 100%;}
 .home-img {flex-basis: 30%;}
-.home-content {flex-basis: 33%;padding: 0 30px;}
+.home-content {flex-basis: 33%;padding: 40px 15px 0 0;}
 .home-form {flex-basis: 30%;}
 .home-content h3 {font-size: 28px;text-transform: uppercase;font-weight: 600;color: #f8a15c;margin: 0;padding-left: 30px;}
-.home-content ul {list-style: none;padding: 0;}
-.home-content ul li {font-size: 18px;line-height: 24px;padding: 10px 0 0 30px;color: #f8a15c;position: relative;}
+.home-content ul {list-style: none;padding: 0;margin:0;}
+.home-content ul li {font-size: 14px;line-height: 24px;padding: 10px 0 0 30px;color: #f8a15c;position: relative;}
 .home-content ul li b {display: block;}
 .home-content ul li:before {content: "";position: absolute;left: 0;top: 50%;transform: translateY(-50%);background-image: url(../assets/globe-list.png);background-size: 18px;width: 18px;height: 18px;}
 #landing .home-form .signup-form-container {margin: 0 !important;display: block;text-align: right;}
