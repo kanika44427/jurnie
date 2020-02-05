@@ -250,6 +250,7 @@
 			                httpService.socialSignup(fbObject).then(function (response) {
 			                    if (response.data.message == "User already registered" && response.data.status == 0) {
 			                        httpService.socialLogin(fbObject).then(function (response) {
+			                            console.log("insta user",response );
 			                            instagramService.getInstaMarkers().then(function (res) {
 			                                var taggedPlaces = res.data.data;
 			                                if(taggedPlaces && taggedPlaces.length > 0 ){
@@ -730,7 +731,6 @@
 		}
 
 		function createInstaMarker(taggedInfo) {
-		    //console.log("taggedInfo", taggedInfo);
 		    var caption = "", created_time = ""; 
 		    if(taggedInfo.caption && taggedInfo.caption.text)
 		        caption = taggedInfo.caption.text;
@@ -757,7 +757,16 @@
 		            console.log("photo upload succesfully", imageObj.pinId);
 		        });
 		        }
-		       
+		        else if (res && res.message == 'You already have a pin at this location!') {
+		            var imageObj = {
+		                "userId": res.data.userId,
+		                "pinId": res.data.id,
+		                "image": taggedInfo.images.thumbnail.url
+		            }
+		            httpService.updateInstaImage(imageObj).then(function (res) {
+		                console.log("photo upload succesfully", imageObj.pinId);
+		            });
+		        }
 		    });
 		}
 

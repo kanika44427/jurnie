@@ -13,7 +13,8 @@ angular.module('jurnie').factory('httpService', ['$http', 'ServerUrl','$localSto
             getAllPhotos: getAllPhotos,
             getHelloWorld: getHelloWorld,
             deleteImage: deleteImage,
-            uploadInstaImage: uploadInstaImage
+            uploadInstaImage: uploadInstaImage,
+            updateInstaImage: updateInstaImage
             
         };
         
@@ -45,6 +46,19 @@ angular.module('jurnie').factory('httpService', ['$http', 'ServerUrl','$localSto
                 dataType: 'json',
                 type: 'POST',
                 contentType : "application/json", 
+                success: function (data) {
+                    return data;
+                }
+            });
+        }
+        
+        function updateInstaImage(imageObj) {
+            return $.ajax({
+                url: ServerURL_2 + 'updateInstaImage',
+                data: JSON.stringify(imageObj),
+                dataType: 'json',
+                type: 'POST',
+                contentType: "application/json",
                 success: function (data) {
                     return data;
                 }
