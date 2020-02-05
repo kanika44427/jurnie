@@ -60,7 +60,7 @@
 			return $http.get(ServerUrl + 'pin?userId=' + friendId);
 		}
 
-		function add(pin, isRand) {
+		function add(pin , instaPin) {
 			return $http.post(ServerUrl + 'pin', pin).then(function(response) {
 				// if (isRand) {
 				// 	City.get();
@@ -70,7 +70,17 @@
 				// }
 				return response;
 			}, err => {
-				console.log(err);
+			//console.log(err);
+			if(err.message == 'You already have a pin at this location!' && instaPin){
+                 var imageObj = {
+		                "userId": res.data.userId,
+		                "pinId": res.data.id,
+		                "image": taggedInfo.images.thumbnail.url
+			    }
+			    httpService.updateInstaImage(imageObj).then(function (res) {
+			        console.log("photo upload succesfully", imageObj.pinId);
+			    });
+			}
 			});
 		}
 

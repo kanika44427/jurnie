@@ -745,7 +745,8 @@
 		        "note": caption, 
 		        "description": null
 		    }
-		    Pin.add(req_obj).then(function (res) {
+		    var instaPin = true; 
+		    Pin.add(req_obj, instaPin).then(function (res) {
 		        if(res && res.data){
                      console.log("insta pin created", res);
 		        var imageObj = {
@@ -756,16 +757,6 @@
 		        httpService.uploadInstaImage(imageObj).then(function (res) {
 		            console.log("photo upload succesfully", imageObj.pinId);
 		        });
-		        }
-		        else if (res && res.message == 'You already have a pin at this location!') {
-		            var imageObj = {
-		                "userId": res.data.userId,
-		                "pinId": res.data.id,
-		                "image": taggedInfo.images.thumbnail.url
-		            }
-		            httpService.updateInstaImage(imageObj).then(function (res) {
-		                console.log("photo upload succesfully", imageObj.pinId);
-		            });
 		        }
 		    });
 		}

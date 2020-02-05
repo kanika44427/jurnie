@@ -153,7 +153,7 @@
 			vm.pin.startDate = vm.dateOptionsTo.minDate;
 			vm.pin.endDate = vm.dateTo;
 			vm.submitting = true;
-			Pin.add(vm.pin, isRand).then(
+			Pin.add(vm.pin).then(
 				function() {
 					vm.pin.note = null;
 					vm.submitting = false;
