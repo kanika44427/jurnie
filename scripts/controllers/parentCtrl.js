@@ -250,21 +250,17 @@
 			                httpService.socialSignup(fbObject).then(function (response) {
 			                    if (response.data.message == "User already registered" && response.data.status == 0) {
 			                        httpService.socialLogin(fbObject).then(function (response) {
-			                            console.log("insta user",response );
 			                            instagramService.getInstaMarkers().then(function (res) {
 			                                var taggedPlaces = res.data.data;
 			                                if(taggedPlaces && taggedPlaces.length > 0 ){
 			                                    for (var i = 0; i < taggedPlaces.length; i++) {
 			                                        var taggedInfo = taggedPlaces[i];
-			                                        //console.log(taggedInfo[0]);
 			                                        if (taggedInfo.location && taggedInfo.location != null) {
 			                                            createInstaMarker(taggedInfo);
 			                                        }
-			                                            //var taggedInfo = taggedPlaces[i];
-			                                            if (i == (taggedPlaces.length - 1)) {
-													    
+			                                        if (i == (taggedPlaces.length - 1)) {
 															redirectToHomeExisting(instaRes);
-			                                           }
+			                                       }
 			                                    }
 			                                }
 			                                else {
@@ -748,15 +744,15 @@
 		    var instaPin = true; 
 		    Pin.add(req_obj, instaPin).then(function (res) {
 		        if(res && res.data){
-                     console.log("insta pin created", res);
-		        var imageObj = {
-		            "userId": res.data.userId,
-		            "pinId": res.data.id,
-		            "image": taggedInfo.images.thumbnail.url
-		        }
-		        httpService.uploadInstaImage(imageObj).then(function (res) {
-		            console.log("photo upload succesfully", imageObj.pinId);
-		        });
+                     
+		        //var imageObj = {
+		        //    "userId": res.data.userId,
+		        //    "pinId": res.data.id,
+		        //    "image": taggedInfo.images.thumbnail.url
+		        //}
+		        //httpService.uploadInstaImage(imageObj).then(function (res) {
+		        //    console.log("photo upload succesfully", imageObj.pinId);
+		        //});
 		        }
 		    });
 		}

@@ -2,7 +2,7 @@
 	'use strict';
 	angular.module('jurnie').controller('MapsCtrl', mapsCtrl).directive('googlemaps', googleMaps);
 
-	function mapsCtrl(Pin, $uibModal, Search,httpService,$rootScope) {
+	function mapsCtrl(Pin, $uibModal, Search,httpService,$rootScope, instagramService, $localStorage) {
 	    var vm = this;
 		
 	    vm.notes = true;
@@ -37,20 +37,25 @@
 	        });
 	    }
 
-	    function photoTabClick(userId, id)
+	    function photoTabClick(userId, lat, lng, id)
 	    {
 		    
 	        vm.notes = false; 
 	        vm.photo = true; 
 	        vm.friend = false;
-		    
+	        
 	        httpService.getAllPhotos(userId, id).then(function(response){
 	            var response = JSON.parse(response);
+	            if($localStorage.instaToken)
+	                getInstaPhotos(lat, lng, id, userId);
 	            if(response.message == 'Record found' && response.status == 1){
 	                vm.photos = response.data;
+	                vm.photos.forEach(function(obj) { 
+	                    obj.isInstaPhoto = false;
+	                });
 	                $('#uploadBox').trigger('click');
 	                vm.noPhotoFound = false;
-	                //alert("response");
+	               
 	            }
 	            else{
 	                vm.photos = [];
@@ -59,6 +64,24 @@
 	        });
 		    
 	    }
+
+	    function getInstaPhotos(lat, lng, id , userId){
+	        instagramService.getInstaMarkers().then(function (res) {
+	            var taggedPlaces = res.data.data;
+	            if(taggedPlaces && taggedPlaces.length > 0 ){
+	                for (var i = 0; i < taggedPlaces.length; i++) {
+	                    var taggedInfo = taggedPlaces[i];
+	                    if (taggedInfo.location && taggedInfo.location != null && taggedInfo.location.latitude == lat && taggedInfo.location.longitude == lng) {
+	                        if(taggedInfo.images.thumbnail.url){
+	                            vm.photos.push({pinId : id , userId : userId, photoUrl : taggedInfo.images.thumbnail.url, lat : taggedInfo.location.latitude , lng : taggedInfo.location.longitude , isInstaPhoto : true});
+	                            //console.log(vm.photos);
+	                        }
+	                    }
+	                }
+	            }
+	        });
+	    }
+
 	    function editPin(id, latLng, lat, long) {
 	        open(id, latLng, lat, long);
 	    }
@@ -89,9 +112,8 @@
 	    function openDeleteImageConfirmation(i)
 	    {
 	        var imageDetail = vm.photos[i];
-		   
-	        var imageDetail = {id : imageDetail.id, photoUrl: imageDetail.photoUrl, pinId :imageDetail.pinId , userId:imageDetail.userId};
-	        var pinDetail = {};
+	        //var imageDetail = {id : imageDetail.id, photoUrl: imageDetail.photoUrl, pinId :imageDetail.pinId , userId:imageDetail.userId};
+	        var pinDetail = {lat : imageDetail.lat, lng : imageDetail.lng};
 	        modalInstance = $uibModal.open({
 	            animation: vm.animationsEnabled,
 	            ariaLabelledBy: 'modal-title',
@@ -113,26 +135,26 @@
 	            //windowClass  : 'vaibhavClass',
 		     
 	        }).closed.then(function(){
-	            //$rootScope.loaderIndicator = true;;
-	            httpService.getAllPhotos(imageDetail.userId, imageDetail.pinId).then(function (response) {
-	                // alert("in loader");
-	                //$rootScope.loaderIndicator = false;
-	                //vm.$apply();
-	                //$rootScope.apply();
-	                var response = JSON.parse(response);
-		           
-	                if (response.message == 'Record found' && response.status == 1) {
-	                    vm.photos = response.data;
-	                    vm.noPhotoFound = false;
-	                    $('#uploadBox').trigger('click');
-	                    //alert("response");
-	                }
-	                else {
-	                    vm.photos = [];
-	                    vm.noPhotoFound = true;
-	                    $('#uploadBox').trigger('click');
+	            var tempPhotoArray = vm.photos; 
+	            tempPhotoArray.forEach(function(obj) { 
+	                if(obj.id == imageDetail.id){
+	                    vm.photos.splice(imageDetail, 1);
 	                }
 	            });
+	            //httpService.getAllPhotos(imageDetail.userId, imageDetail.pinId).then(function (response) {
+	            //    var response = JSON.parse(response);
+	            //    getInstaPhotos(pinDetail.lat, pinDetail.lng, imageDetail.pinId , imageDetail.userId);
+	            //    if (response.message == 'Record found' && response.status == 1) {
+	            //        vm.photos = response.data;
+	            //        vm.noPhotoFound = false;
+	            //        $('#uploadBox').trigger('click');
+	            //    }
+	            //    else {
+	            //        vm.photos = [];
+	            //        vm.noPhotoFound = true;
+	            //        $('#uploadBox').trigger('click');
+	            //    }
+	            //});
 	        });
 		    
 	    }
@@ -181,7 +203,7 @@
 				
 	    }
         
-	    function fileChanged($event,userId, pinId){
+	    function fileChanged($event,userId, pinId, lat , lng ){
 	        if($event.target.files && $event.target.files.length > 0 ){ // file upload successfully.
 	            var form = new FormData();
 	            form.append('file', $event.target.files[0]);
@@ -195,10 +217,14 @@
 	                    alert("Photo uploaded sucessfully.");
 	                    httpService.getAllPhotos(userId, pinId).then(function(response) {
 	                        var response = JSON.parse(response);
+	                        getInstaPhotos(lat, lng, pinId , userId)
 	                        if(response.message == 'Record found' && response.status == 1){
 	                            vm.noPhotoFound = false;
 	                            vm.photos= [];
 	                            vm.photos = response.data;
+	                            vm.photos.forEach(function(obj) { 
+	                                obj.isInstaPhoto = false;
+	                            });
 	                            $('#uploadBox').trigger('click');
 	                            $rootScope.loaderIndicator = false;
 		                       
@@ -601,8 +627,7 @@
 								        '<img class="little-man" ng-if="!maps.friend" src="../assets/Pin Man - Grey.png">' +
 								    '</div>' +
                                     '<div class="friend-tab tab" ng-class="{selected:maps.photo === true}" ng-click="maps.photoTabClick(\''+
-								        record.userId +
-								        "','" + 
+								        record.userId + "','" + record.latitude + "','" + record.longitude + "','" + 
 								        record.id + "'"+
                                         ')">' +
 								        '<img class="camera" ng-if="maps.photo" src="../assets/camera-icon-white.png">' +
@@ -621,20 +646,20 @@
                                 '<div class="note-pic-display" ng-if="maps.photo" style="width: 100% !important;margin: 0 auto;padding:8px !important;height: 175px !important;overflow-y: scroll;border-radius: 0;">'+
                                   '<div class="upload-header" id="OpenImgUpload" style="background: #f7914c;;padding: 5px;text-align: center;color: #fff;border-top-left-radius: 5px;border-top-right-radius: 5px;margin-top: 10px;">'+
                                     '<input type="file" size="1" id="imgupload" name="imgupload" ng-upload-change="maps.fileChanged($event, \''+
-                                      record.userId + "','" + record.id + "'"+')" style="display:none;" accept="image/*" />'+
+                                      record.userId + "','" + record.id + "','" + record.latitude +"','"+ record.longitude + "'"+')" style="display:none;" accept="image/*" />'+
                                      '<button style="padding:0; width:100%;background:none; border:none;" id="uploadFileButton" ng-click="maps.uploadImageOnIcon($event)" >Upload Button <i class="trash-pic glyphicon glyphicon-plus"></i></button>'+
                                   '</div>'+
                                   '<div class="upload-box" id="uploadBox" style="width:100%;background:#eee;overflow: hidden;overflow: hidden;">'+
                                  
                                   '<div ng-repeat="item in maps.photos">'+ //photo div loop start
-                                           '<button  type="button" ng-click="maps.openDeleteImageConfirmation($index'+
+                                           '<button ng-if="!item.isInstaPhoto" type="button" ng-click="maps.openDeleteImageConfirmation($index'+
                                                                            ')">X</button>'+
                                            '<div style="cursor: pointer" ng-click="maps.photoEnlarge(item.photoUrl)">'+
                                            '<img ng-src="{{item.photoUrl}}" style="width: 100%;height: 60px;padding: 5px 0px;">'+
                                         '</div>'+
                                     '</div>'+ //photo div loop ends
                           
-                            '<div ng-if="maps.noPhotoFound"> No photo found. </div>'+
+                            '<div ng-if="maps.photos.length == 0"> No photo found. </div>'+
                             '</div>'+
                          '</div>'+
 								'<div class="friends-display" ng-if="maps.friend" style="width: 100%;margin: 0 auto;height: 175px !important;overflow-y: scroll;border-radius: 0;">' +
