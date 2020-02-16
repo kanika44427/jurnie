@@ -134,7 +134,7 @@
 		</div>
 		<div class="friend-name-container" ng-if="parent.friendMap">
 			<div class="friend-name-subcontainer">
-				<img class="friend-picture" src="{{parent.friend.profilePic}}">
+                <img class="friend-picture" src="{{parent.friend.profilePic}}" onerror="this.src='assets/Annonymous.png'">
 				<div class="friend-nomen">{{parent.friend.firstName}} {{parent.friend.lastName}}</div>
 			</div>
 		</div>

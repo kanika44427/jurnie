@@ -1,7 +1,7 @@
 <div ng-click="parent.collapseEverything()" class="EVERYTHING">
 	<!--       Navbar for the opening screen, DESKTOP -->
 	<div class="visible-sm visible-md visible-lg visible-xl navbar desktop-login-navbar org-clr" ng-if="!parent.isLoggedIn">
-		<div class="container-fluid login-nav-container">
+		<div class="container-fluid login-nav-container nav-right-section">
 			<div class="navbar-left desktop-login-header">
 				<img class="logo" src="assets/Jurnie Logo - White.png">
 			</div>
@@ -12,6 +12,9 @@
 					</li>
 					<li>
 						<input tabindex='2' class="top-login" ng-model="parent.password" type="password" placeholder="password" name="password" required/>
+                        <div class="text-right">
+                            <button tabindex='3' class="forgot-btn1 cursor" ng-click="parent.goToForgot()">Forgot Password?</button>
+                        </div>
 					</li>
 					<li>
 						<button tabindex='3' class="top-login-btn cursor" ng-click="parent.login()" class="login-btn">Login</button>
@@ -28,9 +31,7 @@
                     </li>
 				</ul>
                
-				<div class="forgot-li">
-					<button tabindex='3' class="forgot-btn cursor" ng-click="parent.goToForgot()">Forgot Password?</button>
-				</div>
+				
 			</div>
             
 		</div>

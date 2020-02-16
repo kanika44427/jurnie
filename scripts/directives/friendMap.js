@@ -358,7 +358,7 @@
                                   '<div ng-repeat="item in maps.photos">'+ //photo div loop start
                                           
                                            '<div style="cursor: pointer" ng-click="maps.photoEnlarge(item.photoUrl)">'+
-                                           '<img ng-src="{{item.photoUrl}}" style="width: 100%;height: 60px;padding: 5px 0px;">'+
+                                           '<img ng-src="{{item.photoUrl}}"  style="width: 100%;height: 60px;padding: 5px 0px;">'+
                                         '</div>'+
                                     '</div>'+ //photo div loop ends
                           

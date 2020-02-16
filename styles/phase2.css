@@ -261,3 +261,6 @@ div#main-body{margin-top:40px}
 .home-img {text-align: center;}
 .home-page-main{padding-left:20px;padding-right:20px;}
 }
+.nav-right-section {
+    padding-right: 0;
+}

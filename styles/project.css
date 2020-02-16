@@ -1238,3 +1238,10 @@ background-color: #F5F5F5;
 .feed-desktop-menu::-webkit-scrollbar-thumb{
 background-color: #5a5a5a;
 }
+
+.forgot-btn1 {
+    background: none;
+    border: none;
+    color: white;
+}
+
