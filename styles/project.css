@@ -185,7 +185,8 @@ input:focus {
 }
 
 .login-nav-container {
-	max-width: 1320px;
+	max-width: 1500px;
+    padding : 0 20px !important; 
 }
 
 .mobile-login-nav {
@@ -199,6 +200,28 @@ input:focus {
 	height: 60px;
 	position: relative;
 	width: 100%;
+}
+
+@media screen and (max-width: 767px)
+.social-btns.signup-btn, .mobile-login-initial.ng-scope .social-btns {
+float: none!important;
+width: 100%;
+text-align: center !important; ****
+margin-bottom: 20px;
+margin-top: 10px;
+}
+.social-btns a {
+margin-left: auto;
+}
+.home-img img {
+padding: 0 20px;
+}
+#main-body {
+margin-top: 0px;
+}
+.home-content {
+padding: 40px 20px;
+}
 }
 
 .mobile-login-container {

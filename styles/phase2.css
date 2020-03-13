@@ -150,7 +150,7 @@ div#settings{padding:0 10px}
 .bottom-section{position:fixed;bottom:0;width:100%;margin-bottom:15px;background:none}
 #landing .app-plug{padding-bottom:100px}
 .pin-details-container.ng-scope{background:none}
-#landing input.name{width:100%;border:none;border-bottom:2px solid #f7914c;border-radius:0;margin-left:0}
+#landing input.name{width:100% !important;border:none;border-bottom:2px solid #f7914c;border-radius:0;margin-left:0}
 #landing input{width:100%;border:none;border-bottom:2px solid #f7914c;margin:12px 0;border-radius:0;float:left!important}
 form.signup-form-container.ng-pristine .clearfix{width:100%;text-align:center}
 .social-btns a{float:none!important}
@@ -163,7 +163,7 @@ form.signup-form-container.ng-pristine .clearfix{width:100%;text-align:center}
 #landing{margin-top:4vh}
 #landing .logo{display:none!important}
 .gm-style-iw.gm-style-iw-c .gm-style-iw-d{overflow:scroll;max-width:367px!important;max-height:889px}
-.clearfix span.or{font-size:16px;margin-bottom:10px;display:block;margin-left:20px}
+.clearfix span.or{font-size:16px;margin-bottom:10px;display:block;margin-left:20px; text-align: center;}
 }
 #landing .name-container{width:71%}
 .radio-birthday input.ng-pristine.ng-valid.ng-empty.ng-touched{width:89%!important}
@@ -263,4 +263,29 @@ div#main-body{margin-top:40px}
 }
 .nav-right-section {
     padding-right: 0;
+}
+
+@media screen and (max-width: 767px){
+.social-btns.signup-btn, .mobile-login-initial.ng-scope .social-btns {
+
+text-align: center !important;
+
+}
+.social-btns a {
+margin-left: auto;
+}
+.home-img img {
+padding: 0 20px;
+}
+#main-body {
+margin-top: 0px;
+}
+.home-content {
+padding: 40px 20px;
+}
+.mobile-login-logo {
+    width: 100%;
+    text-align: center;
+    margin: 7px auto;
+}
 }
