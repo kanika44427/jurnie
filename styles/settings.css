@@ -44,7 +44,7 @@
 
 #settings .settings-title {
 	color: #f7914c;
-    margin-left: 55px;
+    /*margin-left: 55px;*/
 	font-size: 38px;
 	font-weight: bold;
 }
@@ -180,9 +180,11 @@ transform: translate(-50%,-50%);
 }
 #settings .settings-title {
     color: #f7914c;
-    margin-left: 59px;
+    /*margin-left: 59px;*/
     font-size: 38px;
     font-weight: bold;
+    text-align: center !important;
+    width: 100%;
 }
 #settings .save-btn {
     background-color: #00A99D;
