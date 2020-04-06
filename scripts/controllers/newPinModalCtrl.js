@@ -23,8 +23,9 @@
 		vm.from = true;
 		//Ks : vm.dateFrom = pinToEdit ? getEditedDate(pinToEdit.startDate) : getTodayDate();
 		//Ks : vm.dateTo = pinToEdit ? getEditedDate(pinToEdit.endDate) : getTodayDate();
-		vm.dateFrom = pinToEdit ? GetDateFormat(pinToEdit.startDate) : GetDateFormat(new date());
-		vm.dateTo = pinToEdit ? GetDateFormat(pinToEdit.endDate) : GetDateFormat(new date());
+		vm.dateFrom = pinToEdit ? GetDateFormat(pinToEdit.startDate) : GettodayFormat();
+		vm.dateTo = pinToEdit ? GetDateFormat(pinToEdit.endDate) : GettodayFormat();
+		
 		vm.lat = coords ? coords.latitude : pinToEdit ? pinToEdit.latitude : null;
 		vm.long = coords ? coords.longitude : pinToEdit ? pinToEdit.longitude : null;
 		vm.rating = 3;
@@ -37,6 +38,16 @@
 
 		function dateFormatting() {
 
+		}
+
+		function GettodayFormat() {
+		    var date = new Date();
+		    var month = (date.getMonth() + 1).toString();
+		    month = month.length > 1 ? month : '0' + month;
+		    var day = date.getDate().toString();
+		    day = day.length > 1 ? day : '0' + day;
+		    alert("date", date.getFullYear() + '-' + month + '-' + day);
+		    return date.getFullYear() + '-' + month + '-' + day;
 		}
 
 		function GetDateFormat(inputDate) {

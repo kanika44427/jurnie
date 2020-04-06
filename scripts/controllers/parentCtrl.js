@@ -26,7 +26,7 @@
 		//$rootScope.loaderIndicator = false;
 		vm.mobileScreen = false;
 		vm.mobileLogClicked = false;
-
+		alert('1');
 		vm.login = login;
 		vm.logout = logout;
 		vm.goToAnalytics = goToAnalytics;
