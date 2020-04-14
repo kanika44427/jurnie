@@ -24,7 +24,7 @@
 	    //ks: vm.dateFrom = pinToEdit ? getEditedDate(pinToEdit.startDate) : getTodayDate();
 		//ks: vm.dateTo = pinToEdit ? getEditedDate(pinToEdit.endDate) : getTodayDate();
 		vm.dateFrom = pinToEdit ? GetDateFormat(pinToEdit.startDate) : getTodayDate();
-		vm.dateTo = pinToEdit ? GetDateFormat(pinToEdit.endDate) : GetDateFormat(new Date());
+		vm.dateTo = pinToEdit ? new Date() : '14/04/2020';
 		if ($('[type="date"]').prop('type') != 'date') {
 		    $('[type="date"]').datepicker();
 		}
