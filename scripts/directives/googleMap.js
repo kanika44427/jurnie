@@ -545,14 +545,16 @@
 						//var photos = getAllPhotos(record.userId, record.id);
 						//console.log("photos", photos);
 						var placeDescription = record.description;
-						var startDate = $filter('date')(record.startDate, 'yyyy-M-d');
-						var endDate = $filter('date')(record.endDate, 'yyyy-M-d');
+						//ks: var startDate = $filter('date')(record.startDate, 'yyyy-M-d');
+						//ks: var endDate = $filter('date')(record.endDate, 'yyyy-M-d');
+						var startDate = $filter('date')(record.startDate, 'MM-dd-yyyy');
+						var endDate = $filter('date')(record.endDate, 'MM-dd-yyyy');
 						var rating = record.rating;
 						var pinPhone = record.phone;
 						var pinPic = record.pinPic;
 						var friends = record.nearbyPins;
 						var pinMessage = record.pinMessage;
-						var noteDate = $filter('date')(record.createdAt, 'yyyy-M-d');
+						var noteDate = $filter('date')(record.createdAt, 'MM-dd-yyyy');
 						var noteMessage = record.note ? record.note : 'No notes yet';
                         
 						if (record.nearbyPins.length) {

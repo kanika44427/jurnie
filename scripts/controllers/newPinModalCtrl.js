@@ -21,10 +21,13 @@
 		vm.whichPin = null;
 		vm.editing = false;
 		vm.from = true;
-		//Ks : vm.dateFrom = pinToEdit ? getEditedDate(pinToEdit.startDate) : getTodayDate();
-		//Ks : vm.dateTo = pinToEdit ? getEditedDate(pinToEdit.endDate) : getTodayDate();
-		vm.dateFrom = pinToEdit ? GetDateFormat(pinToEdit.startDate) : GettodayFormat();
-		vm.dateTo = pinToEdit ? GetDateFormat(pinToEdit.endDate) : GettodayFormat();
+	    //ks: vm.dateFrom = pinToEdit ? getEditedDate(pinToEdit.startDate) : getTodayDate();
+		//ks: vm.dateTo = pinToEdit ? getEditedDate(pinToEdit.endDate) : getTodayDate();
+		vm.dateFrom = pinToEdit ? GetDateFormat(pinToEdit.startDate) : getTodayDate();
+		vm.dateTo = pinToEdit ? GetDateFormat(pinToEdit.endDate) : GetDateFormat(new Date());
+		if ($('[type="date"]').prop('type') != 'date') {
+		    $('[type="date"]').datepicker();
+		}
 		
 		vm.lat = coords ? coords.latitude : pinToEdit ? pinToEdit.latitude : null;
 		vm.long = coords ? coords.longitude : pinToEdit ? pinToEdit.longitude : null;
@@ -34,29 +37,17 @@
 		vm.places = nearby;
 		vm.gotFriendsPins = false;
 		vm.friendsNearby = null;
-		vm.dateFormatting = dateFormatting;
+		
 
-		function dateFormatting() {
-
-		}
-
-		function GettodayFormat() {
-		    var date = new Date();
-		    var month = (date.getMonth() + 1).toString();
-		    month = month.length > 1 ? month : '0' + month;
-		    var day = date.getDate().toString();
-		    day = day.length > 1 ? day : '0' + day;
-		    alert("date", date.getFullYear() + '-' + month + '-' + day);
-		    return date.getFullYear() + '-' + month + '-' + day;
-		}
-
+		
 		function GetDateFormat(inputDate) {
 		    var date = new Date(inputDate);
 		    var month = (date.getMonth() + 1).toString();
 		    month = month.length > 1 ? month : '0' + month;
 		    var day = date.getDate().toString();
 		    day = day.length > 1 ? day : '0' + day;
-		    return date.getFullYear() + '-' + month + '-' + day;
+		    //return month + '-' + day + '-' + date.getFullYear();
+		    return date.getFullYear() + '-' + month + '-' + day; 
 		}
 
 		function getEditedDate(editdt) {
@@ -75,13 +66,13 @@
 		}
         
 
-		vm.dateOptionsTo = {
-			formatYear: 'yyyy',
-			maxDate: null,
-			minDate: vm.dateFrom,
-			startingDay: 1,
-			showWeeks: false
-		};
+		//vm.dateOptionsTo = {
+		//	formatYear: 'yyyy',
+		//	maxDate: null,
+		//	minDate: vm.dateFrom,
+		//	startingDay: 1,
+		//	showWeeks: false
+		//};
 		//vm.dateOptionsFrom = {
 		//	formatYear: 'yyyy',
 		//	maxDate: null,
@@ -90,18 +81,18 @@
 		//	showWeeks: false
 		//};
 		
-		$scope.$watch(
-			function() {
-				return vm.dateOptionsTo.minDate;
-			},
-			function(newVal, oldVal) {
-				//vm.dateTo = newVal;
-			}
-		);
+		//$scope.$watch(
+		//	function() {
+		//		return vm.dateOptionsTo.minDate;
+		//	},
+		//	function(newVal, oldVal) {
+		//		//vm.dateTo = newVal;
+		//	}
+		//);
 
-		$("#fromDate").datepicker("setDate", new Date());
+		//$("#fromDate").datepicker("setDate", new Date());
 
-		$("#toDate").datepicker("setDate", new Date());
+		//$("#toDate").datepicker("setDate", new Date());
 
 		vm.pin = {
 			pinTypeId: null,
@@ -177,7 +168,7 @@
 		function submit() {
 		    vm.pin.description = vm.placeName;
            
-		    vm.pin.startDate = new Date(vm.dateOptionsTo.minDate);
+		    vm.pin.startDate = new Date(vm.dateFrom);
 			vm.pin.endDate = new Date(vm.dateTo);
 			Pin.add(vm.pin).then(
 				function() {
