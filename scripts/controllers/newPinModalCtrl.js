@@ -23,8 +23,8 @@
 		vm.from = true;
 	    //ks: vm.dateFrom = pinToEdit ? getEditedDate(pinToEdit.startDate) : getTodayDate();
 		//ks: vm.dateTo = pinToEdit ? getEditedDate(pinToEdit.endDate) : getTodayDate();
-		vm.dateFrom = pinToEdit ? GetDateFormat(pinToEdit.startDate) : getTodayDate();
-		vm.dateTo = pinToEdit ? new Date() : '14/04/2020';
+		vm.dateFrom = pinToEdit ? pinToEdit.startDate : getTodayDate();
+		vm.dateTo = pinToEdit ? pinToEdit.endDate : getTodayDate();
 		if ($('[type="date"]').prop('type') != 'date') {
 		    $('[type="date"]').datepicker();
 		}
@@ -37,8 +37,6 @@
 		vm.places = nearby;
 		vm.gotFriendsPins = false;
 		vm.friendsNearby = null;
-		
-
 		
 		function GetDateFormat(inputDate) {
 		    var date = new Date(inputDate);
