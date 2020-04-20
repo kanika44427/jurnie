@@ -1,7 +1,7 @@
-(function() {
-	angular.module('jurnie').controller('NewPinController', newPinCtrl);
+(function () {
+    angular.module('jurnie').controller('NewPinController', newPinCtrl);
 
-	function newPinCtrl(
+    function newPinCtrl(
 		Auth,
 		$timeout,
 		$rootScope,
@@ -14,202 +14,186 @@
 		nearby,
 		$scope
 	) {
-		var vm = this;
+        var vm = this;
 
-		vm.randomCity = 'Melbourne, Australia';
-		vm.choice = false;
-		vm.whichPin = null;
-		vm.editing = false;
-		vm.from = true;
-	    //ks: vm.dateFrom = pinToEdit ? getEditedDate(pinToEdit.startDate) : getTodayDate();
-		//ks: vm.dateTo = pinToEdit ? getEditedDate(pinToEdit.endDate) : getTodayDate();
-		vm.dateFrom = pinToEdit ? pinToEdit.startDate : getTodayDate();
-		vm.dateTo = pinToEdit ? pinToEdit.endDate : getTodayDate();
-		if ($('[type="date"]').prop('type') != 'date') {
-		    $('[type="date"]').datepicker();
-		}
-		
-		vm.lat = coords ? coords.latitude : pinToEdit ? pinToEdit.latitude : null;
-		vm.long = coords ? coords.longitude : pinToEdit ? pinToEdit.longitude : null;
-		vm.rating = 3;
-		vm.placeName = pinToEdit ? pinToEdit.description : null;
-		vm.custom = false;
-		vm.places = nearby;
-		vm.gotFriendsPins = false;
-		vm.friendsNearby = null;
-		
-		function GetDateFormat(inputDate) {
-		    var date = new Date(inputDate);
-		    var month = (date.getMonth() + 1).toString();
-		    month = month.length > 1 ? month : '0' + month;
-		    var day = date.getDate().toString();
-		    day = day.length > 1 ? day : '0' + day;
-		    //return month + '-' + day + '-' + date.getFullYear();
-		    return date.getFullYear() + '-' + month + '-' + day; 
-		}
+        vm.randomCity = 'Melbourne, Australia';
+        vm.choice = false;
+        vm.whichPin = null;
+        vm.editing = false;
+        vm.from = true;
+        vm.dateFrom = pinToEdit ? getEditedDate(pinToEdit.startDate) : getTodayDate();
+        vm.dateTo = pinToEdit ? getEditedDate(pinToEdit.endDate) : getTodayDate();
+        vm.lat = coords ? coords.latitude : pinToEdit ? pinToEdit.latitude : null;
+        vm.long = coords ? coords.longitude : pinToEdit ? pinToEdit.longitude : null;
+        vm.rating = 3;
+        vm.placeName = pinToEdit ? pinToEdit.description : null;
+        vm.custom = false;
+        vm.places = nearby;
+        vm.gotFriendsPins = false;
+        vm.friendsNearby = null;
 
-		function getEditedDate(editdt) {
-		    var dt = new Date(editdt);
-		    var dd = dt.getDate();
-		    var mm = dt.getMonth() + 1;
-		    var yyyy = dt.getFullYear().toString().substr(-2);
-		    if (dd < 10) {
-		        dd = '0' + dd;
-		    }
-		    if (mm < 10) {
-		        mm = '0' + mm;
-		    }
-		    var today = mm + '-' + dd + '-' + yyyy;
-		    return today;
-		}
+        function getEditedDate(editdt) {
+            var dt = new Date(editdt);
+            var dd = dt.getDate();
+            var mm = dt.getMonth() + 1;
+            var yyyy = dt.getFullYear().toString().substr(-2);
+            if (dd < 10) {
+                dd = '0' + dd;
+            }
+            if (mm < 10) {
+                mm = '0' + mm;
+            }
+            var today = mm + '-' + dd + '-' + yyyy;
+            return today;
+        }
+
+
+        vm.dateOptionsTo = {
+            formatYear: 'yyyy',
+            maxDate: null,
+            minDate: vm.dateFrom,
+            startingDay: 1,
+            showWeeks: false
+        };
+        //vm.dateOptionsFrom = {
+        //	formatYear: 'yyyy',
+        //	maxDate: null,
+        //	minDate: null,
+        //	startingDay: 1,
+        //	showWeeks: false
+        //};
+
+        $scope.$watch(
+			function () {
+			    return vm.dateOptionsTo.minDate;
+			},
+			function (newVal, oldVal) {
+			    //vm.dateTo = newVal;
+			}
+		);
+
+       $("#fromDate").datepicker("setDate", new Date());
         
+        $("#toDate").datepicker("setDate", new Date());
 
-		//vm.dateOptionsTo = {
-		//	formatYear: 'yyyy',
-		//	maxDate: null,
-		//	minDate: vm.dateFrom,
-		//	startingDay: 1,
-		//	showWeeks: false
-		//};
-		//vm.dateOptionsFrom = {
-		//	formatYear: 'yyyy',
-		//	maxDate: null,
-		//	minDate: null,
-		//	startingDay: 1,
-		//	showWeeks: false
-		//};
-		
-		//$scope.$watch(
-		//	function() {
-		//		return vm.dateOptionsTo.minDate;
-		//	},
-		//	function(newVal, oldVal) {
-		//		//vm.dateTo = newVal;
-		//	}
-		//);
+        vm.pin = {
+            pinTypeId: null,
+            latitude: vm.lat,
+            longitude: vm.long,
+            startDate: vm.dateFrom,
+            endDate: vm.dateTo,
+            rating: vm.rating,
+            note: null,
+            description: null
+        };
 
-		//$("#fromDate").datepicker("setDate", new Date());
+        vm.submit = submit;
+        vm.deletePin = deletePin;
+        vm.updatePin = updatePin;
+        vm.cancel = cancel;
+        vm.choosePlace = choosePlace;
+        vm.makeCustom = makeCustom;
 
-		//$("#toDate").datepicker("setDate", new Date());
+        if (pinToEdit) {
+            vm.editing = true;
+            vm.pin = pinToEdit;
+        }
 
-		vm.pin = {
-			pinTypeId: null,
-			latitude: vm.lat,
-			longitude: vm.long,
-			startDate: vm.dateFrom,
-			endDate: vm.dateTo,
-			rating: vm.rating,
-			note: null,
-			description: null
-		};
+        init();
 
-		vm.submit = submit;
-		vm.deletePin = deletePin;
-		vm.updatePin = updatePin;
-		vm.cancel = cancel;
-		vm.choosePlace = choosePlace;
-		vm.makeCustom = makeCustom;
+        function getTodayDate() {
+            var today = new Date();
+            var dd = today.getDate();
+            var mm = today.getMonth() + 1;
+            var yyyy = today.getFullYear().toString().substr(-2);
+            if (dd < 10) {
+                dd = '0' + dd;
+            }
+            if (mm < 10) {
+                mm = '0' + mm;
+            }
+            today = mm + '-' + dd + '-' + yyyy;
+            return today;
+        }
+        function init() {
 
-		if (pinToEdit) {
-			vm.editing = true;
-			vm.pin = pinToEdit;
-		}
-
-		init();
-		
-		function getTodayDate() {
-		    var today = new Date();
-		    var dd = today.getDate();
-		    var mm = today.getMonth() + 1;
-		    var yyyy = today.getFullYear().toString().substr(-2);
-		    if (dd < 10) {
-		        dd = '0' + dd;
-		    }
-		    if (mm < 10) {
-		        mm = '0' + mm;
-		    }
-		    today = mm + '-' + dd + '-' + yyyy;
-		    return today;
-		}
-		function init() {
-		   
-			Pin.getNearbyFriendPins(vm.lat, vm.long).then(
-				function(response) {
-					var userIds = {};
-					var firstFive = [];
-					response.data.forEach(function(friendPin) {
-						if (firstFive.length < 5 && !userIds[friendPin.user.id]) {
-							firstFive.push(friendPin);
-							userIds[friendPin.user.id] = true;
-						}
-					});
-					vm.friendsNearby = firstFive;
-					vm.gotFriendsPins = true;
-					console.log('friends nearby', vm.friendsNearby);
+            Pin.getNearbyFriendPins(vm.lat, vm.long).then(
+				function (response) {
+				    var userIds = {};
+				    var firstFive = [];
+				    response.data.forEach(function (friendPin) {
+				        if (firstFive.length < 5 && !userIds[friendPin.user.id]) {
+				            firstFive.push(friendPin);
+				            userIds[friendPin.user.id] = true;
+				        }
+				    });
+				    vm.friendsNearby = firstFive;
+				    vm.gotFriendsPins = true;
+				    console.log('friends nearby', vm.friendsNearby);
 				},
-				function(err) {
-					console.log('nearby friend pins error:', err);
+				function (err) {
+				    console.log('nearby friend pins error:', err);
 				}
 			);
-		}
+        }
 
-		function choosePlace(place) {
-			vm.placeName = place.description;
-			vm.pin.description = vm.placeName;
-		}
+        function choosePlace(place) {
+            vm.placeName = place.description;
+            vm.pin.description = vm.placeName;
+        }
 
-		function makeCustom() {
-			vm.custom = !vm.custom;
-			vm.placeName = null;
-		}
+        function makeCustom() {
+            vm.custom = !vm.custom;
+            vm.placeName = null;
+        }
 
-		function submit() {
-		    vm.pin.description = vm.placeName;
-           
-		    vm.pin.startDate = new Date(vm.dateFrom);
-			vm.pin.endDate = new Date(vm.dateTo);
-			Pin.add(vm.pin).then(
-				function() {
-					$uibModalInstance.dismiss('cancel');
+        function submit() {
+            vm.pin.description = vm.placeName;
+
+            vm.pin.startDate = new Date(vm.dateOptionsTo.minDate);
+            vm.pin.endDate = new Date(vm.dateTo);
+            Pin.add(vm.pin).then(
+				function () {
+				    $uibModalInstance.dismiss('cancel');
 				},
-				function(err) {
-					SweetAlert.swal(
+				function (err) {
+				    SweetAlert.swal(
 						{
-							title: 'Something went wrong...',
-							text: err.data && err.data.message ? 'Message: ' + err.data.message : 'Sorry about that!',
-							confirmButtonColor: '#00A99D',
-							confirmButtonText: 'OK',
-							type: 'warning'
+						    title: 'Something went wrong...',
+						    text: err.data && err.data.message ? 'Message: ' + err.data.message : 'Sorry about that!',
+						    confirmButtonColor: '#00A99D',
+						    confirmButtonText: 'OK',
+						    type: 'warning'
 						},
-						function(isConfirm) {}
+						function (isConfirm) { }
 					);
 				}
 			);
-		}
+        }
 
-		function cancel() {
-			$rootScope.$emit('cancel');
-			$uibModalInstance.dismiss('cancel');
-		}
+        function cancel() {
+            $rootScope.$emit('cancel');
+            $uibModalInstance.dismiss('cancel');
+        }
 
-		function deletePin() {
-			Pin.remove(pinToEdit.id).then(function(response) {
-				$uibModalInstance.dismiss('cancel');
-			});
-		}
+        function deletePin() {
+            Pin.remove(pinToEdit.id).then(function (response) {
+                $uibModalInstance.dismiss('cancel');
+            });
+        }
 
-		function updatePin() {
-			vm.pin.startDate = vm.dateFrom;
-			vm.pin.endDate = vm.dateTo;
-			vm.pin.description = vm.placeName;
-			Pin.updatePin(vm.pin.id, vm.pin).then(function(response) {
-				$uibModalInstance.dismiss('cancel');
-			});
-		}
+        function updatePin() {
+            vm.pin.startDate = vm.dateFrom;
+            vm.pin.endDate = vm.dateTo;
+            vm.pin.description = vm.placeName;
+            Pin.updatePin(vm.pin.id, vm.pin).then(function (response) {
+                $uibModalInstance.dismiss('cancel');
+            });
+        }
 
-		$rootScope.$on('newPin', function(event, latLng) {
-			vm.pin.latitude = latLng.lat();
-			vm.pin.longitude = latLng.lng();
-		});
-	}
+        $rootScope.$on('newPin', function (event, latLng) {
+            vm.pin.latitude = latLng.lat();
+            vm.pin.longitude = latLng.lng();
+        });
+    }
 })();

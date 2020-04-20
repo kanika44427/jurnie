@@ -1,16 +1,13 @@
-
-
-
-        <!--Modal back up -->
-        <!--
-        NEW PIN MODAL -->
-        <div id="newPin">
-            <div class="modal-header">
-                <h3 ng-if="!newPin.editing" class="modal-title" id="modal-title">{{newPin.placeName || 'New Pin'}}</h3>
-                <h3 ng-if="newPin.editing" class="modal-title" id="modal-title">Editing: {{newPin.pin.description}}</h3>
-                <span class="right-cross">
-                    <button draggable="false" title="Close" aria-label="Close" type="button" ng-click="newPin.cancel()"
-                            style="background: #fff; display: block;border: 0px; margin: 0px;padding: 0px; position: absolute; cursor: pointer;
+<!--Modal back up -->
+<!--
+NEW PIN MODAL -->
+<div id="newPin">
+    <div class="modal-header">
+        <h3 ng-if="!newPin.editing" class="modal-title" id="modal-title">{{newPin.placeName || 'New Pin'}}</h3>
+        <h3 ng-if="newPin.editing" class="modal-title" id="modal-title">Editing: {{newPin.pin.description}}</h3>
+        <span class="right-cross">
+            <button draggable="false" title="Close" aria-label="Close" type="button" ng-click="newPin.cancel()"
+                    style="background: #fff; display: block;border: 0px; margin: 0px;padding: 0px; position: absolute; cursor: pointer;
                             user-select: none;
                             top: 6px;
                             right: -27px;
@@ -22,100 +19,97 @@
                             z-index: 5;
                             border-radius: 50%;
                             line-height: 20px;">
-                        <span style="font-weight:bold"> X </span>
-                    </button>
-                   
-                </span>
-            </div>
-            <div class="modal-body" id="modal-body">
-                
-                <div class="choose-name-row" ng-if="!newPin.editing">
-                    <!--<h3>Where is this?</h3>-->
-                    <!--<h5 class="custom-place cursor" ng-click="newPin.makeCustom()" ng-if="!newPin.custom">Custom place</h5>
-                    <h5 class="custom-place cursor" ng-click="newPin.makeCustom()" ng-if="newPin.custom">Place options</h5>-->
-                </div>
-                <!--<div class="search-dropdown" ng-if="!newPin.editing && newPin.places && !newPin.custom">
-                    <ul ng-if="newPin.places && !newPin.custom">
-                        <li class="cursor search-place " ng-if="newPin.places && !newPin.ignorePlaces " ng-repeat="place in newPin.places
-                | limitTo:4 " ng-mousedown="newPin.choosePlace(place)">{{place.description}}<br>
-                        </li>
-                    </ul>
-                </div>-->
-               
-                <input class="custom-place-input" autofocus placeholder="Location Name" ng-model="newPin.placeName" maxlength="35">
-                <div class="pin-options">
-                    <div class="option wish-list" ng-click="newPin.whichPin = 'wish'; newPin.pin.pinTypeId = 3">
-                        <img class="pin-pic cursor" src="assets/Orange Pin - Large.png">
-                        <div class="pin-type cursor" ng-class="{selectedwish: newPin.whichPin === 'wish'}">Wish List</div>
-                    </div>
-                    <div class="option going-here" ng-click="newPin.whichPin = 'going'; newPin.pin.pinTypeId = 2">
-                        <img class="pin-pic cursor" src="assets/Green Pin - Large.png">
-                        <div class="pin-type cursor" ng-class="{selectedgoing: newPin.whichPin === 'going'}">Going Here</div>
-                    </div>
-                    <div class="option been-here" ng-click="newPin.whichPin = 'been'; newPin.pin.pinTypeId = 1">
-                        <img class="pin-pic cursor" src="assets/Blue Pin - Large.png">
-                        <div class="pin-type cursor" ng-class="{selectedbeen: newPin.whichPin === 'been'}">Been Here</div>
-                    </div>
-                </div>
-
-            </div>
-            <div class="when-container" ng-if="newPin.whichPin === 'going' || newPin.whichPin === 'been'">
-                <div class="question when">When?</div>
-                <!--<div class="from-to-btns">
-                    <div ng-class="{selected: newPin.from}" class="from cursor" ng-click="newPin.from = true">From</div>
-                    <div ng-class="{selected: !newPin.from}" class="from cursor" ng-click="newPin.from = false">To</div>
-                </div>-->
-                <!--<div uib-datepicker ng-if="newPin.id="dfrom" ng-model="newPin.dateOptionsTo.minDate" class="well well-sm" datepicker-options="newPin.dateOptionsFrom"></div>-->
-                 <div class="from cursor" ng-click="newPin.from = true">From</div>
-                 <!--<datepicker ng-if="newPin.from" date-format='yy-mm-dd' id="fromDate">
-                    <input ng-model="newPin.dateFrom" type="text" />
-                </datepicker>-->
-                <input data-ng-model="newPin.dateFrom" type="date" class="name" />
-                <!--<span ng-if="newPin.from"><input data-ng-model="newPin.dateFrom" ng-change="newPin.GetDateFormat()" type="date" class="name" /></span>-->
-                 <!--<div uib-datepicker ng-if="!newPin.from" ng-model="newPin.dateTo" class="well well-sm" datepicker-options="newPin.dateOptionsTo"></div>-->
-                <div class="from cursor" ng-click="newPin.from = false">To</div>
-                <!--<datepicker date-format='MM-dd-yy' id="toDate">
-                    <input ng-model="newPin.dateTo" type="text" />
-                </datepicker>-->knika-15
-                <input data-ng-model="newPin.dateTo"  type="date" class="name" />
-            </div>
-
-            <div class="rating-container" ng-if="newPin.whichPin === 'going' || newPin.whichPin === 'been'">
-                <div class="question rating">Rating:</div>
-                <div class="star-rating">
-                    <rating class="cursor" value="newPin.pin.rating" max="5" color="#333" interactive="true"></rating>
-                </div>
-            </div>
-
-            <div class="notes-container" ng-if="newPin.whichPin === 'going' || newPin.whichPin === 'been' || newPin.whichPin === 'wish'">
-                <div class="question notes">Notes:</div>
-                <textarea class="notes-text" ng-model="newPin.pin.note"></textarea>
-            </div>
-            <!--FRIENDS NEARBY PINS-->
-            <div class="friends-pins-container">
-                <div class="friends-pins-title">Friends that have pinned this location:</div>
-                <div class="friends-pins-loading" ng-if="!newPin.gotFriendsPins">Loading...</div>
-                <div class="friends-pins-loading" ng-if="newPin.friendsNearby.length === 0 && newPin.gotFriendsPins">No friends' pins nearby!</div>
-                <div class="friends-pins-list" ng-repeat="friendPin in newPin.friendsNearby">
-                    <img class="friends-pins-pic" ng-src="{{friendPin.user.profilePic}}" ng-if="newPin.gotFriendsPins">
-                    <div class="friends-pins-name" ng-if="newPin.gotFriendsPins">{{friendPin.user.firstName}} {{friendPin.user.lastName}}</div>
-                </div>
-            </div>
-
-        </div>
-        <div class="modal-footer">
-            <button class="cancel btn btn-warning cursor" type="button" ng-click="newPin.cancel()">Cancel</button>
-            <button class="delete btn btn-warning cursor" ng-if="newPin.editing" ng-click="newPin.deletePin()">Delete Pin</button>
-            <button class="submit btn btn-warning cursor" ng-if="!newPin.editing && (newPin.whichPin === 'going' || newPin.whichPin === 'been' || newPin.whichPin === 'wish')"
-                    ng-click="newPin.submit()">
-                Submit
+                <span style="font-weight:bold"> X </span>
             </button>
-            <button class="submit btn btn-warning cursor" ng-if="newPin.editing && (newPin.whichPin === 'going' || newPin.whichPin === 'been' || newPin.whichPin === 'wish')"
-                    ng-click="newPin.updatePin()">
-                Update Pin
-            </button>
+
+        </span>
+    </div>
+    <div class="modal-body" id="modal-body">
+
+        <div class="choose-name-row" ng-if="!newPin.editing">
+            <!--<h3>Where is this?</h3>-->
+            <!--<h5 class="custom-place cursor" ng-click="newPin.makeCustom()" ng-if="!newPin.custom">Custom place</h5>
+            <h5 class="custom-place cursor" ng-click="newPin.makeCustom()" ng-if="newPin.custom">Place options</h5>-->
         </div>
-   
+        <!--<div class="search-dropdown" ng-if="!newPin.editing && newPin.places && !newPin.custom">
+            <ul ng-if="newPin.places && !newPin.custom">
+                <li class="cursor search-place " ng-if="newPin.places && !newPin.ignorePlaces " ng-repeat="place in newPin.places
+        | limitTo:4 " ng-mousedown="newPin.choosePlace(place)">{{place.description}}<br>
+                </li>
+            </ul>
+        </div>-->
+
+        <input class="custom-place-input" autofocus placeholder="Location Name" ng-model="newPin.placeName" maxlength="35">
+        <div class="pin-options">
+            <div class="option wish-list" ng-click="newPin.whichPin = 'wish'; newPin.pin.pinTypeId = 3">
+                <img class="pin-pic cursor" src="assets/Orange Pin - Large.png">
+                <div class="pin-type cursor" ng-class="{selectedwish: newPin.whichPin === 'wish'}">Wish List</div>
+            </div>
+            <div class="option going-here" ng-click="newPin.whichPin = 'going'; newPin.pin.pinTypeId = 2">
+                <img class="pin-pic cursor" src="assets/Green Pin - Large.png">
+                <div class="pin-type cursor" ng-class="{selectedgoing: newPin.whichPin === 'going'}">Going Here</div>
+            </div>
+            <div class="option been-here" ng-click="newPin.whichPin = 'been'; newPin.pin.pinTypeId = 1">
+                <img class="pin-pic cursor" src="assets/Blue Pin - Large.png">
+                <div class="pin-type cursor" ng-class="{selectedbeen: newPin.whichPin === 'been'}">Been Here</div>
+            </div>
+        </div>
+
+    </div>
+    <div class="when-container" ng-if="newPin.whichPin === 'going' || newPin.whichPin === 'been'">
+        <div class="question when">When?</div>
+        <!--<div class="from-to-btns">
+            <div ng-class="{selected: newPin.from}" class="from cursor" ng-click="newPin.from = true">From</div>
+            <div ng-class="{selected: !newPin.from}" class="from cursor" ng-click="newPin.from = false">To</div>
+        </div>-->
+        <!--<div uib-datepicker ng-if="newPin.id="dfrom" ng-model="newPin.dateOptionsTo.minDate" class="well well-sm" datepicker-options="newPin.dateOptionsFrom"></div>-->
+        <div class="from cursor" ng-click="newPin.from = true">From</div>
+        <datepicker ng-if="newPin.from" date-format='MM-dd-yy' id="fromDate">
+            <input ng-model="newPin.dateFrom" type="text" />
+        </datepicker>
+        <!--<div uib-datepicker ng-if="!newPin.from" ng-model="newPin.dateTo" class="well well-sm" datepicker-options="newPin.dateOptionsTo"></div>-->
+        <div class="from cursor" ng-click="newPin.from = false">To</div>
+        <datepicker date-format='MM-dd-yy' id="toDate">
+            <input ng-model="newPin.dateTo" type="text" />
+        </datepicker>
+    </div>
+
+    <div class="rating-container" ng-if="newPin.whichPin === 'going' || newPin.whichPin === 'been'">
+        <div class="question rating">Rating:</div>
+        <div class="star-rating">
+            <rating class="cursor" value="newPin.pin.rating" max="5" color="#333" interactive="true"></rating>
+        </div>
+    </div>
+
+    <div class="notes-container" ng-if="newPin.whichPin === 'going' || newPin.whichPin === 'been' || newPin.whichPin === 'wish'">
+        <div class="question notes">Notes:</div>
+        <textarea class="notes-text" ng-model="newPin.pin.note"></textarea>
+    </div>
+    <!--FRIENDS NEARBY PINS-->
+    <div class="friends-pins-container">
+        <div class="friends-pins-title">Friends that have pinned this location:</div>
+        <div class="friends-pins-loading" ng-if="!newPin.gotFriendsPins">Loading...</div>
+        <div class="friends-pins-loading" ng-if="newPin.friendsNearby.length === 0 && newPin.gotFriendsPins">No friends' pins nearby!</div>
+        <div class="friends-pins-list" ng-repeat="friendPin in newPin.friendsNearby">
+            <img class="friends-pins-pic" ng-src="{{friendPin.user.profilePic}}" ng-if="newPin.gotFriendsPins">
+            <div class="friends-pins-name" ng-if="newPin.gotFriendsPins">{{friendPin.user.firstName}} {{friendPin.user.lastName}}</div>
+        </div>
+    </div>
+
+</div>
+<div class="modal-footer">
+    <button class="cancel btn btn-warning cursor" type="button" ng-click="newPin.cancel()">Cancel</button>
+    <button class="delete btn btn-warning cursor" ng-if="newPin.editing" ng-click="newPin.deletePin()">Delete Pin</button>
+    <button class="submit btn btn-warning cursor" ng-if="!newPin.editing && (newPin.whichPin === 'going' || newPin.whichPin === 'been' || newPin.whichPin === 'wish')"
+            ng-click="newPin.submit()">
+        Submit
+    </button>
+    <button class="submit btn btn-warning cursor" ng-if="newPin.editing && (newPin.whichPin === 'going' || newPin.whichPin === 'been' || newPin.whichPin === 'wish')"
+            ng-click="newPin.updatePin()">
+        Update Pin
+    </button>
+</div>
+
 
 
 
@@ -141,17 +135,17 @@
             <div class="date to"></div>
         </div>
     <div class="tabs">
-      
+
         <div class="note-pic-tab tab" ng-class="{selected:maps.notes === false}">
-           
+
             <img class="camera" ng-if="maps.notes" src="../assets/Notes - White.png">
             <img class="camera" ng-if="!maps.notes" src="../assets/Notes - Grey.png">
         </div>
         <div class="friend-tab tab" ng-class="{selected:maps.notes === true}" ng-click="maps.notes = false">
-           
+
             <img class="little-man" ng-if="!maps.notes" src="../assets/Pin Man - White.png">
             <img class="little-man" ng-if="maps.notes" src="../assets/Pin Man - Grey.png" />
-            
+
         </div>
     </div>
     <div class="tab-content">
@@ -163,7 +157,7 @@
            </div>
         <div class="friends-display" ng-if="!maps.notes">
             <div class="friends-table-head">
-                
+
                 <div class="friend-col who">Who...</div>
                 <div class="white-vert1">|</div>
                 <div class="friend-col when">When...</div>
@@ -171,8 +165,8 @@
                 <div class="friend-col pin">Pin...</div>
             </div>
             <div class="friends-table-content" ng-repeat="friendPin in nearbyPins[\'' +
-								record.id +
-								'\']">
+                                record.id +
+                                '\']">
                 <img class="friend-pic profile-pic" ng-src="{{friendPin.user.profilePic}}">
                 <div class="friend-name">{{friendPin.user.firstName}} {{friendPin.user.lastName}}</div>
                 <div class="friend-pin-date">{{friendPin.createdAt | date: \'yyyy-M-d\'}}</div>
