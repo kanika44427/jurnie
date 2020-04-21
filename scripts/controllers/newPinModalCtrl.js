@@ -21,7 +21,7 @@
         vm.whichPin = null;
         vm.editing = false;
         vm.from = true;
-        vm.dateInit = '12-03-2016';
+        vm.MinDate = new Date();
         vm.dateFrom = pinToEdit ? getEditedDate(pinToEdit.startDate) : getTodayDate();
         vm.dateTo = pinToEdit ? getEditedDate(pinToEdit.endDate) : getTodayDate();
         vm.lat = coords ? coords.latitude : pinToEdit ? pinToEdit.latitude : null;
@@ -37,25 +37,25 @@
             var dt = new Date(editdt);
             var dd = dt.getDate();
             var mm = dt.getMonth() + 1;
-            var yyyy = dt.getFullYear().toString().substr(-2);
+            var yyyy = dt.getFullYear().toString(); 
             if (dd < 10) {
                 dd = '0' + dd;
             }
             if (mm < 10) {
                 mm = '0' + mm;
             }
-            var today = mm + '-' + dd + '-' + yyyy;
+            var today = dd + '-' + mm + '-' + yyyy;
             return today;
         }
 
 
-        vm.dateOptionsTo = {
-            formatYear: 'yyyy',
-            maxDate: null,
-            minDate: vm.dateFrom,
-            startingDay: 1,
-            showWeeks: false
-        };
+        //vm.dateOptionsTo = {
+        //    formatYear: 'yyyy',
+        //    maxDate: null,
+        //    minDate: vm.dateFrom,
+        //    startingDay: 1,
+        //    showWeeks: false
+        //};
         //vm.dateOptionsFrom = {
         //	formatYear: 'yyyy',
         //	maxDate: null,
@@ -64,18 +64,18 @@
         //	showWeeks: false
         //};
 
-        $scope.$watch(
-			function () {
-			    return vm.dateOptionsTo.minDate;
-			},
-			function (newVal, oldVal) {
-			    //vm.dateTo = newVal;
-			}
-		);
+       // $scope.$watch(
+	   // 	function () {
+	   // 	    return vm.dateOptionsTo.minDate;
+	   // 	},
+	   // 	function (newVal, oldVal) {
+	   // 	    //vm.dateTo = newVal;
+	   // 	}
+	   // );
 
-       $("#fromDate").datepicker("setDate", new Date());
+       //$("#fromDate").datepicker("setDate", new Date());
         
-        $("#toDate").datepicker("setDate", new Date());
+       // $("#toDate").datepicker("setDate", new Date());
 
         vm.pin = {
             pinTypeId: null,
@@ -106,14 +106,14 @@
             var today = new Date();
             var dd = today.getDate();
             var mm = today.getMonth() + 1;
-            var yyyy = today.getFullYear().toString().substr(-2);
+            var yyyy = today.getFullYear().toString(); 
             if (dd < 10) {
                 dd = '0' + dd;
             }
             if (mm < 10) {
                 mm = '0' + mm;
             }
-            today = mm + '-' + dd + '-' + yyyy;
+            today = dd + '-' + mm + '-' + yyyy;
             return today;
         }
         function init() {

@@ -289,3 +289,8 @@ padding: 40px 20px;
     margin: 7px auto;
 }
 }
+
+._720kb-datepicker-calendar-day._720kb-datepicker-today {
+  background:orange;
+  color:white;
+}
