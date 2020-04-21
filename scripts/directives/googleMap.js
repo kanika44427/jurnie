@@ -572,7 +572,7 @@
                        
 						$rootScope.nearbyPins = $rootScope.nearbyPins || {};
 						$rootScope.nearbyPins[record.id] = record.nearbyPins;
-						console.log('friend pins nearby:', record.nearbyPins);
+						//console.log('friend pins nearby:', record.nearbyPins);
 
 						var infoWindowContent = $compile(
 							    '<div class="everything">' +

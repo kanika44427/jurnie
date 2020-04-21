@@ -21,6 +21,7 @@
         vm.whichPin = null;
         vm.editing = false;
         vm.from = true;
+        vm.dateInit = '12-03-2016';
         vm.dateFrom = pinToEdit ? getEditedDate(pinToEdit.startDate) : getTodayDate();
         vm.dateTo = pinToEdit ? getEditedDate(pinToEdit.endDate) : getTodayDate();
         vm.lat = coords ? coords.latitude : pinToEdit ? pinToEdit.latitude : null;
@@ -129,7 +130,7 @@
 				    });
 				    vm.friendsNearby = firstFive;
 				    vm.gotFriendsPins = true;
-				    console.log('friends nearby', vm.friendsNearby);
+				    //console.log('friends nearby', vm.friendsNearby);
 				},
 				function (err) {
 				    console.log('nearby friend pins error:', err);
