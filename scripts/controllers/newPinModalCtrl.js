@@ -21,7 +21,7 @@
         vm.whichPin = null;
         vm.editing = false;
         vm.from = true;
-        vm.MinDate = new Date();
+        //vm.MinDate = new Date();
         vm.dateFrom = pinToEdit ? getEditedDate(pinToEdit.startDate) : getTodayDate();
         vm.dateTo = pinToEdit ? getEditedDate(pinToEdit.endDate) : getTodayDate();
         vm.lat = coords ? coords.latitude : pinToEdit ? pinToEdit.latitude : null;
@@ -37,14 +37,14 @@
             var dt = new Date(editdt);
             var dd = dt.getDate();
             var mm = dt.getMonth() + 1;
-            var yyyy = dt.getFullYear().toString(); 
+            var yyyy = dt.getFullYear().toString();
             if (dd < 10) {
                 dd = '0' + dd;
             }
             if (mm < 10) {
                 mm = '0' + mm;
             }
-            var today = dd + '-' + mm + '-' + yyyy;
+            var today = mm + '-' + dd + '-' + yyyy;
             return today;
         }
 
@@ -106,14 +106,14 @@
             var today = new Date();
             var dd = today.getDate();
             var mm = today.getMonth() + 1;
-            var yyyy = today.getFullYear().toString(); 
+            var yyyy = today.getFullYear().toString();
             if (dd < 10) {
                 dd = '0' + dd;
             }
             if (mm < 10) {
                 mm = '0' + mm;
             }
-            today = dd + '-' + mm + '-' + yyyy;
+            today = mm + '-' + dd + '-' + yyyy;
             return today;
         }
         function init() {
@@ -150,9 +150,8 @@
 
         function submit() {
             vm.pin.description = vm.placeName;
-
-            vm.pin.startDate = new Date(vm.dateOptionsTo.minDate);
-            vm.pin.endDate = new Date(vm.dateTo);
+            vm.pin.startDate = vm.dateFrom;
+            vm.pin.endDate = vm.dateTo;
             Pin.add(vm.pin).then(
 				function () {
 				    $uibModalInstance.dismiss('cancel');
