@@ -320,20 +320,17 @@
 		            vm.user = response.data; 
 		            vm.user.profilePic = instaResponse.data.data.profile_picture;
 		            $localStorage.loginType = "Instagram";
-		            $state.go('app.home');
+		            //$state.go('app.home');
 		            vm.isLoggedIn = true;
 		            //userObject.profilePic = instaResponse.data.data.profile_picture;
 		            //userObject.gender = "male";
 		            //userObject.lastName = userObject.firstName;
 		            //alert("if");
-		            //User.update(userObject).then(function () {
-		            //    $localStorage.loginType = "Instagram";
-		            //    $state.go('app.home');
-		            //    vm.isLoggedIn = true;
-		            //},
-		            //function () {
-
-		            //}
+		            User.update(vm.user).then(function (data) {
+		                $localStorage.loginType = "Instagram";
+		                $state.go('app.home');
+		                vm.isLoggedIn = true;
+		            });
 		        }
 		        else {
 		            alert("something went wrong");
@@ -650,7 +647,7 @@
 		                        facebookService.getFeedData().then(function (response) {
 		                            if (response.tagged_places && response.tagged_places.data && response.tagged_places.data.length > 0) {
 		                                var tagged_places = response.tagged_places.data;
-		                                console.log("tagged places", tagged_places);
+		                                //console.log("tagged places", tagged_places);
 		                                for (var i = 0; i < tagged_places.length ; i++) {
 		                                    createFBMarker(tagged_places[i]);
 		                                    if (i == (tagged_places.length - 1)) {
