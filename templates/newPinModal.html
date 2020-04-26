@@ -64,7 +64,7 @@ NEW PIN MODAL -->
         </div>-->
         <!--<div uib-datepicker ng-if="newPin.id="dfrom" ng-model="newPin.dateOptionsTo.minDate" class="well well-sm" datepicker-options="newPin.dateOptionsFrom"></div>-->
         <div class="from cursor" ng-click="newPin.from = true">From</div>
-        <datepicker date-format="MM-dd-yyyy">
+        <datepicker date-format="MM-dd-yyyy" >
             <input ng-model="newPin.dateFrom" type="text" />
         </datepicker>
         <!--<div uib-datepicker ng-if="!newPin.from" ng-model="newPin.dateTo" class="well well-sm" datepicker-options="newPin.dateOptionsTo"></div>-->
@@ -72,6 +72,7 @@ NEW PIN MODAL -->
         <datepicker date-format="MM-dd-yyyy">
             <input ng-model="newPin.dateTo" type="text" />
         </datepicker>
+        <div ng-if="newPin.dateError" style="color: red">To Date can not be greater than From Date</div>
     </div>
 
     <div class="rating-container" ng-if="newPin.whichPin === 'going' || newPin.whichPin === 'been'">

@@ -288,9 +288,19 @@ padding: 40px 20px;
     text-align: center;
     margin: 7px auto;
 }
+datepicker select, datepicker select:focus, datepicker select:hover, .datepicker select, .datepicker select:focus, .datepicker select:hover, [datepicker] select, [datepicker] select:focus, [datepicker] select:hover {
+    width: 100%;
+    overflow: hidden;
+    background: none;
+    color: #fff;
+    background-color: #f7914c;
+    border-radius: 2px;
+    border: 0;
+    margin-top: 5px;
+}
 }
 
 ._720kb-datepicker-calendar-day._720kb-datepicker-today {
-  background:orange;
+  background: #f7914c !important;
   color:white;
 }

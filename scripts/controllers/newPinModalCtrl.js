@@ -21,8 +21,9 @@
         vm.whichPin = null;
         vm.editing = false;
         vm.from = true;
-        //vm.MinDate = new Date();
+        
         vm.dateFrom = pinToEdit ? getEditedDate(pinToEdit.startDate) : getTodayDate();
+        vm.dateError = false; 
         vm.dateTo = pinToEdit ? getEditedDate(pinToEdit.endDate) : getTodayDate();
         vm.lat = coords ? coords.latitude : pinToEdit ? pinToEdit.latitude : null;
         vm.long = coords ? coords.longitude : pinToEdit ? pinToEdit.longitude : null;
@@ -76,6 +77,19 @@
        //$("#fromDate").datepicker("setDate", new Date());
         
        // $("#toDate").datepicker("setDate", new Date());
+        
+        $scope.$watch(function () {
+            return vm.dateTo;
+        }, function (value) {
+            try {
+              if (new Date(value) < new Date(vm.dateFrom)) {
+                  vm.dateError = true; 
+              }
+              else {
+                  vm.dateError = false; 
+              }
+            } catch (e) { }
+        });
 
         vm.pin = {
             pinTypeId: null,
@@ -149,26 +163,28 @@
         }
 
         function submit() {
-            vm.pin.description = vm.placeName;
-            vm.pin.startDate = vm.dateFrom;
-            vm.pin.endDate = vm.dateTo;
-            Pin.add(vm.pin).then(
-				function () {
-				    $uibModalInstance.dismiss('cancel');
-				},
-				function (err) {
-				    SweetAlert.swal(
-						{
-						    title: 'Something went wrong...',
-						    text: err.data && err.data.message ? 'Message: ' + err.data.message : 'Sorry about that!',
-						    confirmButtonColor: '#00A99D',
-						    confirmButtonText: 'OK',
-						    type: 'warning'
-						},
-						function (isConfirm) { }
-					);
-				}
-			);
+            if (!vm.dateError) {
+                vm.pin.description = vm.placeName;
+                vm.pin.startDate = vm.dateFrom;
+                vm.pin.endDate = vm.dateTo;
+                Pin.add(vm.pin).then(
+                    function () {
+                        $uibModalInstance.dismiss('cancel');
+                    },
+                    function (err) {
+                        SweetAlert.swal(
+                            {
+                                title: 'Something went wrong...',
+                                text: err.data && err.data.message ? 'Message: ' + err.data.message : 'Sorry about that!',
+                                confirmButtonColor: '#00A99D',
+                                confirmButtonText: 'OK',
+                                type: 'warning'
+                            },
+                            function (isConfirm) { }
+                        );
+                    }
+                );
+            }
         }
 
         function cancel() {
@@ -183,12 +199,14 @@
         }
 
         function updatePin() {
-            vm.pin.startDate = vm.dateFrom;
-            vm.pin.endDate = vm.dateTo;
-            vm.pin.description = vm.placeName;
-            Pin.updatePin(vm.pin.id, vm.pin).then(function (response) {
-                $uibModalInstance.dismiss('cancel');
-            });
+            if (!vm.dateError) {
+                vm.pin.startDate = vm.dateFrom;
+                vm.pin.endDate = vm.dateTo;
+                vm.pin.description = vm.placeName;
+                Pin.updatePin(vm.pin.id, vm.pin).then(function (response) {
+                    $uibModalInstance.dismiss('cancel');
+                });
+            }
         }
 
         $rootScope.$on('newPin', function (event, latLng) {
