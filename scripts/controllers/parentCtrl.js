@@ -232,11 +232,11 @@
 			if (window.location.href.indexOf("access_token") > -1) {
 			    var string_parts = window.location.href.split("=");
 			    var result = string_parts[string_parts.length - 1];
-			    if(result){
+			    if (result) {
+			        $rootScope.loaderIndicator = true; 
 			        $localStorage.instaToken = result;
 			        instagramService.login().then(function (response) {
 						var instaRes = response;
-			            console.log(response);
 			            if (response.data && response.data.data && response.status == 200) {
 			                var fbObject = {
 			                    "userSocialType": "instagram",
@@ -293,11 +293,13 @@
 			                });
 			            }
 			            else {
+                            $rootScope.loaderIndicator = false; 
 			                alert("something went wrong");
 			            }
 			        });
 			    }
 			    else {
+			        $rootScope.loaderIndicator = false; 
 			        alert("Something went wrong. Please try again after some time.")
 			    }
             }
@@ -308,6 +310,7 @@
 		    Auth.getMe().then(function (response) {
 		        if (response) {
 		            $localStorage.loginType = "Instagram";
+		            $rootScope.loaderIndicator = false; 
 		            $state.go('app.home');
                     vm.isLoggedIn = true;
 		        }
@@ -328,6 +331,7 @@
 		            //alert("if");
 		            User.update(vm.user).then(function (data) {
 		                $localStorage.loginType = "Instagram";
+		                $rootScope.loaderIndicator = false;
 		                $state.go('app.home');
 		                vm.isLoggedIn = true;
 		            });
