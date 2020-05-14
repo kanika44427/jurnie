@@ -323,18 +323,18 @@
 		            vm.user = response.data; 
 		            vm.user.profilePic = instaResponse.data.data.profile_picture;
 		            $localStorage.loginType = "Instagram";
-		            //$state.go('app.home');
+		            vm.user.gender = "male"; 
 		            vm.isLoggedIn = true;
-		            //userObject.profilePic = instaResponse.data.data.profile_picture;
-		            //userObject.gender = "male";
-		            //userObject.lastName = userObject.firstName;
-		            //alert("if");
 		            User.update(vm.user).then(function (data) {
 		                $localStorage.loginType = "Instagram";
 		                $rootScope.loaderIndicator = false;
 		                $state.go('app.home');
 		                vm.isLoggedIn = true;
-		            });
+		            }, 
+                    function () {
+                        $state.go('app.home');
+
+                    });
 		        }
 		        else {
 		            alert("something went wrong");
