@@ -329,9 +329,9 @@
 		                id: vm.user.id,
 		                firstName: vm.user.firstName,
 		                gender: vm.user.gender,
-		                lastName: '(' + response.data.data.username + ')',
+		                lastName: '(' + instaResponse.data.data.username + ')',
 		                userTypeId: vm.user.userTypeId,
-		                profilePic: response.data.data.profile_picture,
+		                profilePic: instaResponse.data.data.profile_picture,
 		                email: vm.user.email,
 		                nationality: vm.user.nationality,
 		                travellerTypeId: vm.user.travellerTypeId
