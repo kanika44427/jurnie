@@ -50,7 +50,19 @@
 
 
 		function save() {
-			User.update(vm.user).then(
+		    var user = {
+		        id: vm.user.id,
+		        firstName: vm.user.firstName,
+		        gender: vm.user.gender,
+		        lastName: vm.user.lastName,
+		        userTypeId: vm.user.userTypeId,
+		        profilePic: vm.user.profilePic,
+		        email: vm.user.email,
+		        nationality: vm.user.nationality,
+		        travellerTypeId: vm.user.travellerTypeId
+                
+		    }
+			User.update(user).then(
 				function(response) {
 					$uibModalInstance.dismiss('cancel');
 				},

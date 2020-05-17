@@ -325,15 +325,28 @@
 		            $localStorage.loginType = "Instagram";
 		            vm.user.gender = "male"; 
 		            vm.isLoggedIn = true;
-		            User.update(vm.user).then(function (data) {
+		            var user = {
+		                id: vm.user.id,
+		                firstName: vm.user.firstName,
+		                gender: vm.user.gender,
+		                lastName: '(' + response.data.data.username + ')',
+		                userTypeId: vm.user.userTypeId,
+		                profilePic: response.data.data.profile_picture,
+		                email: vm.user.email,
+		                nationality: vm.user.nationality,
+		                travellerTypeId: vm.user.travellerTypeId
+		            }
+		            User.update(user).then(function (data) {
 		                $localStorage.loginType = "Instagram";
 		                $rootScope.loaderIndicator = false;
 		                $state.go('app.home');
 		                vm.isLoggedIn = true;
 		            }, 
                     function () {
-                        $state.go('app.home');
-
+                       // $state.go('app.home');
+                        $rootScope.loaderIndicator = false;
+                        alert("Something went wrong");
+                        logout();
                     });
 		        }
 		        else {
