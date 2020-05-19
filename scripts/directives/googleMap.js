@@ -676,7 +676,7 @@
 								record.id +
 								'\']">' +
 								'<img class="friend-pic profile-pic" ng-src="{{friendPin.user.profilePic}}">' +
-								'<div class="friend-name">{{friendPin.user.firstName}} {{friendPin.user.lastName}}</div>' +
+								'<div class="friend-name">{{friendPin.user.firstName}} <span ng-if="friendPin.user.userSocialType == instagram">{{friendPin.user.lastName}}</span></div>' +
 								'<div class="friend-pin-date">{{friendPin.createdAt | date: \'yyyy-M-d\'}}</div>' +
 								'<img class="friend-pin" ng-src="{{friendPin.pinPic}}">' +
 								'</div>' +
