@@ -304,3 +304,16 @@ datepicker select, datepicker select:focus, datepicker select:hover, .datepicker
   background: #f7914c !important;
   color:white;
 }
+
+#infowindow .friend-pin-date {
+    padding-right: 25px;
+    text-align: right;
+}
+
+#infowindow .friend-pin {
+    min-width: 15px;
+}
+
+#infowindow .friend-pic {
+    min-width: 20px;
+}
